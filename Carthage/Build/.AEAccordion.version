@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "2.0.1",
+  "iOS" : [
+    {
+      "name" : "AEAccordion",
+      "hash" : "845ea311ec98f9fe216422313b4dc1f68a1dcdeba48a03fa26d6614f5f70104e"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "3.1.0",
+  "iOS" : [
+    {
+      "name" : "SwiftLocation",
+      "hash" : "d76027f84ec1a497d9de761acd4d95c7d6653c3b49b51efd61a8bcc6433fc1cb"
+    }
+  ]
+}

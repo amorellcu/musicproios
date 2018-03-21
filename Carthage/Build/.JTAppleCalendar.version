@@ -1,0 +1,21 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+    {
+      "name" : "JTAppleCalendar",
+      "hash" : "b1957a1e24f846f5c394b34dedb5363002e11c6019b2eeb93309ad7daca28452"
+    }
+  ],
+  "commitish" : "7.1.5",
+  "iOS" : [
+    {
+      "name" : "JTAppleCalendar",
+      "hash" : "d9bb81c40a3ad4c5769a0039f12b4ccd29995b1d8d40b8db9c8460e4285349e5"
+    }
+  ]
+}

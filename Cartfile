@@ -1,0 +1,5 @@
+#github "tadija/AEAccordion"
+#github "patchthecode/JTAppleCalendar" ~> 7.0
+#github "malcommac/SwiftLocation"
+#github "vikmeup/SCLAlertView-Swift" "master"
+github "Alamofire/Alamofire" ~> 4.6
