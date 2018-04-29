@@ -49,6 +49,11 @@ class InstrumentsViewController: UIViewController, UITextFieldDelegate, UITableV
     
     var namePerfil: String!
     var photoPerfil: UIImage!
+    var facebookid: String = ""
+    var phone: String = ""
+    var instrumentsid: [Int] = []
+    var emailPerfil: String!
+    var photoUrl: String!
     
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var perfilImage: UIImageView!
@@ -142,19 +147,6 @@ class InstrumentsViewController: UIViewController, UITextFieldDelegate, UITableV
 
     @IBAction func AddStudents(_ sender: Any) {
 
-        /*let alert = UIAlertController(title: "El estudiante \(String(describing: self.editname.text!)) se ha agregado correctamente", message: "Desea Agregar otro estudiante?", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Si", style: .default, handler: { action in
-            self.editname.text = ""
-            self.tableview.reloadData()
-        }))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
-        subview.backgroundColor = UIColor.clear
-        subview.isOpaque = false
-        alert.modalPresentationStyle = .overCurrentContext
-        alert.modalTransitionStyle = .crossDissolve
-        self.present(alert, animated: true, completion: nil)*/
         let appearance = SCLAlertView.SCLAppearance(
             showCloseButton: false
         )

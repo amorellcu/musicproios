@@ -49,12 +49,18 @@ import FBSDKCoreKit
 class ViewController: UIViewController,UITextFieldDelegate {
 
     var dict : [String : AnyObject]!
+    var nameclient = ""
+    var urlphoto = ""
+    let apimusicprof = ApiStudent()
+    var user:NSDictionary = [:]
     
     @IBOutlet weak var customFBLoginButton: UIButton!
     
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passText: UITextField!
     @IBOutlet weak var scrollview: UIScrollView!
+    
+    let configuration = Configuration()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,19 +75,40 @@ class ViewController: UIViewController,UITextFieldDelegate {
         view.addGestureRecognizer(tap)
         
         if let accessToken = FBSDKAccessToken.current(){
-            //Registro
-            /*if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterStepOne") as? RegisterStepOneViewController {
-                if let navigator = navigationController {
-                    navigator.pushViewController(viewController, animated: true)
+            let parameters = [
+                "token": accessToken.tokenString!
+            ]
+            apimusicprof.setParams(aparams: parameters)
+            apimusicprof.loginFacebookToken() { json, error  in
+                if(error != nil){
+                    let alertView = SCLAlertView()
+                    alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor")
                 }
-            }*/
-            //Calendario
-            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserCalendar") as? CalendarViewController {
-                 if let navigator = navigationController {
-                    navigator.pushViewController(viewController, animated: true)
-                 }
-             }
-
+                else{
+                    let JSON = json! as NSDictionary
+                    if(String(describing: JSON["result"]!) == "Error"){
+                        let alertView = SCLAlertView()
+                        alertView.showError("Error Autenticación", subTitle: String(describing: JSON["message"]!)) // Error
+                    } else if(String(describing: JSON["result"]!) == "OK"){
+                        if(String(describing: JSON["code"]!) == "202"){
+                            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterStepOne") as? RegisterStepOneViewController {
+                                if let navigator = self.navigationController {
+                                    navigator.pushViewController(viewController, animated: true)
+                                }
+                            }
+                        }
+                        else {
+                            self.user = JSON
+                            let userdata = self.getUserData(JSON: JSON)
+                            self.urlphoto = userdata["urlphoto"]!
+                            self.nameclient = userdata["name"]!
+                            self.performSegue(withIdentifier: "calendar", sender: self)
+                        }
+                        
+                    }
+                }
+                
+            }
         }
         emailText.delegate = self
         passText.delegate = self
@@ -110,6 +137,31 @@ class ViewController: UIViewController,UITextFieldDelegate {
         emailText.resignFirstResponder()
         passText.resignFirstResponder()
         return true
+    }
+    
+    func getUserData(JSON: NSDictionary)->[String:String]{
+        var userdata = [String:String]()
+        if(String(describing: JSON["result"]!) == "Error"){
+            let alertView = SCLAlertView()
+            alertView.showError("Error Autenticación", subTitle: String(describing: JSON["message"]!)) // Error
+        } else if(String(describing: JSON["result"]!) == "OK"){
+            let data = JSON["data"] as? [String: Any]
+            let cliente = data!["client"] as? [String: Any]
+            let subaccounts = cliente!["subaccounts"] as! NSArray
+            let user = cliente!["user"] as? [String: Any]
+            userdata["urlphoto"] = user!["photo"] as? String
+            if(subaccounts.count > 0){
+                let subcuenta = subaccounts[0] as? [String: Any]
+                userdata["name"] = subcuenta!["name"] as? String
+                
+            }
+            else {
+                let user = cliente!["user"] as! [String: Any]
+                userdata["name"] = user["name"] as? String
+            }
+        }
+        return userdata
+        
     }
     
     
@@ -143,10 +195,39 @@ class ViewController: UIViewController,UITextFieldDelegate {
                 print("User cancelled login.")
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
                 if let accessToken = FBSDKAccessToken.current(){
-                    if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterStepOne") as? RegisterStepOneViewController {
-                        if let navigator = self.navigationController {
-                            navigator.pushViewController(viewController, animated: true)
+                    let parameters = [
+                        "token": accessToken.tokenString!
+                    ]
+                    self.apimusicprof.setParams(aparams: parameters)
+                    self.apimusicprof.loginFacebookToken() { json, error  in
+                        if(error != nil){
+                            let alertView = SCLAlertView()
+                            alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor")
                         }
+                        else{
+                            let JSON = json! as NSDictionary
+                            if(String(describing: JSON["result"]!) == "Error"){
+                                let alertView = SCLAlertView()
+                                alertView.showError("Error Autenticación", subTitle: String(describing: JSON["message"]!)) // Error
+                            } else if(String(describing: JSON["result"]!) == "OK"){
+                                if(String(describing: JSON["code"]!) == "202"){
+                                    if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterStepOne") as? RegisterStepOneViewController {
+                                        if let navigator = self.navigationController {
+                                            navigator.pushViewController(viewController, animated: true)
+                                        }
+                                    }
+                                }
+                                else {
+                                    self.user = JSON
+                                    let userdata = self.getUserData(JSON: JSON)
+                                    self.urlphoto = userdata["urlphoto"]!
+                                    self.nameclient = userdata["name"]!
+                                    self.performSegue(withIdentifier: "calendar", sender: self)
+                                }
+                                
+                            }
+                        }
+                        
                     }
                     
                 }
@@ -154,17 +235,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
-    
-    //function is fetching the user data
-    func getFBUserData(){
-        if((FBSDKAccessToken.current()) != nil){
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
-                if (error == nil){
-                    self.dict = result as! [String : AnyObject]
-                }
-            })
-        }
-    }
+
 
     @IBAction func loginUser(_ sender: Any) {
         if self.emailText.text == "" || self.passText.text == ""{
@@ -174,21 +245,39 @@ class ViewController: UIViewController,UITextFieldDelegate {
         else{
             let headers = ["Content-Type": "application/x-www-form-urlencoded"]
             let parameters = [
-                "email": self.emailText.text,
-                "password": self.passText.text
+                "email": self.emailText.text!,//"testing113540900@gmail.com",//
+                "password": self.passText.text!//"123456"//
             ]
-            //let urllogin = NSURL(string: "http://127.0.0.1:8000/api/loginClient")!
-            request("http://127.0.0.1:8000/api/loginClient", method: .post, parameters: parameters, headers: headers).responseJSON { response in
-                switch response.result {
-                case .success:
-                    break
-                case .failure(let error):
+            apimusicprof.setHeaders(aheader: headers)
+            apimusicprof.setParams(aparams: parameters)
+            
+            apimusicprof.login() { json, error  in
+                if(error != nil){
                     let alertView = SCLAlertView()
                     alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor") // Error
-
-                    
                 }
-            }
+                else{
+                    let JSON = json! as NSDictionary
+                    let userdata = self.getUserData(JSON: JSON)
+                    self.urlphoto = userdata["urlphoto"]!
+                    self.nameclient = userdata["name"]!
+                    self.user = JSON
+                    self.performSegue(withIdentifier: "calendar", sender: self)
+                }
+
+             }
+         }
+    }
+    
+    @IBAction func buttonRegister(_ sender: Any) {
+        self.performSegue(withIdentifier: "RegisterStepOneSegue", sender: self)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "calendar"){
+            let Calendar = segue.destination as? CalendarViewController
+            Calendar?.Perfilname = self.nameclient
+            Calendar?.user = self.user
+
         }
     }
     

@@ -163,6 +163,9 @@
                                                                 <color key="value" red="0.99903708700000005" green="0.89184349780000005" blue="0.1251964569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="buttonRegister:" destination="9OR-MO-g9h" eventType="touchUpInside" id="ANO-wS-e1C"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -245,8 +248,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fg4-7S-oL7">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="767"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jzT-DH-1di">
-                                        <rect key="frame" x="-8" y="-9" width="375" height="767"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzT-DH-1di">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="767"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R4e-hG-8sD">
                                                 <rect key="frame" x="137" y="10" width="100" height="100"/>
@@ -498,7 +501,7 @@
                                                             <constraint firstAttribute="width" constant="52" id="245-fw-vmR"/>
                                                             <constraint firstAttribute="height" constant="52" id="j4n-yc-IVU"/>
                                                         </constraints>
-                                                        <state key="normal" backgroundImage="calendarder">
+                                                        <state key="normal" backgroundImage="calendarizq">
                                                             <color key="titleColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
@@ -537,17 +540,18 @@
                                                     <constraint firstItem="wCx-et-XBr" firstAttribute="top" secondItem="qGG-8B-b5h" secondAttribute="top" id="w9o-t3-zoD"/>
                                                 </constraints>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6L7-gr-sJ4">
-                                                <rect key="frame" x="0.0" y="715" width="375" height="52"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="52" id="hC7-If-2sz"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <state key="normal" title="Continuar&gt;">
-                                                    <color key="titleColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                            </button>
+                                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oYg-ng-wkc">
+                                                <rect key="frame" x="0.0" y="718" width="375" height="49"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <items>
+                                                    <tabBarItem title="home" image="iconHome" id="oGE-CZ-C2l"/>
+                                                    <tabBarItem title="perfil" image="iconPerfil" id="d3Z-8i-2mJ"/>
+                                                    <tabBarItem title="calendario" image="iconCalendario" id="Wx4-YP-Cdj"/>
+                                                    <tabBarItem title="mis clases" image="iconClases" id="t1g-bw-MHP"/>
+                                                </items>
+                                                <color key="barTintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            </tabBar>
                                         </subviews>
                                         <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -557,14 +561,11 @@
                                             <constraint firstItem="zTV-t1-OKp" firstAttribute="top" secondItem="elB-Mk-bIM" secondAttribute="bottom" constant="8" id="5tp-FH-PsU"/>
                                             <constraint firstItem="qGG-8B-b5h" firstAttribute="centerX" secondItem="jzT-DH-1di" secondAttribute="centerX" id="7jC-2D-Sh6"/>
                                             <constraint firstAttribute="trailing" secondItem="elB-Mk-bIM" secondAttribute="trailing" id="8vr-Zd-MXR"/>
-                                            <constraint firstAttribute="bottom" secondItem="6L7-gr-sJ4" secondAttribute="bottom" id="AIp-qk-gJY"/>
                                             <constraint firstAttribute="trailing" secondItem="r1i-FD-nJL" secondAttribute="trailing" constant="31" id="HQw-yG-tGQ"/>
                                             <constraint firstItem="MMA-S0-qPy" firstAttribute="top" secondItem="elB-Mk-bIM" secondAttribute="bottom" constant="72" id="O7c-YB-pWa"/>
                                             <constraint firstAttribute="trailing" secondItem="MMA-S0-qPy" secondAttribute="trailing" constant="25" id="ORE-sc-yag"/>
                                             <constraint firstItem="r1i-FD-nJL" firstAttribute="leading" secondItem="jzT-DH-1di" secondAttribute="leading" constant="31" id="Uqc-CK-OKO"/>
                                             <constraint firstItem="zTV-t1-OKp" firstAttribute="leading" secondItem="jzT-DH-1di" secondAttribute="leading" constant="25" id="V7p-8Z-nY3"/>
-                                            <constraint firstAttribute="trailing" secondItem="6L7-gr-sJ4" secondAttribute="trailing" id="W7T-fd-Sdc"/>
-                                            <constraint firstItem="6L7-gr-sJ4" firstAttribute="leading" secondItem="jzT-DH-1di" secondAttribute="leading" id="by7-AB-EmU"/>
                                             <constraint firstItem="qGG-8B-b5h" firstAttribute="top" secondItem="MMA-S0-qPy" secondAttribute="bottom" constant="32" id="dPv-kp-nPF"/>
                                             <constraint firstItem="R4e-hG-8sD" firstAttribute="top" secondItem="jzT-DH-1di" secondAttribute="top" constant="10" id="gtR-UH-b4u"/>
                                             <constraint firstItem="MMA-S0-qPy" firstAttribute="leading" secondItem="jzT-DH-1di" secondAttribute="leading" constant="25" id="lsj-8U-WZs"/>
@@ -605,7 +606,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i3Y-Nd-Omz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1020" y="-319"/>
+            <point key="canvasLocation" x="-1682.4000000000001" y="-414.24287856071965"/>
         </scene>
         <!--Schedule View Controller-->
         <scene sceneID="v6w-xd-51T">
@@ -716,6 +717,9 @@
                                                                 </label>
                                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Of0-O5-sAt">
                                                                     <rect key="frame" x="315" y="11" width="51" height="31"/>
+                                                                    <connections>
+                                                                        <action selector="addInstrument:" destination="5Kj-Sv-5m7" eventType="valueChanged" id="uv8-Hn-jHY"/>
+                                                                    </connections>
                                                                 </switch>
                                                             </subviews>
                                                             <constraints>
@@ -915,13 +919,13 @@
                         <outlet property="namePerfil" destination="Ayv-TT-WTg" id="L6R-7y-4pz"/>
                         <outlet property="perfil" destination="P9h-Tn-TsM" id="BFp-GS-zGt"/>
                         <outlet property="tableview" destination="80h-7a-Lau" id="dZ8-dx-BGU"/>
-                        <segue destination="IBf-ST-lmj" kind="show" identifier="mapSegue" id="d9x-wi-IDR"/>
                         <segue destination="tDH-yj-0pk" kind="show" identifier="horarioSegue" id="T5d-o2-Lw0"/>
+                        <segue destination="IBf-ST-lmj" kind="show" identifier="mapSegue" id="fpK-kg-nyG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zhg-WN-fbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="338" y="739"/>
+            <point key="canvasLocation" x="-1706" y="475"/>
         </scene>
         <!--Schedule Profesor View Controller-->
         <scene sceneID="aQI-mQ-N6Q">
@@ -1213,7 +1217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0go-zQ-cPB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="337" y="1629"/>
+            <point key="canvasLocation" x="-1706" y="1413"/>
         </scene>
         <!--Profesor Detail View Controller-->
         <scene sceneID="FZH-22-qHC">
@@ -1437,7 +1441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oh4-mZ-MH1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1313" y="1629"/>
+            <point key="canvasLocation" x="-60" y="1163"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="aQy-OD-MnX">
@@ -1460,25 +1464,15 @@
                                 <state key="normal" title="Confirmar Ubicación&gt;">
                                     <color key="titleColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9a-XK-tis">
-                                <rect key="frame" x="331" y="570" width="44" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="6mz-Jz-MMg"/>
-                                    <constraint firstAttribute="height" constant="44" id="GTm-0E-fGC"/>
-                                </constraints>
-                                <state key="normal" image="search"/>
                                 <connections>
-                                    <action selector="searchShowBar:" destination="IBf-ST-lmj" eventType="touchUpInside" id="vbW-B2-e7v"/>
+                                    <action selector="fixUbication:" destination="IBf-ST-lmj" eventType="touchUpInside" id="bHl-VT-qe7"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Z9a-XK-tis" firstAttribute="top" secondItem="WyS-cj-3VH" secondAttribute="top" constant="506" id="A7a-mG-ueB"/>
                             <constraint firstItem="hb7-XF-xHY" firstAttribute="top" secondItem="xes-40-YqH" secondAttribute="top" id="FAU-V7-MaS"/>
                             <constraint firstItem="73j-Cn-foW" firstAttribute="bottom" secondItem="WyS-cj-3VH" secondAttribute="bottom" id="GCv-mv-3hE"/>
-                            <constraint firstItem="Z9a-XK-tis" firstAttribute="trailing" secondItem="WyS-cj-3VH" secondAttribute="trailing" id="K94-3Q-Fxq"/>
                             <constraint firstItem="hb7-XF-xHY" firstAttribute="bottom" secondItem="WyS-cj-3VH" secondAttribute="bottom" id="Rko-Bk-3TO"/>
                             <constraint firstItem="hb7-XF-xHY" firstAttribute="trailing" secondItem="WyS-cj-3VH" secondAttribute="trailing" id="U4p-C7-Hn5"/>
                             <constraint firstItem="hb7-XF-xHY" firstAttribute="leading" secondItem="WyS-cj-3VH" secondAttribute="leading" id="a3t-dl-EZJ"/>
@@ -1493,7 +1487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eDj-CV-Vez" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1164" y="702"/>
+            <point key="canvasLocation" x="-462" y="209"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="ZoG-M1-guu">
@@ -1878,10 +1872,10 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zzb-FL-tyz">
-                                                                    <rect key="frame" x="28" y="1" width="46" height="46"/>
+                                                                    <rect key="frame" x="28" y="1" width="44" height="41"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="46" id="eWc-50-z2D"/>
-                                                                        <constraint firstAttribute="width" constant="46" id="mFP-DJ-vKf"/>
+                                                                        <constraint firstAttribute="height" constant="41" id="eWc-50-z2D"/>
+                                                                        <constraint firstAttribute="width" constant="44" id="mFP-DJ-vKf"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2x-yi-0hq">
@@ -1892,11 +1886,14 @@
                                                                 </label>
                                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="73d-ZS-qXG">
                                                                     <rect key="frame" x="315" y="11" width="51" height="31"/>
+                                                                    <connections>
+                                                                        <action selector="addInstrument:" destination="Pdp-4S-gVr" eventType="valueChanged" id="DeM-1g-6Ub"/>
+                                                                    </connections>
                                                                 </switch>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="73d-ZS-qXG" firstAttribute="leading" secondItem="H2x-yi-0hq" secondAttribute="trailing" constant="22" id="K1u-JA-79M"/>
-                                                                <constraint firstItem="H2x-yi-0hq" firstAttribute="leading" secondItem="zzb-FL-tyz" secondAttribute="trailing" constant="33" id="fDf-RH-Y2g"/>
+                                                                <constraint firstItem="H2x-yi-0hq" firstAttribute="leading" secondItem="zzb-FL-tyz" secondAttribute="trailing" constant="35" id="fDf-RH-Y2g"/>
                                                                 <constraint firstItem="H2x-yi-0hq" firstAttribute="top" secondItem="iTP-TA-K3X" secondAttribute="top" constant="14" id="fYp-dG-cih"/>
                                                                 <constraint firstItem="zzb-FL-tyz" firstAttribute="leading" secondItem="iTP-TA-K3X" secondAttribute="leading" constant="28" id="k7p-9B-exg"/>
                                                                 <constraint firstItem="zzb-FL-tyz" firstAttribute="top" secondItem="iTP-TA-K3X" secondAttribute="top" constant="1" id="nH2-PQ-FpL"/>
@@ -1923,6 +1920,9 @@
                                                 <state key="normal" title="Continuar&gt;">
                                                     <color key="titleColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onContinue:" destination="1RX-bf-2AS" eventType="touchUpInside" id="7Go-h8-xvN"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1970,11 +1970,12 @@
                         <outlet property="PerfilName" destination="21s-qd-ZHt" id="NkI-kR-1dT"/>
                         <outlet property="perfilImage" destination="cnr-0h-hwl" id="wMb-Xb-7CE"/>
                         <outlet property="tableview" destination="lhB-lw-RUa" id="FrP-0X-OIG"/>
+                        <segue destination="9OR-MO-g9h" kind="show" identifier="homeSegue" id="e8P-oM-Cc7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Jz-qe-ZLR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="369" y="-747"/>
+            <point key="canvasLocation" x="466" y="-739"/>
         </scene>
         <!--Instruments View Controller-->
         <scene sceneID="xt0-W3-Hph">
@@ -2282,13 +2283,20 @@
     </scenes>
     <resources>
         <image name="backbuttonreserva" width="853" height="25"/>
-        <image name="calendarder" width="108" height="115"/>
+        <image name="calendarder" width="67" height="67"/>
+        <image name="calendarizq" width="67" height="67"/>
         <image name="flechader" width="70" height="156"/>
         <image name="flechaizq" width="70" height="156"/>
+        <image name="iconCalendario" width="30" height="30"/>
+        <image name="iconClases" width="30" height="30"/>
+        <image name="iconHome" width="30" height="30"/>
+        <image name="iconPerfil" width="30" height="30"/>
         <image name="logo" width="291" height="400"/>
         <image name="profedetails" width="848" height="446"/>
         <image name="profesor" width="443" height="435"/>
-        <image name="search" width="128" height="128"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="e8P-oM-Cc7"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

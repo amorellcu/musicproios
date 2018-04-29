@@ -54,11 +54,15 @@ class RegisterStepOneViewController: UIViewController {
     
     @IBOutlet weak var scrollview: UIScrollView!
     var buttonclick: String = ""
+    var facebookid: String = ""
+    var photoUrl: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        if(self.photoUrl == ""){
+            self.perfil.image = UIImage(named:"userdefault")
+        }
         self.perfil.layer.cornerRadius = self.perfil.frame.size.width / 2
         self.perfil.clipsToBounds = true
         self.phonePerfil.keyboardType = .numberPad
@@ -85,7 +89,7 @@ class RegisterStepOneViewController: UIViewController {
                     var data = dict["picture"]!["data"] as! [String : AnyObject]
                     let imageUrlString = data["url"] as! String
                     let imageUrl:URL = URL(string: imageUrlString)!
-                    
+                    self.photoUrl = imageUrlString
                     // Start background thread so that image loading does not make app unresponsive
                     DispatchQueue.global(qos: .userInitiated).async {
                         let imageData:NSData = NSData(contentsOf: imageUrl)!
@@ -95,6 +99,8 @@ class RegisterStepOneViewController: UIViewController {
                             self.perfil.image = image
                             self.namePerfil.text = dict["name"] as? String
                             self.emailPerfil.text = dict["email"] as? String
+                            self.facebookid = (dict["id"] as? String)!
+                           
                         }
                     }
                 }
@@ -153,9 +159,31 @@ class RegisterStepOneViewController: UIViewController {
         {
             student.setPhoto(aphoto: self.perfil.image!)
         }
+        else{
+            self.perfil.image = UIImage(named: "userdefault")
+            student.setPhoto(aphoto: self.perfil.image!)
+        }
+        
         if(self.namePerfil.text != nil)
         {
             student.setName(aname: self.namePerfil.text!)
+        }
+        
+        if(self.phonePerfil.text != nil)
+        {
+            student.setPhone(aphone: self.phonePerfil.text!)
+        }
+        
+        if(self.facebookid != nil)
+        {
+            student.setFbId(afbid: self.facebookid)
+        }
+        if(self.emailPerfil.text != nil)
+        {
+            student.setEmail(aemail: self.emailPerfil.text!)
+        }
+        if(self.photoUrl != ""){
+            student.setUrlPhoto(aurlphoto: self.photoUrl)
         }
         self.performSegue(withIdentifier: "instruments1Segue", sender: student)
     
@@ -170,6 +198,10 @@ class RegisterStepOneViewController: UIViewController {
         let student = sender as? Student
         let name = student?.getName()
         let photo = student?.getPhoto()
+        let phone = student?.getPhone()
+        let facebookid = student?.getFbId()
+        let email = student?.getEmail()
+        let photourl = student?.getUrlPhoto()
         if(segue.identifier == "instruments2Segue"){
             let Instruments = segue.destination as? InstrumentsViewController
             if(name != nil){
@@ -177,6 +209,18 @@ class RegisterStepOneViewController: UIViewController {
             }
             if(photo != nil){
                 Instruments?.photoPerfil = photo!
+            }
+            if(phone != nil){
+                Instruments?.phone = phone!
+            }
+            if(email != nil){
+                Instruments?.emailPerfil = email!
+            }
+            if(facebookid != nil){
+                Instruments?.facebookid = facebookid!
+            }
+            if(photourl != nil){
+                Instruments?.photoUrl = photourl!
             }
         }
         else{
@@ -186,6 +230,18 @@ class RegisterStepOneViewController: UIViewController {
             }
             if(photo != nil){
                 Instruments?.photoPerfil = photo!
+            }
+            if(phone != nil){
+                Instruments?.phone = phone!
+            }
+            if(email != nil){
+             Instruments?.emailPerfil = email!
+             }
+            if(facebookid != nil){
+                Instruments?.facebookid = facebookid!
+            }
+            if(photourl != nil){
+                Instruments?.photoUrl = photourl!
             }
         }
         

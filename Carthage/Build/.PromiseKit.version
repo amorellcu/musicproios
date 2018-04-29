@@ -1,0 +1,27 @@
+{
+  "Mac" : [
+    {
+      "name" : "PromiseKit",
+      "hash" : "438768af77e0215bf69fe99715cabe59796a0b4d87e5285f528edbd2f371e72a"
+    }
+  ],
+  "watchOS" : [
+    {
+      "name" : "PromiseKit",
+      "hash" : "3b5c5a042f635dbeaefa05022c4cb3ed18d560a0e50ea569f083335e6e9120d1"
+    }
+  ],
+  "tvOS" : [
+    {
+      "name" : "PromiseKit",
+      "hash" : "514d60928cfd341130ece7faf0351de028c3cd76f3695032254e0f41141f9525"
+    }
+  ],
+  "commitish" : "6.2.5",
+  "iOS" : [
+    {
+      "name" : "PromiseKit",
+      "hash" : "5f9c9e5a48177d128c59b5c4b2eb6f57c77ca45716d03036a9523a57d23c2de3"
+    }
+  ]
+}

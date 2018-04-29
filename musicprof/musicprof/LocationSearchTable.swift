@@ -8,12 +8,16 @@
 
 import UIKit
 import MapKit
-
+import SCLAlertView
 
 class LocationSearchTable : UITableViewController {
     var handleMapSearchDelegate:HandleMapSearch? = nil
     var matchingItems:[MKMapItem] = []
     var mapView: MKMapView? = nil
+    let apimusicprof = ApiStudent()
+    var token = ""
+    var userid = 0
+    let alertView = SCLAlertView()
     
     func parseAddress(selectedItem:MKPlacemark) -> String {
         // put a space between "4" and "Melrose Place"
@@ -76,6 +80,7 @@ extension LocationSearchTable {
 extension LocationSearchTable {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = matchingItems[indexPath.row].placemark
+        //self.address = parseAddress(selectedItem: selectedItem)
         handleMapSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
         dismiss(animated: true, completion: nil)
         var localSearchRequest:MKLocalSearchRequest!
@@ -111,5 +116,29 @@ extension LocationSearchTable {
             self.mapView?.centerCoordinate = pointAnnotation.coordinate
             self.mapView?.addAnnotation(pinAnnotationView.annotation!)
         }
+        //Update address to client
+        let headers = [
+            "Authorization": "Bearer \(self.token)",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-Requested-With": "XMLHttpRequest",
+        ]
+        let parameters = [
+            "id": "\(self.userid)",
+            "address": parseAddress(selectedItem: selectedItem)
+        ]
+        apimusicprof.setHeaders(aheader: headers)
+        apimusicprof.setParams(aparams: parameters)
+        apimusicprof.updateAddress() { json, error  in
+            if(error != nil){
+                self.alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor") // Error
+            }
+            else{
+                let JSON = json! as NSDictionary
+                if(String(describing: JSON["result"]!) == "Error"){
+                    self.alertView.showError("Error Ubicación", subTitle: String(describing: JSON["message"]!)) // Error
+                }
+            }
+        }
+        
     }
 }

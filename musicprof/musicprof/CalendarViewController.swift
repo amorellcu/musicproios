@@ -24,11 +24,14 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var month: UILabel!
     
+    var Perfilname = ""
+    var user: NSDictionary = [:]
+    
     let formatter = DateFormatter()
     let outsideDayColor = UIColor(red: 124/255 ,green: 124/255 ,blue: 124/255 ,alpha: 1)
     let dayColor = UIColor(red: 255/255 ,green: 210/255 ,blue: 69/255 ,alpha: 1)
     let selectedDayColor = UIColor(red: 65/255 ,green: 64/255 ,blue: 66/255 ,alpha: 1)
-
+    var dateclass: Date = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,26 +51,27 @@ class CalendarViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        if((FBSDKAccessToken.current()) != nil){
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
-                if (error == nil){
-                    var dict = result as! [String : AnyObject]
-                    var data = dict["picture"]!["data"] as! [String : AnyObject]
-                    let imageUrlString = data["url"] as! String
-                    let imageUrl:URL = URL(string: imageUrlString)!
-                    
-                    // Start background thread so that image loading does not make app unresponsive
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        let imageData:NSData = NSData(contentsOf: imageUrl)!
-                        // When from background thread, UI needs to be updated on main_queue
-                        DispatchQueue.main.async {
-                            let image = UIImage(data: imageData as Data)
-                            self.perfil.image = image
-                            self.namePerfil.text = dict["name"] as? String
-                        }
+        self.namePerfil.text = Perfilname
+        let data = self.user["data"] as? [String: Any]
+        let cliente = data!["client"] as? [String: Any]
+        let subaccounts = cliente!["subaccounts"] as! NSArray
+        let user = cliente!["user"] as? [String: Any]
+        let photo = user!["photo"] as! String
+        let url = URL(string: photo)
+        if(photo != ""){
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                if(data != nil){
+                    DispatchQueue.main.async {
+                        self.perfil.image = UIImage(data: data!)
                     }
+                } else {
+                    self.perfil.image = UIImage(named: "userdefault")
                 }
-            })
+
+            }
+        } else {
+            self.perfil.image = UIImage(named: "userdefault")
         }
     }
 
@@ -147,6 +151,7 @@ class CalendarViewController: UIViewController {
             if(photo != nil){
                 Instruments?.photoPerfil = photo!
             }
+            Instruments?.user = self.user
         }
         
     }
@@ -187,6 +192,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate{
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        self.dateclass = date
         handleCellViewSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
     }

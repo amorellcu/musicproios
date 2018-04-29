@@ -13,6 +13,8 @@ public class Student {
     var name: String?
     var fbid: String?
     var photo: UIImage?
+    var phone: String?
+    var urlphoto: String?
     
     public func AutoCompleteFace(faceVariables:[String : AnyObject]!){
         print(faceVariables)
@@ -28,7 +30,7 @@ public class Student {
     }
     
     public func setEmail(aemail:String){
-        self.name = aemail
+        self.email = aemail
     }
     
     public func getEmail()->String{
@@ -51,9 +53,22 @@ public class Student {
         self.fbid = afbid
     }
     
-    public func login(aemail:String, apassword:String){
-        
+    public func setPhone(aphone:String){
+        self.phone = aphone
     }
+    
+    public func getPhone()->String{
+        return self.phone!
+    }
+    
+    public func setUrlPhoto(aurlphoto:String){
+        self.urlphoto = aurlphoto
+    }
+    
+    public func getUrlPhoto()->String{
+        return ((self.urlphoto) != nil) ? self.urlphoto! : ""
+    }
+    
     
 }
 

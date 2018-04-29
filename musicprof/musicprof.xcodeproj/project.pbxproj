@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE7EF020894273006672C1 /* ConfigurationsClass.swift */; };
+		15DFDFBE208E4E7500B28338 /* ApiStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDFBD208E4E7500B28338 /* ApiStudent.swift */; };
 		A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5315B32203CF27C0043A0E2 /* MapViewController.swift */; };
 		A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */; };
 		A5598C18201F8C3B000C64F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5598C17201F8C3B000C64F6 /* AppDelegate.swift */; };
@@ -94,6 +96,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		15DE7EF020894273006672C1 /* ConfigurationsClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationsClass.swift; sourceTree = "<group>"; };
+		15DFDFBD208E4E7500B28338 /* ApiStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiStudent.swift; sourceTree = "<group>"; };
+		15DFDFC0208EA59F00B28338 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = ../Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
 		A5315B32203CF27C0043A0E2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		A5598C14201F8C3B000C64F6 /* musicprof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = musicprof.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +176,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15DFDFBF208EA59F00B28338 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15DFDFC0208EA59F00B28338 /* PromiseKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A5598C0B201F8C3B000C64F6 = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +191,7 @@
 				A5598C2B201F8C3B000C64F6 /* musicprofTests */,
 				A5598C36201F8C3C000C64F6 /* musicprofUITests */,
 				A5598C15201F8C3B000C64F6 /* Products */,
+				15DFDFBF208EA59F00B28338 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -212,9 +226,11 @@
 				A5AA588C202A57B100F4370A /* UsersTableViewCell.swift */,
 				A5E1FB1B2042514000B15DD9 /* ProfesorTableViewCell.swift */,
 				A5CA35D5202BA922002FFFD0 /* peopleTableViewCell.swift */,
+				15DFDFBD208E4E7500B28338 /* ApiStudent.swift */,
 				A5F6F61D201FD9E600264412 /* StudentClass.swift */,
 				A5CA35D920311805002FFFD0 /* InstrumentsmeViewController.swift */,
 				A5CA35D7202CA10C002FFFD0 /* InstrumentsViewController.swift */,
+				15DE7EF020894273006672C1 /* ConfigurationsClass.swift */,
 				A56E0FF4203B810D002D2F28 /* ScheduleViewController.swift */,
 				A5AD1EB420334EA400A38F85 /* CalendarViewController.swift */,
 				A5A99AD92025345D0050D8D8 /* ItemTableViewCell.swift */,
@@ -314,7 +330,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Alexis Morell Blanco";
 				TargetAttributes = {
 					A5598C13201F8C3B000C64F6 = {
@@ -398,12 +414,14 @@
 				A5E1FB1E2044BC2200B15DD9 /* ProfesorDetailViewController.swift in Sources */,
 				A5AD1EC020338A6F00A38F85 /* CalendarCell.swift in Sources */,
 				A5598C18201F8C3B000C64F6 /* AppDelegate.swift in Sources */,
+				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,
 				A5FF65842024FE34003778B3 /* HeaderTableViewCell.swift in Sources */,
 				A5A77C3820407866000F1E3E /* ScheduleProfesorViewController.swift in Sources */,
 				A5A99ADA2025345D0050D8D8 /* ItemTableViewCell.swift in Sources */,
 				A5CA35D8202CA10C002FFFD0 /* InstrumentsViewController.swift in Sources */,
 				A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */,
 				A5E1FB242044DD4600B15DD9 /* Header1TableViewCell.swift in Sources */,
+				15DFDFBE208E4E7500B28338 /* ApiStudent.swift in Sources */,
 				A56E0FF5203B810D002D2F28 /* ScheduleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,6 +491,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -480,6 +499,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -507,7 +527,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -530,6 +550,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -537,6 +558,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -558,7 +580,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

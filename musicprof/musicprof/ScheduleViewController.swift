@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var perfil: UIImageView!
     @IBOutlet weak var namePerfil: UILabel!
     var Perfilname: String!
     var photoPerfil: UIImage!
+    let apimusicprof = ApiStudent()
+    let alertView = SCLAlertView()
+    var user: NSDictionary = [:]
+    var instrumentsid: Int = 0
+    var client: NSDictionary = [:]
+    var dateclass: Date = Date()
+    var address = ""
     
     @IBOutlet weak var tableview: UITableView!
     
@@ -20,15 +28,18 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         var name: String
         var icon: String
         var swith: Bool
+        var id:Int
         
-        init(name: String, icon: String, swith: Bool = false) {
+        init(name: String, icon: String, swith: Bool = false, id:Int) {
             self.name = name
             self.icon = icon
             self.swith = false
+            self.id = id
         }
     }
     
-    let instruments_items:[Item] = [Item(name:"Canto",icon:"canto"), Item(name:"Guitarra Clásica",icon:"guitarra")]
+    //let instruments_items:[Item] = [Item(name:"Canto",icon:"canto"), Item(name:"Guitarra Clásica",icon:"guitarra")]
+    var instruments_items:[Item] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,32 +69,57 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! UsersTableViewCell
         cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
         cell.labelcell.text = instruments_items[indexPath.row].name
-        cell.iconcell.image = UIImage(named: instruments_items[indexPath.row].icon)
-        cell.cellswitch.setOn(instruments_items[indexPath.row].swith, animated: true)
+        let url = URL(string: instruments_items[indexPath.row].icon)
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            DispatchQueue.main.async {
+                cell.iconcell.image = UIImage(data: data!)
+            }
+        }
+        cell.idinstrument = instruments_items[indexPath.row].id
+        if(cell.status == 1){
+            self.instrumentsid = cell.idinstrument
+            cell.cellswitch.setOn(true, animated: true)
+        } else {
+            //cell.cellswitch.setOn(false, animated: true)
+        }
         return cell
     }
     
 
     @IBAction func fixLocations(_ sender: Any) {
-        /*let alert = UIAlertController(title: "Ubicación", message: "Desea usar su ubicación actual", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Si", style: .default, handler: { action in
-
-        }))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { action in
-            
-        }))
-        let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
-        subview.backgroundColor = UIColor.clear
-        subview.isOpaque = false
-        alert.modalPresentationStyle = .overCurrentContext
-        alert.modalTransitionStyle = .crossDissolve
-        self.present(alert, animated: true, completion: nil)*/
         self.performSegue(withIdentifier: "mapSegue", sender: nil)
     }
     
     @IBAction func goSchedule(_ sender: Any) {
-        self.performSegue(withIdentifier: "horarioSegue", sender: self)
+        self.tableview.reloadData()
+        var countstatus = 0
+        for cell1 in self.tableview.visibleCells {
+            let cell2 = cell1 as! UsersTableViewCell
+            
+            if(cell2.status == 1){
+                countstatus += 1
+            }
+            //print(cell2.status)
+        }
+        let data = self.client["data"] as? [String: Any]
+        let client = data!["client"] as? [String: Any]
+        let address = client!["address"]! as! String
+        //print(address)
+        if(self.instrumentsid == 0){
+            let alertView1 = SCLAlertView()
+            alertView1.showError("Error de Datos", subTitle: "Debes seleccionar el instrumento de la clase")
+        }else if(countstatus > 1){
+            let alertView1 = SCLAlertView()
+            alertView1.showError("Error de Datos", subTitle: "Debes seleccionar un solo instrumento para la clase")
+        }else if(address == ""){
+            let alertView1 = SCLAlertView()
+            alertView1.showError("Error de Datos", subTitle: "Debes fijar la ubicación donde se impartirá la clase")
+        }
+        else{
+           self.performSegue(withIdentifier: "horarioSegue", sender: self)
+        }
+        //
     }
     
     
@@ -104,8 +140,68 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             if(self.perfil != nil){
                 Schedule?.photoPerfil = self.perfil.image
             }
+            Schedule?.dateclass = self.dateclass
+            Schedule?.address = self.address
+            Schedule?.instrumenid = self.instrumentsid
+            Schedule?.user = self.user
             
+        } else if(segue.identifier == "mapSegue"){
+            let Map = segue.destination as? MapViewController
+            Map?.user = self.user
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.instruments_items = []
+        let data = self.user["data"] as? [String: Any]
+        let client = data!["client"] as? [String: Any]
+        let address = client!["address"]! as! String
+        self.address = address
+        let headers = [
+            "Authorization": "Bearer \(data!["token"]! as! String)",
+            "X-Requested-With": "XMLHttpRequest"
+        ]
+        let parameters = [
+            "id": client!["users_id"]! as! Int
+        ]
+        apimusicprof.setHeaders(aheader: headers)
+        apimusicprof.setParams(aparams: parameters)
+        apimusicprof.getClient() { json, error  in
+            if(error != nil){
+                self.alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor") // Error
+            }
+            else{
+                let JSON = json! as NSDictionary
+                if(String(describing: JSON["result"]!) == "Error"){
+                    self.alertView.showError("Error Obteniendo usuario", subTitle: String(describing: JSON["message"]!)) // Error
+                } else if(String(describing: JSON["result"]!) == "OK"){
+                    self.client = JSON
+                    if(self.user == nil){
+                        self.alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor")
+                    }
+                    else{
+                        let data = self.client["data"] as? [String: Any]
+                        let client = data!["client"] as? [String: Any]
+                        let address = client!["address"]! as! String
+                        self.address = address
+                        let instruments = client!["instruments"] as! NSArray
+                        for instrument in instruments {
+                            var item = instrument as? [String: Any]
+                            if(item!["icono"] as! String != ""){
+                                let instrumentItem = Item(name:item!["name"]! as! String,icon:item!["icono"]! as! String,id:item!["id"]! as! Int)
+                                self.instruments_items.append(instrumentItem)
+                                
+                            }
+                            
+                        }
+                        self.tableview.reloadData()
+                    }
+                }
+            }
+        }
+
+        
+        
     }
 
 

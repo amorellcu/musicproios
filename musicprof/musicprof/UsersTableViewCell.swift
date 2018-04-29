@@ -17,6 +17,9 @@ class UsersTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var cellswitch: UISwitch!
     @IBOutlet weak var labelcell: UILabel!
     
+    var idinstrument: Int = 0
+    var status:Int = 0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,4 +31,13 @@ class UsersTableViewCell: UITableViewCell, UITextFieldDelegate {
         // Configure the view for the selected state
     }
  
+    @IBAction func addInstrument(_ sender: Any) {
+        if(cellswitch.isOn){
+            self.status = 1
+        } else {
+            self.status = 0
+        }
+    }
+    
+    
 }

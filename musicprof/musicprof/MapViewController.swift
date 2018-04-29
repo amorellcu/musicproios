@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SCLAlertView
 
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
@@ -27,6 +28,14 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     var pointAnnotation:MKPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
     var selectedPin:MKPlacemark? = nil
+    var namePerfil: String!
+    var photoPerfil: UIImage!
+    var facebookid: String = ""
+    var phone: String = ""
+    let apimusicprof = ApiStudent()
+    var instrumentsid: [Int] = []
+    var user:NSDictionary = [:]
+    let alertView = SCLAlertView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +54,11 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
+        let data = self.user["data"] as? [String: Any]
+        let client = data!["client"] as? [String: Any]
         locationSearchTable.mapView = mapview
+        locationSearchTable.token = data!["token"]! as! String
+        locationSearchTable.userid = client!["users_id"]! as! Int
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,43 +76,44 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         mapview.showsUserLocation = true
     }
     
-    @IBAction func searchShowBar(_ sender: Any) {
-
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.hidesNavigationBarDuringPresentation = false
-        self.searchController.searchBar.delegate = self
-        present(searchController, animated: true, completion: nil)
-    }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-        //1
-        searchBar.resignFirstResponder()
-        dismiss(animated: true, completion: nil)
-        if self.mapview.annotations.count != 0{
-            annotation = self.mapview.annotations[0]
-            self.mapview.removeAnnotation(annotation)
-        }
-        //2
-        localSearchRequest = MKLocalSearchRequest()
-        localSearchRequest.naturalLanguageQuery = searchBar.text
-        localSearch = MKLocalSearch(request: localSearchRequest)
-        localSearch.start { (localSearchResponse, error) -> Void in
-            
-            if localSearchResponse == nil{
-                let alertController = UIAlertController(title: nil, message: "Place Not Found", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
-                return
+    @IBAction func fixUbication(_ sender: Any) {
+        let data = self.user["data"] as? [String: Any]
+        let client = data!["client"] as? [String: Any]
+        let headers = [
+            "Authorization": "Bearer \(data!["token"]! as! String)",
+            "X-Requested-With": "XMLHttpRequest"
+        ]
+        let parameters = [
+            "id": client!["users_id"]! as! Int
+        ]
+        apimusicprof.setHeaders(aheader: headers)
+        apimusicprof.setParams(aparams: parameters)
+        apimusicprof.getClient() { json, error  in
+            if(error != nil){
+                self.alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor") // Error
             }
-            //3
-            self.pointAnnotation = MKPointAnnotation()
-            self.pointAnnotation.title = searchBar.text
-            self.pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse!.boundingRegion.center.latitude, longitude:     localSearchResponse!.boundingRegion.center.longitude)
-            
-            
-            self.pinAnnotationView = MKPinAnnotationView(annotation: self.pointAnnotation, reuseIdentifier: nil)
-            self.mapview.centerCoordinate = self.pointAnnotation.coordinate
-            self.mapview.addAnnotation(self.pinAnnotationView.annotation!)
+            else{
+                let JSON = json! as NSDictionary
+                if(String(describing: JSON["result"]!) == "Error"){
+                    self.alertView.showError("Error Obteniendo usuario", subTitle: String(describing: JSON["message"]!)) // Error
+                } else if(String(describing: JSON["result"]!) == "OK"){
+                    print(JSON)
+                    let data = JSON["data"] as? [String: Any]
+                    let client = data!["client"] as? [String: Any]
+                    let appearance = SCLAlertView.SCLAppearance(
+                        showCloseButton: false
+                    )
+                    let alertView1 = SCLAlertView(appearance: appearance)
+                    alertView1.addButton("OK") {
+                        self.navigationController?.popViewController(animated: true)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    alertView1.showSuccess("Ubicación Actualizada", subTitle: "La ubicación ha sido actualizada a \(String(describing: client!["address"]!))")
+                    
+
+                }
+            }
         }
     }
     
