@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U8s-Q1-gfC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U8s-Q1-gfC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -543,14 +543,15 @@
                                             <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oYg-ng-wkc">
                                                 <rect key="frame" x="0.0" y="718" width="375" height="49"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <items>
-                                                    <tabBarItem title="home" image="iconHome" id="oGE-CZ-C2l"/>
+                                                    <tabBarItem title="paquetes" image="iconbuy" id="oGE-CZ-C2l"/>
                                                     <tabBarItem title="perfil" image="iconPerfil" id="d3Z-8i-2mJ"/>
                                                     <tabBarItem title="calendario" image="iconCalendario" id="Wx4-YP-Cdj"/>
                                                     <tabBarItem title="mis clases" image="iconClases" id="t1g-bw-MHP"/>
                                                 </items>
-                                                <color key="barTintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </tabBar>
                                         </subviews>
                                         <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2289,8 +2290,8 @@
         <image name="flechaizq" width="70" height="156"/>
         <image name="iconCalendario" width="30" height="30"/>
         <image name="iconClases" width="30" height="30"/>
-        <image name="iconHome" width="30" height="30"/>
         <image name="iconPerfil" width="30" height="30"/>
+        <image name="iconbuy" width="30" height="30"/>
         <image name="logo" width="291" height="400"/>
         <image name="profedetails" width="848" height="446"/>
         <image name="profesor" width="443" height="435"/>

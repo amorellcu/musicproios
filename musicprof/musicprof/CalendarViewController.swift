@@ -152,6 +152,7 @@ class CalendarViewController: UIViewController {
                 Instruments?.photoPerfil = photo!
             }
             Instruments?.user = self.user
+            Instruments?.dateclass = self.dateclass
         }
         
     }

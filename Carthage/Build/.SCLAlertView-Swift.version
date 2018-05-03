@@ -8,11 +8,11 @@
   "tvOS" : [
 
   ],
-  "commitish" : "b35ae9e2e0d5fda161237bcf1f730251a02fb8a1",
+  "commitish" : "de579dc3d0b1217074796dcb5015bef01aaf8a1b",
   "iOS" : [
     {
       "name" : "SCLAlertView",
-      "hash" : "c034e6e146291408adbe708fb429a9c4fa3440a802135ba221e266e2cf735d5a"
+      "hash" : "2fe61d8a75cd30224dc43d167fa4693033e80b523f884544cccf8ec2cea2da3a"
     }
   ]
 }

@@ -233,9 +233,6 @@ class ScheduleProfesorViewController: UIViewController, UITableViewDelegate, UIT
             let profesorDetail = segue.destination as? ProfesorDetailViewController
             let name = sender as? String
             profesorDetail?.Perfilname = name
-            //if(self.perfil != nil){
-                //profesorDetail?.photoPerfil = self.perfil.image
-            //}
             
         }
     }
@@ -255,8 +252,8 @@ class ScheduleProfesorViewController: UIViewController, UITableViewDelegate, UIT
         }*/
         apimusicprof.getColony() { json, error  in
             if(error != nil){
-            }
-            else {
+                self.showerrorProfesor()
+            } else {
                 let JSON = json! as NSDictionary
                 if(String(describing: JSON["result"]!) == "OK"){
                     let data1 = JSON["data"]! as! [String:Any]
@@ -291,37 +288,33 @@ class ScheduleProfesorViewController: UIViewController, UITableViewDelegate, UIT
                                 self.profesors = hours
                             }
                             if(self.profesors.count == 0){
-                                let appearance = SCLAlertView.SCLAppearance(
-                                    showCloseButton: false
-                                )
-                                let alertView1 = SCLAlertView(appearance: appearance)
-                                alertView1.addButton("OK") {
-                                    self.navigationController?.popViewController(animated: true)
-                                    self.dismiss(animated: true, completion: nil)
-                                }
-                                alertView1.showError("No se encontraron Profesores", subTitle: "No hay disponibilidad para la dirección \(self.address) intente fijar otra ubicación")
+                                self.showerrorProfesor()
                             }
                             else{
-                                //print(self.profesors)
+                                print(self.profesors)
                             }
                         }
                     } else {
-                        let appearance = SCLAlertView.SCLAppearance(
-                            showCloseButton: false
-                        )
-                        let alertView1 = SCLAlertView(appearance: appearance)
-                        alertView1.addButton("OK") {
-                            self.navigationController?.popViewController(animated: true)
-                            self.dismiss(animated: true, completion: nil)
-                        }
-                        alertView1.showError("No se encontraron Profesores", subTitle: "No hay disponibilidad para la dirección \(self.address) intente fijar otra ubicación")
+                        self.showerrorProfesor()
                     }
-
-
+                } else {
+                    self.showerrorProfesor()
                 }
             }
         }
 
+    }
+    
+    func showerrorProfesor(){
+        let appearance = SCLAlertView.SCLAppearance(
+        showCloseButton: false
+        )
+        let alertView1 = SCLAlertView(appearance: appearance)
+        alertView1.addButton("OK") {
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+        }
+        alertView1.showError("No se encontraron Profesores", subTitle: "No hay disponibilidad para la dirección \(self.address) intente fijar otra ubicación")
     }
 
 }
