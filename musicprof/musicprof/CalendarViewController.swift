@@ -16,13 +16,14 @@ protocol MonthViewDelegate {
     func didChangeMonth(monthIndex: Int)
 }
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: UIViewController,UITabBarDelegate {
 
     @IBOutlet weak var days: UIView!
     @IBOutlet weak var perfil: UIImageView!
     @IBOutlet weak var namePerfil: UILabel!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var month: UILabel!
+    @IBOutlet weak var tabbar: UITabBar!
     
     var Perfilname = ""
     var user: NSDictionary = [:]
@@ -37,6 +38,7 @@ class CalendarViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tabbar.delegate = self
         self.perfil.layer.cornerRadius = self.perfil.frame.size.width / 2
         self.perfil.clipsToBounds = true
         self.days.layer.cornerRadius = 28
@@ -48,6 +50,7 @@ class CalendarViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -134,7 +137,11 @@ class CalendarViewController: UIViewController {
         calendarView.scrollToSegment(.next)
     }
     
-    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if(item.title! == "paquetes"){
+            self.performSegue(withIdentifier: "paquetesSegue", sender: self)
+        }
+    }
   
     
      // MARK: - Navigation
@@ -153,6 +160,11 @@ class CalendarViewController: UIViewController {
             }
             Instruments?.user = self.user
             Instruments?.dateclass = self.dateclass
+        }
+        if(segue.identifier == "paquetesSegue") {
+            let Packages = segue.destination as? PackagesViewController
+            Packages?.Perfilname = name!
+            Packages?.Photo = photo!
         }
         
     }

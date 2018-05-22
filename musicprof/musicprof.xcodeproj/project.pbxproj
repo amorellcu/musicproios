@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15588081209BB753003DC16A /* PackagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15588080209BB753003DC16A /* PackagesViewController.swift */; };
 		15A83B30209A8E8300CB4F2E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83AE5209A809F00CB4F2E /* Alamofire.framework */; };
 		15A83B31209A8E8300CB4F2E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83AE5209A809F00CB4F2E /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15A83B32209A8E8300CB4F2E /* SCLAlertView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83ADA209A7EB500CB4F2E /* SCLAlertView.framework */; };
@@ -100,6 +101,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		15588080209BB753003DC16A /* PackagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackagesViewController.swift; sourceTree = "<group>"; };
 		15A83ADA209A7EB500CB4F2E /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = ../../Carthage/Build/iOS/SCLAlertView.framework; sourceTree = "<group>"; };
 		15A83AE5209A809F00CB4F2E /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
 		15A83B56209A975A00CB4F2E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				A5A99AD92025345D0050D8D8 /* ItemTableViewCell.swift */,
 				A5598C70201FCB37000C64F6 /* RegisterStepOneViewController.swift */,
 				A5598C1B201F8C3B000C64F6 /* Main.storyboard */,
+				15588080209BB753003DC16A /* PackagesViewController.swift */,
 				A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */,
 				A5A77C3720407866000F1E3E /* ScheduleProfesorViewController.swift */,
 				A5E1FB1D2044BC2200B15DD9 /* ProfesorDetailViewController.swift */,
@@ -422,6 +425,7 @@
 				A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */,
 				A5F6F61E201FD9E600264412 /* StudentClass.swift in Sources */,
 				A5E1FB1E2044BC2200B15DD9 /* ProfesorDetailViewController.swift in Sources */,
+				15588081209BB753003DC16A /* PackagesViewController.swift in Sources */,
 				A5AD1EC020338A6F00A38F85 /* CalendarCell.swift in Sources */,
 				A5598C18201F8C3B000C64F6 /* AppDelegate.swift in Sources */,
 				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,

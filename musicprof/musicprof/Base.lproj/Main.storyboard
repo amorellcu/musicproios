@@ -237,6 +237,62 @@
             </objects>
             <point key="canvasLocation" x="-775" y="-1334"/>
         </scene>
+        <!--Packages View Controller-->
+        <scene sceneID="LiW-eE-Kqm">
+            <objects>
+                <viewController id="GiV-16-2IQ" customClass="PackagesViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ggN-P7-qBZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQL-kA-sPN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Bq-wL-kRm">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rkr-KG-KxD">
+                                                <rect key="frame" x="137" y="10" width="100" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="Dho-20-ffa"/>
+                                                    <constraint firstAttribute="width" constant="100" id="Ivv-6k-dtX"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.22352941176470589" green="0.2196078431372549" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="Rkr-KG-KxD" firstAttribute="centerX" secondItem="7Bq-wL-kRm" secondAttribute="centerX" id="01A-8V-R5s"/>
+                                            <constraint firstAttribute="height" constant="667" id="DpZ-Lf-9Gp"/>
+                                            <constraint firstItem="Rkr-KG-KxD" firstAttribute="top" secondItem="7Bq-wL-kRm" secondAttribute="top" constant="10" id="eVY-gS-RI3"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="7Bq-wL-kRm" secondAttribute="trailing" id="Iwr-ew-Mjb"/>
+                                    <constraint firstItem="7Bq-wL-kRm" firstAttribute="top" secondItem="hQL-kA-sPN" secondAttribute="top" id="LJC-Y3-VSK"/>
+                                    <constraint firstItem="7Bq-wL-kRm" firstAttribute="leading" secondItem="hQL-kA-sPN" secondAttribute="leading" id="NpS-DM-Q18"/>
+                                    <constraint firstAttribute="bottom" secondItem="7Bq-wL-kRm" secondAttribute="bottom" id="qEk-0L-vKI"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.22352941179999999" green="0.21960784310000001" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hQL-kA-sPN" firstAttribute="leading" secondItem="Qux-SP-kFY" secondAttribute="leading" id="38d-ri-MEY"/>
+                            <constraint firstItem="hQL-kA-sPN" firstAttribute="top" secondItem="ggN-P7-qBZ" secondAttribute="top" id="8N1-7L-zfx"/>
+                            <constraint firstItem="7Bq-wL-kRm" firstAttribute="width" secondItem="ggN-P7-qBZ" secondAttribute="width" id="PE9-fz-xR5"/>
+                            <constraint firstItem="hQL-kA-sPN" firstAttribute="bottom" secondItem="Qux-SP-kFY" secondAttribute="bottom" id="hKL-lA-tsA"/>
+                            <constraint firstItem="hQL-kA-sPN" firstAttribute="trailing" secondItem="Qux-SP-kFY" secondAttribute="trailing" id="uJu-9e-p7H"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Qux-SP-kFY"/>
+                    </view>
+                    <connections>
+                        <outlet property="PerfilPhoto" destination="Rkr-KG-KxD" id="psQ-UL-BiH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="we2-tv-zKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2866" y="347"/>
+        </scene>
         <!--Ib Calendar Data Source-->
         <scene sceneID="FpV-Ko-JqP">
             <objects>
@@ -551,7 +607,7 @@
                                                     <tabBarItem title="mis clases" image="iconClases" id="t1g-bw-MHP"/>
                                                 </items>
                                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="selectedImageTintColor" red="0.22352941176470589" green="0.2196078431372549" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </tabBar>
                                         </subviews>
                                         <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -602,7 +658,9 @@
                         <outlet property="month" destination="EM0-8e-Fhc" id="buT-SJ-43v"/>
                         <outlet property="namePerfil" destination="r1i-FD-nJL" id="fSo-MZ-8GN"/>
                         <outlet property="perfil" destination="R4e-hG-8sD" id="Qrt-XP-3yP"/>
+                        <outlet property="tabbar" destination="oYg-ng-wkc" id="Peg-lf-8bo"/>
                         <segue destination="seR-Sm-Seo" kind="show" identifier="calendarSegue" id="W5C-wE-nUu"/>
+                        <segue destination="GiV-16-2IQ" kind="show" identifier="paquetesSegue" id="no4-3V-hUe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i3Y-Nd-Omz" userLabel="First Responder" sceneMemberID="firstResponder"/>
