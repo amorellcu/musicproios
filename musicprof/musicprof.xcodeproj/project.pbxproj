@@ -7,31 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11F91453F3412F761A8CBD19 /* libPods-musicprofTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF714FBEDDAEBE65E173A2A /* libPods-musicprofTests.a */; };
 		15588081209BB753003DC16A /* PackagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15588080209BB753003DC16A /* PackagesViewController.swift */; };
 		15A83B30209A8E8300CB4F2E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83AE5209A809F00CB4F2E /* Alamofire.framework */; };
-		15A83B31209A8E8300CB4F2E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83AE5209A809F00CB4F2E /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15A83B32209A8E8300CB4F2E /* SCLAlertView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83ADA209A7EB500CB4F2E /* SCLAlertView.framework */; };
-		15A83B33209A8E8300CB4F2E /* SCLAlertView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83ADA209A7EB500CB4F2E /* SCLAlertView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15A83B5E209A975B00CB4F2E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B56209A975A00CB4F2E /* FBSDKCoreKit.framework */; };
-		15A83B5F209A975B00CB4F2E /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B56209A975A00CB4F2E /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15A83B60209A975B00CB4F2E /* FacebookShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B57209A975A00CB4F2E /* FacebookShare.framework */; };
-		15A83B61209A975B00CB4F2E /* FacebookShare.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B57209A975A00CB4F2E /* FacebookShare.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15A83B62209A975B00CB4F2E /* FacebookLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B58209A975A00CB4F2E /* FacebookLogin.framework */; };
-		15A83B63209A975B00CB4F2E /* FacebookLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B58209A975A00CB4F2E /* FacebookLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15A83B64209A975B00CB4F2E /* FacebookCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B59209A975A00CB4F2E /* FacebookCore.framework */; };
-		15A83B65209A975B00CB4F2E /* FacebookCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B59209A975A00CB4F2E /* FacebookCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15A83B66209A975B00CB4F2E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B5A209A975A00CB4F2E /* Bolts.framework */; };
-		15A83B67209A975B00CB4F2E /* Bolts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B5A209A975A00CB4F2E /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15A83B68209A975B00CB4F2E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B5B209A975B00CB4F2E /* FBSDKLoginKit.framework */; };
-		15A83B69209A975B00CB4F2E /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B5B209A975B00CB4F2E /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15A83B6A209A975B00CB4F2E /* FBSDKPlacesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B5C209A975B00CB4F2E /* FBSDKPlacesKit.framework */; };
-		15A83B6B209A975B00CB4F2E /* FBSDKPlacesKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B5C209A975B00CB4F2E /* FBSDKPlacesKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15A83B6C209A975B00CB4F2E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B5D209A975B00CB4F2E /* FBSDKShareKit.framework */; };
-		15A83B6D209A975B00CB4F2E /* FBSDKShareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B5D209A975B00CB4F2E /* FBSDKShareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15A83B6F209A988600CB4F2E /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B6E209A988600CB4F2E /* JTAppleCalendar.framework */; };
-		15A83B70209A988600CB4F2E /* JTAppleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83B6E209A988600CB4F2E /* JTAppleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE7EF020894273006672C1 /* ConfigurationsClass.swift */; };
 		15DFDFBE208E4E7500B28338 /* ApiStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDFBD208E4E7500B28338 /* ApiStudent.swift */; };
+		18F3B0C6C9FD26CAF18EF54A /* libPods-musicprofUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75154C0B7B893B2085E3E130 /* libPods-musicprofUITests.a */; };
+		593B823462C234D64D7BEC81 /* Pods_musicprof.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85796996F4D7DD561375F67F /* Pods_musicprof.framework */; };
 		A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5315B32203CF27C0043A0E2 /* MapViewController.swift */; };
 		A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */; };
 		A5598C18201F8C3B000C64F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5598C17201F8C3B000C64F6 /* AppDelegate.swift */; };
@@ -83,17 +66,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				15A83B31209A8E8300CB4F2E /* Alamofire.framework in Embed Frameworks */,
-				15A83B5F209A975B00CB4F2E /* FBSDKCoreKit.framework in Embed Frameworks */,
-				15A83B70209A988600CB4F2E /* JTAppleCalendar.framework in Embed Frameworks */,
-				15A83B69209A975B00CB4F2E /* FBSDKLoginKit.framework in Embed Frameworks */,
-				15A83B61209A975B00CB4F2E /* FacebookShare.framework in Embed Frameworks */,
-				15A83B63209A975B00CB4F2E /* FacebookLogin.framework in Embed Frameworks */,
-				15A83B6D209A975B00CB4F2E /* FBSDKShareKit.framework in Embed Frameworks */,
-				15A83B6B209A975B00CB4F2E /* FBSDKPlacesKit.framework in Embed Frameworks */,
-				15A83B65209A975B00CB4F2E /* FacebookCore.framework in Embed Frameworks */,
-				15A83B33209A8E8300CB4F2E /* SCLAlertView.framework in Embed Frameworks */,
-				15A83B67209A975B00CB4F2E /* Bolts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,19 +76,18 @@
 		15588080209BB753003DC16A /* PackagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackagesViewController.swift; sourceTree = "<group>"; };
 		15A83ADA209A7EB500CB4F2E /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = ../../Carthage/Build/iOS/SCLAlertView.framework; sourceTree = "<group>"; };
 		15A83AE5209A809F00CB4F2E /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
-		15A83B56209A975A00CB4F2E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		15A83B57209A975A00CB4F2E /* FacebookShare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookShare.framework; path = ../Carthage/Build/iOS/FacebookShare.framework; sourceTree = "<group>"; };
-		15A83B58209A975A00CB4F2E /* FacebookLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookLogin.framework; path = ../Carthage/Build/iOS/FacebookLogin.framework; sourceTree = "<group>"; };
-		15A83B59209A975A00CB4F2E /* FacebookCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookCore.framework; path = ../Carthage/Build/iOS/FacebookCore.framework; sourceTree = "<group>"; };
-		15A83B5A209A975A00CB4F2E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
-		15A83B5B209A975B00CB4F2E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../Carthage/Build/iOS/FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		15A83B5C209A975B00CB4F2E /* FBSDKPlacesKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKPlacesKit.framework; path = ../Carthage/Build/iOS/FBSDKPlacesKit.framework; sourceTree = "<group>"; };
-		15A83B5D209A975B00CB4F2E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../Carthage/Build/iOS/FBSDKShareKit.framework; sourceTree = "<group>"; };
-		15A83B6E209A988600CB4F2E /* JTAppleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JTAppleCalendar.framework; path = ../Carthage/Build/iOS/JTAppleCalendar.framework; sourceTree = "<group>"; };
 		15A83B71209A990200CB4F2E /* JTAppleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JTAppleCalendar.framework; sourceTree = "<group>"; };
 		15DE7EF020894273006672C1 /* ConfigurationsClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationsClass.swift; sourceTree = "<group>"; };
 		15DFDFBD208E4E7500B28338 /* ApiStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiStudent.swift; sourceTree = "<group>"; };
 		15DFDFC0208EA59F00B28338 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = ../Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
+		2470988358F77C3194BB7B7D /* Pods-musicprof.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprof.debug.xcconfig"; path = "Target Support Files/Pods-musicprof/Pods-musicprof.debug.xcconfig"; sourceTree = "<group>"; };
+		4AF714FBEDDAEBE65E173A2A /* libPods-musicprofTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-musicprofTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		59E632D18A7D18233FF1FA7A /* Pods-musicprofTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofTests.release.xcconfig"; path = "Target Support Files/Pods-musicprofTests/Pods-musicprofTests.release.xcconfig"; sourceTree = "<group>"; };
+		67621E9938D7DBC743F68D1A /* Pods-musicprof.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprof.release.xcconfig"; path = "Target Support Files/Pods-musicprof/Pods-musicprof.release.xcconfig"; sourceTree = "<group>"; };
+		68822876B39CA5EAA292D999 /* Pods-musicprofUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofUITests.release.xcconfig"; path = "Target Support Files/Pods-musicprofUITests/Pods-musicprofUITests.release.xcconfig"; sourceTree = "<group>"; };
+		75154C0B7B893B2085E3E130 /* libPods-musicprofUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-musicprofUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		85796996F4D7DD561375F67F /* Pods_musicprof.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_musicprof.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93D0A0454B07824111570E98 /* Pods-musicprofUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofUITests.debug.xcconfig"; path = "Target Support Files/Pods-musicprofUITests/Pods-musicprofUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A5315B32203CF27C0043A0E2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		A5598C14201F8C3B000C64F6 /* musicprof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = musicprof.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +119,7 @@
 		A5E1FB232044DD4600B15DD9 /* Header1TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header1TableViewCell.swift; sourceTree = "<group>"; };
 		A5F6F61D201FD9E600264412 /* StudentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentClass.swift; sourceTree = "<group>"; };
 		A5FF65832024FE34003778B3 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
+		D86ACBF90E826131BAF27404 /* Pods-musicprofTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofTests.debug.xcconfig"; path = "Target Support Files/Pods-musicprofTests/Pods-musicprofTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,16 +128,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				15A83B30209A8E8300CB4F2E /* Alamofire.framework in Frameworks */,
-				15A83B5E209A975B00CB4F2E /* FBSDKCoreKit.framework in Frameworks */,
-				15A83B6F209A988600CB4F2E /* JTAppleCalendar.framework in Frameworks */,
-				15A83B68209A975B00CB4F2E /* FBSDKLoginKit.framework in Frameworks */,
-				15A83B60209A975B00CB4F2E /* FacebookShare.framework in Frameworks */,
-				15A83B62209A975B00CB4F2E /* FacebookLogin.framework in Frameworks */,
-				15A83B6C209A975B00CB4F2E /* FBSDKShareKit.framework in Frameworks */,
-				15A83B6A209A975B00CB4F2E /* FBSDKPlacesKit.framework in Frameworks */,
-				15A83B64209A975B00CB4F2E /* FacebookCore.framework in Frameworks */,
 				15A83B32209A8E8300CB4F2E /* SCLAlertView.framework in Frameworks */,
-				15A83B66209A975B00CB4F2E /* Bolts.framework in Frameworks */,
+				593B823462C234D64D7BEC81 /* Pods_musicprof.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11F91453F3412F761A8CBD19 /* libPods-musicprofTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F3B0C6C9FD26CAF18EF54A /* libPods-musicprofUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,27 +156,35 @@
 			isa = PBXGroup;
 			children = (
 				15DFDFC0208EA59F00B28338 /* PromiseKit.framework */,
+				85796996F4D7DD561375F67F /* Pods_musicprof.framework */,
+				4AF714FBEDDAEBE65E173A2A /* libPods-musicprofTests.a */,
+				75154C0B7B893B2085E3E130 /* libPods-musicprofUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B2BFBDE783AE75C0AE6806D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2470988358F77C3194BB7B7D /* Pods-musicprof.debug.xcconfig */,
+				67621E9938D7DBC743F68D1A /* Pods-musicprof.release.xcconfig */,
+				D86ACBF90E826131BAF27404 /* Pods-musicprofTests.debug.xcconfig */,
+				59E632D18A7D18233FF1FA7A /* Pods-musicprofTests.release.xcconfig */,
+				93D0A0454B07824111570E98 /* Pods-musicprofUITests.debug.xcconfig */,
+				68822876B39CA5EAA292D999 /* Pods-musicprofUITests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		A5598C0B201F8C3B000C64F6 = {
 			isa = PBXGroup;
 			children = (
-				15A83B6E209A988600CB4F2E /* JTAppleCalendar.framework */,
-				15A83B5A209A975A00CB4F2E /* Bolts.framework */,
-				15A83B59209A975A00CB4F2E /* FacebookCore.framework */,
-				15A83B58209A975A00CB4F2E /* FacebookLogin.framework */,
-				15A83B57209A975A00CB4F2E /* FacebookShare.framework */,
-				15A83B56209A975A00CB4F2E /* FBSDKCoreKit.framework */,
-				15A83B5B209A975B00CB4F2E /* FBSDKLoginKit.framework */,
-				15A83B5C209A975B00CB4F2E /* FBSDKPlacesKit.framework */,
-				15A83B5D209A975B00CB4F2E /* FBSDKShareKit.framework */,
 				A5598C16201F8C3B000C64F6 /* musicprof */,
 				A5598C2B201F8C3B000C64F6 /* musicprofTests */,
 				A5598C36201F8C3C000C64F6 /* musicprofUITests */,
 				A5598C15201F8C3B000C64F6 /* Products */,
 				15DFDFBF208EA59F00B28338 /* Frameworks */,
+				4B2BFBDE783AE75C0AE6806D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -286,10 +260,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5598C3C201F8C3C000C64F6 /* Build configuration list for PBXNativeTarget "musicprof" */;
 			buildPhases = (
+				C9FE367F8F962A88648F436A /* [CP] Check Pods Manifest.lock */,
 				A5598C10201F8C3B000C64F6 /* Sources */,
 				A5598C11201F8C3B000C64F6 /* Frameworks */,
 				A5598C12201F8C3B000C64F6 /* Resources */,
 				15A83B21209A8E6D00CB4F2E /* Embed Frameworks */,
+				5CC6BD7BBA3AF34C07132D81 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -304,6 +280,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5598C3F201F8C3C000C64F6 /* Build configuration list for PBXNativeTarget "musicprofTests" */;
 			buildPhases = (
+				32EED0EDA31943E3AFD8960F /* [CP] Check Pods Manifest.lock */,
 				A5598C24201F8C3B000C64F6 /* Sources */,
 				A5598C25201F8C3B000C64F6 /* Frameworks */,
 				A5598C26201F8C3B000C64F6 /* Resources */,
@@ -322,6 +299,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5598C42201F8C3C000C64F6 /* Build configuration list for PBXNativeTarget "musicprofUITests" */;
 			buildPhases = (
+				1474789C182CDE0043BD5BC2 /* [CP] Check Pods Manifest.lock */,
 				A5598C2F201F8C3C000C64F6 /* Sources */,
 				A5598C30201F8C3C000C64F6 /* Frameworks */,
 				A5598C31201F8C3C000C64F6 /* Resources */,
@@ -408,6 +386,123 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1474789C182CDE0043BD5BC2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-musicprofUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		32EED0EDA31943E3AFD8960F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-musicprofTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5CC6BD7BBA3AF34C07132D81 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-musicprof/Pods-musicprof-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AEAccordion/AEAccordion.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftLocation/SwiftLocation.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AEAccordion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftLocation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-musicprof/Pods-musicprof-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9FE367F8F962A88648F436A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-musicprof-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A5598C10201F8C3B000C64F6 /* Sources */ = {
@@ -604,6 +699,7 @@
 		};
 		A5598C3D201F8C3C000C64F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2470988358F77C3194BB7B7D /* Pods-musicprof.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -624,6 +720,7 @@
 		};
 		A5598C3E201F8C3C000C64F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67621E9938D7DBC743F68D1A /* Pods-musicprof.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -644,6 +741,7 @@
 		};
 		A5598C40201F8C3C000C64F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D86ACBF90E826131BAF27404 /* Pods-musicprofTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -660,6 +758,7 @@
 		};
 		A5598C41201F8C3C000C64F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59E632D18A7D18233FF1FA7A /* Pods-musicprofTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -676,6 +775,7 @@
 		};
 		A5598C43201F8C3C000C64F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93D0A0454B07824111570E98 /* Pods-musicprofUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -691,6 +791,7 @@
 		};
 		A5598C44201F8C3C000C64F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68822876B39CA5EAA292D999 /* Pods-musicprofUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

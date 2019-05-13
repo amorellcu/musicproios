@@ -108,7 +108,7 @@ class CalendarViewController: UIViewController,UITabBarDelegate {
     
     func handleCellViewSelected(view: JTAppleCell?, cellState: CellState){
         guard let validCell = view as? CalendarCell else { return }
-        if validCell.isSelected{
+        if cellState.isSelected{
             if (cellState.dateBelongsTo == .thisMonth) {
                 validCell.selectedView.isHidden = false
                 self.performSegue(withIdentifier: "calendarSegue", sender: self)

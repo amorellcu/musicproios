@@ -58,7 +58,7 @@ public class Student {
     }
     
     public func getPhone()->String{
-        return self.phone!
+amo        return self.phone!
     }
     
     public func setUrlPhoto(aurlphoto:String){
