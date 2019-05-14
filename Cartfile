@@ -1,7 +1,0 @@
-#github "tadija/AEAccordion"
-github "patchthecode/JTAppleCalendar" ~> 7.1
-#github "malcommac/SwiftLocation"
-#github "vikmeup/SCLAlertView-Swift" "master"
-#github "Alamofire/Alamofire" ~> 4.7
-#github "mxcl/PromiseKit" ~> 6.0
-#github "facebook/Facebook-SDK-Swift"

@@ -1,4 +1,0 @@
-framework module SwiftLocation {
-    header "SwiftLocation-Swift.h"
-    requires objc
-}

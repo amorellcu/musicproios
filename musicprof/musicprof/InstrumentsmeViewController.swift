@@ -70,7 +70,7 @@ class InstrumentsmeViewController: UIViewController, UITableViewDelegate, UITabl
         DispatchQueue.global().async {
             let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
             DispatchQueue.main.async {
-                cell.iconcell.image = UIImage(data: data!)
+                //cell.iconcell.image = UIImage(data: data!)
             }
         }
         cell.idinstrument = instruments_items[indexPath.row].id

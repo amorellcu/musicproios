@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		11F91453F3412F761A8CBD19 /* libPods-musicprofTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF714FBEDDAEBE65E173A2A /* libPods-musicprofTests.a */; };
 		15588081209BB753003DC16A /* PackagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15588080209BB753003DC16A /* PackagesViewController.swift */; };
-		15A83B30209A8E8300CB4F2E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83AE5209A809F00CB4F2E /* Alamofire.framework */; };
-		15A83B32209A8E8300CB4F2E /* SCLAlertView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A83ADA209A7EB500CB4F2E /* SCLAlertView.framework */; };
 		15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE7EF020894273006672C1 /* ConfigurationsClass.swift */; };
 		15DFDFBE208E4E7500B28338 /* ApiStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDFBD208E4E7500B28338 /* ApiStudent.swift */; };
 		18F3B0C6C9FD26CAF18EF54A /* libPods-musicprofUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75154C0B7B893B2085E3E130 /* libPods-musicprofUITests.a */; };
@@ -74,9 +72,6 @@
 
 /* Begin PBXFileReference section */
 		15588080209BB753003DC16A /* PackagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackagesViewController.swift; sourceTree = "<group>"; };
-		15A83ADA209A7EB500CB4F2E /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = ../../Carthage/Build/iOS/SCLAlertView.framework; sourceTree = "<group>"; };
-		15A83AE5209A809F00CB4F2E /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
-		15A83B71209A990200CB4F2E /* JTAppleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JTAppleCalendar.framework; sourceTree = "<group>"; };
 		15DE7EF020894273006672C1 /* ConfigurationsClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationsClass.swift; sourceTree = "<group>"; };
 		15DFDFBD208E4E7500B28338 /* ApiStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiStudent.swift; sourceTree = "<group>"; };
 		15DFDFC0208EA59F00B28338 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = ../Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
@@ -127,8 +122,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15A83B30209A8E8300CB4F2E /* Alamofire.framework in Frameworks */,
-				15A83B32209A8E8300CB4F2E /* SCLAlertView.framework in Frameworks */,
 				593B823462C234D64D7BEC81 /* Pods_musicprof.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,9 +194,6 @@
 		A5598C16201F8C3B000C64F6 /* musicprof */ = {
 			isa = PBXGroup;
 			children = (
-				15A83B71209A990200CB4F2E /* JTAppleCalendar.framework */,
-				15A83AE5209A809F00CB4F2E /* Alamofire.framework */,
-				15A83ADA209A7EB500CB4F2E /* SCLAlertView.framework */,
 				A5598C17201F8C3B000C64F6 /* AppDelegate.swift */,
 				A5598C19201F8C3B000C64F6 /* ViewController.swift */,
 				A5AD1EBF20338A6F00A38F85 /* CalendarCell.swift */,
