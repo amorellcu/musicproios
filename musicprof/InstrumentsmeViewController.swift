@@ -16,7 +16,7 @@ class InstrumentsmeViewController: UIViewController, UITableViewDelegate, UITabl
     var photoPerfil: UIImage!
     var facebookid: String = ""
     var phone: String = ""
-    let apimusicprof = ApiStudent()
+    let apimusicprof = ApiStudent.sharedInstance
     let alertView = SCLAlertView()
     var instrumentsid: [Int] = []
     var emailPerfil: String!

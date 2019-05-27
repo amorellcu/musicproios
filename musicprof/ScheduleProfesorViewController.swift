@@ -19,7 +19,7 @@ class ScheduleProfesorViewController: UIViewController, UITableViewDelegate, UIT
     var photoPerfil: UIImage!
     var dateclass: Date = Date()
     var address = ""
-    let apimusicprof = ApiStudent()
+    let apimusicprof = ApiStudent.sharedInstance
     var user: NSDictionary = [:]
     var instrumenid = 0
     

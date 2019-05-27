@@ -32,7 +32,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     var photoPerfil: UIImage!
     var facebookid: String = ""
     var phone: String = ""
-    let apimusicprof = ApiStudent()
+    let apimusicprof = ApiStudent.sharedInstance
     var instrumentsid: [Int] = []
     var user:NSDictionary = [:]
     let alertView = SCLAlertView()

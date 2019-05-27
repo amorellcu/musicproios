@@ -8,12 +8,19 @@
 
 import UIKit
 import Alamofire
+import SCLAlertView
 
 let configuration = Configuration()
 
 public class ApiStudent {
     var headers:[String : String]?
     var params:[String : Any]?
+    
+    static let sharedInstance = ApiStudent()
+    
+    var nameclient = ""
+    var urlphoto = ""
+    var user:NSDictionary = [:]
     
     static fileprivate let queue = DispatchQueue(label: "requests.queue", qos: .utility)
     static fileprivate let mainQueue = DispatchQueue.main
@@ -54,6 +61,31 @@ public class ApiStudent {
         ApiStudent.make(request: request1) { json, error in
             closure(json, error)
         }
+    }
+    
+    func getUserData(JSON: NSDictionary)->[String:String]{
+        var userdata = [String:String]()
+        if(String(describing: JSON["result"]!) == "Error"){
+            let alertView = SCLAlertView()
+            alertView.showError("Error Autenticación", subTitle: String(describing: JSON["message"]!)) // Error
+        } else if(String(describing: JSON["result"]!) == "OK"){
+            let data = JSON["data"] as? [String: Any]
+            let cliente = data!["client"] as? [String: Any]
+            let subaccounts = cliente!["subaccounts"] as! NSArray
+            let user = cliente!["user"] as? [String: Any]
+            userdata["urlphoto"] = user!["photo"] as? String
+            if(subaccounts.count > 0){
+                let subcuenta = subaccounts[0] as? [String: Any]
+                userdata["name"] = subcuenta!["name"] as? String
+                
+            }
+            else {
+                let user = cliente!["user"] as! [String: Any]
+                userdata["name"] = user["name"] as? String
+            }
+        }
+        return userdata
+        
     }
     
     public func getAllInstruments(closure: @escaping (_ json: [String: Any]?, _ error: Error?)->()) {

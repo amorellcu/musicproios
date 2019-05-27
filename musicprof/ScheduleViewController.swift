@@ -14,7 +14,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var namePerfil: UILabel!
     var Perfilname: String!
     var photoPerfil: UIImage!
-    let apimusicprof = ApiStudent()
+    let apimusicprof = ApiStudent.sharedInstance
     let alertView = SCLAlertView()
     var user: NSDictionary = [:]
     var instrumentsid: Int = 0

@@ -12,6 +12,8 @@
 		15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE7EF020894273006672C1 /* ConfigurationsClass.swift */; };
 		15DFDFBE208E4E7500B28338 /* ApiStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDFBD208E4E7500B28338 /* ApiStudent.swift */; };
 		18F3B0C6C9FD26CAF18EF54A /* libPods-musicprofUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75154C0B7B893B2085E3E130 /* libPods-musicprofUITests.a */; };
+		530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A77229A1656000AFC86 /* RootViewController.swift */; };
+		530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A79229B773A000AFC86 /* UIViewController.swift */; };
 		593B823462C234D64D7BEC81 /* Pods_musicprof.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85796996F4D7DD561375F67F /* Pods_musicprof.framework */; };
 		A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5315B32203CF27C0043A0E2 /* MapViewController.swift */; };
 		A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */; };
@@ -77,6 +79,8 @@
 		15DFDFC0208EA59F00B28338 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = ../Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
 		2470988358F77C3194BB7B7D /* Pods-musicprof.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprof.debug.xcconfig"; path = "Target Support Files/Pods-musicprof/Pods-musicprof.debug.xcconfig"; sourceTree = "<group>"; };
 		4AF714FBEDDAEBE65E173A2A /* libPods-musicprofTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-musicprofTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		530F8A77229A1656000AFC86 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		530F8A79229B773A000AFC86 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		59E632D18A7D18233FF1FA7A /* Pods-musicprofTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofTests.release.xcconfig"; path = "Target Support Files/Pods-musicprofTests/Pods-musicprofTests.release.xcconfig"; sourceTree = "<group>"; };
 		67621E9938D7DBC743F68D1A /* Pods-musicprof.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprof.release.xcconfig"; path = "Target Support Files/Pods-musicprof/Pods-musicprof.release.xcconfig"; sourceTree = "<group>"; };
 		68822876B39CA5EAA292D999 /* Pods-musicprofUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofUITests.release.xcconfig"; path = "Target Support Files/Pods-musicprofUITests/Pods-musicprofUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				A5598C1E201F8C3B000C64F6 /* Assets.xcassets */,
 				A5598C20201F8C3B000C64F6 /* LaunchScreen.storyboard */,
 				A5598C23201F8C3B000C64F6 /* Info.plist */,
+				530F8A77229A1656000AFC86 /* RootViewController.swift */,
+				530F8A79229B773A000AFC86 /* UIViewController.swift */,
 			);
 			path = musicprof;
 			sourceTree = "<group>";
@@ -503,6 +509,7 @@
 				A5E1FB202044CE6600B15DD9 /* TextTableViewCell.swift in Sources */,
 				A5CA35D6202BA922002FFFD0 /* peopleTableViewCell.swift in Sources */,
 				A5598C1A201F8C3B000C64F6 /* ViewController.swift in Sources */,
+				530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */,
 				A5AD1EB520334EA400A38F85 /* CalendarViewController.swift in Sources */,
 				A5E1FB1C2042514000B15DD9 /* ProfesorTableViewCell.swift in Sources */,
 				A5CA35DA20311805002FFFD0 /* InstrumentsmeViewController.swift in Sources */,
@@ -513,6 +520,7 @@
 				15588081209BB753003DC16A /* PackagesViewController.swift in Sources */,
 				A5AD1EC020338A6F00A38F85 /* CalendarCell.swift in Sources */,
 				A5598C18201F8C3B000C64F6 /* AppDelegate.swift in Sources */,
+				530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */,
 				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,
 				A5FF65842024FE34003778B3 /* HeaderTableViewCell.swift in Sources */,
 				A5A77C3820407866000F1E3E /* ScheduleProfesorViewController.swift in Sources */,

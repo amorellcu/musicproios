@@ -25,8 +25,8 @@ class CalendarViewController: UIViewController,UITabBarDelegate {
     @IBOutlet weak var month: UILabel!
     @IBOutlet weak var tabbar: UITabBar!
     
-    var Perfilname = ""
-    var user: NSDictionary = [:]
+    //var Perfilname = ""
+    //var user: NSDictionary = [:]
     
     let formatter = DateFormatter()
     let outsideDayColor = UIColor(red: 124/255 ,green: 124/255 ,blue: 124/255 ,alpha: 1)
@@ -54,13 +54,14 @@ class CalendarViewController: UIViewController,UITabBarDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.namePerfil.text = Perfilname
-        let data = self.user["data"] as? [String: Any]
+        self.namePerfil.text = self.api.nameclient
+        let data = self.api.user["data"] as? [String: Any]
         let cliente = data!["client"] as? [String: Any]
         let subaccounts = cliente!["subaccounts"] as! NSArray
         let user = cliente!["user"] as? [String: Any]
         let photo = user!["photo"] as! String
         let url = URL(string: photo)
+        self.perfil.image = UIImage(named: "userdefault")
         if(photo != ""){
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
@@ -73,8 +74,6 @@ class CalendarViewController: UIViewController,UITabBarDelegate {
                 }
 
             }
-        } else {
-            self.perfil.image = UIImage(named: "userdefault")
         }
     }
 
@@ -158,7 +157,7 @@ class CalendarViewController: UIViewController,UITabBarDelegate {
             if(photo != nil){
                 Instruments?.photoPerfil = photo!
             }
-            Instruments?.user = self.user
+            Instruments?.user = self.api.user
             Instruments?.dateclass = self.dateclass
         }
         if(segue.identifier == "paquetesSegue") {

@@ -10,10 +10,56 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Root View Controller-->
+        <scene sceneID="ejV-GS-nxU">
+            <objects>
+                <viewController storyboardIdentifier="RootViewController" id="zqa-jl-QI2" customClass="RootViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l0g-hf-cwM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="63W-cC-0Vj">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transparent_icon_white" translatesAutoresizingMaskIntoConstraints="NO" id="oPJ-mv-x7B">
+                                <rect key="frame" x="157" y="348" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="IRM-fW-kxI"/>
+                                    <constraint firstAttribute="width" secondItem="oPJ-mv-x7B" secondAttribute="height" multiplier="1:1" id="tWD-S1-88j"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qvP-Kw-H8A">
+                                <rect key="frame" x="188.5" y="479.5" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="63W-cC-0Vj" firstAttribute="top" secondItem="l0g-hf-cwM" secondAttribute="top" id="0xd-Qi-OvV"/>
+                            <constraint firstItem="ior-ha-GQe" firstAttribute="trailing" secondItem="63W-cC-0Vj" secondAttribute="trailing" id="3b2-aw-iEz"/>
+                            <constraint firstItem="qvP-Kw-H8A" firstAttribute="centerY" secondItem="l0g-hf-cwM" secondAttribute="centerY" constant="50" id="686-f8-gGi"/>
+                            <constraint firstAttribute="bottom" secondItem="63W-cC-0Vj" secondAttribute="bottom" id="7XT-Py-gQN"/>
+                            <constraint firstItem="oPJ-mv-x7B" firstAttribute="centerY" secondItem="l0g-hf-cwM" secondAttribute="centerY" constant="-50" id="NUY-Rg-z1w"/>
+                            <constraint firstItem="63W-cC-0Vj" firstAttribute="leading" secondItem="ior-ha-GQe" secondAttribute="leading" id="WnW-OE-Si1"/>
+                            <constraint firstItem="oPJ-mv-x7B" firstAttribute="centerX" secondItem="l0g-hf-cwM" secondAttribute="centerX" id="aMU-z6-DWC"/>
+                            <constraint firstItem="qvP-Kw-H8A" firstAttribute="centerX" secondItem="l0g-hf-cwM" secondAttribute="centerX" id="eFT-cE-Ul3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ior-ha-GQe"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cra-Uk-Q94"/>
+                    <connections>
+                        <segue destination="9OR-MO-g9h" kind="show" identifier="RequireLogin" id="HEk-rv-mR8"/>
+                        <segue destination="5ZU-a9-oLY" kind="show" identifier="goToCalendar" id="Gcm-dk-X1v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jQv-c9-XI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1845" y="-1335"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="p2r-n6-Ind">
             <objects>
-                <viewController id="9OR-MO-g9h" customClass="ViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="9OR-MO-g9h" customClass="ViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="167-I8-wVh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2331,12 +2377,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="9OR-MO-g9h" kind="relationship" relationship="rootViewController" id="heu-Xm-jRQ"/>
+                        <segue destination="zqa-jl-QI2" kind="relationship" relationship="rootViewController" id="D9V-rh-AwH"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uV4-fF-Xoe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2039" y="-1334"/>
+            <point key="canvasLocation" x="-2942" y="-1335"/>
         </scene>
     </scenes>
     <resources>
@@ -2352,10 +2398,12 @@
         <image name="logo" width="291" height="400"/>
         <image name="profedetails" width="848" height="446"/>
         <image name="profesor" width="443" height="435"/>
+        <image name="splash" width="1125" height="2436"/>
+        <image name="transparent_icon_white" width="800" height="800"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wgr-tI-92I"/>
-        <segue reference="e8P-oM-Cc7"/>
+        <segue reference="Gcm-dk-X1v"/>
+        <segue reference="HEk-rv-mR8"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

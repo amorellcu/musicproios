@@ -14,7 +14,7 @@ class LocationSearchTable : UITableViewController {
     var handleMapSearchDelegate:HandleMapSearch? = nil
     var matchingItems:[MKMapItem] = []
     var mapView: MKMapView? = nil
-    let apimusicprof = ApiStudent()
+    let apimusicprof = ApiStudent.sharedInstance
     var token = ""
     var userid = 0
     let alertView = SCLAlertView()
