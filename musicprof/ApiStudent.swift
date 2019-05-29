@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import SCLAlertView
+import FacebookCore
+import FacebookLogin
 
 let configuration = Configuration()
 
@@ -59,6 +61,17 @@ public class ApiStudent {
     public func login(closure: @escaping (_ json: [String: Any]?, _ error: Error?)->()) {
         let request1 = request("\(configuration.urlapi)/loginClient", method: .post, parameters: self.params, headers: self.headers!)
         ApiStudent.make(request: request1) { json, error in
+            closure(json, error)
+        }
+    }
+    
+    public func logout(closure: @escaping (_ json: [String: Any]?, _ error: Error?)->()) {
+        let req = request("\(configuration.urlapi)/logout", method: .get, headers: self.headers!)
+        ApiStudent.make(request: req) { json, error in
+            let fbLoginManager = LoginManager()
+            fbLoginManager.logOut()
+            AccessToken.current = nil
+            UserProfile.current = nil
             closure(json, error)
         }
     }

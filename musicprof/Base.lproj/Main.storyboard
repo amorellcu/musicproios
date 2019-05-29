@@ -654,22 +654,41 @@
                                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="selectedImageTintColor" red="0.22352941176470589" green="0.2196078431372549" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </tabBar>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Fww-HC-WDW">
+                                                <rect key="frame" x="227.5" y="0.0" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Fww-HC-WDW" secondAttribute="height" multiplier="1:1" id="D3l-mT-2Ay"/>
+                                                    <constraint firstAttribute="width" constant="20" id="Hoh-Ok-8U1"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrQ-2n-aDm" userLabel="CloseButton">
+                                                <rect key="frame" x="227.5" y="0.0" width="20" height="20"/>
+                                                <connections>
+                                                    <action selector="onCloseTapped:" destination="5ZU-a9-oLY" eventType="touchUpInside" id="YFS-UK-y3j"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="elB-Mk-bIM" firstAttribute="leading" secondItem="jzT-DH-1di" secondAttribute="leading" id="1cd-9C-o1m"/>
+                                            <constraint firstItem="hrQ-2n-aDm" firstAttribute="bottom" secondItem="Fww-HC-WDW" secondAttribute="bottom" id="2jo-Gq-VFX"/>
                                             <constraint firstAttribute="height" constant="767" id="4XE-lT-kQf"/>
                                             <constraint firstItem="R4e-hG-8sD" firstAttribute="centerX" secondItem="jzT-DH-1di" secondAttribute="centerX" id="5cf-f3-RoJ"/>
                                             <constraint firstItem="zTV-t1-OKp" firstAttribute="top" secondItem="elB-Mk-bIM" secondAttribute="bottom" constant="8" id="5tp-FH-PsU"/>
                                             <constraint firstItem="qGG-8B-b5h" firstAttribute="centerX" secondItem="jzT-DH-1di" secondAttribute="centerX" id="7jC-2D-Sh6"/>
                                             <constraint firstAttribute="trailing" secondItem="elB-Mk-bIM" secondAttribute="trailing" id="8vr-Zd-MXR"/>
+                                            <constraint firstItem="hrQ-2n-aDm" firstAttribute="top" secondItem="Fww-HC-WDW" secondAttribute="top" id="GHx-Aq-yos"/>
                                             <constraint firstAttribute="trailing" secondItem="r1i-FD-nJL" secondAttribute="trailing" constant="31" id="HQw-yG-tGQ"/>
+                                            <constraint firstItem="hrQ-2n-aDm" firstAttribute="leading" secondItem="Fww-HC-WDW" secondAttribute="leading" id="HRl-kd-Xsw"/>
                                             <constraint firstItem="MMA-S0-qPy" firstAttribute="top" secondItem="elB-Mk-bIM" secondAttribute="bottom" constant="72" id="O7c-YB-pWa"/>
                                             <constraint firstAttribute="trailing" secondItem="MMA-S0-qPy" secondAttribute="trailing" constant="25" id="ORE-sc-yag"/>
+                                            <constraint firstItem="Fww-HC-WDW" firstAttribute="centerX" secondItem="R4e-hG-8sD" secondAttribute="trailing" id="S2w-DO-ZlF"/>
                                             <constraint firstItem="r1i-FD-nJL" firstAttribute="leading" secondItem="jzT-DH-1di" secondAttribute="leading" constant="31" id="Uqc-CK-OKO"/>
                                             <constraint firstItem="zTV-t1-OKp" firstAttribute="leading" secondItem="jzT-DH-1di" secondAttribute="leading" constant="25" id="V7p-8Z-nY3"/>
+                                            <constraint firstItem="Fww-HC-WDW" firstAttribute="centerY" secondItem="R4e-hG-8sD" secondAttribute="top" id="bez-KR-9mh"/>
                                             <constraint firstItem="qGG-8B-b5h" firstAttribute="top" secondItem="MMA-S0-qPy" secondAttribute="bottom" constant="32" id="dPv-kp-nPF"/>
                                             <constraint firstItem="R4e-hG-8sD" firstAttribute="top" secondItem="jzT-DH-1di" secondAttribute="top" constant="10" id="gtR-UH-b4u"/>
+                                            <constraint firstItem="hrQ-2n-aDm" firstAttribute="trailing" secondItem="Fww-HC-WDW" secondAttribute="trailing" id="lYt-F5-Dgo"/>
                                             <constraint firstItem="MMA-S0-qPy" firstAttribute="leading" secondItem="jzT-DH-1di" secondAttribute="leading" constant="25" id="lsj-8U-WZs"/>
                                             <constraint firstItem="r1i-FD-nJL" firstAttribute="top" secondItem="R4e-hG-8sD" secondAttribute="bottom" constant="13" id="tYF-6E-Z8d"/>
                                             <constraint firstItem="elB-Mk-bIM" firstAttribute="top" secondItem="r1i-FD-nJL" secondAttribute="bottom" constant="16" id="wgh-Yh-RPW"/>
@@ -706,11 +725,13 @@
                         <outlet property="tabbar" destination="oYg-ng-wkc" id="Peg-lf-8bo"/>
                         <segue destination="seR-Sm-Seo" kind="show" identifier="calendarSegue" id="W5C-wE-nUu"/>
                         <segue destination="GiV-16-2IQ" kind="show" identifier="paquetesSegue" id="no4-3V-hUe"/>
+                        <segue destination="u3Y-AV-TmV" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogin:" id="EC1-7i-qa3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i3Y-Nd-Omz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="u3Y-AV-TmV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-775" y="-464"/>
+            <point key="canvasLocation" x="-776.08695652173924" y="-464.39732142857139"/>
         </scene>
         <!--Schedule View Controller-->
         <scene sceneID="v6w-xd-51T">
@@ -2389,6 +2410,7 @@
         <image name="backbuttonreserva" width="853" height="25"/>
         <image name="calendarder" width="135" height="135"/>
         <image name="calendarizq" width="135" height="135"/>
+        <image name="close-icon" width="210" height="210"/>
         <image name="flechader" width="70" height="156"/>
         <image name="flechaizq" width="70" height="156"/>
         <image name="iconCalendario" width="30" height="30"/>

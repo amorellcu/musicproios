@@ -25,6 +25,18 @@ class CalendarViewController: UIViewController,UITabBarDelegate {
     @IBOutlet weak var month: UILabel!
     @IBOutlet weak var tabbar: UITabBar!
     
+    @IBAction func onCloseTapped(_ sender: UIButton) {
+        let headers = ["Content-Type": "application/x-www-form-urlencoded"]
+        self.api.setHeaders(aheader: headers)
+        self.api.logout(){ json, err in
+            if(err != nil) {
+                self.performSegue(withIdentifier: "unwindToLogin", sender: self)
+            } else {
+                
+            }
+        }
+    }
+    
     //var Perfilname = ""
     //var user: NSDictionary = [:]
     

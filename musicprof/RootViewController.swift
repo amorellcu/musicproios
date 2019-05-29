@@ -22,7 +22,7 @@ class RootViewController: UIViewController {
         
         ////////////////////////////
         if let accessToken = FBSDKAccessToken.current(){
-            print(">>> token found")
+            print(">>> token found: "+accessToken.tokenString)
             let parameters = [
                 "token": accessToken.tokenString!
             ]
@@ -32,6 +32,7 @@ class RootViewController: UIViewController {
                     print(">>>error != nil")
                     let alertView = SCLAlertView()
                     alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor")
+                    self.performSegue(withIdentifier: "RequireLogin", sender: self)
                 }
                 else{
                     print(">>>error == nil")
@@ -53,6 +54,7 @@ class RootViewController: UIViewController {
                         else {
                             print(">>>login successfull")
                             self.api.user = JSON
+                            print(">>> set this to api user:" + String(describing: self.api.user))
                             let userdata = self.api.getUserData(JSON: JSON)
                             self.api.urlphoto = userdata["urlphoto"]!
                             self.api.nameclient = userdata["name"]!

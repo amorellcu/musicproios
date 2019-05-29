@@ -52,7 +52,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     var dict : [String : AnyObject]!
 //    var nameclient = ""
 //    var urlphoto = ""
-    var user:NSDictionary = [:]
+    //var user:NSDictionary = [:]
     
     @IBOutlet weak var customFBLoginButton: UIButton!
     
@@ -258,11 +258,13 @@ class ViewController: UIViewController,UITextFieldDelegate {
                     alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor") // Error
                 }
                 else{
+                    print("error == nil")
                     let JSON = json! as NSDictionary
                     let userdata = self.api.getUserData(JSON: JSON)
                     self.api.urlphoto = userdata["urlphoto"]!
                     self.api.nameclient = userdata["name"]!
-                    self.user = JSON
+                    self.api.user = JSON
+                    //self.user = JSON
                     self.performSegue(withIdentifier: "calendar", sender: self)
                 }
 
@@ -272,6 +274,10 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
     @IBAction func buttonRegister(_ sender: Any) {
         self.performSegue(withIdentifier: "RegisterStepOneSegue", sender: self)
+    }
+    
+    @IBAction func unwindToLogin(_ segue: UIStoryboardSegue) {
+        
     }
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if(segue.identifier == "calendar"){
