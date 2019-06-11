@@ -24,7 +24,7 @@ extension UIViewController {
             icon.isHidden = false
             
             if(err != nil) {
-                self.navigationController?.performSegue(withIdentifier: "unwindToLogin", sender: self)
+                self.performSegue(withIdentifier: "unwindToLogin", sender: self)
             } else {
                 
             }

@@ -1691,6 +1691,7 @@
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Nombre Completo" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Ti-mF-cNz">
                                                 <rect key="frame" x="30" y="153" width="314" height="52"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="52" id="UH5-u7-JhV"/>
                                                 </constraints>
@@ -1714,6 +1715,7 @@
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Correo Eléctronico" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hqT-Yd-TNn">
                                                 <rect key="frame" x="30" y="225" width="314" height="52"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="52" id="fbZ-N2-KdI"/>
                                                 </constraints>
@@ -1737,6 +1739,7 @@
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Télefono" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V2I-iA-eAL">
                                                 <rect key="frame" x="30" y="297" width="314" height="52"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="52" id="noy-Ip-H9Y"/>
                                                 </constraints>
@@ -1933,7 +1936,7 @@
                         <outlet property="scrollview" destination="fVO-Pl-J5S" id="S0k-8e-rJR"/>
                         <segue destination="rzx-JK-kEg" kind="show" identifier="instruments2Segue" id="yVd-Fq-nX6"/>
                         <segue destination="1RX-bf-2AS" kind="show" identifier="instruments1Segue" id="udn-Ye-vnl"/>
-                        <segue destination="ljl-PP-J0J" kind="unwind" unwindAction="unwindToLogin:" id="hHE-zW-ySN"/>
+                        <segue destination="ljl-PP-J0J" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogin:" id="hHE-zW-ySN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4u-q7-2W1" userLabel="First Responder" sceneMemberID="firstResponder"/>

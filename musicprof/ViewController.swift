@@ -123,6 +123,12 @@ class ViewController: UIViewController,UITextFieldDelegate {
         customFBLoginButton.addTarget(self, action: #selector(loginButtonClicked), for: UIControlEvents.touchUpInside)
 
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        emailText.text = ""
+        passText.text = ""
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -224,6 +230,11 @@ class ViewController: UIViewController,UITextFieldDelegate {
                                     let userdata = self.api.getUserData(JSON: JSON)
                                     self.api.urlphoto = userdata["urlphoto"]!
                                     self.api.nameclient = userdata["name"]!
+//                                    if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterStepOne") as? RegisterStepOneViewController {
+//                                        if let navigator = self.navigationController {
+//                                            navigator.pushViewController(viewController, animated: true)
+//                                        }
+//                                    }
                                     self.performSegue(withIdentifier: "calendar", sender: self)
                                 }
                                 
@@ -245,10 +256,11 @@ class ViewController: UIViewController,UITextFieldDelegate {
             alertView.showError("Error Validación", subTitle: "Asegurese que el usuario o la clave no esten vacios") // Error
         }
         else{
+            
             let headers = ["Content-Type": "application/x-www-form-urlencoded"]
             let parameters = [
-                "email": "testing113540900@gmail.com",//self.emailText.text!,//"testing113540900@gmail.com",//
-                "password": "123456"//self.passText.text!//"123456"//
+                "email": self.emailText.text!,//"testing113540900@gmail.com",//
+                "password": self.passText.text!//"123456"//
             ]
             self.api.setHeaders(aheader: headers)
             self.api.setParams(aparams: parameters)
