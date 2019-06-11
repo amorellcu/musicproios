@@ -12,4 +12,22 @@ extension UIViewController {
     var api: ApiStudent {
         return ApiStudent.sharedInstance
     }
+    
+    func onLogoutAction(activityIndicator ai: UIActivityIndicatorView, closeIcon icon: UIImageView) {
+        ai.startAnimating()
+        icon.isHidden = true
+        
+        let headers = ["Content-Type": "application/x-www-form-urlencoded"]
+        self.api.setHeaders(aheader: headers)
+        self.api.logout(){ json, err in
+            ai.stopAnimating()
+            icon.isHidden = false
+            
+            if(err != nil) {
+                self.navigationController?.performSegue(withIdentifier: "unwindToLogin", sender: self)
+            } else {
+                
+            }
+        }
+    }
 }

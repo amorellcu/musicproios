@@ -188,6 +188,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     //when login button clicked
     @objc func loginButtonClicked() {
         let loginManager = LoginManager()
+        loginManager.loginBehavior = LoginBehavior.web
         loginManager.logIn(readPermissions: [ .publicProfile ], viewController: self) { loginResult in
             switch loginResult {
             case .failed(let error):

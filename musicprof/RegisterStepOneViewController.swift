@@ -52,6 +52,14 @@ class RegisterStepOneViewController: UIViewController {
     @IBOutlet weak var phonePerfil: UITextField!
 
     
+    @IBAction func onCloseTapped(_ sender: UIButton) {
+        self.onLogoutAction(activityIndicator: ai, closeIcon: iconClose)
+    }
+    
+    @IBOutlet weak var iconClose: UIImageView!
+    
+    @IBOutlet weak var ai: UIActivityIndicatorView!
+    
     @IBOutlet weak var scrollview: UIScrollView!
     var buttonclick: String = ""
     var facebookid: String = ""
