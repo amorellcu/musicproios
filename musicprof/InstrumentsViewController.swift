@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AlamofireImage
 import SCLAlertView
 
 @IBDesignable extension UILabel {
@@ -44,7 +44,60 @@ import SCLAlertView
 
 
 
-class InstrumentsViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+class InstrumentsViewController: UIViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+    let alertView = SCLAlertView()
+    let prototypeCellIdentifier = "instrumentCell"
+    var instruments: [Instrument] = []
+    var selectedInstrument: Int = -1
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.instruments.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: prototypeCellIdentifier, for: indexPath) as! InstrumentCollectionViewCell
+        let icon = instruments[indexPath.item].icon
+        /////
+        self.api.getAllInstruments() { json, error  in
+            
+            if(error != nil){
+                self.alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor") // Error
+            }
+            else{
+                let JSON = json! as NSDictionary
+                if(String(describing: JSON["result"]!) == "Error"){
+                    self.alertView.showError("Error Instrumentos", subTitle: String(describing: JSON["message"]!)) // Error
+                } else if(String(describing: JSON["result"]!) == "OK"){
+                    let data = JSON["data"] as? [String: Any]
+                    let instruments = data!["instruments"] as! NSArray
+                    for instrument in instruments {
+                        var item = instrument as? [String: Any]
+                        if(item!["icono"] as! String != ""){
+                            let instrumentItem = Item(name:item!["name"]! as! String,icon:item!["icono"]! as! String,id:item!["id"]! as! Int)
+                            self.instruments_items.append(instrumentItem)
+                            
+                        }
+                        
+                    }
+                    self.tableview.reloadData()
+                }
+            }
+        }
+        /////
+        if selectedInstrument == indexPath.item {
+            let templateImage = icon.image?.withRenderingMode(.alwaysTemplate)
+            icon.image = templateImage
+            icon.tintColor = UIColor.white
+        }
+        
+        cell.instrumentIcon.image = icon.image
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedInstrument = indexPath.item
+    }
 
     
     var namePerfil: String!
@@ -55,39 +108,27 @@ class InstrumentsViewController: UIViewController, UITextFieldDelegate, UITableV
     var emailPerfil: String!
     var photoUrl: String!
     
-    @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var perfilImage: UIImageView!
     @IBOutlet weak var PerfilName: UILabel!
 
     @IBOutlet weak var scrollview: UIScrollView!
     
-    struct Item {
-        var name: String
-        var icon: String
-        var swith: Bool
-        
-        init(name: String, icon: String, swith: Bool = false) {
-            self.name = name
-            self.icon = icon
-            self.swith = false
-        }
-    }
-    
-    let instruments_items:[Item] = [Item(name:"Canto",icon:"canto"), Item(name:"Guitarra Clásica",icon:"guitarra"), Item(name:"Guitarra Eléctrica",icon:"guitarraelectrica"), Item(name:"Trombon",icon:"trombon"), Item(name:"Saxofón",icon:"saxofon"), Item(name:"Trompeta",icon:"trompeta")]
+//    let instruments_items:[Item] = [Item(name:"Canto",icon:"canto"), Item(name:"Guitarra Clásica",icon:"guitarra"), Item(name:"Guitarra Eléctrica",icon:"guitarraelectrica"), Item(name:"Trombon",icon:"trombon"), Item(name:"Saxofón",icon:"saxofon"), Item(name:"Trompeta",icon:"trompeta")]
     
     
     @IBOutlet weak var editname: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.showSpinner(onView: self.view)
+        
         // Do any additional setup after loading the view.
         self.PerfilName.text = namePerfil
         self.perfilImage.image = photoPerfil
         self.perfilImage.layer.cornerRadius = self.perfilImage.frame.size.width / 2
         self.perfilImage.clipsToBounds = true
         self.editname.delegate = self
-        tableview.delegate = self
-        tableview.dataSource = self
+        //tableview.delegate = self
+        //tableview.dataSource = self
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
@@ -113,19 +154,19 @@ class InstrumentsViewController: UIViewController, UITextFieldDelegate, UITableV
         return true
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return instruments_items.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! UsersTableViewCell
-        cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
-        cell.labelcell.text = instruments_items[indexPath.row].name
-        cell.iconcell.image = UIImage(named: instruments_items[indexPath.row].icon)
-        cell.cellswitch.setOn(instruments_items[indexPath.row].swith, animated: true)
-        return cell
-        
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return instruments_items.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! UsersTableViewCell
+//        cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
+//        cell.labelcell.text = instruments_items[indexPath.row].name
+//        cell.iconcell.image = UIImage(named: instruments_items[indexPath.row].icon)
+//        cell.cellswitch.setOn(instruments_items[indexPath.row].swith, animated: true)
+//        return cell
+//
+//    }
     
     @objc func adjustForKeyboard(notification: Notification) {
         let userInfo = notification.userInfo!
@@ -153,7 +194,7 @@ class InstrumentsViewController: UIViewController, UITextFieldDelegate, UITableV
         let alertView = SCLAlertView(appearance: appearance)
         alertView.addButton("SI") {
             self.editname.text = ""
-            self.tableview.reloadData()
+            //self.tableview.reloadData()
         }
         alertView.addButton("NO") {
 

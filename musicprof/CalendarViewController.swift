@@ -42,7 +42,7 @@ class CalendarViewController: UIViewController,UITabBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.showSpinner(onView: self.perfil)
         // Do any additional setup after loading the view.
         tabbar.delegate = self
         self.perfil.layer.cornerRadius = self.perfil.frame.size.width / 2
@@ -74,6 +74,7 @@ class CalendarViewController: UIViewController,UITabBarDelegate {
                 if(data != nil){
                     DispatchQueue.main.async {
                         self.perfil.image = UIImage(data: data!)
+                        self.removeSpinner()
                     }
                 } else {
                     self.perfil.image = UIImage(named: "userdefault")
