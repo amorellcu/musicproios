@@ -43,11 +43,12 @@ import SCLAlertView
 }
 
 
-
 class InstrumentsViewController: UIViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     let alertView = SCLAlertView()
     let prototypeCellIdentifier = "instrumentCell"
     var instruments: [Instrument] = []
+    var icons: [UIImageView] = []
+    
     var selectedInstrument: Int = -1
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -56,34 +57,8 @@ class InstrumentsViewController: UIViewController, UITextFieldDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: prototypeCellIdentifier, for: indexPath) as! InstrumentCollectionViewCell
-        let icon = instruments[indexPath.item].icon
-        /////
-        self.api.getAllInstruments() { json, error  in
-            
-            if(error != nil){
-                self.alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor") // Error
-            }
-            else{
-                let JSON = json! as NSDictionary
-                if(String(describing: JSON["result"]!) == "Error"){
-                    self.alertView.showError("Error Instrumentos", subTitle: String(describing: JSON["message"]!)) // Error
-                } else if(String(describing: JSON["result"]!) == "OK"){
-                    let data = JSON["data"] as? [String: Any]
-                    let instruments = data!["instruments"] as! NSArray
-                    for instrument in instruments {
-                        var item = instrument as? [String: Any]
-                        if(item!["icono"] as! String != ""){
-                            let instrumentItem = Item(name:item!["name"]! as! String,icon:item!["icono"]! as! String,id:item!["id"]! as! Int)
-                            self.instruments_items.append(instrumentItem)
-                            
-                        }
-                        
-                    }
-                    self.tableview.reloadData()
-                }
-            }
-        }
-        /////
+        let icon = icons[indexPath.item]
+        
         if selectedInstrument == indexPath.item {
             let templateImage = icon.image?.withRenderingMode(.alwaysTemplate)
             icon.image = templateImage
@@ -117,9 +92,39 @@ class InstrumentsViewController: UIViewController, UITextFieldDelegate, UICollec
     
     
     @IBOutlet weak var editname: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showSpinner(onView: self.view)
+        /////
+        self.api.getAllInstruments() { json, error  in
+            
+            if(error != nil){
+                self.alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor") // Error
+            }
+            else{
+                let JSON = json! as NSDictionary
+                if(String(describing: JSON["result"]!) == "Error"){
+                    self.alertView.showError("Error Instrumentos", subTitle: String(describing: JSON["message"]!)) // Error
+                } else if(String(describing: JSON["result"]!) == "OK"){
+                    let data = JSON["data"] as? [String: Any]
+                    let instruments = data!["instruments"] as! NSArray
+                    for instrument in instruments {
+                        var item = instrument as? [String: Any]
+                        
+                        
+//                        if(item!["icono"] as! String != ""){
+//                            let instrumentItem = Item(name:item!["name"]! as! String,icon:item!["icono"]! as! String,id:item!["id"]! as! Int)
+//                            self.instruments_items.append(instrumentItem)
+//
+//                        }
+                        
+                    }
+                    //collectionView.reloadData()
+                }
+            }
+        }
+        /////
         
         // Do any additional setup after loading the view.
         self.PerfilName.text = namePerfil
