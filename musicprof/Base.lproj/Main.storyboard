@@ -2281,9 +2281,12 @@
                                                     <constraint firstItem="Cac-lr-ggj" firstAttribute="top" secondItem="ekm-lZ-qFc" secondAttribute="top" id="zEi-hQ-esf"/>
                                                 </constraints>
                                             </view>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eWm-on-8OO">
-                                                <rect key="frame" x="0.0" y="496" width="375" height="128"/>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eWm-on-8OO">
+                                                <rect key="frame" x="0.0" y="414" width="375" height="180"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="180" id="hrR-j4-PHz"/>
+                                                </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Iiz-gS-O24">
                                                     <size key="itemSize" width="50" height="50"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2312,8 +2315,8 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0FM-WS-EUS">
-                                                <rect key="frame" x="31" y="751" width="313" height="52"/>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0FM-WS-EUS">
+                                                <rect key="frame" x="31" y="594" width="313" height="52"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="52" id="gDc-dv-pQU"/>
                                                 </constraints>
@@ -2445,8 +2448,9 @@
         <image name="transparent_icon_white" width="800" height="800"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Wgr-tI-92I"/>
         <segue reference="Fid-gy-n8Q"/>
-        <segue reference="HEk-rv-mR8"/>
+        <segue reference="e8P-oM-Cc7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

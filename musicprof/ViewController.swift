@@ -274,7 +274,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
                     print("error == nil")
                     let JSON = json! as NSDictionary
                     let userdata = self.api.getUserData(JSON: JSON)
-                    self.api.urlphoto = userdata["urlphoto"]!
+                    self.api.urlphoto = userdata["urlphoto"]
                     self.api.nameclient = userdata["name"]!
                     self.api.user = JSON
                     //self.user = JSON

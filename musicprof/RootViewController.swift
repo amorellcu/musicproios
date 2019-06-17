@@ -21,10 +21,11 @@ class RootViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         ////////////////////////////
-        if let accessToken = FBSDKAccessToken.current(){
-            print(">>> token found: "+accessToken.tokenString)
+        
+        if let accessToken = AccessToken.current{
+            print(">>> token found: "+accessToken.authenticationToken)
             let parameters = [
-                "token": accessToken.tokenString!
+                "token": accessToken.authenticationToken
             ]
             self.api.setParams(aparams: parameters)
             self.api.loginFacebookToken() { json, error  in
@@ -41,6 +42,7 @@ class RootViewController: UIViewController {
                         print(">>> json result == Error")
                         let alertView = SCLAlertView()
                         alertView.showError("Error Autenticación", subTitle: String(describing: JSON["message"]!)) // Error
+                        self.performSegue(withIdentifier: "RequireLogin", sender: self)
                     } else if(String(describing: JSON["result"]!) == "OK"){
                         print(">>> JSON[result] == OK")
                         if(String(describing: JSON["code"]!) == "202"){

@@ -11,6 +11,7 @@ import FacebookLogin
 import FBSDKLoginKit
 import FBSDKCoreKit
 import JTAppleCalendar
+import AlamofireImage
 
 protocol MonthViewDelegate {
     func didChangeMonth(monthIndex: Int)
@@ -65,22 +66,27 @@ class CalendarViewController: UIViewController,UITabBarDelegate {
         let cliente = data!["client"] as? [String: Any]
         let subaccounts = cliente!["subaccounts"] as! NSArray
         let user = cliente!["user"] as? [String: Any]
-        let photo = user!["photo"] as! String
-        let url = URL(string: photo)
-        self.perfil.image = UIImage(named: "userdefault")
-        if(photo != ""){
-            DispatchQueue.global().async {
-                let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-                if(data != nil){
-                    DispatchQueue.main.async {
-                        self.perfil.image = UIImage(data: data!)
-                        self.removeSpinner()
-                    }
-                } else {
-                    self.perfil.image = UIImage(named: "userdefault")
-                }
-
+        //let photo = user!["photo"] as! String
+        //self.perfil.image = UIImage(named: "userdefault")
+        if let photo = self.api.urlphoto {
+            print("vvvvvv"+photo)
+            let url = URL(string: photo)
+            self.perfil?.af_setImage(withURL: url!){res in
+                self.removeSpinner()
             }
+//            DispatchQueue.global().async {
+//                let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+//                if(data != nil){
+//                    DispatchQueue.main.async {
+//                        self.perfil.image = UIImage(data: data!)
+//                        self.removeSpinner()
+//                    }
+//                } else {
+//                    self.perfil.image = UIImage(named: "userdefault")
+//                    self.removeSpinner()
+//                }
+//
+//            }
         }
     }
 

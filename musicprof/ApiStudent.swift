@@ -21,7 +21,7 @@ public class ApiStudent {
     static let sharedInstance = ApiStudent()
     
     var nameclient = ""
-    var urlphoto = ""
+    var urlphoto:String?
     var user:NSDictionary = [:]
     
     static fileprivate let queue = DispatchQueue(label: "requests.queue", qos: .utility)
