@@ -11,6 +11,7 @@ target 'musicprof' do
   pod 'AEAccordion'
   pod 'SCLAlertView'
   pod 'SwiftLocation'
+  pod 'SwiftKeychainWrapper'
   pod 'JTAppleCalendar', '~> 7.1'
   pod 'FacebookCore', '~> 0.5.0'
   pod 'FacebookLogin', '~> 0.5.0'

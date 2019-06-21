@@ -18,6 +18,10 @@
 		53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0C22B19EC700314EC8 /* Instrument.swift */; };
 		53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2527B22B6E360007C8BB1 /* Profile.swift */; };
 		53D98FBE22BD35D10027FDCD /* Reservation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53D98FBD22BD35D10027FDCD /* Reservation.storyboard */; };
+		53D98FC822BD3FC30027FDCD /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FC722BD3FC30027FDCD /* ApiManager.swift */; };
+		53D98FCA22BD44A40027FDCD /* ApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FC922BD44A40027FDCD /* ApiResult.swift */; };
+		53D98FCC22BD459E0027FDCD /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FCB22BD459E0027FDCD /* ApiError.swift */; };
+		53D98FCE22BD45F50027FDCD /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FCD22BD45F50027FDCD /* AppError.swift */; };
 		593B823462C234D64D7BEC81 /* Pods_musicprof.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85796996F4D7DD561375F67F /* Pods_musicprof.framework */; };
 		A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5315B32203CF27C0043A0E2 /* MapViewController.swift */; };
 		A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */; };
@@ -89,6 +93,10 @@
 		53907E0C22B19EC700314EC8 /* Instrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
 		53C2527B22B6E360007C8BB1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		53D98FBD22BD35D10027FDCD /* Reservation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Reservation.storyboard; sourceTree = "<group>"; };
+		53D98FC722BD3FC30027FDCD /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		53D98FC922BD44A40027FDCD /* ApiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResult.swift; sourceTree = "<group>"; };
+		53D98FCB22BD459E0027FDCD /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		53D98FCD22BD45F50027FDCD /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		59E632D18A7D18233FF1FA7A /* Pods-musicprofTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofTests.release.xcconfig"; path = "Target Support Files/Pods-musicprofTests/Pods-musicprofTests.release.xcconfig"; sourceTree = "<group>"; };
 		67621E9938D7DBC743F68D1A /* Pods-musicprof.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprof.release.xcconfig"; path = "Target Support Files/Pods-musicprof/Pods-musicprof.release.xcconfig"; sourceTree = "<group>"; };
 		68822876B39CA5EAA292D999 /* Pods-musicprofUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofUITests.release.xcconfig"; path = "Target Support Files/Pods-musicprofUITests/Pods-musicprofUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -201,8 +209,19 @@
 			isa = PBXGroup;
 			children = (
 				15DFDFBD208E4E7500B28338 /* ApiStudent.swift */,
+				53D98FC722BD3FC30027FDCD /* ApiManager.swift */,
+				53D98FC922BD44A40027FDCD /* ApiResult.swift */,
+				53D98FCB22BD459E0027FDCD /* ApiError.swift */,
+				53D98FCD22BD45F50027FDCD /* AppError.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		53D98FC622BD3F970027FDCD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		A5598C0B201F8C3B000C64F6 = {
@@ -232,6 +251,7 @@
 			children = (
 				53D98FC422BD3E420027FDCD /* Extensions */,
 				53D98FC522BD3E560027FDCD /* Models */,
+				53D98FC622BD3F970027FDCD /* Controllers */,
 				53D98FBC22BD35290027FDCD /* Views */,
 				A5598C17201F8C3B000C64F6 /* AppDelegate.swift */,
 				A5598C19201F8C3B000C64F6 /* ViewController.swift */,
@@ -484,6 +504,7 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftLocation/SwiftLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -501,6 +522,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -551,14 +573,18 @@
 				A5F6F61E201FD9E600264412 /* StudentClass.swift in Sources */,
 				A5E1FB1E2044BC2200B15DD9 /* ProfesorDetailViewController.swift in Sources */,
 				15588081209BB753003DC16A /* PackagesViewController.swift in Sources */,
+				53D98FC822BD3FC30027FDCD /* ApiManager.swift in Sources */,
 				A5AD1EC020338A6F00A38F85 /* CalendarCell.swift in Sources */,
 				A5598C18201F8C3B000C64F6 /* AppDelegate.swift in Sources */,
 				530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */,
 				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,
 				53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */,
 				A5FF65842024FE34003778B3 /* HeaderTableViewCell.swift in Sources */,
+				53D98FCE22BD45F50027FDCD /* AppError.swift in Sources */,
+				53D98FCA22BD44A40027FDCD /* ApiResult.swift in Sources */,
 				A5A77C3820407866000F1E3E /* ScheduleProfesorViewController.swift in Sources */,
 				53907E0B22B1983300314EC8 /* InstrumentCollectionViewCell.swift in Sources */,
+				53D98FCC22BD459E0027FDCD /* ApiError.swift in Sources */,
 				A5A99ADA2025345D0050D8D8 /* ItemTableViewCell.swift in Sources */,
 				A5CA35D8202CA10C002FFFD0 /* InstrumentsViewController.swift in Sources */,
 				A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */,
