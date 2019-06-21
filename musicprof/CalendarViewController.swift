@@ -71,7 +71,7 @@ class CalendarViewController: UIViewController,UITabBarDelegate {
         if let photo = self.api.urlphoto {
             print("vvvvvv"+photo)
             let url = URL(string: photo)
-            self.perfil?.af_setImage(withURL: url!){res in
+            self.perfil.af_setImage(withURL: url!){res in
                 self.removeSpinner()
             }
 //            DispatchQueue.global().async {

@@ -17,6 +17,7 @@
 		53907E0B22B1983300314EC8 /* InstrumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0A22B1983300314EC8 /* InstrumentCollectionViewCell.swift */; };
 		53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0C22B19EC700314EC8 /* Instrument.swift */; };
 		53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2527B22B6E360007C8BB1 /* Profile.swift */; };
+		53D98FBE22BD35D10027FDCD /* Reservation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53D98FBD22BD35D10027FDCD /* Reservation.storyboard */; };
 		593B823462C234D64D7BEC81 /* Pods_musicprof.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85796996F4D7DD561375F67F /* Pods_musicprof.framework */; };
 		A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5315B32203CF27C0043A0E2 /* MapViewController.swift */; };
 		A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */; };
@@ -87,6 +88,7 @@
 		53907E0A22B1983300314EC8 /* InstrumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentCollectionViewCell.swift; sourceTree = "<group>"; };
 		53907E0C22B19EC700314EC8 /* Instrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
 		53C2527B22B6E360007C8BB1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		53D98FBD22BD35D10027FDCD /* Reservation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Reservation.storyboard; sourceTree = "<group>"; };
 		59E632D18A7D18233FF1FA7A /* Pods-musicprofTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofTests.release.xcconfig"; path = "Target Support Files/Pods-musicprofTests/Pods-musicprofTests.release.xcconfig"; sourceTree = "<group>"; };
 		67621E9938D7DBC743F68D1A /* Pods-musicprof.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprof.release.xcconfig"; path = "Target Support Files/Pods-musicprof/Pods-musicprof.release.xcconfig"; sourceTree = "<group>"; };
 		68822876B39CA5EAA292D999 /* Pods-musicprofUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofUITests.release.xcconfig"; path = "Target Support Files/Pods-musicprofUITests/Pods-musicprofUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +181,30 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		53D98FBC22BD35290027FDCD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				53D98FBD22BD35D10027FDCD /* Reservation.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		53D98FC422BD3E420027FDCD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				530F8A79229B773A000AFC86 /* UIViewController.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		53D98FC522BD3E560027FDCD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				15DFDFBD208E4E7500B28338 /* ApiStudent.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		A5598C0B201F8C3B000C64F6 = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +230,9 @@
 		A5598C16201F8C3B000C64F6 /* musicprof */ = {
 			isa = PBXGroup;
 			children = (
+				53D98FC422BD3E420027FDCD /* Extensions */,
+				53D98FC522BD3E560027FDCD /* Models */,
+				53D98FBC22BD35290027FDCD /* Views */,
 				A5598C17201F8C3B000C64F6 /* AppDelegate.swift */,
 				A5598C19201F8C3B000C64F6 /* ViewController.swift */,
 				A5AD1EBF20338A6F00A38F85 /* CalendarCell.swift */,
@@ -212,7 +241,6 @@
 				A5AA588C202A57B100F4370A /* UsersTableViewCell.swift */,
 				A5E1FB1B2042514000B15DD9 /* ProfesorTableViewCell.swift */,
 				A5CA35D5202BA922002FFFD0 /* peopleTableViewCell.swift */,
-				15DFDFBD208E4E7500B28338 /* ApiStudent.swift */,
 				A5F6F61D201FD9E600264412 /* StudentClass.swift */,
 				A5CA35D920311805002FFFD0 /* InstrumentsmeViewController.swift */,
 				A5CA35D7202CA10C002FFFD0 /* InstrumentsViewController.swift */,
@@ -232,7 +260,6 @@
 				A5598C20201F8C3B000C64F6 /* LaunchScreen.storyboard */,
 				A5598C23201F8C3B000C64F6 /* Info.plist */,
 				530F8A77229A1656000AFC86 /* RootViewController.swift */,
-				530F8A79229B773A000AFC86 /* UIViewController.swift */,
 				53907E0A22B1983300314EC8 /* InstrumentCollectionViewCell.swift */,
 				53907E0C22B19EC700314EC8 /* Instrument.swift */,
 				53C2527B22B6E360007C8BB1 /* Profile.swift */,
@@ -373,6 +400,7 @@
 				A5598C22201F8C3B000C64F6 /* LaunchScreen.storyboard in Resources */,
 				A5598C1F201F8C3B000C64F6 /* Assets.xcassets in Resources */,
 				A5598C1D201F8C3B000C64F6 /* Main.storyboard in Resources */,
+				53D98FBE22BD35D10027FDCD /* Reservation.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,8 +470,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-musicprof/Pods-musicprof-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AEAccordion/AEAccordion.framework",
@@ -462,8 +488,6 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AEAccordion.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U8s-Q1-gfC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U8s-Q1-gfC">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -49,7 +49,7 @@
                     <navigationItem key="navigationItem" id="cra-Uk-Q94"/>
                     <connections>
                         <segue destination="9OR-MO-g9h" kind="show" identifier="RequireLogin" id="HEk-rv-mR8"/>
-                        <segue destination="5ZU-a9-oLY" kind="show" identifier="goToCalendar" id="Gcm-dk-X1v"/>
+                        <segue destination="jeX-At-SJ2" kind="show" identifier="goToCalendar" id="cOC-Vx-oLZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jQv-c9-XI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -274,13 +274,21 @@
                         <outlet property="emailText" destination="shJ-lE-8z8" id="Grj-bq-Y3c"/>
                         <outlet property="passText" destination="Pya-MD-Eil" id="T46-Su-InK"/>
                         <outlet property="scrollview" destination="HMQ-14-w6H" id="VqC-YK-3yL"/>
-                        <segue destination="5ZU-a9-oLY" kind="show" identifier="calendar" id="Fid-gy-n8Q"/>
                         <segue destination="zjq-Bx-voE" kind="show" identifier="RegisterStepOneSegue" id="Wgr-tI-92I"/>
+                        <segue destination="jeX-At-SJ2" kind="show" identifier="calendar" id="3UA-Yt-XJq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fAN-Rw-cyv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-775" y="-1334"/>
+        </scene>
+        <!--Reservation-->
+        <scene sceneID="7OV-VD-RwQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Reservation" id="jeX-At-SJ2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1aH-5R-8f4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1212" y="-906"/>
         </scene>
         <!--Packages View Controller-->
         <scene sceneID="LiW-eE-Kqm">
@@ -2432,8 +2440,8 @@
     </scenes>
     <resources>
         <image name="backbuttonreserva" width="853" height="25"/>
-        <image name="calendarder" width="135" height="135"/>
-        <image name="calendarizq" width="135" height="135"/>
+        <image name="calendarder" width="67.5" height="67.5"/>
+        <image name="calendarizq" width="67.5" height="67.5"/>
         <image name="close-icon" width="210" height="210"/>
         <image name="flechader" width="70" height="156"/>
         <image name="flechaizq" width="70" height="156"/>
@@ -2444,13 +2452,12 @@
         <image name="logo" width="291" height="400"/>
         <image name="profedetails" width="848" height="446"/>
         <image name="profesor" width="443" height="435"/>
-        <image name="splash" width="1125" height="2436"/>
+        <image name="splash" width="562.5" height="1218"/>
         <image name="transparent_icon_white" width="800" height="800"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wgr-tI-92I"/>
-        <segue reference="Fid-gy-n8Q"/>
-        <segue reference="e8P-oM-Cc7"/>
+        <segue reference="cOC-Vx-oLZ"/>
+        <segue reference="HEk-rv-mR8"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
