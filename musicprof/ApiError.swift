@@ -9,25 +9,26 @@
 import Foundation
 
 struct ApiError: Error, Decodable {
-    var message: String
-    var success: Bool
+    var result: String?
+    var code: Int
+    var message: String?
 }
 
 extension ApiError: CustomStringConvertible {
     var description: String {
-        return self.message
+        return self.message ?? "Error \(self.code) en el servidor."
     }
 }
 
 extension ApiError {
-    init(message: String) {
-        self.init(message: message, success: false)
+    init(code: Int, message: String?) {
+        self.init(result: "Error", code: code, message: message)
     }
     
     static func from(jsonData data: Data) throws -> ApiError {
         let decoder = JSONDecoder()
         let item = try decoder.decode(ApiError.self, from: data)
-        guard !item.success else {
+        guard item.result != "OK" else {
             throw AppError.unexpected
         }
         return item

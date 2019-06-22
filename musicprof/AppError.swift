@@ -8,6 +8,14 @@
 
 import Foundation
 
-enum AppError: Error {
-    case unexpected
+enum AppError: String, Error {
+    case unexpected = "Ocurrió un error inesperado en la aplicación."
+    case notAnError = "Error interno."
+    case unsupportedData = "Se recibieron datos erroneos del serivdor. Por favor, asegúrese de tener la última versión de la aplicación."
+}
+
+extension AppError: CustomStringConvertible {
+    var description: String {
+        return self.rawValue
+    }
 }

@@ -195,55 +195,27 @@ class ViewController: UIViewController,UITextFieldDelegate {
     @objc func loginButtonClicked() {
         let loginManager = LoginManager()
         loginManager.loginBehavior = LoginBehavior.web
-        loginManager.logIn(readPermissions: [ .publicProfile ], viewController: self) { loginResult in
+        loginManager.logIn(readPermissions: [ .publicProfile, .email ], viewController: self) { [weak self] loginResult in
             switch loginResult {
             case .failed(let error):
                 print(error)
+                self?.notify(error: error)
             case .cancelled:
                 print("User cancelled login.")
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                if let accessToken = FBSDKAccessToken.current(){
-                    let parameters = [
-                        "token": accessToken.tokenString!
-                    ]
-                    self.api.setParams(aparams: parameters)
-                    self.api.loginFacebookToken() { json, error  in
-                        if(error != nil){
-                            let alertView = SCLAlertView()
-                            alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor")
-                        }
-                        else{
-                            let JSON = json! as NSDictionary
-                            if(String(describing: JSON["result"]!) == "Error"){
-                                let alertView = SCLAlertView()
-                                alertView.showError("Error Autenticación", subTitle: String(describing: JSON["message"]!)) // Error
-                            } else if(String(describing: JSON["result"]!) == "OK"){
-                                if(String(describing: JSON["code"]!) == "202"){
-                                    if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterStepOne") as? RegisterStepOneViewController {
-                                        if let navigator = self.navigationController {
-                                            navigator.pushViewController(viewController, animated: true)
-                                        }
-                                    }
-                                }
-                                else {
-                                    self.api.user = JSON
-                                    let userdata = self.api.getUserData(JSON: JSON)
-                                    self.api.urlphoto = userdata["urlphoto"]!
-                                    self.api.nameclient = userdata["name"]!
-//                                    if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterStepOne") as? RegisterStepOneViewController {
-//                                        if let navigator = self.navigationController {
-//                                            navigator.pushViewController(viewController, animated: true)
-//                                        }
-//                                    }
-                                    self.performSegue(withIdentifier: "calendar", sender: self)
-                                }
-                                
-                            }
-                        }
-                        
-                    }
-                    
-                }
+                self?.service.signIn(withFacebookToken: accessToken.authenticationToken, handler: { (result) in
+                    self?.handleResult(result, onSuccess: { (_) in
+                        // TODO: check for registration
+                        /*
+                         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterStepOne") as? RegisterStepOneViewController {
+                         if let navigator = self.navigationController {
+                         navigator.pushViewController(viewController, animated: true)
+                         }
+                         }
+                         */
+                        self?.performSegue(withIdentifier: "calendar", sender: self)
+                    })
+                })
             }
         }
     }
@@ -251,38 +223,17 @@ class ViewController: UIViewController,UITextFieldDelegate {
 
 
     @IBAction func loginUser(_ sender: Any) {
-        if self.emailText.text == "" || self.passText.text == ""{
-            let alertView = SCLAlertView()
-            alertView.showError("Error Validación", subTitle: "Asegurese que el usuario o la clave no esten vacios") // Error
+        guard let email = self.emailText.text,  //"testing113540900@gmail.com"
+            let pass = self.passText.text,      //"123456"
+            !email.isEmpty && !pass.isEmpty else {
+            SCLAlertView().showError("Error Validación", subTitle: "Asegurese que el usuario o la clave no esten vacios") // Error
+            return
         }
-        else{
-            
-            let headers = ["Content-Type": "application/x-www-form-urlencoded"]
-            let parameters = [
-                "email": self.emailText.text!,//"testing113540900@gmail.com",//
-                "password": self.passText.text!//"123456"//
-            ]
-            self.api.setHeaders(aheader: headers)
-            self.api.setParams(aparams: parameters)
-            
-            self.api.login() { json, error  in
-                if(error != nil){
-                    let alertView = SCLAlertView()
-                    alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor") // Error
-                }
-                else{
-                    print("error == nil")
-                    let JSON = json! as NSDictionary
-                    let userdata = self.api.getUserData(JSON: JSON)
-                    self.api.urlphoto = userdata["urlphoto"]
-                    self.api.nameclient = userdata["name"]!
-                    self.api.user = JSON
-                    //self.user = JSON
-                    self.performSegue(withIdentifier: "calendar", sender: self)
-                }
-
-             }
-         }
+        self.service.signIn(withEmail: email, password: pass) { [weak self] (result) in
+            self?.handleResult(result) {
+                self?.performSegue(withIdentifier: "calendar", sender: sender)
+            }
+        }
     }
     
     @IBAction func buttonRegister(_ sender: Any) {

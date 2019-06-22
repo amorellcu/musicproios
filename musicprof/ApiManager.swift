@@ -22,25 +22,33 @@ class ApiManager {
     let session: SessionManager
     let imageDownloader: ImageDownloader
     
-    var userId: String?
+    private(set) var user: Client? {
+        didSet {
+            if let user = self.user {
+                self.keychain.set(user, forKey: "user")
+            } else {
+                self.keychain.removeObject(forKey: "user")
+            }
+        }
+    }
+    
+    var isSignedIn: Bool {
+        return self.user != nil && self.session.adapter != nil
+    }
     
     init() {
         self.session = SessionManager(configuration: .default)        
         self.imageDownloader = ImageDownloader.default
+        
+        self.restoreFromKeychain()
     }
     
-    func saveState(coder: NSCoder) {
-        guard let adapter = self.session.adapter as? JWTAccessTokenAdapter, let userId = self.userId else { return }
-        adapter.encode(with: coder)
-        coder.encode(userId, forKey: "userId")
-    }
-    
-    func restoreFromKeychain() {
-        self.userId = self.keychain.string(forKey: "userId")
+    private func restoreFromKeychain() {
         let adapter = self.keychain.object(forKey: "adapter") as? JWTAccessTokenAdapter
         adapter?.baseUrl = self.baseUrl
         self.session.adapter = adapter
         self.session.retrier = adapter
+        self.user = self.keychain.object(forKey: "user") as? Client
     }
     
     func createAdapter(accessToken: String, refreshToken: String) {
@@ -50,29 +58,48 @@ class ApiManager {
         self.session.retrier = adapter
     }
     
-    func signIn(userName: String, password: String,
-                handler: @escaping (ApiResult<Void>) -> Void) {
+    func signIn(withEmail userName: String, password: String,
+                handler: @escaping (ApiResult<Client>) -> Void) {
         self.signOut()
         
         let url = baseUrl.appendingPathComponent("loginClient")
         let parameters = ["email": userName, "password": password]
-        self.session
+        let _ = self.session
             .request(url, method: .post,
                      parameters: parameters,
                      encoding: JSONEncoding.default,
                      headers: self.headers)
-            .validate()
-            .responseJSON { [weak self] data in
-                if data.result.isSuccess, let json = data.result.value as? [String:Any],
-                    let code = json["code"] as? Int, (200..<300).contains(code),
-                    let data = json["data"] as? [String:Any],
-                    let token = data["token"] as? String {
-                    self?.userId = (data["client"] as? [String:Any])?["users_id"] as? String
-                    self?.createAdapter(accessToken: token, refreshToken: "")
-                    handler(.success(data: ()))
-                } else {
-                    let serviceError = data.data == nil ? nil : try? ApiError.from(jsonData: data.data!)
-                    handler(.failure(error: serviceError ?? data.error ?? AppError.unexpected))
+            .responseDecodable { (result: ApiResult<LoginData>) in
+                switch result {
+                case .success(let data):
+                    self.createAdapter(accessToken: data.token, refreshToken: "")
+                    self.user = data.client
+                    handler(.success(data: data.client))
+                case .failure(let error):
+                    handler(.failure(error: error))
+                }
+            }
+    }
+    
+    func signIn(withFacebookToken accessToken: String,
+                handler: @escaping (ApiResult<Client>) -> Void) {
+        self.signOut()
+        
+        let url = baseUrl.appendingPathComponent("loginWithFacebook")
+        let parameters = ["accessToken": accessToken]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<LoginData>) in
+                switch result {
+                case .success(let data):
+                    self.createAdapter(accessToken: data.token, refreshToken: "")
+                    self.user = data.client
+                    handler(.success(data: data.client))
+                case .failure(let error):
+                    handler(.failure(error: error))
                 }
         }
     }
@@ -80,9 +107,14 @@ class ApiManager {
     func signOut() {
         self.session.adapter = nil
         self.session.retrier = nil
-        self.userId = nil
+        self.user = nil
         self.keychain.removeObject(forKey: "adapter")
     }
+}
+
+private struct LoginData: Decodable {
+    var token: String
+    var client: Client
 }
 
 class JWTAccessTokenAdapter : NSObject, RequestAdapter, RequestRetrier, NSCoding {
