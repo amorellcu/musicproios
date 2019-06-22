@@ -8,12 +8,23 @@
 
 import Foundation
 
-struct Instrument {
+struct Instrument: Decodable {
     var name: String
     var icon: String
     
     init(name: String, icon: String) {
         self.name = name
         self.icon = icon
+    }
+    
+    fileprivate enum CodingKeys: String, CodingKey {
+        case name
+        case icon = "icono"
+    }
+}
+
+extension Instrument {
+    var iconUrl: URL? {
+        return URL(string: self.icon)
     }
 }

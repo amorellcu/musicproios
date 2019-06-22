@@ -12,6 +12,7 @@ enum AppError: String, Error {
     case unexpected = "Ocurrió un error inesperado en la aplicación."
     case notAnError = "Error interno."
     case unsupportedData = "Se recibieron datos erroneos del serivdor. Por favor, asegúrese de tener la última versión de la aplicación."
+    case invalidOperation = "No se puede ejecutar la operación en este momento."
 }
 
 extension AppError: CustomStringConvertible {

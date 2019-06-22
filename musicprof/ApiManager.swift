@@ -110,10 +110,38 @@ class ApiManager {
         self.user = nil
         self.keychain.removeObject(forKey: "adapter")
     }
+    
+    func getUserInfo(handler: @escaping (ApiResult<Client>) -> Void) {
+        guard let userId = self.user?.id else {
+            handler(.failure(error: AppError.invalidOperation))
+            return
+        }
+        
+        let url = baseUrl.appendingPathComponent("getClientData")
+        let parameters = ["clientId": userId]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<UserDate>) in
+                switch result {
+                case .success(let data):
+                    self.user = data.client
+                    handler(.success(data: data.client))
+                case .failure(let error):
+                    handler(.failure(error: error))
+                }
+        }
+    }
 }
 
 private struct LoginData: Decodable {
     var token: String
+    var client: Client
+}
+
+private struct UserDate: Decodable {
     var client: Client
 }
 

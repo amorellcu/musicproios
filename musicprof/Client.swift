@@ -15,6 +15,7 @@ class Client: NSObject, Decodable, NSCoding {
     let phone: String?
     let avatarUrl: URL?
     let facebookId: String?
+    let instruments: [Instrument]?
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -26,6 +27,7 @@ class Client: NSObject, Decodable, NSCoding {
         let avatar = try user.decodeIfPresent(String.self, forKey: .avatar)
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
         self.facebookId = try user.decodeIfPresent(String.self, forKey: .facebookId)
+        self.instruments = try container.decodeIfPresent([Instrument].self, forKey: .instruments)
     }
     
     required init?(coder: NSCoder) {
@@ -36,6 +38,7 @@ class Client: NSObject, Decodable, NSCoding {
         let avatar = coder.decodeObject(forKey: UserKeys.avatar.rawValue) as? String
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
         self.facebookId = coder.decodeObject(forKey: UserKeys.facebookId.rawValue) as? String
+        self.instruments = nil
     }
     
     func encode(with coder: NSCoder) {
@@ -50,6 +53,7 @@ class Client: NSObject, Decodable, NSCoding {
     fileprivate enum CodingKeys: String, CodingKey {
         case user
         case phone
+        case instruments
     }
     
     fileprivate enum UserKeys: String, CodingKey {

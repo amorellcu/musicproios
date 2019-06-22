@@ -17,6 +17,7 @@
 		53907E0B22B1983300314EC8 /* InstrumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0A22B1983300314EC8 /* InstrumentCollectionViewCell.swift */; };
 		53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0C22B19EC700314EC8 /* Instrument.swift */; };
 		53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2527B22B6E360007C8BB1 /* Profile.swift */; };
+		53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */; };
 		53D98FBE22BD35D10027FDCD /* Reservation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53D98FBD22BD35D10027FDCD /* Reservation.storyboard */; };
 		53D98FC822BD3FC30027FDCD /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FC722BD3FC30027FDCD /* ApiManager.swift */; };
 		53D98FCA22BD44A40027FDCD /* ApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FC922BD44A40027FDCD /* ApiResult.swift */; };
@@ -95,6 +96,7 @@
 		53907E0A22B1983300314EC8 /* InstrumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentCollectionViewCell.swift; sourceTree = "<group>"; };
 		53907E0C22B19EC700314EC8 /* Instrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
 		53C2527B22B6E360007C8BB1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentSelectionViewController.swift; sourceTree = "<group>"; };
 		53D98FBD22BD35D10027FDCD /* Reservation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Reservation.storyboard; sourceTree = "<group>"; };
 		53D98FC722BD3FC30027FDCD /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		53D98FC922BD44A40027FDCD /* ApiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResult.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				53D98FCB22BD459E0027FDCD /* ApiError.swift */,
 				53D98FCD22BD45F50027FDCD /* AppError.swift */,
 				53FDE14E22BE257D00EBC13F /* Client.swift */,
+				53907E0C22B19EC700314EC8 /* Instrument.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				530F8A77229A1656000AFC86 /* RootViewController.swift */,
 				A5598C19201F8C3B000C64F6 /* ViewController.swift */,
 				53FD596122BE4D7D002F5172 /* ProfileViewController.swift */,
+				53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -290,7 +294,6 @@
 				A5598C20201F8C3B000C64F6 /* LaunchScreen.storyboard */,
 				A5598C23201F8C3B000C64F6 /* Info.plist */,
 				53907E0A22B1983300314EC8 /* InstrumentCollectionViewCell.swift */,
-				53907E0C22B19EC700314EC8 /* Instrument.swift */,
 				53C2527B22B6E360007C8BB1 /* Profile.swift */,
 			);
 			path = musicprof;
@@ -573,6 +576,7 @@
 				A5E1FB202044CE6600B15DD9 /* TextTableViewCell.swift in Sources */,
 				A5CA35D6202BA922002FFFD0 /* peopleTableViewCell.swift in Sources */,
 				A5598C1A201F8C3B000C64F6 /* ViewController.swift in Sources */,
+				53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */,
 				530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */,
 				A5AD1EB520334EA400A38F85 /* CalendarViewController.swift in Sources */,
 				A5E1FB1C2042514000B15DD9 /* ProfesorTableViewCell.swift in Sources */,

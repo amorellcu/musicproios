@@ -23,7 +23,13 @@ class RootViewController: UIViewController {
         ////////////////////////////
         
         if self.service.isSignedIn {
-            self.performSegue(withIdentifier: "goToCalendar", sender: self)
+            self.service.getUserInfo {(result) in
+                self.handleResult(result, onError: { (_) in
+                    self.performSegue(withIdentifier: "RequireLogin", sender: self)
+                }, onSuccess: {
+                    self.performSegue(withIdentifier: "goToCalendar", sender: self)
+                })
+            }
         }
         else if let accessToken = AccessToken.current{
             print(">>> token found: "+accessToken.authenticationToken)
