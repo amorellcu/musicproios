@@ -12,6 +12,7 @@ class Client: NSObject, Decodable, NSCoding {
     let id: Int
     let name: String
     let email: String?
+    let phone: String?
     let avatarUrl: URL?
     let facebookId: String?
     
@@ -21,6 +22,7 @@ class Client: NSObject, Decodable, NSCoding {
         self.id = try user.decode(Int.self, forKey: .id)
         self.name = try user.decodeIfPresent(String.self, forKey: .name) ?? ""
         self.email = try user.decodeIfPresent(String.self, forKey: .email)
+        self.phone = try container.decodeIfPresent(String.self, forKey: .phone)
         let avatar = try user.decodeIfPresent(String.self, forKey: .avatar)
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
         self.facebookId = try user.decodeIfPresent(String.self, forKey: .facebookId)
@@ -30,6 +32,7 @@ class Client: NSObject, Decodable, NSCoding {
         self.id = coder.decodeInteger(forKey: UserKeys.id.rawValue)
         self.name = coder.decodeObject(forKey: UserKeys.name.rawValue) as? String ?? ""
         self.email = coder.decodeObject(forKey: UserKeys.email.rawValue) as? String
+        self.phone = coder.decodeObject(forKey: CodingKeys.phone.rawValue) as? String
         let avatar = coder.decodeObject(forKey: UserKeys.avatar.rawValue) as? String
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
         self.facebookId = coder.decodeObject(forKey: UserKeys.facebookId.rawValue) as? String
@@ -39,12 +42,14 @@ class Client: NSObject, Decodable, NSCoding {
         coder.encode(self.id, forKey: UserKeys.id.rawValue)
         coder.encode(self.name, forKey: UserKeys.name.rawValue)
         coder.encode(self.email, forKey: UserKeys.avatar.rawValue)
+        coder.encode(self.phone, forKey: CodingKeys.phone.rawValue)
         coder.encode(self.avatarUrl?.absoluteURL, forKey: UserKeys.avatar.rawValue)
         coder.encode(self.facebookId, forKey: UserKeys.facebookId.rawValue)
     }
     
     fileprivate enum CodingKeys: String, CodingKey {
         case user
+        case phone
     }
     
     fileprivate enum UserKeys: String, CodingKey {

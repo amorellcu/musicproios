@@ -22,6 +22,7 @@
 		53D98FCA22BD44A40027FDCD /* ApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FC922BD44A40027FDCD /* ApiResult.swift */; };
 		53D98FCC22BD459E0027FDCD /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FCB22BD459E0027FDCD /* ApiError.swift */; };
 		53D98FCE22BD45F50027FDCD /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FCD22BD45F50027FDCD /* AppError.swift */; };
+		53FD596222BE4D7D002F5172 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FD596122BE4D7D002F5172 /* ProfileViewController.swift */; };
 		53FDE14F22BE257D00EBC13F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDE14E22BE257D00EBC13F /* Client.swift */; };
 		53FDE15122BE25C500EBC13F /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDE15022BE25C500EBC13F /* DataRequest.swift */; };
 		593B823462C234D64D7BEC81 /* Pods_musicprof.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85796996F4D7DD561375F67F /* Pods_musicprof.framework */; };
@@ -99,6 +100,7 @@
 		53D98FC922BD44A40027FDCD /* ApiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResult.swift; sourceTree = "<group>"; };
 		53D98FCB22BD459E0027FDCD /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		53D98FCD22BD45F50027FDCD /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		53FD596122BE4D7D002F5172 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		53FDE14E22BE257D00EBC13F /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		53FDE15022BE25C500EBC13F /* DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
 		59E632D18A7D18233FF1FA7A /* Pods-musicprofTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofTests.release.xcconfig"; path = "Target Support Files/Pods-musicprofTests/Pods-musicprofTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				530F8A77229A1656000AFC86 /* RootViewController.swift */,
 				A5598C19201F8C3B000C64F6 /* ViewController.swift */,
+				53FD596122BE4D7D002F5172 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				A5E1FB242044DD4600B15DD9 /* Header1TableViewCell.swift in Sources */,
 				15DFDFBE208E4E7500B28338 /* ApiStudent.swift in Sources */,
 				53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */,
+				53FD596222BE4D7D002F5172 /* ProfileViewController.swift in Sources */,
 				A56E0FF5203B810D002D2F28 /* ScheduleViewController.swift in Sources */,
 				53FDE14F22BE257D00EBC13F /* Client.swift in Sources */,
 			);
