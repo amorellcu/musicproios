@@ -1,0 +1,161 @@
+//
+//  CalendarViewController.swift
+//  musicprof
+//
+//  Created by Alexis Morell Blanco on 13/02/18.
+//  Copyright © 2018 Alexis Morell Blanco. All rights reserved.
+//
+
+import UIKit
+import FacebookLogin
+import FBSDKLoginKit
+import FBSDKCoreKit
+import JTAppleCalendar
+import AlamofireImage
+
+protocol MonthViewDelegate {
+    func didChangeMonth(monthIndex: Int)
+}
+
+class CalendarViewController: UIViewController,UITabBarDelegate {
+
+    @IBOutlet weak var daysView: UIView!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var profileNameLabel: UILabel!
+    @IBOutlet weak var calendarView: JTAppleCalendarView!
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var previousMonthButton: UIButton!
+    @IBOutlet weak var nextMonthButton: UIButton!
+    
+    @IBOutlet weak var closeIconImageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBAction func onCloseTapped(_ sender: UIButton) {
+        self.onLogoutAction(activityIndicator: activityIndicator, closeIcon: closeIconImageView)
+    }
+    
+    var calendar = Calendar.current
+    let outsideDayColor = UIColor(red: 124/255 ,green: 124/255 ,blue: 124/255 ,alpha: 1)
+    let dayColor = UIColor(red: 255/255 ,green: 210/255 ,blue: 69/255 ,alpha: 1)
+    let selectedDayColor = UIColor(red: 65/255 ,green: 64/255 ,blue: 66/255 ,alpha: 1)
+    
+    var startDate: Date!
+    var endDate: Date!
+    var selectedDate: Date?
+    
+    override func loadView() {
+        self.calendar.locale = Locale(identifier: "es-Es")
+        self.startDate = self.calendar.startOfDay(for: Date())
+        self.endDate = self.calendar.date(byAdding: .month, value: 3, to: self.startDate)
+        super.loadView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        self.profileNameLabel.text = self.service.user?.name
+        let placeholderAvatar = UIImage(named:"userdefault")
+        if let avatarUrl = self.service.user?.avatarUrl {
+            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"))
+        } else {
+            self.avatarImageView.image = placeholderAvatar
+        }
+        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
+        self.avatarImageView.clipsToBounds = true
+        self.daysView.layer.cornerRadius = 28
+        self.daysView.clipsToBounds = true
+        
+        setupCalendarView()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    func setupCalendarView() {
+        calendarView.minimumLineSpacing = 0
+        calendarView.minimumInteritemSpacing = 0
+        calendarView.visibleDates{ visibleDates in
+            self.updateMonthLabel(from: visibleDates)
+        }
+    }
+    
+    func updateMonthLabel(from visibleDates: DateSegmentInfo){
+        guard let date = visibleDates.monthDates.first?.date else {
+            self.monthLabel.text = ""
+            return
+        }
+        let month = self.calendar.component(.month, from: date)
+        let monthName = self.calendar.monthSymbols[month - 1]
+        self.monthLabel.text = monthName.uppercased()
+    }
+    
+   
+    @IBAction func onPreviousMonthTapped(_ sender: Any) {
+        self.calendarView.scrollToSegment(.previous)
+    }
+    
+    @IBAction func onNextMonthTapped(_ sender: Any) {
+        self.calendarView.scrollToSegment(.next)
+    }
+    
+     // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
+}
+
+extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
+    private func configureCell(_ cell: JTAppleCell, forDate date: Date, cellState: CellState) {
+        guard let cell = cell as? CalendarCell else { return }
+        cell.dateLabel.text = cellState.text
+        if cellState.isSelected {
+            cell.dateLabel.textColor = self.selectedDayColor
+        } else if cellState.dateBelongsTo == .thisMonth && (self.startDate...self.endDate).contains(date) {
+            cell.dateLabel.textColor = self.dayColor
+        } else {
+            cell.dateLabel.textColor = self.outsideDayColor
+        }
+    }
+    
+    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
+        return ConfigurationParameters(startDate: self.startDate, endDate: self.endDate, numberOfRows: 6, calendar: self.calendar,
+                                       generateInDates: .forAllMonths, generateOutDates: .tillEndOfRow,
+                                       firstDayOfWeek: .sunday, hasStrictBoundaries: false)
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+        self.configureCell(cell, forDate: date, cellState: cellState)
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "calendarcell", for: indexPath) as! CalendarCell
+        self.configureCell(cell, forDate: date, cellState: cellState)
+        return cell
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
+        return (self.startDate...self.endDate).contains(date)
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        guard let cell = cell else { return }
+        self.selectedDate = date
+        self.configureCell(cell, forDate: date, cellState: cellState)
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        if self.selectedDate == date {
+            self.selectedDate = nil
+        }
+        guard let cell = cell else { return }
+        self.configureCell(cell, forDate: date, cellState: cellState)
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+        self.updateMonthLabel(from: visibleDates)
+    }
+}
+
