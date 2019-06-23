@@ -11,7 +11,6 @@ import SCLAlertView
 import AlamofireImage
 
 class InstrumentSelectionViewController: UIViewController {
-    let alertView = SCLAlertView()
     let prototypeCellIdentifier = "instrumentCell"
     var instruments: [Instrument] = [] {
         didSet {
@@ -19,9 +18,9 @@ class InstrumentSelectionViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var perfilImage: UIImageView!
-    @IBOutlet weak var PerfilName: UILabel!
-    @IBOutlet weak var scrollview: UIScrollView!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var nameTextField: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var selectInstrumentsButton: UIButton!
     @IBOutlet weak var addStudentsButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -42,15 +41,15 @@ class InstrumentSelectionViewController: UIViewController {
         }
         
         // Do any additional setup after loading the view.
-        self.PerfilName.text = self.service.user?.name
+        self.nameTextField.text = self.service.user?.name
         let placeholderAvatar = UIImage(named:"userdefault")
         if let avatarUrl = self.service.user?.avatarUrl {
-            self.perfilImage.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"))
+            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"))
         } else {
-            self.perfilImage.image = placeholderAvatar
+            self.avatarImageView.image = placeholderAvatar
         }
-        self.perfilImage.layer.cornerRadius = self.perfilImage.frame.size.width / 2
-        self.perfilImage.clipsToBounds = true
+        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
+        self.avatarImageView.clipsToBounds = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,7 +64,7 @@ class InstrumentSelectionViewController: UIViewController {
     @IBAction func onSelectInstrumentTapped(_ sender: UIButton) {
         self.collectionViewCollapseConstraint?.isActive = false
         UIView.animate(withDuration: 0.5) {
-            self.scrollview.layoutIfNeeded()
+            self.scrollView.layoutIfNeeded()
         }
     }
     
@@ -98,5 +97,6 @@ extension InstrumentSelectionViewController: UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.continueButton.isEnabled = true
+        self.selectInstrumentsButton.isEnabled = true
     }
 }
