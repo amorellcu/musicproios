@@ -23,7 +23,10 @@ class InstrumentSelectionViewController: BaseReservationViewController {
     @IBOutlet weak var addStudentsButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var studentsView: UIView!
+    
     @IBOutlet weak var collectionViewCollapseConstraint: NSLayoutConstraint?
+    @IBOutlet weak var studentsViewCollapseConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,27 +52,31 @@ class InstrumentSelectionViewController: BaseReservationViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func AddStudents(_ sender: Any) {
-        
-    }
-    
-    @IBAction func onSelectInstrumentTapped(_ sender: UIButton) {
-        self.collectionViewCollapseConstraint?.isActive = false
+    @IBAction func onAddStudentsTapped(_ sender: UIButton) {
+        self.studentsViewCollapseConstraint?.priority = .defaultLow
+        self.collectionViewCollapseConstraint?.priority = .defaultHigh
         UIView.animate(withDuration: 0.5) {
             self.scrollView.layoutIfNeeded()
         }
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    @IBAction func onSelectInstrumentTapped(_ sender: UIButton) {
+        self.collectionViewCollapseConstraint?.priority = .defaultLow
+        self.studentsViewCollapseConstraint?.priority = .defaultHigh
+        UIView.animate(withDuration: 0.5) {
+            self.scrollView.layoutIfNeeded()
+        }
+    }
     
+     
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nestedController = segue.destination as? AddStudentsViewController {
+            nestedController.parentController = self
+            nestedController.scrollView = self.scrollView
+        }
+        super.prepare(for: segue, sender: sender)
+    }
 }
 
 extension InstrumentSelectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -89,7 +96,6 @@ extension InstrumentSelectionViewController: UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.continueButton.isEnabled = true
-        self.selectInstrumentsButton.isEnabled = true
         self.reservation.instrument = self.instruments[indexPath.row]
     }
 }

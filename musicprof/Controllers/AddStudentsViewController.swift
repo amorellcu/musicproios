@@ -10,6 +10,12 @@ import UIKit
 import SCLAlertView
 
 class AddStudentsViewController: BaseReservationViewController {
+    weak var parentController: ReservationController!
+    override var reservation: ReservationRequest! {
+        get { return parentController.reservation }
+        set { parentController.reservation = newValue }
+    }
+    
     let prototypeCellIdentifier = "studentCell"
     var studentNames = [String]() {
         didSet {
@@ -18,10 +24,10 @@ class AddStudentsViewController: BaseReservationViewController {
         }
     }
     
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var studentNameTextField: UITextField!
     @IBOutlet weak var addStudentButton: UIButton!
+    var scrollView: UIScrollView?
     
     override func viewDidLoad() {
         super.viewDidLoad()        
@@ -57,9 +63,9 @@ class AddStudentsViewController: BaseReservationViewController {
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
         
         if notification.name == Notification.Name.UIKeyboardWillHide {
-            scrollView.contentInset = UIEdgeInsets.zero
+            scrollView?.contentInset = UIEdgeInsets.zero
         } else {
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+            scrollView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
         }
     }
     

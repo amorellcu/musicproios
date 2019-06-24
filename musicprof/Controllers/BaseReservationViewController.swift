@@ -9,7 +9,7 @@
 import UIKit
 
 class BaseReservationViewController: UIViewController, ReservationController, NestedController {
-    var reservation: ReservationRequest!
+    open var reservation: ReservationRequest!
     weak var container: ContainerViewController?
     
 
