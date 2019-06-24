@@ -14,6 +14,9 @@
 		18F3B0C6C9FD26CAF18EF54A /* libPods-musicprofUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75154C0B7B893B2085E3E130 /* libPods-musicprofUITests.a */; };
 		530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A77229A1656000AFC86 /* RootViewController.swift */; };
 		530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A79229B773A000AFC86 /* UIViewController.swift */; };
+		5333E96022C0E3FD00175995 /* ProfessorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E95F22C0E3FD00175995 /* ProfessorCell.swift */; };
+		5333E96222C0E46500175995 /* ProfessorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96122C0E46500175995 /* ProfessorListViewController.swift */; };
+		5333E96422C0EAAB00175995 /* Professor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96322C0EAAB00175995 /* Professor.swift */; };
 		534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */; };
 		534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4D22BFC043009249FC /* StudentCell.swift */; };
 		53907E0B22B1983300314EC8 /* InstrumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0A22B1983300314EC8 /* InstrumentCollectionViewCell.swift */; };
@@ -95,6 +98,9 @@
 		4AF714FBEDDAEBE65E173A2A /* libPods-musicprofTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-musicprofTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		530F8A77229A1656000AFC86 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		530F8A79229B773A000AFC86 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		5333E95F22C0E3FD00175995 /* ProfessorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorCell.swift; sourceTree = "<group>"; };
+		5333E96122C0E46500175995 /* ProfessorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorListViewController.swift; sourceTree = "<group>"; };
+		5333E96322C0EAAB00175995 /* Professor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Professor.swift; sourceTree = "<group>"; };
 		534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentsViewController.swift; sourceTree = "<group>"; };
 		534F1D4D22BFC043009249FC /* StudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCell.swift; sourceTree = "<group>"; };
 		53907E0A22B1983300314EC8 /* InstrumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -228,6 +234,7 @@
 				53D98FCD22BD45F50027FDCD /* AppError.swift */,
 				53FDE14E22BE257D00EBC13F /* Client.swift */,
 				53907E0C22B19EC700314EC8 /* Instrument.swift */,
+				5333E96322C0EAAB00175995 /* Professor.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -242,6 +249,9 @@
 				534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */,
 				534F1D4D22BFC043009249FC /* StudentCell.swift */,
 				A5AD1EB420334EA400A38F85 /* CalendarViewController.swift */,
+				A5AD1EBF20338A6F00A38F85 /* CalendarCell.swift */,
+				5333E96122C0E46500175995 /* ProfessorListViewController.swift */,
+				5333E95F22C0E3FD00175995 /* ProfessorCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -276,7 +286,6 @@
 				53D98FC622BD3F970027FDCD /* Controllers */,
 				53D98FBC22BD35290027FDCD /* Views */,
 				A5598C17201F8C3B000C64F6 /* AppDelegate.swift */,
-				A5AD1EBF20338A6F00A38F85 /* CalendarCell.swift */,
 				A5FF65832024FE34003778B3 /* HeaderTableViewCell.swift */,
 				A5E1FB232044DD4600B15DD9 /* Header1TableViewCell.swift */,
 				A5AA588C202A57B100F4370A /* UsersTableViewCell.swift */,
@@ -600,9 +609,11 @@
 				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,
 				53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */,
 				A5FF65842024FE34003778B3 /* HeaderTableViewCell.swift in Sources */,
+				5333E96222C0E46500175995 /* ProfessorListViewController.swift in Sources */,
 				53D98FCE22BD45F50027FDCD /* AppError.swift in Sources */,
 				53D98FCA22BD44A40027FDCD /* ApiResult.swift in Sources */,
 				A5A77C3820407866000F1E3E /* ScheduleProfesorViewController.swift in Sources */,
+				5333E96422C0EAAB00175995 /* Professor.swift in Sources */,
 				53FDE15122BE25C500EBC13F /* DataRequest.swift in Sources */,
 				53907E0B22B1983300314EC8 /* InstrumentCollectionViewCell.swift in Sources */,
 				53D98FCC22BD459E0027FDCD /* ApiError.swift in Sources */,
@@ -615,6 +626,7 @@
 				53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */,
 				53FD596222BE4D7D002F5172 /* ProfileViewController.swift in Sources */,
 				A56E0FF5203B810D002D2F28 /* ScheduleViewController.swift in Sources */,
+				5333E96022C0E3FD00175995 /* ProfessorCell.swift in Sources */,
 				53FDE14F22BE257D00EBC13F /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
