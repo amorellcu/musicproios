@@ -18,8 +18,6 @@ class InstrumentSelectionViewController: BaseReservationViewController {
         }
     }
     
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameTextField: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var selectInstrumentsButton: UIButton!
     @IBOutlet weak var addStudentsButton: UIButton!
@@ -38,18 +36,12 @@ class InstrumentSelectionViewController: BaseReservationViewController {
                     self?.instruments = data.instruments ?? []
                 }
             }
-        }
+        }        
         
-        // Do any additional setup after loading the view.
-        self.nameTextField.text = self.service.user?.name
-        let placeholderAvatar = UIImage(named:"userdefault")
-        if let avatarUrl = self.service.user?.avatarUrl {
-            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"))
-        } else {
-            self.avatarImageView.image = placeholderAvatar
-        }
-        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
-        self.avatarImageView.clipsToBounds = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.container?.setDisplayMode(.full, animated: animated)
     }
     
     override func didReceiveMemoryWarning() {

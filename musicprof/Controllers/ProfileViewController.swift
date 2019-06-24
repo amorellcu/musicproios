@@ -10,22 +10,12 @@ import UIKit
 import AlamofireImage
 
 class ProfileViewController: BaseReservationViewController {
-    @IBOutlet weak var avatarImageView: UIImageView!
     
     @IBOutlet weak var nameTextField: UITextField!
     
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var phoneTextField: UITextField!
-    
-    
-    @IBAction func onCloseTapped(_ sender: UIButton) {
-        self.onLogoutAction(activityIndicator: activityIndicator, closeIcon: iconClose)
-    }
-    
-    @IBOutlet weak var iconClose: UIImageView!
-    
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -41,14 +31,6 @@ class ProfileViewController: BaseReservationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let placeholderAvatar = UIImage(named:"userdefault")
-        if let avatarUrl = self.service.user?.avatarUrl {
-            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"))
-        } else {
-            self.avatarImageView.image = placeholderAvatar
-        }
-        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
-        self.avatarImageView.clipsToBounds = true
         self.phoneTextField.keyboardType = .numberPad
         self.emailTextField.text = self.service.user?.email
         self.phoneTextField.text = self.service.user?.phone
@@ -60,6 +42,10 @@ class ProfileViewController: BaseReservationViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.container?.setDisplayMode(.picture, animated: animated)
     }
     
     override func didReceiveMemoryWarning() {

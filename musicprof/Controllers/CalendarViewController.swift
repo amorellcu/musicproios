@@ -20,18 +20,10 @@ protocol MonthViewDelegate {
 class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
 
     @IBOutlet weak var daysView: UIView!
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var previousMonthButton: UIButton!
     @IBOutlet weak var nextMonthButton: UIButton!
-    
-    @IBOutlet weak var closeIconImageView: UIImageView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBAction func onCloseTapped(_ sender: UIButton) {
-        self.onLogoutAction(activityIndicator: activityIndicator, closeIcon: closeIconImageView)
-    }
     
     var calendar = Calendar.current
     let outsideDayColor = UIColor(red: 124/255 ,green: 124/255 ,blue: 124/255 ,alpha: 1)
@@ -56,19 +48,14 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.profileNameLabel.text = self.service.user?.name
-        let placeholderAvatar = UIImage(named:"userdefault")
-        if let avatarUrl = self.service.user?.avatarUrl {
-            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"))
-        } else {
-            self.avatarImageView.image = placeholderAvatar
-        }
-        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
-        self.avatarImageView.clipsToBounds = true
         self.daysView.layer.cornerRadius = 28
         self.daysView.clipsToBounds = true
         
         setupCalendarView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.container?.setDisplayMode(.full, animated: animated)
     }
     
     override func didReceiveMemoryWarning() {

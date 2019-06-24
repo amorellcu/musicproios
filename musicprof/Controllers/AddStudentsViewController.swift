@@ -18,8 +18,6 @@ class AddStudentsViewController: BaseReservationViewController {
         }
     }
     
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var studentNameTextField: UITextField!
@@ -28,15 +26,6 @@ class AddStudentsViewController: BaseReservationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()        
         // Do any additional setup after loading the view.
-        self.profileNameLabel.text = self.service.user?.name
-        let placeholderAvatar = UIImage(named:"userdefault")
-        if let avatarUrl = self.service.user?.avatarUrl {
-            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"))
-        } else {
-            self.avatarImageView.image = placeholderAvatar
-        }
-        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
-        self.avatarImageView.clipsToBounds = true
         self.studentNameTextField.delegate = self
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -45,6 +34,10 @@ class AddStudentsViewController: BaseReservationViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.resignFirstResponder))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.container?.setDisplayMode(.full, animated: animated)
     }
     
     override func didReceiveMemoryWarning() {

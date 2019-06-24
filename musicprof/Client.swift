@@ -16,20 +16,22 @@ class Client: NSObject, Decodable, NSCoding {
     let avatarUrl: URL?
     let facebookId: String?
     let instruments: [Instrument]?
+    let subaccounts: [Client]?
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let user = try container.nestedContainer(keyedBy: UserKeys.self, forKey: .user)
-        self.id = try user.decode(Int.self, forKey: .id)
+        let user = container.contains(.user) ? try container.nestedContainer(keyedBy: UserKeys.self, forKey: .user) : nil
+        self.id = try user?.decode(Int.self, forKey: .id) ?? container.decode(Int.self, forKey: .id)
         self.name = try (container.decodeIfPresent(String.self, forKey: .name)
-            ?? user.decodeIfPresent(String.self, forKey: .name))
+            ?? user?.decodeIfPresent(String.self, forKey: .name))
             ?? ""
-        self.email = try user.decodeIfPresent(String.self, forKey: .email)
+        self.email = try user?.decodeIfPresent(String.self, forKey: .email)
         self.phone = try container.decodeIfPresent(String.self, forKey: .phone)
-        let avatar = try user.decodeIfPresent(String.self, forKey: .avatar)
+        let avatar = try user?.decodeIfPresent(String.self, forKey: .avatar)
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
-        self.facebookId = try user.decodeIfPresent(String.self, forKey: .facebookId)
+        self.facebookId = try user?.decodeIfPresent(String.self, forKey: .facebookId)
         self.instruments = try container.decodeIfPresent([Instrument].self, forKey: .instruments)
+        self.subaccounts = try container.decodeIfPresent([Client].self, forKey: .subaccounts)
     }
     
     required init?(coder: NSCoder) {
@@ -41,6 +43,7 @@ class Client: NSObject, Decodable, NSCoding {
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
         self.facebookId = coder.decodeObject(forKey: UserKeys.facebookId.rawValue) as? String
         self.instruments = nil
+        self.subaccounts = nil
     }
     
     func encode(with coder: NSCoder) {
@@ -53,10 +56,12 @@ class Client: NSObject, Decodable, NSCoding {
     }
     
     fileprivate enum CodingKeys: String, CodingKey {
+        case id = "users_id"
         case user
         case phone
         case name
         case instruments
+        case subaccounts
     }
     
     fileprivate enum UserKeys: String, CodingKey {

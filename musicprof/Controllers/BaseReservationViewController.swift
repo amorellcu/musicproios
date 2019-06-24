@@ -8,8 +8,9 @@
 
 import UIKit
 
-class BaseReservationViewController: UIViewController, ReservationController {
+class BaseReservationViewController: UIViewController, ReservationController, NestedController {
     var reservation: ReservationRequest!
+    weak var container: ContainerViewController?
     
 
     override func viewDidLoad() {
@@ -20,9 +21,11 @@ class BaseReservationViewController: UIViewController, ReservationController {
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let controller = segue.destination as? ReservationController else {
-            return
+        if let controller = segue.destination as? ReservationController {
+            controller.reservation = self.reservation
         }
-        controller.reservation = self.reservation
+        if let controller = segue.destination as? NestedController {
+            controller.container = self.container
+        }
     }
 }
