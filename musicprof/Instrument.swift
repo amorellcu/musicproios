@@ -9,15 +9,18 @@
 import Foundation
 
 struct Instrument: Decodable {
+    var id: Int
     var name: String
     var icon: String
     
-    init(name: String, icon: String) {
+    init(id: Int, name: String, icon: String) {
         self.name = name
         self.icon = icon
+        self.id = id
     }
     
     fileprivate enum CodingKeys: String, CodingKey {
+        case id
         case name
         case icon = "icono"
     }

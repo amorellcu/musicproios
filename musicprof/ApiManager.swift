@@ -134,6 +134,46 @@ class ApiManager {
                 }
         }
     }
+    
+    private func post<T: Encodable>(_ encodable: T, to url: URL, handler: @escaping (ApiResult<Void>) -> Void) {
+        var data: Data
+        do {
+            let encoder = JSONEncoder()
+            data = try encoder.encode(encodable)
+        } catch {
+            handler(.failure(error: error))
+            return
+        }
+        let _ = self.session
+            .upload(data, to: url,
+                    method: .post,
+                    headers: headers)
+            .validate()
+            .responseError(completionHandler: handler)
+    }
+    
+    private func post<T: Encodable, R: Decodable>(_ encodable: T, to url: URL, handler: @escaping (ApiResult<R>) -> Void) {
+        var data: Data
+        do {
+            let encoder = JSONEncoder()
+            data = try encoder.encode(encodable)
+        } catch {
+            handler(.failure(error: error))
+            return
+        }
+        let _ = self.session
+            .upload(data, to: url,
+                    method: .post,
+                    headers: headers)
+            .validate()
+            .responseDecodable(completionHandler: handler)
+    }
+    
+    func makeReservation(_ request: ReservationRequest,
+                         handler: @escaping (ApiResult<Void>) -> Void) {
+        let url = baseUrl.appendingPathComponent("classReservation")
+        self.post(request, to: url, handler: handler)
+    }
 }
 
 private struct LoginData: Decodable {

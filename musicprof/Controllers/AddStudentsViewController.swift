@@ -9,10 +9,11 @@
 import UIKit
 import SCLAlertView
 
-class AddStudentsViewController: UIViewController {
+class AddStudentsViewController: BaseReservationViewController {
     let prototypeCellIdentifier = "studentCell"
     var studentNames = [String]() {
         didSet {
+            self.reservation.studentNames = self.studentNames
             self.tableView.reloadData()
         }
     }

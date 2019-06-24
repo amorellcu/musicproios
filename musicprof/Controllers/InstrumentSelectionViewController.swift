@@ -10,7 +10,7 @@ import UIKit
 import SCLAlertView
 import AlamofireImage
 
-class InstrumentSelectionViewController: UIViewController {
+class InstrumentSelectionViewController: BaseReservationViewController {
     let prototypeCellIdentifier = "instrumentCell"
     var instruments: [Instrument] = [] {
         didSet {
@@ -98,5 +98,6 @@ extension InstrumentSelectionViewController: UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.continueButton.isEnabled = true
         self.selectInstrumentsButton.isEnabled = true
+        self.reservation.instrument = self.instruments[indexPath.row]
     }
 }

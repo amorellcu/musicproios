@@ -21,7 +21,9 @@ class Client: NSObject, Decodable, NSCoding {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let user = try container.nestedContainer(keyedBy: UserKeys.self, forKey: .user)
         self.id = try user.decode(Int.self, forKey: .id)
-        self.name = try user.decodeIfPresent(String.self, forKey: .name) ?? ""
+        self.name = try (container.decodeIfPresent(String.self, forKey: .name)
+            ?? user.decodeIfPresent(String.self, forKey: .name))
+            ?? ""
         self.email = try user.decodeIfPresent(String.self, forKey: .email)
         self.phone = try container.decodeIfPresent(String.self, forKey: .phone)
         let avatar = try user.decodeIfPresent(String.self, forKey: .avatar)
@@ -53,6 +55,7 @@ class Client: NSObject, Decodable, NSCoding {
     fileprivate enum CodingKeys: String, CodingKey {
         case user
         case phone
+        case name
         case instruments
     }
     

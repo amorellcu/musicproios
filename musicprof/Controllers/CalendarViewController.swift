@@ -17,7 +17,7 @@ protocol MonthViewDelegate {
     func didChangeMonth(monthIndex: Int)
 }
 
-class CalendarViewController: UIViewController,UITabBarDelegate {
+class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
 
     @IBOutlet weak var daysView: UIView!
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -40,7 +40,11 @@ class CalendarViewController: UIViewController,UITabBarDelegate {
     
     var startDate: Date!
     var endDate: Date!
-    var selectedDate: Date?
+    var selectedDate: Date? {
+        didSet {
+            self.reservation.date = self.selectedDate
+        }
+    }
     
     override func loadView() {
         self.calendar.locale = Locale(identifier: "es-Es")
@@ -97,13 +101,6 @@ class CalendarViewController: UIViewController,UITabBarDelegate {
     
     @IBAction func onNextMonthTapped(_ sender: Any) {
         self.calendarView.scrollToSegment(.next)
-    }
-    
-     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
     }
 }
 

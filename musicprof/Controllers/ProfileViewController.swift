@@ -9,8 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class ProfileViewController: UIViewController {
-    
+class ProfileViewController: BaseReservationViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -33,6 +32,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var selectForOtherButton: UIButton!
     
     @IBOutlet weak var selectForMeButton: UIButton!
+    
+    override func loadView() {
+        self.reservation = ReservationRequest()
+        super.loadView()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,9 +99,10 @@ class ProfileViewController: UIViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
-        
+        if self.selectForMeButton === sender as? UIButton {
+            self.reservation.client = self.service.user!
+        }
+        super.prepare(for: segue, sender: sender)
     }
 
 }

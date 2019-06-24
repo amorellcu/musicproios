@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class ProfessorListViewController: UIViewController {
+class ProfessorListViewController: BaseReservationViewController {
     let prototypeCellIdentifier = "professorCell"
     let priceFormatter = NumberFormatter()
     var professors: [Professor] = [] {
@@ -50,17 +50,6 @@ class ProfessorListViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 extension ProfessorListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -80,5 +69,9 @@ extension ProfessorListViewController: UICollectionViewDelegate, UICollectionVie
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.reservation.professor = self.professors[indexPath.row]
     }
 }

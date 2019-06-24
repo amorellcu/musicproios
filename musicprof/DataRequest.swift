@@ -23,6 +23,10 @@ extension DataRequest {
         }
         
         let decoder = JSONDecoder()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        dateFormatter.calendar = Calendar.current
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
         let item = try decoder.decode(T.self, from: responseData)
         return item
     }

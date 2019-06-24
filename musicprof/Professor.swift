@@ -9,6 +9,7 @@
 import Foundation
 
 struct Professor: Decodable {
+    var id: Int
     var name: String
     var price: Float?
     var icon: String    
