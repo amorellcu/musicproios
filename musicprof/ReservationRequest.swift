@@ -12,7 +12,8 @@ struct ReservationRequest {
     var date: Date?
     var professor: Professor?
     var instrument: Instrument?
-    var client: Client?
+    var clientId: Int?
+    var locationId: Int?
     var studentNames: [String]?
     var address: String?
     
@@ -38,7 +39,7 @@ extension ReservationRequest: Encodable {
         }
         try container.encodeIfPresent(self.professor?.id, forKey: .proffessor)
         try container.encodeIfPresent(self.instrument?.id, forKey: .instrument)
-        try container.encodeIfPresent(self.client?.id, forKey: .client)
+        try container.encodeIfPresent(self.clientId, forKey: .client)
         try container.encodeIfPresent(self.address, forKey: .address)
     }
 }

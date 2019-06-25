@@ -13,6 +13,8 @@ class Client: NSObject, Decodable, NSCoding {
     let name: String
     let email: String?
     let phone: String?
+    let address: String?
+    let locationId: Int?
     let avatarUrl: URL?
     let facebookId: String?
     let instruments: [Instrument]?
@@ -27,6 +29,8 @@ class Client: NSObject, Decodable, NSCoding {
             ?? ""
         self.email = try user?.decodeIfPresent(String.self, forKey: .email)
         self.phone = try container.decodeIfPresent(String.self, forKey: .phone)
+        self.address = try container.decodeIfPresent(String.self, forKey: .address)
+        self.locationId = try container.decodeIfPresent(Int.self, forKey: .locationId)
         let avatar = try user?.decodeIfPresent(String.self, forKey: .avatar)
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
         self.facebookId = try user?.decodeIfPresent(String.self, forKey: .facebookId)
@@ -39,6 +43,8 @@ class Client: NSObject, Decodable, NSCoding {
         self.name = coder.decodeObject(forKey: UserKeys.name.rawValue) as? String ?? ""
         self.email = coder.decodeObject(forKey: UserKeys.email.rawValue) as? String
         self.phone = coder.decodeObject(forKey: CodingKeys.phone.rawValue) as? String
+        self.address = coder.decodeObject(forKey: CodingKeys.address.rawValue) as? String
+        self.locationId = coder.decodeObject(forKey: CodingKeys.locationId.rawValue) as? Int
         let avatar = coder.decodeObject(forKey: UserKeys.avatar.rawValue) as? String
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
         self.facebookId = coder.decodeObject(forKey: UserKeys.facebookId.rawValue) as? String
@@ -51,6 +57,8 @@ class Client: NSObject, Decodable, NSCoding {
         coder.encode(self.name, forKey: UserKeys.name.rawValue)
         coder.encode(self.email, forKey: UserKeys.avatar.rawValue)
         coder.encode(self.phone, forKey: CodingKeys.phone.rawValue)
+        coder.encode(self.address, forKey: CodingKeys.address.rawValue)
+        coder.encode(self.locationId, forKey: CodingKeys.locationId.rawValue)
         coder.encode(self.avatarUrl?.absoluteURL, forKey: UserKeys.avatar.rawValue)
         coder.encode(self.facebookId, forKey: UserKeys.facebookId.rawValue)
     }
@@ -60,6 +68,8 @@ class Client: NSObject, Decodable, NSCoding {
         case user
         case phone
         case name
+        case address
+        case locationId = "colonia_id"
         case instruments
         case subaccounts
     }

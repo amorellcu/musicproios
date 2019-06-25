@@ -12,6 +12,10 @@ class BaseReservationViewController: UIViewController, ReservationController, Ne
     open var reservation: ReservationRequest!
     weak var container: ContainerViewController?
     
+    var client: Client? {
+        guard let clientId = self.reservation.clientId else { return nil }
+        return self.service.getClient(withId: clientId)
+    }    
 
     override func viewDidLoad() {
         super.viewDidLoad()

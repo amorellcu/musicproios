@@ -111,6 +111,14 @@ class ApiManager {
         self.keychain.removeObject(forKey: "adapter")
     }
     
+    func getClient(withId id: Int) -> Client? {
+        guard let user = self.user else { return nil }
+        if user.id == id {
+            return user
+        }
+        return user.subaccounts?.first(where: {$0.id == id})
+    }
+    
     func getUserInfo(handler: @escaping (ApiResult<Client>) -> Void) {
         guard let userId = self.user?.id else {
             handler(.failure(error: AppError.invalidOperation))
@@ -124,7 +132,7 @@ class ApiManager {
                      parameters: parameters,
                      encoding: URLEncoding.default,
                      headers: self.headers)
-            .responseDecodable { (result: ApiResult<UserDate>) in
+            .responseDecodable { (result: ApiResult<UserData>) in
                 switch result {
                 case .success(let data):
                     self.user = data.client
@@ -135,7 +143,30 @@ class ApiManager {
         }
     }
     
-    func updateAddress(_ address: String, handler: @escaping (ApiResult<Void>) -> Void) {
+    func getLocations(name: String? = nil, stateId: Int? = nil, cityId: Int? = nil,
+                      handler: @escaping (ApiResult<[Location]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getColonias")
+        var parameters: Parameters = [:]
+        if let name = name {
+            parameters["name"] = name
+        }
+        if let stateId = stateId {
+            parameters["stateId"] = stateId
+        }
+        if let cityId = cityId {
+            parameters["municipioId"] = cityId
+        }
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<LocationData>) in
+                handler(result.transform(with: {$0.locations}))
+        }
+    }
+    
+    func updateAddress(_ address: String, handler: @escaping (ApiResult<Client>) -> Void) {
         guard let userId = self.user?.id else {
             handler(.failure(error: AppError.invalidOperation))
             return
@@ -145,9 +176,16 @@ class ApiManager {
         let _ = self.session
             .request(url, method: .post,
                      parameters: parameters,
-                     encoding: URLEncoding.default,
+                     encoding: URLEncoding.httpBody,
                      headers: self.headers)
-            .responseError(completionHandler: handler)        
+            .responseDecodable { (result: ApiResult<UserData>) in
+                switch result {
+                case .success(let data):
+                    handler(.success(data: data.client))
+                case .failure(let error):
+                    handler(.failure(error: error))
+                }
+        }
     }
     
     private func post<T: Encodable>(_ encodable: T, to url: URL, handler: @escaping (ApiResult<Void>) -> Void) {
@@ -196,8 +234,16 @@ private struct LoginData: Decodable {
     var client: Client
 }
 
-private struct UserDate: Decodable {
+private struct UserData: Decodable {
     var client: Client
+}
+
+private struct LocationData: Decodable {
+    var locations: [Location]
+    
+    private enum CodingKeys: String, CodingKey {
+        case locations = "colonias"
+    }
 }
 
 class JWTAccessTokenAdapter : NSObject, RequestAdapter, RequestRetrier, NSCoding {

@@ -14,7 +14,6 @@ import SCLAlertView
 class MapViewController: BaseReservationViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var fixAddressButton: UIButton!
-    @IBOutlet weak var tapGestureRecognizer: MKMapView!
     
     let locationManager = CLLocationManager()
     let geocoder = CLGeocoder()
@@ -72,7 +71,11 @@ class MapViewController: BaseReservationViewController {
         }
         let address = location.address
         self.service.updateAddress(address) {[weak self] (result) in
-            self?.handleResult(result)
+            self?.handleResult(result) { client in
+                self?.reservation.address = client.address
+                self?.reservation.locationId = client.locationId
+                self?.performSegue(withIdentifier: "backToLocations", sender: sender)
+            }
         }
     }
     
