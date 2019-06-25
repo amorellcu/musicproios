@@ -38,7 +38,8 @@ class ContainerViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let controller = segue.destination as? NestedController else {
+        guard let controller = segue.destination as? NestedController ??
+            (segue.destination as? UINavigationController)?.viewControllers.first as? NestedController else {
             return
         }
         controller.container = self
@@ -85,14 +86,19 @@ class ContainerViewController: UIViewController {
     func setDisplayMode(_ displayMode: DisplayMode, animated: Bool) {
         guard self.displayMode != displayMode else { return }
         let isGrowing = displayMode.rawValue > self.displayMode.rawValue
+        self.displayMode = displayMode
         if !isGrowing || !animated {
             self.updateVisibility()
         }
         self.updateConstraints()
         guard animated else { return }
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
-        }
+        }, completion: {_ in
+            if isGrowing {
+                self.updateVisibility()
+            }
+        })
     }
     
     enum DisplayMode: Int {

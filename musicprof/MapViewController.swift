@@ -11,31 +11,26 @@ import MapKit
 import CoreLocation
 import SCLAlertView
 
-protocol HandleMapSearch {
-    func dropPinZoomIn(placemark:MKPlacemark)
-}
-
-class MapViewController: UIViewController, UISearchBarDelegate {
-
-    @IBOutlet weak var mapview: MKMapView!
+class MapViewController: BaseReservationViewController {
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var fixAddressButton: UIButton!
+    @IBOutlet weak var tapGestureRecognizer: MKMapView!
+    
     let locationManager = CLLocationManager()
-    var searchController:UISearchController!
-    var annotation:MKAnnotation!
-    var localSearchRequest:MKLocalSearchRequest!
-    var localSearch:MKLocalSearch!
-    var localSearchResponse:MKLocalSearchResponse!
-    var error:NSError!
-    var pointAnnotation:MKPointAnnotation!
-    var pinAnnotationView:MKPinAnnotationView!
-    var selectedPin:MKPlacemark? = nil
-    var namePerfil: String!
-    var photoPerfil: UIImage!
-    var facebookid: String = ""
-    var phone: String = ""
-    let apimusicprof = ApiStudent.sharedInstance
-    var instrumentsid: [Int] = []
-    var user:NSDictionary = [:]
-    let alertView = SCLAlertView()
+    let geocoder = CLGeocoder()
+    var searchController: UISearchController!
+    
+    var selectedLocation: MKPlacemark? = nil {
+        didSet {
+            self.fixAddressButton.isEnabled = self.userLocation != nil || self.selectedLocation != nil
+        }
+    }
+    
+    var userLocation: CLPlacemark? = nil {
+        didSet {
+            self.fixAddressButton.isEnabled = self.userLocation != nil || self.selectedLocation != nil
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,20 +40,25 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        locationSearchTable.mapView = self.mapView
+        locationSearchTable.delegate = self
         searchController = UISearchController(searchResultsController: locationSearchTable)
         searchController.searchResultsUpdater = locationSearchTable
         let searchBar = searchController.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "Buscar una ubicación"
-        navigationItem.titleView = searchController.searchBar
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
-        let data = self.user["data"] as? [String: Any]
-        let client = data!["client"] as? [String: Any]
-        locationSearchTable.mapView = mapview
-        locationSearchTable.token = data!["token"]! as! String
-        locationSearchTable.userid = client!["users_id"]! as! Int
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.container?.navigationItem.titleView = searchController.searchBar
+        self.container?.setDisplayMode(.collapsed, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.container?.navigationItem.titleView = nil
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,116 +66,114 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
-        let center = location.coordinate
-        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        let region = MKCoordinateRegion(center: center, span: span)
-        
-        mapview.setRegion(region, animated: true)
-        mapview.showsUserLocation = true
+    @IBAction func onFixAddressTapped(_ sender: Any) {
+        guard let location = self.selectedLocation ?? self.userLocation else {
+            return
+        }
+        let address = location.address
+        self.service.updateAddress(address) {[weak self] (result) in
+            self?.handleResult(result)
+        }
     }
     
-    
-    @IBAction func fixUbication(_ sender: Any) {
-        let data = self.user["data"] as? [String: Any]
-        let client = data!["client"] as? [String: Any]
-        let headers = [
-            "Authorization": "Bearer \(data!["token"]! as! String)",
-            "X-Requested-With": "XMLHttpRequest"
-        ]
-        let parameters = [
-            "id": client!["users_id"]! as! Int
-        ]
-        apimusicprof.setHeaders(aheader: headers)
-        apimusicprof.setParams(aparams: parameters)
-        apimusicprof.getClient() { json, error  in
-            if(error != nil){
-                self.alertView.showError("Error Conexion", subTitle: "No hemos podido conectarnos con el servidor") // Error
-            }
-            else{
-                let JSON = json! as NSDictionary
-                if(String(describing: JSON["result"]!) == "Error"){
-                    self.alertView.showError("Error Obteniendo usuario", subTitle: String(describing: JSON["message"]!)) // Error
-                } else if(String(describing: JSON["result"]!) == "OK"){
-                    print(JSON)
-                    let data = JSON["data"] as? [String: Any]
-                    let client = data!["client"] as? [String: Any]
-                    let appearance = SCLAlertView.SCLAppearance(
-                        showCloseButton: false
-                    )
-                    let alertView1 = SCLAlertView(appearance: appearance)
-                    alertView1.addButton("OK") {
-                        self.navigationController?.popViewController(animated: true)
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                    alertView1.showSuccess("Ubicación Actualizada", subTitle: "La ubicación ha sido actualizada a \(String(describing: client!["address"]!))")
-                    
-
-                }
+    @IBAction func onMapTapped(_ sender: UITapGestureRecognizer) {
+        guard sender.state == .ended else { return }
+        let locationInView = sender.location(in: mapView)
+        let tappedCoordinate = mapView.convert(locationInView, toCoordinateFrom: mapView)
+        let location = CLLocation(latitude: tappedCoordinate.latitude, longitude: tappedCoordinate.longitude)
+        self.geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if let error = error {
+                self.notify(error: error)
+            } else if let placemark = placemarks?.first {
+                self.selectedLocation = MKPlacemark(placemark: placemark)
+                self.annotateLocation(self.selectedLocation!)
             }
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-
-extension MapViewController : CLLocationManagerDelegate {
-    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            locationManager.requestLocation()
-        }
-    }
-    
-    private func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            let span = MKCoordinateSpanMake(0.05, 0.05)
-            let region = MKCoordinateRegion(center: location.coordinate, span: span)
-            mapview.setRegion(region, animated: true)
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("error:: \(error)")
-    }
-    
-    func getDirections(){
-        if let selectedPin = selectedPin {
+    @objc func onNavigateToDestination() {
+        if let selectedPin = selectedLocation {
             let mapItem = MKMapItem(placemark: selectedPin)
             let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
             mapItem.openInMaps(launchOptions: launchOptions)
         }
     }
     
+    func moveToLocation(_ location: CLLocation) {
+        let center = location.coordinate
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let region = MKCoordinateRegion(center: center, span: span)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func annotateLocation(_ placemark: MKPlacemark) {
+        // clear existing pins
+        mapView.removeAnnotations(mapView.annotations)
+        //let annotation = MKPointAnnotation()
+        //annotation.coordinate = placemark.coordinate
+        //annotation.title = placemark.name
+        //if let city = placemark.locality,
+        //    let state = placemark.administrativeArea {
+        //    annotation.subtitle = "\(city) \(state)"
+        //}
+        //mapView.addAnnotation(annotation)
+        mapView.addAnnotation(placemark)
+    }
+    
+    @IBAction func onGoToLocationTapped(_ sender: Any) {
+        guard let location = self.locationManager.location else { return }
+        self.moveToLocation(location)
+    }
+}
+
+extension MapViewController: UISearchBarDelegate {
     
 }
 
-extension MapViewController: HandleMapSearch {
-    func dropPinZoomIn(placemark:MKPlacemark){
-        // cache the pin
-        selectedPin = placemark
-        // clear existing pins
-        mapview.removeAnnotations(mapview.annotations)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = placemark.coordinate
-        annotation.title = placemark.name
-        if let city = placemark.locality,
-            let state = placemark.administrativeArea {
-            annotation.subtitle = "\(city) \(state)"
+extension MapViewController : CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {
+            return
         }
-        mapview.addAnnotation(annotation)
+        
+        if self.userLocation == nil {
+            self.geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+                if let error = error {
+                    self.notify(error: error)
+                } else if let placemark = placemarks?.first {
+                    self.userLocation = placemark
+                }
+            }
+        }
+        
+        if selectedLocation == nil  {
+            self.moveToLocation(location)
+        }
+        
+        mapView.showsUserLocation = true
+    }
+    
+    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("error:: \(error)")
+    }
+}
+
+extension MapViewController: LocationSearchDelegate {
+    func locationSearch(_ controller: LocationSearchTable, didSelectLocation placemark: MKPlacemark) {
+        self.searchController.isActive = false
+        
+        self.selectedLocation = placemark
+        self.annotateLocation(placemark)
+        
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
-        mapview.setRegion(region, animated: true)
+        mapView.setRegion(region, animated: true)
     }
 }
 
@@ -186,14 +184,14 @@ extension MapViewController : MKMapViewDelegate {
             return nil
         }
         let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        pinView?.annotation = annotation
         pinView?.pinTintColor = UIColor.orange
         pinView?.canShowCallout = true
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint(x: 0,y :0), size: smallSquare))
         button.setBackgroundImage(UIImage(named: "car"), for: .normal)
-        button.addTarget(self, action: "getDirections", for: .touchUpInside)
+        button.addTarget(self, action: #selector(onNavigateToDestination), for: .touchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
     }

@@ -70,9 +70,9 @@ extension UIViewController {
         }
     }
     
-    func handleResult<T>(_ result: ApiResult<T>, onError: ((Error) -> Void)? = nil, onSuccess: (() throws -> Void)? = nil) {
+    func handleResult<T>(_ result: ApiResult<T>, onError: ((Error) -> Void)? = nil, onSuccess: @escaping (() throws -> Void)) {
         self.handleResult(result, onError: onError) { (_) in
-            try onSuccess?()
+            try onSuccess()
         }
     }
 }

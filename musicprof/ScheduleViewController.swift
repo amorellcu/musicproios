@@ -147,7 +147,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             
         } else if(segue.identifier == "mapSegue"){
             let Map = segue.destination as? MapViewController
-            Map?.user = self.user
+            //Map?.user = self.user
         }
     }
     

@@ -49,7 +49,7 @@
                     <navigationItem key="navigationItem" id="cra-Uk-Q94"/>
                     <connections>
                         <segue destination="9OR-MO-g9h" kind="show" identifier="RequireLogin" id="HEk-rv-mR8"/>
-                        <segue destination="jeX-At-SJ2" kind="show" identifier="goToCalendar" id="cOC-Vx-oLZ"/>
+                        <segue destination="jeX-At-SJ2" kind="presentation" identifier="goToCalendar" id="cOC-Vx-oLZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jQv-c9-XI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -275,7 +275,7 @@
                         <outlet property="passText" destination="Pya-MD-Eil" id="T46-Su-InK"/>
                         <outlet property="scrollview" destination="HMQ-14-w6H" id="VqC-YK-3yL"/>
                         <segue destination="zjq-Bx-voE" kind="show" identifier="RegisterStepOneSegue" id="Wgr-tI-92I"/>
-                        <segue destination="jeX-At-SJ2" kind="show" identifier="calendar" id="3UA-Yt-XJq"/>
+                        <segue destination="jeX-At-SJ2" kind="presentation" identifier="calendar" id="3UA-Yt-XJq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fAN-Rw-cyv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1608,7 +1608,7 @@
                                     <color key="titleColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="fixUbication:" destination="IBf-ST-lmj" eventType="touchUpInside" id="bHl-VT-qe7"/>
+                                    <action selector="onFixAddressTapped:" destination="IBf-ST-lmj" eventType="touchUpInside" id="bHl-VT-qe7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1625,7 +1625,7 @@
                         <viewLayoutGuide key="safeArea" id="WyS-cj-3VH"/>
                     </view>
                     <connections>
-                        <outlet property="mapview" destination="hb7-XF-xHY" id="YtA-Vw-aaU"/>
+                        <outlet property="mapView" destination="hb7-XF-xHY" id="YtA-Vw-aaU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eDj-CV-Vez" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2456,7 +2456,7 @@
         <image name="transparent_icon_white" width="800" height="800"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cOC-Vx-oLZ"/>
+        <segue reference="3UA-Yt-XJq"/>
         <segue reference="HEk-rv-mR8"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

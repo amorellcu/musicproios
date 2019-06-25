@@ -135,6 +135,21 @@ class ApiManager {
         }
     }
     
+    func updateAddress(_ address: String, handler: @escaping (ApiResult<Void>) -> Void) {
+        guard let userId = self.user?.id else {
+            handler(.failure(error: AppError.invalidOperation))
+            return
+        }
+        let url = baseUrl.appendingPathComponent("updateAddress")
+        let parameters: Parameters = ["id": userId, "address": address]
+        let _ = self.session
+            .request(url, method: .post,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseError(completionHandler: handler)        
+    }
+    
     private func post<T: Encodable>(_ encodable: T, to url: URL, handler: @escaping (ApiResult<Void>) -> Void) {
         var data: Data
         do {

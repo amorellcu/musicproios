@@ -24,6 +24,7 @@
 		5333E96F22C0FDE500175995 /* NestedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96E22C0FDE500175995 /* NestedController.swift */; };
 		534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */; };
 		534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4D22BFC043009249FC /* StudentCell.swift */; };
+		536C704122C1F30A00E217FF /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C704022C1F30A00E217FF /* UINavigationController.swift */; };
 		53907E0B22B1983300314EC8 /* InstrumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0A22B1983300314EC8 /* InstrumentCollectionViewCell.swift */; };
 		53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0C22B19EC700314EC8 /* Instrument.swift */; };
 		53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2527B22B6E360007C8BB1 /* Profile.swift */; };
@@ -113,6 +114,7 @@
 		5333E96E22C0FDE500175995 /* NestedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedController.swift; sourceTree = "<group>"; };
 		534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentsViewController.swift; sourceTree = "<group>"; };
 		534F1D4D22BFC043009249FC /* StudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCell.swift; sourceTree = "<group>"; };
+		536C704022C1F30A00E217FF /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		53907E0A22B1983300314EC8 /* InstrumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentCollectionViewCell.swift; sourceTree = "<group>"; };
 		53907E0C22B19EC700314EC8 /* Instrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
 		53C2527B22B6E360007C8BB1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -131,8 +133,8 @@
 		75154C0B7B893B2085E3E130 /* libPods-musicprofUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-musicprofUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85796996F4D7DD561375F67F /* Pods_musicprof.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_musicprof.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D0A0454B07824111570E98 /* Pods-musicprofUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofUITests.debug.xcconfig"; path = "Target Support Files/Pods-musicprofUITests/Pods-musicprofUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A5315B32203CF27C0043A0E2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
+		A5315B32203CF27C0043A0E2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../MapViewController.swift; sourceTree = "<group>"; };
+		A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchTable.swift; path = ../LocationSearchTable.swift; sourceTree = "<group>"; };
 		A5598C14201F8C3B000C64F6 /* musicprof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = musicprof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5598C17201F8C3B000C64F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5598C19201F8C3B000C64F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				530F8A79229B773A000AFC86 /* UIViewController.swift */,
+				536C704022C1F30A00E217FF /* UINavigationController.swift */,
 				53FDE15022BE25C500EBC13F /* DataRequest.swift */,
 			);
 			name = Extensions;
@@ -274,6 +277,8 @@
 				A5AD1EBF20338A6F00A38F85 /* CalendarCell.swift */,
 				5333E96122C0E46500175995 /* ProfessorListViewController.swift */,
 				5333E95F22C0E3FD00175995 /* ProfessorCell.swift */,
+				A5315B32203CF27C0043A0E2 /* MapViewController.swift */,
+				A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -326,8 +331,6 @@
 				A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */,
 				A5A77C3720407866000F1E3E /* ScheduleProfesorViewController.swift */,
 				A5E1FB1D2044BC2200B15DD9 /* ProfesorDetailViewController.swift */,
-				A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */,
-				A5315B32203CF27C0043A0E2 /* MapViewController.swift */,
 				A5598C1E201F8C3B000C64F6 /* Assets.xcassets */,
 				A5598C20201F8C3B000C64F6 /* LaunchScreen.storyboard */,
 				A5598C23201F8C3B000C64F6 /* Info.plist */,
@@ -618,6 +621,7 @@
 				53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */,
 				5333E96922C0F78900175995 /* ReservationController.swift in Sources */,
 				5333E96D22C0FD4E00175995 /* ContainerViewController.swift in Sources */,
+				536C704122C1F30A00E217FF /* UINavigationController.swift in Sources */,
 				530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */,
 				A5AD1EB520334EA400A38F85 /* CalendarViewController.swift in Sources */,
 				A5E1FB1C2042514000B15DD9 /* ProfesorTableViewCell.swift in Sources */,
