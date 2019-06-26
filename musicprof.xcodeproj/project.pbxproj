@@ -278,13 +278,13 @@
 				53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */,
 				534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */,
 				534F1D4D22BFC043009249FC /* StudentCell.swift */,
+				53DEFCE222C24CC30003852E /* LocationListViewController.swift */,
+				A5315B32203CF27C0043A0E2 /* MapViewController.swift */,
+				A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */,
 				A5AD1EB420334EA400A38F85 /* CalendarViewController.swift */,
 				A5AD1EBF20338A6F00A38F85 /* CalendarCell.swift */,
 				5333E96122C0E46500175995 /* ProfessorListViewController.swift */,
 				5333E95F22C0E3FD00175995 /* ProfessorCell.swift */,
-				53DEFCE222C24CC30003852E /* LocationListViewController.swift */,
-				A5315B32203CF27C0043A0E2 /* MapViewController.swift */,
-				A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

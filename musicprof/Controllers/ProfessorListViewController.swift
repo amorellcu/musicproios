@@ -33,7 +33,7 @@ class ProfessorListViewController: BaseReservationViewController {
         // TODO: get professors
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.container?.setDisplayMode(.full, animated: animated)
     }
     

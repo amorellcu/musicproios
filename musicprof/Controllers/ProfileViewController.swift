@@ -45,7 +45,7 @@ class ProfileViewController: BaseReservationViewController {
         view.addGestureRecognizer(tap)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.container?.setDisplayMode(.picture, animated: animated)
     }
     

@@ -14,11 +14,9 @@ class LocationListViewController: BaseReservationViewController {
     @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var confirmationButton: UIButton!
     
-    var locations: [Location]?
-    
     var selectedLocation: Location? {
         didSet {
-            self.locationNameTextField.text = self.selectedLocation?.name
+            self.locationNameTextField.text = self.selectedLocation?.description
             self.confirmationButton.isEnabled = self.selectedLocation != nil
         }
     }
@@ -32,23 +30,22 @@ class LocationListViewController: BaseReservationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.updateLocations()
+        self.updateSelectedLocation()
     }
     
-    private func updateLocations() {
-        self.service.getLocations { [weak self] (result) in
-            self?.handleResult(result) {
-                self?.locations = $0
-                self?.updateSelectedLocation()
-            }
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        self.container?.setDisplayMode(.full, animated: animated)
     }
     
     private func updateSelectedLocation() {
-        if let selectedId = self.reservation.locationId {
-            self.selectedLocation = self.locations?.first(where: {$0.id == selectedId})
-        } else {
-            self.selectedLocation = nil
+        guard let locationId = self.reservation.locationId else {
+            return self.selectedLocation = nil
+        }
+        self.selectedLocation = nil
+        self.service.getLocation(withId: locationId) { [weak self] (result) in
+            self?.handleResult(result) {
+                self?.selectedLocation = $0
+            }
         }
     }
     
@@ -56,7 +53,7 @@ class LocationListViewController: BaseReservationViewController {
         if let controller = segue.source as? MapViewController {
             self.reservation = controller.reservation
             self.selectedLocation = nil
-            self.updateLocations()
+            self.updateSelectedLocation()
         }
     }
     

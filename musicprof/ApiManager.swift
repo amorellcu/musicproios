@@ -166,6 +166,26 @@ class ApiManager {
         }
     }
     
+    func getLocation(withId id: Int, handler: @escaping (ApiResult<Location>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getColonia")
+        let parameters: Parameters = ["idcolonia": id]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<[Location]>) in
+                handler(result.transform(with: {
+                    guard let result = $0.first else {
+                        throw AppError.unsupportedData
+                    }
+                    return result
+                }))
+        }
+        
+        
+    }
+    
     func updateAddress(_ address: String, handler: @escaping (ApiResult<Client>) -> Void) {
         guard let userId = self.user?.id else {
             handler(.failure(error: AppError.invalidOperation))

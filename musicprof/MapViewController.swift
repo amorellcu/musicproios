@@ -94,14 +94,6 @@ class MapViewController: BaseReservationViewController {
         }
     }
     
-    @objc func onNavigateToDestination() {
-        if let selectedPin = selectedLocation {
-            let mapItem = MKMapItem(placemark: selectedPin)
-            let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-            mapItem.openInMaps(launchOptions: launchOptions)
-        }
-    }
-    
     func moveToLocation(_ location: CLLocation) {
         let center = location.coordinate
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
@@ -110,16 +102,7 @@ class MapViewController: BaseReservationViewController {
     }
     
     func annotateLocation(_ placemark: MKPlacemark) {
-        // clear existing pins
         mapView.removeAnnotations(mapView.annotations)
-        //let annotation = MKPointAnnotation()
-        //annotation.coordinate = placemark.coordinate
-        //annotation.title = placemark.name
-        //if let city = placemark.locality,
-        //    let state = placemark.administrativeArea {
-        //    annotation.subtitle = "\(city) \(state)"
-        //}
-        //mapView.addAnnotation(annotation)
         mapView.addAnnotation(placemark)
     }
     
@@ -181,21 +164,45 @@ extension MapViewController: LocationSearchDelegate {
 }
 
 extension MapViewController : MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             //return nil so map view draws "blue dot" for standard user location
             return nil
         }
-        let reuseId = "pin"
-        let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-        pinView?.annotation = annotation
-        pinView?.pinTintColor = UIColor.orange
-        pinView?.canShowCallout = true
-        let smallSquare = CGSize(width: 30, height: 30)
-        let button = UIButton(frame: CGRect(origin: CGPoint(x: 0,y :0), size: smallSquare))
-        button.setBackgroundImage(UIImage(named: "car"), for: .normal)
-        button.addTarget(self, action: #selector(onNavigateToDestination), for: .touchUpInside)
-        pinView?.leftCalloutAccessoryView = button
-        return pinView
+        if #available(iOS 11.0, *) {
+            if let view = mapView.dequeueReusableAnnotationView(withIdentifier: "defaultMarker") as? MKMarkerAnnotationView {
+                view.annotation = annotation
+                view.tintColor = UIColor.orange
+                return view
+            } else {
+                let view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "defaultMarker")
+                view.canShowCallout = true
+                view.tintColor = UIColor.orange
+                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                return view
+            }
+        } else {
+            if let view = mapView.dequeueReusableAnnotationView(withIdentifier: "legacyMarker") as? MKPinAnnotationView {
+                view.annotation = annotation
+                view.tintColor = UIColor.orange
+                return view
+            } else {
+                let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "legacyMarker")
+                view.canShowCallout = true
+                view.tintColor = UIColor.orange
+                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                return view
+            }
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl) {
+        guard let annotation = view.annotation as? MKPlacemark else {
+            return
+        }
+        let mapItem = MKMapItem(placemark: annotation)
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+        mapItem.openInMaps(launchOptions: launchOptions)
     }
 }

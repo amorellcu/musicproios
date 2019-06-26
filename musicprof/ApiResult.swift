@@ -14,11 +14,15 @@ enum ApiResult<T> {
 }
 
 extension ApiResult {
-    func transform<K>(with function: (T) -> K) -> ApiResult<K> {
-        switch self {
-        case .success(let data):
-            return .success(data: function(data))
-        case .failure(let error):
+    func transform<K>(with function: (T) throws -> K) -> ApiResult<K> {
+        do {
+            switch self {
+            case .success(let data):
+                return .success(data: try function(data))
+            case .failure(let error):
+                return .failure(error: error)
+            }
+        } catch {
             return .failure(error: error)
         }
     }

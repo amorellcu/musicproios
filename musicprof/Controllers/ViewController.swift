@@ -67,6 +67,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         self.navigationController?.isNavigationBarHidden = true
         // Do any additional setup after loading the view, typically from a nib.
         //if the user is already logged in
+        self.emailText.text = UserDefaults.standard.string(forKey: "user")
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
@@ -231,6 +232,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         }
         self.service.signIn(withEmail: email, password: pass) { [weak self] (result) in
             self?.handleResult(result) {
+                UserDefaults.standard.set(email, forKey: "user")
                 self?.performSegue(withIdentifier: "calendar", sender: sender)
             }
         }

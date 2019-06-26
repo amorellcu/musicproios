@@ -10,15 +10,23 @@ import Foundation
 
 struct Location: Decodable {
     var id: Int
-    var name: String
-    
-    init(id: Int, name: String, icon: String) {
-        self.name = name
-        self.id = id
-    }
+    var zone: String
+    var state: String?
+    var municipality: String?
+    var city: String?
     
     fileprivate enum CodingKeys: String, CodingKey {
         case id
-        case name = "asentamiento"
+        case zone = "asentamiento"
+        case state = "estado"
+        case municipality = "municipio"
+        case city = "ciudad"
+    }
+}
+
+extension Location: CustomStringConvertible {
+    var description: String {
+        let components = [self.state, self.city]
+        return components.compactMap({$0}).joined(separator: ", ")
     }
 }
