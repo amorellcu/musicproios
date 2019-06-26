@@ -51,7 +51,7 @@ extension ProfessorListViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: prototypeCellIdentifier, for: indexPath) as! ProfessorCell
         let professor = self.professors[indexPath.row]
-        if let iconURL = professor.iconUrl {
+        if let iconURL = professor.avatarUrl {
             let filter: ImageFilter = ScaledToSizeCircleFilter(size: cell.avatarImageView.frame.size)
             cell.avatarImageView.af_setImage(withURL: iconURL, filter: filter)
         }

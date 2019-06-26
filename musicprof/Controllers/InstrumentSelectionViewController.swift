@@ -12,7 +12,12 @@ import AlamofireImage
 
 class InstrumentSelectionViewController: BaseReservationViewController {
     let prototypeCellIdentifier = "instrumentCell"
-    var instruments: [Instrument] = [] {
+    var userInstruments: [Instrument] = [] {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    var instruments: [Instrument]? = nil {
         didSet {
             self.collectionView.reloadData()
         }
@@ -32,15 +37,10 @@ class InstrumentSelectionViewController: BaseReservationViewController {
         super.viewDidLoad()
         
         if let instruments = self.service.user?.instruments {
-            self.instruments = instruments
-        } else {
-            self.service.getUserInfo { [weak self] (result) in
-                self?.handleResult(result) { data in
-                    self?.instruments = data.instruments ?? []
-                }
-            }
-        }        
+            self.userInstruments = instruments
+        }
         
+        self.updateInstruments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +50,15 @@ class InstrumentSelectionViewController: BaseReservationViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func updateInstruments() {
+        self.service.getInstruments { [weak self] (result: ApiResult<[Instrument]>) in
+            self?.handleResult(result) {
+                guard let strongSelf = self else { return }
+                strongSelf.instruments = Array(Set($0).subtracting(strongSelf.userInstruments))
+            }
+        }
     }
     
     @IBAction func onAddStudentsTapped(_ sender: UIButton) {
@@ -80,15 +89,31 @@ class InstrumentSelectionViewController: BaseReservationViewController {
 }
 
 extension InstrumentSelectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    private func instruments(fromSection section: Int) -> [Instrument]? {
+        switch section {
+        case 0:
+            return self.userInstruments
+        default:
+            return self.instruments
+        }
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return self.instruments == nil ? 1 : 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.instruments.count
+        return self.instruments(fromSection: section)?.count ?? 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: prototypeCellIdentifier, for: indexPath) as! InstrumentCollectionViewCell
-        if let iconURL = self.instruments[indexPath.row].iconUrl {
+        let instrument = self.instruments(fromSection: indexPath.section)?[indexPath.row]
+        if let iconURL = instrument?.iconUrl {
             let filter: ImageFilter = ScaledToSizeFilter(size: cell.instrumentIcon.frame.size)
             cell.instrumentIcon.af_setImage(withURL: iconURL, filter: filter)
+        } else {
+            cell.instrumentIcon.image = UIImage(named: "no_instrument")
         }
         
         return cell
@@ -96,6 +121,6 @@ extension InstrumentSelectionViewController: UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.continueButton.isEnabled = true
-        self.reservation.instrument = self.instruments[indexPath.row]
+        self.reservation.instrument = self.instruments(fromSection: indexPath.section)?[indexPath.row]
     }
 }

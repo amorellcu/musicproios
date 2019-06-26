@@ -37,6 +37,11 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
             self.reservation.date = self.selectedDate
         }
     }
+    var validDates = [Int: [Date]]() {
+        didSet {
+            self.calendarView.reloadData()
+        }
+    }
     
     override func loadView() {
         self.calendar.locale = Locale(identifier: "es-Es")
@@ -62,10 +67,26 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    private func updateValidDates(forMonth month: Int) {
+        self.service.getAvailableDays(for: self.reservation, inMonth: month) { [weak self] (result) in
+            self?.handleResult(result) {
+                self?.validDates[month] = $0
+            }
+        }
+    }
+    
+    private func isDateValid(_ date: Date) -> Bool {
+        guard (self.startDate...self.endDate).contains(date) else { return false }
+        //let month = self.calendar.component(.month, from: date)
+        //return self.validDates[month]?.contains(date) ?? false
+        return true
+    }
 
     func setupCalendarView() {
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
+        calendarView.isRangeSelectionUsed = false
         calendarView.visibleDates{ visibleDates in
             self.updateMonthLabel(from: visibleDates)
         }
@@ -79,6 +100,10 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
         let month = self.calendar.component(.month, from: date)
         let monthName = self.calendar.monthSymbols[month - 1]
         self.monthLabel.text = monthName.uppercased()
+        
+        if self.validDates[month] == nil {
+            self.updateValidDates(forMonth: month)
+        }
     }
     
    
@@ -97,7 +122,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         cell.dateLabel.text = cellState.text
         if cellState.isSelected {
             cell.dateLabel.textColor = self.selectedDayColor
-        } else if cellState.dateBelongsTo == .thisMonth && (self.startDate...self.endDate).contains(date) {
+        } else if cellState.dateBelongsTo == .thisMonth && self.isDateValid(date) {
             cell.dateLabel.textColor = self.dayColor
         } else {
             cell.dateLabel.textColor = self.outsideDayColor
@@ -107,7 +132,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         return ConfigurationParameters(startDate: self.startDate, endDate: self.endDate, numberOfRows: 6, calendar: self.calendar,
                                        generateInDates: .forAllMonths, generateOutDates: .tillEndOfRow,
-                                       firstDayOfWeek: .sunday, hasStrictBoundaries: false)
+                                       firstDayOfWeek: .sunday, hasStrictBoundaries: true)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
@@ -121,7 +146,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
     }
     
     func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
-        return (self.startDate...self.endDate).contains(date)
+        return self.isDateValid(date)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {

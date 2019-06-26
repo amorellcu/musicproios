@@ -20,6 +20,7 @@ class LocationListViewController: BaseReservationViewController {
             self.confirmationButton.isEnabled = self.selectedLocation != nil
         }
     }
+    var nearbyLocations: [Location]? = []
     
     override func loadView() {
         self.reservation.address = self.client?.address
@@ -49,11 +50,24 @@ class LocationListViewController: BaseReservationViewController {
         }
     }
     
+    private func updateNearbyLocations() {
+        guard let address = reservation.address else {
+            return self.nearbyLocations = []
+        }
+        self.nearbyLocations = nil
+        self.service.getLocations(at: address) { [weak self] (result) in
+            self?.handleResult(result) {
+                self?.nearbyLocations = $0
+            }
+        }
+    }
+    
     @IBAction func unwindToLocations(_ segue: UIStoryboardSegue) {
         if let controller = segue.source as? MapViewController {
             self.reservation = controller.reservation
             self.selectedLocation = nil
             self.updateSelectedLocation()
+            self.updateNearbyLocations()
         }
     }
     

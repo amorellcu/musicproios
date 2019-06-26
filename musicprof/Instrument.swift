@@ -31,3 +31,17 @@ extension Instrument {
         return URL(string: self.icon)
     }
 }
+
+extension Instrument: Equatable, Hashable {
+    static func == (lhs: Instrument, rhs: Instrument) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    var hashValue: Int {
+        return self.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
+}

@@ -143,6 +143,17 @@ class ApiManager {
         }
     }
     
+    func getInstruments(handler: @escaping (ApiResult<[Instrument]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getInstruments")
+        let _ = self.session
+            .request(url, method: .get,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<InstrumentData>) in
+                handler(result.transform(with: {$0.instruments}))
+        }
+    }
+    
     func getLocations(name: String? = nil, stateId: Int? = nil, cityId: Int? = nil,
                       handler: @escaping (ApiResult<[Location]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getColonias")
@@ -182,8 +193,70 @@ class ApiManager {
                     return result
                 }))
         }
+    }
+    
+    func getLocations(at address: String, handler: @escaping (ApiResult<[Location]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getSublocality")
+        let parameters: Parameters = ["address": address]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<LocationData>) in
+                handler(result.transform(with: {$0.locations}))
+        }
+    }
+    
+    func getAvailableDays(for request: ReservationRequest, inMonth month: Int, handler: @escaping (ApiResult<[Date]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getAvailableClassOnMonth")
+        let parameters: Parameters = ["coloniaId": request.locationId as Any,
+                                      "instrumentId": request.instrument?.id as Any,
+                                      "month": month]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable(completionHandler: handler)
+    }
+    
+    func getAvailableProfessors(for request: ReservationRequest, inDay date: Date, handler: @escaping (ApiResult<[Professor]>) -> Void) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateStr = dateFormatter.string(from: date)
         
+        let url = baseUrl.appendingPathComponent("getAvailableProfesorsOnDate")
+        let parameters: Parameters = ["coloniaId": request.locationId as Any,
+                                      "instrumentId": request.instrument?.id as Any,
+                                      "date": dateStr]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable(completionHandler: handler)
+    }
+    
+    func getAvailableProfessors(for request: ReservationRequest, handler: @escaping (ApiResult<[Professor]>) -> Void) {
+        guard let date = request.date else {
+            return handler(.failure(error: AppError.invalidOperation))
+        }
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateStr = dateFormatter.string(from: date)
+        
+        let url = baseUrl.appendingPathComponent("getAvailableProfesors")
+        let parameters: Parameters = ["coloniaId": request.locationId as Any,
+                                      "instrumentId": request.instrument?.id as Any,
+                                      "date": dateStr]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable(completionHandler: handler)
     }
     
     func updateAddress(_ address: String, handler: @escaping (ApiResult<Client>) -> Void) {
@@ -256,6 +329,10 @@ private struct LoginData: Decodable {
 
 private struct UserData: Decodable {
     var client: Client
+}
+
+private struct InstrumentData: Decodable {
+    var instruments: [Instrument]
 }
 
 private struct LocationData: Decodable {

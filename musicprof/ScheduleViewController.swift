@@ -125,31 +125,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     
-     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if(segue.identifier == "horarioSegue"){
-            let Schedule = segue.destination as? ScheduleProfesorViewController
-            if(self.namePerfil != nil){
-                Schedule?.Perfilname = self.namePerfil.text
-            }
-            
-            if(self.perfil != nil){
-                Schedule?.photoPerfil = self.perfil.image
-            }
-            Schedule?.dateclass = self.dateclass
-            Schedule?.address = self.address
-            Schedule?.instrumenid = self.instrumentsid
-            Schedule?.user = self.user
-            
-        } else if(segue.identifier == "mapSegue"){
-            let Map = segue.destination as? MapViewController
-            //Map?.user = self.user
-        }
-    }
+     // MARK: - Navigation    
     
     override func viewWillAppear(_ animated: Bool) {
         self.instruments_items = []
