@@ -8,56 +8,54 @@
 
 import UIKit
 import SCLAlertView
-import Alamofire
+import AlamofireImage
 
 class ScheduleProfesorViewController: BaseReservationViewController {
     
-    @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var dateLabel: UIButton!
     
-    var dateclass: Date = Date()
+    let collapsedColor = UIColor(red: 0/255 ,green: 255/255 ,blue: 180/255 ,alpha: 1)
     
-    struct Item {
-        var name: String
-        var photo: String
-        var votes: Int
-        
-        init(name: String, photo: String, votes: Int = 0) {
-            self.name = name
-            self.photo = photo
-            self.votes = votes
+    var sections: [Section]? = nil {
+        didSet {
+            self.collectionView.reloadData()
         }
     }
     
-    struct Section {
-        var name: String
-        var items: [Item]
-        var collapsed: Bool
-        var textcolor: UIColor
-        
-        init(name: String, items: [Item], collapsed: Bool = true, textcolor: UIColor = UIColor(red: 0/255 ,green: 255/255 ,blue: 180/255 ,alpha: 1), leftrow: String = "flechaizq", rightrow: String = "flechader") {
-            self.name = name
-            self.items = items
-            self.collapsed = collapsed
-            self.textcolor = textcolor
+    var selectedSection: Int? {
+        didSet {
+            self.collectionView.reloadData()
         }
     }
     
-    var sections = [Section]()
-    var schedules: [String] = ["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00"]
-    var profesors: NSArray = []
+    var selectedProfessor: Professor? {
+        didSet {
+            self.reservation.professor = self.selectedProfessor
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.tableview.delegate = self
-        self.tableview.dataSource = self
-        self.getProfesors()
-        sections = [
-            Section(name: "9:00 AM", items: [Item(name:"Alexis Morell",photo:"profesor")],collapsed: true),
-            Section(name: "10:00 AM", items: [Item(name:"Alejandro Ruiz",photo:"profesor"), Item(name:"Dayana Machin",photo:"profesor")],collapsed: true),
-            Section(name: "11:00 AM", items: [Item(name:"Alejandro Ruiz",photo:"profesor"), Item(name:"Alexis Morell",photo:"profesor")],collapsed: true),
-        ]
+        if let date = self.reservation.date {
+            let formatter = DateFormatter()
+            formatter.calendar = self.calendar
+            formatter.locale = self.calendar.locale
+            formatter.dateStyle = .long
+            formatter.timeStyle = .none
+            
+            let dateStr = formatter.string(from: date)
+            self.dateLabel.setTitle(dateStr, for: .normal)
+            self.dateLabel.setTitle(dateStr, for: .disabled)
+        }
         
+        //self.updateSections()
+        self.setDefaultSections()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.container?.setDisplayMode(.full, animated: animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,160 +63,236 @@ class ScheduleProfesorViewController: BaseReservationViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getSectionIndex(_ row: NSInteger) -> Int {
-        let indices = getHeaderIndices()
+    func setDefaultSections() {
+        guard var date = self.reservation.date else { return }
         
-        for i in 0..<indices.count {
-            if i == indices.count - 1 || row < indices[i + 1] {
-                return i
+        let formatter = DateFormatter()
+        formatter.calendar = self.calendar
+        formatter.locale = self.calendar.locale
+        formatter.dateStyle = .none
+        formatter.timeStyle = .medium
+        
+        let professors = [Professor(id: 0, name: "Jon Snow"), Professor(id: 1, name: "Daenerys Targaryen")]
+        var sections = [Section]()
+        for i in 8...17 {
+            let date = self.calendar.date(byAdding: .hour, value: i, to: date)!
+            let name = formatter.string(from: date)
+            let section = Section(name: name, date: date, items: professors)
+            sections.append(section)
+        }
+        self.sections = sections
+    }
+    
+    func updateSections(){
+        guard var date = self.reservation.date else { return }
+        
+        let formatter = DateFormatter()
+        formatter.calendar = self.calendar
+        formatter.locale = self.calendar.locale
+        formatter.dateStyle = .none
+        formatter.timeStyle = .medium
+        
+        date = self.calendar.startOfDay(for: date)
+        self.service.getAvailableProfessors(for: self.reservation, inDay: date) { [weak self] (result) in
+            self?.handleResult(result) {
+                var professors = [Date:[Professor]]()
+                for professor in $0 {
+                    for reservation in professor.reservations ?? [] {
+                        var items = professors[reservation.date] ?? []
+                        items.append(professor)
+                        professors[reservation.date] = items
+                    }
+                }
+                
+                self?.sections = professors.sorted(by: {$0.key <= $1.key}).map {
+                    let date = $0.key
+                    let name = formatter.string(from: date)
+                    return Section(name: name, date: date, items: $0.value)
+                }
             }
         }
-        
-        return -1
-    }
-    
-    func getRowIndex(_ row: NSInteger) -> Int {
-        var index = row
-        let indices = getHeaderIndices()
-        
-        for i in 0..<indices.count {
-            if i == indices.count - 1 || row < indices[i + 1] {
-                index -= indices[i]
-                break
-            }
-        }
-        
-        return index
-    }
-    
-    func getHeaderIndices() -> [Int] {
-        var index = 0
-        var indices: [Int] = []
-        
-        for section in sections {
-            indices.append(index)
-            index += section.items.count + 1
-        }
-        
-        return indices
-    }
-    
-    @objc func toggleCollapse(_ sender: UIButton) {
-        let section = sender.tag
-        let collapsed = sections[section].collapsed
-        // Toggle collapse
-        sections[section].collapsed = !collapsed
-        
-        let indices = getHeaderIndices()
-        
-        let start = indices[section]
-        let end = start + sections[section].items.count
-        
-        self.tableview.beginUpdates()
-        for i in start ..< end + 1 {
-            self.tableview.reloadRows(at: [IndexPath(row: i, section: 1)], with: .automatic)
-        }
-        self.tableview.endUpdates()
-    }
-    
-    func getProfesors(){
-        
 
+    }
+    
+    struct Section: Equatable {var name: String
+        var date: Date
+        var items: [Professor]
+        
+        static func == (lhs: ScheduleProfesorViewController.Section, rhs: ScheduleProfesorViewController.Section) -> Bool {
+            return lhs.date == rhs.date
+        }
     }
 }
 
-extension ScheduleProfesorViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+extension ScheduleProfesorViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return self.selectedSection == nil ? 1 : 3
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = 0
-        if section == 0 {
-            return 1
-        }
-        
-        // For section 1, the total count is items count plus the number of headers
-        count = sections.count
-        
-        for section in sections {
-            count += section.items.count
-        }
-        return count
-        
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let sections = self.sections else { return 0 }
+        guard let index = self.selectedSection else { return sections.count }
         switch section {
-        case 0:  return ""
-        case 1:  return ""
-        default: return ""
+        case 0:
+            return index
+        case 1:
+            return sections[index].items.count + 1
+        default:
+            return sections.count - 1 - index
         }
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 0
-        }
-        
-        // Calculate the real section index and row index
-        let section = getSectionIndex(indexPath.row)
-        let row = getRowIndex(indexPath.row)
-        var height: CGFloat
-        
-        // Header has fixed height
-        if row == 0 {
-            return 55.0
-        }
-        if(section == 0){
-            height = 55.0
-        }
-        else{
-            height = 52.0
-        }
-        
-        return sections[section].collapsed ? 0 : height
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "title") as UITableViewCell!
-            cell?.textLabel?.text = ""
-            cell?.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
-            return cell!
-        }
-        // Calculate the real section index and row index
-        let section = getSectionIndex(indexPath.row)
-        let row = getRowIndex(indexPath.row)
-        let collapsed = sections[section].collapsed
-        
-        if row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "header") as! HeaderTableViewCell
-            cell.titleLabel.text = sections[section].name
-            if(!collapsed){
-                cell.titleLabel.textColor = UIColor(red: 124/255 ,green: 124/255 ,blue: 124/255 ,alpha: 1)
-                cell.titleLabel.backgroundColor = UIColor(red: 0/255 ,green: 255/255 ,blue: 180/255 ,alpha: 1)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let sections = self.sections else { return UICollectionViewCell() }
+        if indexPath.section == 1 && indexPath.row > 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "professorCell", for: indexPath) as! ProfessorCell
+            guard let index = self.selectedSection else { return cell }
+            let professor = sections[index].items[indexPath.row - 1]
+            if let iconURL = professor.avatarUrl {
+                let filter: ImageFilter = ScaledToSizeFilter(size: cell.avatarImageView.frame.size)
+                cell.avatarImageView.af_setImage(withURL: iconURL, filter: filter)
+            } else {
+                cell.avatarImageView.image = UIImage(named: "profesor")
             }
-            cell.togglebutton.tag = section
-            cell.togglebutton.setTitle(sections[section].collapsed ? "+" : "-", for: UIControlState())
-            cell.togglebutton.addTarget(self, action: #selector(ScheduleProfesorViewController.toggleCollapse), for: .touchUpInside)
-            cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ProfesorTableViewCell!
-            cell?.profesorName.text = sections[section].items[row - 1].name
-            cell?.profesorImage.image = UIImage(named: sections[section].items[row - 1].photo)
-            cell?.profesorImage.layer.cornerRadius = (cell?.profesorImage.frame.size.width)! / 2
-            cell?.profesorImage.clipsToBounds = true
-            cell?.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
-            return cell!
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateCell
+            switch indexPath.section {
+            case 1:
+                cell.textLabel.text = sections[self.selectedSection!].name
+                cell.textLabel.backgroundColor = self.collapsedColor
+            case 2:
+                cell.textLabel.text = sections[self.selectedSection! + 1 + indexPath.row].name
+                cell.textLabel.backgroundColor = self.collapsedColor
+            default:
+                cell.textLabel.text = sections[indexPath.row].name
+                cell.textLabel.backgroundColor = self.collapsedColor
+            }
+            return cell
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = getSectionIndex(indexPath.row)
-        let row = getRowIndex(indexPath.row)
-        let name = sections[section].items[row - 1].name
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let sections = self.sections else { return }
+        switch indexPath.section {
+        case 1:
+            guard indexPath.row > 0 else { return }
+            self.selectedProfessor = sections[self.selectedSection!].items[indexPath.row]
+        case 2:
+            self.selectedSection = self.selectedSection! + 1 + indexPath.row
+            self.selectedProfessor = nil
+        default:
+            self.selectedSection = indexPath.row
+            self.selectedProfessor = nil
+        }
+    }
+}
+
+class ScheduleLayout: UICollectionViewLayout {
+    let sectionHeaderHeight: CGFloat = 50
+    let sectionHeaderPadding: CGSize = CGSize(width: 0, height: 0)
+    let itemSize: CGSize = CGSize(width: 50, height: 50)
+    let itemPadding: CGSize = CGSize(width: 5, height: 5)
+    
+    fileprivate var cache = [IndexPath: UICollectionViewLayoutAttributes]()
+    
+    fileprivate var contentHeight: CGFloat = 0
+    
+    fileprivate var contentWidth: CGFloat {
+        guard let collectionView = collectionView else {
+            return 0
+        }
+        let insets = collectionView.contentInset
+        return collectionView.bounds.width - (insets.left + insets.right)
+    }
+    
+    override var collectionViewContentSize: CGSize {
+        return CGSize(width: contentWidth, height: contentHeight)
+    }
+    
+    override func prepare() {
+        cache = [:]
+        guard let collectionView = self.collectionView else { return }
         
-        self.performSegue(withIdentifier: "profesorDetailSegue", sender: name)
+        let itemWidth = itemPadding.width * 2 + itemSize.width
+        let itemHeight = itemPadding.height * 2
+        var xOffset: CGFloat = 0
+        var yOffset: CGFloat = 0
+        
+        for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
+            
+            let indexPath = IndexPath(item: item, section: 0)
+            
+            let height = sectionHeaderPadding.height * 2 + sectionHeaderHeight
+            let frame = CGRect(x: xOffset, y: yOffset, width: contentWidth, height: height)
+            let insetFrame = frame.insetBy(dx: sectionHeaderPadding.width, dy: sectionHeaderPadding.height)
+            
+            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            attributes.frame = insetFrame
+            cache[indexPath] = attributes
+            
+            yOffset += height
+        }
+        
+        guard collectionView.numberOfSections > 1 else {
+            return self.contentHeight = yOffset
+        }
+        
+        for item in 0 ..< collectionView.numberOfItems(inSection: 1) {
+            
+            let indexPath = IndexPath(item: item, section: 1)
+            
+            let height = itemHeight
+            let frame = CGRect(x: xOffset, y: yOffset, width: itemWidth, height: height)
+            let insetFrame = frame.insetBy(dx: itemPadding.width, dy: itemPadding.height)
+            
+            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            attributes.frame = insetFrame
+            cache[indexPath] = attributes
+            
+            xOffset += itemWidth
+            if xOffset + itemWidth > contentWidth {
+                xOffset = 0
+                yOffset += height
+            }
+        }
+        
+        if xOffset > 0 {
+            xOffset = 0
+            yOffset += itemHeight
+        }
+        
+        for item in 0 ..< collectionView.numberOfItems(inSection: 2) {
+            
+            let indexPath = IndexPath(item: item, section: 2)
+            
+            let height = sectionHeaderPadding.height * 2 + sectionHeaderHeight
+            let frame = CGRect(x: xOffset, y: yOffset, width: contentWidth, height: height)
+            let insetFrame = frame.insetBy(dx: sectionHeaderPadding.width, dy: sectionHeaderPadding.height)
+            
+            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            attributes.frame = insetFrame
+            cache[indexPath] = attributes
+            
+            yOffset += height
+        }
+        
+        self.contentHeight = yOffset
+    }
+    
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        
+        var visibleLayoutAttributes = [UICollectionViewLayoutAttributes]()
+       
+        for attributes in cache.values {
+            if attributes.frame.intersects(rect) {
+                visibleLayoutAttributes.append(attributes)
+            }
+        }
+        return visibleLayoutAttributes
+    }
+    
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return self.cache[indexPath]
     }
 }

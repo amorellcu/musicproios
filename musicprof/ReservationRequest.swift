@@ -16,6 +16,7 @@ struct ReservationRequest {
     var locationId: Int?
     var studentNames: [String]?
     var address: String?
+    var calendar: Calendar?
     
     fileprivate enum CodingKeys: String, CodingKey {
         case date = "classDate"

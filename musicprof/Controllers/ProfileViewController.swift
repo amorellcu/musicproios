@@ -25,6 +25,9 @@ class ProfileViewController: BaseReservationViewController {
     
     override func loadView() {
         self.reservation = ReservationRequest()
+        var calendar = Calendar.current
+        calendar.locale = Locale(identifier: "es-Es")
+        self.reservation.calendar = calendar
         super.loadView()
     }
     

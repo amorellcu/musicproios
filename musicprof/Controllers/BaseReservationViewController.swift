@@ -15,7 +15,11 @@ class BaseReservationViewController: UIViewController, ReservationController, Ne
     var client: Client? {
         guard let clientId = self.reservation.clientId else { return nil }
         return self.service.getClient(withId: clientId)
-    }    
+    }
+    
+    var calendar: Calendar! {
+        return self.reservation.calendar
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,18 +9,23 @@
 import Foundation
 
 class Professor: Decodable {
-    let id: Int
-    let name: String
-    let phone: String?
-    let email: String?
-    let address: String?
-    let price: Float? = nil
-    let avatarUrl: URL?
-    let facebookId: String?
+    var id: Int
+    var name: String
+    var phone: String?
+    var email: String?
+    var address: String?
+    var price: Float? = nil
+    var avatarUrl: URL?
+    var facebookId: String?
     
-    let reservations: [Reservation]?
-    let locations: [Location]?
-    let instruments: [Instrument]?
+    var reservations: [Reservation]?
+    var locations: [Location]?
+    var instruments: [Instrument]?
+    
+    init(id: Int, name: String) {
+        self.id = id
+        self.name = name
+    }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -25,7 +25,6 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
     @IBOutlet weak var previousMonthButton: UIButton!
     @IBOutlet weak var nextMonthButton: UIButton!
     
-    var calendar = Calendar.current
     let outsideDayColor = UIColor(red: 124/255 ,green: 124/255 ,blue: 124/255 ,alpha: 1)
     let dayColor = UIColor(red: 255/255 ,green: 210/255 ,blue: 69/255 ,alpha: 1)
     let selectedDayColor = UIColor(red: 65/255 ,green: 64/255 ,blue: 66/255 ,alpha: 1)
@@ -44,7 +43,6 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
     }
     
     override func loadView() {
-        self.calendar.locale = Locale(identifier: "es-Es")
         self.startDate = self.calendar.startOfDay(for: Date())
         self.endDate = self.calendar.date(byAdding: .month, value: 3, to: self.startDate)
         super.loadView()
@@ -161,6 +159,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         }
         guard let cell = cell else { return }
         self.configureCell(cell, forDate: date, cellState: cellState)
+        self.performSegue(withIdentifier: "selectTime", sender: calendar)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {

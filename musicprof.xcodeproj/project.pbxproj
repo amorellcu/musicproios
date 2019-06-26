@@ -30,6 +30,7 @@
 		53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2527B22B6E360007C8BB1 /* Profile.swift */; };
 		53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */; };
 		53D8E20022C3AB2100E3FABB /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8E1FF22C3AB2100E3FABB /* Reservation.swift */; };
+		53D8E20222C3D5FB00E3FABB /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8E20122C3D5FB00E3FABB /* DateCell.swift */; };
 		53D98FBE22BD35D10027FDCD /* Reservation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53D98FBD22BD35D10027FDCD /* Reservation.storyboard */; };
 		53D98FC822BD3FC30027FDCD /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FC722BD3FC30027FDCD /* ApiManager.swift */; };
 		53D98FCA22BD44A40027FDCD /* ApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FC922BD44A40027FDCD /* ApiResult.swift */; };
@@ -123,6 +124,7 @@
 		53C2527B22B6E360007C8BB1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentSelectionViewController.swift; sourceTree = "<group>"; };
 		53D8E1FF22C3AB2100E3FABB /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
+		53D8E20122C3D5FB00E3FABB /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		53D98FBD22BD35D10027FDCD /* Reservation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Reservation.storyboard; sourceTree = "<group>"; };
 		53D98FC722BD3FC30027FDCD /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		53D98FC922BD44A40027FDCD /* ApiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResult.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				A5A77C3720407866000F1E3E /* ScheduleProfesorViewController.swift */,
 				5333E96122C0E46500175995 /* ProfessorListViewController.swift */,
 				5333E95F22C0E3FD00175995 /* ProfessorCell.swift */,
+				53D8E20122C3D5FB00E3FABB /* DateCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				A5598C1A201F8C3B000C64F6 /* ViewController.swift in Sources */,
 				53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */,
 				5333E96922C0F78900175995 /* ReservationController.swift in Sources */,
+				53D8E20222C3D5FB00E3FABB /* DateCell.swift in Sources */,
 				5333E96D22C0FD4E00175995 /* ContainerViewController.swift in Sources */,
 				536C704122C1F30A00E217FF /* UINavigationController.swift in Sources */,
 				530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */,
