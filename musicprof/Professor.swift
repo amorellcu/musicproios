@@ -22,6 +22,8 @@ class Professor: Decodable {
     var locations: [Location]?
     var instruments: [Instrument]?
     
+    static let standard = Professor(id: 0, name: "Allan Buenfill Mejías")
+    
     init(id: Int, name: String) {
         self.id = id
         self.name = name

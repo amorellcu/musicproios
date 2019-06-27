@@ -15,7 +15,8 @@ class ScheduleProfesorViewController: BaseReservationViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var dateLabel: UIButton!
     
-    let collapsedColor = UIColor(red: 0/255 ,green: 255/255 ,blue: 180/255 ,alpha: 1)
+    let expandedColor = UIColor(red: 0/255 ,green: 255/255 ,blue: 180/255 ,alpha: 1)
+    let collapsedColor = UIColor(red: 1, green: 210/255, blue: 69/255, alpha: 1)
     
     var sections: [Section]? = nil {
         didSet {
@@ -49,6 +50,7 @@ class ScheduleProfesorViewController: BaseReservationViewController {
             self.dateLabel.setTitle(dateStr, for: .normal)
             self.dateLabel.setTitle(dateStr, for: .disabled)
         }
+        self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         //self.updateSections()
         self.setDefaultSections()
@@ -64,15 +66,15 @@ class ScheduleProfesorViewController: BaseReservationViewController {
     }
     
     func setDefaultSections() {
-        guard var date = self.reservation.date else { return }
+        guard let date = self.reservation.date else { return }
         
         let formatter = DateFormatter()
         formatter.calendar = self.calendar
         formatter.locale = self.calendar.locale
         formatter.dateStyle = .none
-        formatter.timeStyle = .medium
+        formatter.timeStyle = .short
         
-        let professors = [Professor(id: 0, name: "Jon Snow"), Professor(id: 1, name: "Daenerys Targaryen")]
+        let professors = (0...10).map({_ in Professor.standard})
         var sections = [Section]()
         for i in 8...17 {
             let date = self.calendar.date(byAdding: .hour, value: i, to: date)!
@@ -90,7 +92,7 @@ class ScheduleProfesorViewController: BaseReservationViewController {
         formatter.calendar = self.calendar
         formatter.locale = self.calendar.locale
         formatter.dateStyle = .none
-        formatter.timeStyle = .medium
+        formatter.timeStyle = .short
         
         date = self.calendar.startOfDay(for: date)
         self.service.getAvailableProfessors(for: self.reservation, inDay: date) { [weak self] (result) in
@@ -160,7 +162,7 @@ extension ScheduleProfesorViewController: UICollectionViewDelegate, UICollection
             switch indexPath.section {
             case 1:
                 cell.textLabel.text = sections[self.selectedSection!].name
-                cell.textLabel.backgroundColor = self.collapsedColor
+                cell.textLabel.backgroundColor = self.expandedColor
             case 2:
                 cell.textLabel.text = sections[self.selectedSection! + 1 + indexPath.row].name
                 cell.textLabel.backgroundColor = self.collapsedColor
@@ -178,6 +180,8 @@ extension ScheduleProfesorViewController: UICollectionViewDelegate, UICollection
         case 1:
             guard indexPath.row > 0 else { return }
             self.selectedProfessor = sections[self.selectedSection!].items[indexPath.row]
+            self.performSegue(withIdentifier: "selectProfessor", sender: collectionView)
+            return
         case 2:
             self.selectedSection = self.selectedSection! + 1 + indexPath.row
             self.selectedProfessor = nil
@@ -185,14 +189,17 @@ extension ScheduleProfesorViewController: UICollectionViewDelegate, UICollection
             self.selectedSection = indexPath.row
             self.selectedProfessor = nil
         }
+        UIView.animate(withDuration: 0.5, animations: {
+            collectionView.layoutIfNeeded()
+        })
     }
 }
 
 class ScheduleLayout: UICollectionViewLayout {
     let sectionHeaderHeight: CGFloat = 50
-    let sectionHeaderPadding: CGSize = CGSize(width: 0, height: 0)
+    let sectionHeaderPadding: CGSize = CGSize(width: 5, height: 5)
     let itemSize: CGSize = CGSize(width: 50, height: 50)
-    let itemPadding: CGSize = CGSize(width: 5, height: 5)
+    let itemPadding: CGSize = CGSize(width: 10, height: 5)
     
     fileprivate var cache = [IndexPath: UICollectionViewLayoutAttributes]()
     
@@ -215,13 +222,12 @@ class ScheduleLayout: UICollectionViewLayout {
         guard let collectionView = self.collectionView else { return }
         
         let itemWidth = itemPadding.width * 2 + itemSize.width
-        let itemHeight = itemPadding.height * 2
+        let itemHeight = itemPadding.height * 2 + itemSize.height
         var xOffset: CGFloat = 0
         var yOffset: CGFloat = 0
         
-        for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
-            
-            let indexPath = IndexPath(item: item, section: 0)
+        func processSectionHeader(row: Int, section: Int) {
+            let indexPath = IndexPath(row: row, section: section)
             
             let height = sectionHeaderPadding.height * 2 + sectionHeaderHeight
             let frame = CGRect(x: xOffset, y: yOffset, width: contentWidth, height: height)
@@ -234,11 +240,17 @@ class ScheduleLayout: UICollectionViewLayout {
             yOffset += height
         }
         
+        for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
+            processSectionHeader(row: item, section: 0)
+        }
+        
         guard collectionView.numberOfSections > 1 else {
             return self.contentHeight = yOffset
         }
         
-        for item in 0 ..< collectionView.numberOfItems(inSection: 1) {
+        processSectionHeader(row: 0, section: 1)
+        
+        for item in 1 ..< collectionView.numberOfItems(inSection: 1) {
             
             let indexPath = IndexPath(item: item, section: 1)
             
@@ -263,18 +275,7 @@ class ScheduleLayout: UICollectionViewLayout {
         }
         
         for item in 0 ..< collectionView.numberOfItems(inSection: 2) {
-            
-            let indexPath = IndexPath(item: item, section: 2)
-            
-            let height = sectionHeaderPadding.height * 2 + sectionHeaderHeight
-            let frame = CGRect(x: xOffset, y: yOffset, width: contentWidth, height: height)
-            let insetFrame = frame.insetBy(dx: sectionHeaderPadding.width, dy: sectionHeaderPadding.height)
-            
-            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-            attributes.frame = insetFrame
-            cache[indexPath] = attributes
-            
-            yOffset += height
+            processSectionHeader(row: item, section: 2)
         }
         
         self.contentHeight = yOffset

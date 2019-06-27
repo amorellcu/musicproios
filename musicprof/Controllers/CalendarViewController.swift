@@ -151,6 +151,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         guard let cell = cell else { return }
         self.selectedDate = date
         self.configureCell(cell, forDate: date, cellState: cellState)
+        self.performSegue(withIdentifier: "selectTime", sender: calendar)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -159,7 +160,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         }
         guard let cell = cell else { return }
         self.configureCell(cell, forDate: date, cellState: cellState)
-        self.performSegue(withIdentifier: "selectTime", sender: calendar)
+        
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {

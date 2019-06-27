@@ -25,6 +25,7 @@
 		534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */; };
 		534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4D22BFC043009249FC /* StudentCell.swift */; };
 		536C704122C1F30A00E217FF /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C704022C1F30A00E217FF /* UINavigationController.swift */; };
+		538031F422C49CBF004B107F /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538031F322C49CBF004B107F /* UIImageView.swift */; };
 		53907E0B22B1983300314EC8 /* InstrumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0A22B1983300314EC8 /* InstrumentCollectionViewCell.swift */; };
 		53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0C22B19EC700314EC8 /* Instrument.swift */; };
 		53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2527B22B6E360007C8BB1 /* Profile.swift */; };
@@ -119,6 +120,7 @@
 		534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentsViewController.swift; sourceTree = "<group>"; };
 		534F1D4D22BFC043009249FC /* StudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCell.swift; sourceTree = "<group>"; };
 		536C704022C1F30A00E217FF /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		538031F322C49CBF004B107F /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		53907E0A22B1983300314EC8 /* InstrumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentCollectionViewCell.swift; sourceTree = "<group>"; };
 		53907E0C22B19EC700314EC8 /* Instrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
 		53C2527B22B6E360007C8BB1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			children = (
 				530F8A79229B773A000AFC86 /* UIViewController.swift */,
 				536C704022C1F30A00E217FF /* UINavigationController.swift */,
+				538031F322C49CBF004B107F /* UIImageView.swift */,
 				53FDE15022BE25C500EBC13F /* DataRequest.swift */,
 			);
 			name = Extensions;
@@ -641,6 +644,7 @@
 				5333E96B22C0F8FC00175995 /* BaseReservationViewController.swift in Sources */,
 				A5CA35DA20311805002FFFD0 /* InstrumentsmeViewController.swift in Sources */,
 				A5598C71201FCB37000C64F6 /* RegisterStepOneViewController.swift in Sources */,
+				538031F422C49CBF004B107F /* UIImageView.swift in Sources */,
 				A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */,
 				A5F6F61E201FD9E600264412 /* StudentClass.swift in Sources */,
 				534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */,

@@ -1499,7 +1499,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XV8-iZ-BPM">
-                                                <rect key="frame" x="50" y="100" width="314" height="52"/>
+                                                <rect key="frame" x="25" y="100" width="364" height="52"/>
                                                 <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="52" id="WOW-WK-igo"/>
@@ -1531,7 +1531,7 @@
                                                 </constraints>
                                                 <collectionViewLayout key="collectionViewLayout" id="9vB-KJ-k5R" customClass="ScheduleLayout" customModule="musicprof" customModuleProvider="target"/>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dateCell" id="c2s-kP-RJ5" customClass="InstrumentCollectionViewCell" customModule="musicprof" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dateCell" id="c2s-kP-RJ5" customClass="DateCell" customModule="musicprof" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="0.0" width="374" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1539,7 +1539,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJQ-rh-5fb">
-                                                                    <rect key="frame" x="25" y="0.0" width="324" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                                                     <color key="backgroundColor" red="0.99914997819999996" green="0.82194018359999999" blue="0.27153930069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1556,22 +1556,36 @@
                                                             </subviews>
                                                         </view>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="vJQ-rh-5fb" secondAttribute="trailing" constant="25" id="Nlv-il-Hvf"/>
+                                                            <constraint firstAttribute="trailing" secondItem="vJQ-rh-5fb" secondAttribute="trailing" id="Nlv-il-Hvf"/>
                                                             <constraint firstItem="vJQ-rh-5fb" firstAttribute="top" secondItem="c2s-kP-RJ5" secondAttribute="top" id="RNN-jb-rOE"/>
-                                                            <constraint firstItem="vJQ-rh-5fb" firstAttribute="leading" secondItem="c2s-kP-RJ5" secondAttribute="leading" constant="25" id="lFn-Oy-rDL"/>
+                                                            <constraint firstItem="vJQ-rh-5fb" firstAttribute="leading" secondItem="c2s-kP-RJ5" secondAttribute="leading" id="lFn-Oy-rDL"/>
                                                             <constraint firstAttribute="bottom" secondItem="vJQ-rh-5fb" secondAttribute="bottom" id="zNP-dZ-4wm"/>
                                                         </constraints>
                                                         <size key="customSize" width="374" height="50"/>
+                                                        <connections>
+                                                            <outlet property="textLabel" destination="vJQ-rh-5fb" id="cDV-UJ-QNf"/>
+                                                        </connections>
                                                     </collectionViewCell>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="professorCell" id="PkR-bB-oYH" customClass="InstrumentCollectionViewCell" customModule="musicprof" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="professorCell" id="PkR-bB-oYH" customClass="ProfessorCell" customModule="musicprof" customModuleProvider="target">
                                                         <rect key="frame" x="182" y="60" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0A8-Qa-nYr">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0A8-Qa-nYr">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                            <real key="value" value="1"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                            <color key="value" red="0.0" green="0.99607843139999996" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="25"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </imageView>
                                                             </subviews>
                                                         </view>
@@ -1581,6 +1595,9 @@
                                                             <constraint firstItem="0A8-Qa-nYr" firstAttribute="top" secondItem="PkR-bB-oYH" secondAttribute="top" id="WYf-0T-OsI"/>
                                                             <constraint firstItem="0A8-Qa-nYr" firstAttribute="leading" secondItem="PkR-bB-oYH" secondAttribute="leading" id="hzC-Vn-WdX"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <outlet property="avatarImageView" destination="0A8-Qa-nYr" id="wpg-vM-X5l"/>
+                                                        </connections>
                                                     </collectionViewCell>
                                                 </cells>
                                                 <connections>
@@ -1596,9 +1613,9 @@
                                             <constraint firstAttribute="trailing" secondItem="Cuf-H7-HLk" secondAttribute="trailing" id="BMW-tA-9Eu"/>
                                             <constraint firstItem="PUP-sZ-NyC" firstAttribute="top" secondItem="XV8-iZ-BPM" secondAttribute="bottom" constant="8" id="Mzp-DB-w2m"/>
                                             <constraint firstAttribute="bottom" secondItem="PUP-sZ-NyC" secondAttribute="bottom" constant="40" id="Rz7-BW-JIe"/>
-                                            <constraint firstItem="XV8-iZ-BPM" firstAttribute="leading" secondItem="Kix-0h-leP" secondAttribute="leading" constant="50" id="YgJ-jz-QYj"/>
+                                            <constraint firstItem="XV8-iZ-BPM" firstAttribute="leading" secondItem="Kix-0h-leP" secondAttribute="leading" constant="25" id="YgJ-jz-QYj"/>
                                             <constraint firstItem="Cuf-H7-HLk" firstAttribute="leading" secondItem="Kix-0h-leP" secondAttribute="leading" id="Zk5-2e-zD1"/>
-                                            <constraint firstAttribute="trailing" secondItem="XV8-iZ-BPM" secondAttribute="trailing" constant="50" id="dXc-vL-JMl"/>
+                                            <constraint firstAttribute="trailing" secondItem="XV8-iZ-BPM" secondAttribute="trailing" constant="25" id="dXc-vL-JMl"/>
                                             <constraint firstItem="Cuf-H7-HLk" firstAttribute="top" secondItem="Kix-0h-leP" secondAttribute="top" constant="40" id="gnj-Pl-34a"/>
                                             <constraint firstItem="XV8-iZ-BPM" firstAttribute="top" secondItem="Cuf-H7-HLk" secondAttribute="bottom" constant="8" id="lON-V7-jCl"/>
                                         </constraints>
