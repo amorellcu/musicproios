@@ -8,6 +8,6 @@
 
 import UIKit
 
-class InstrumentCollectionViewCell: UICollectionViewCell {
+class InstrumentCell: UICollectionViewCell {
     @IBOutlet weak var instrumentIcon: UIImageView!
 }

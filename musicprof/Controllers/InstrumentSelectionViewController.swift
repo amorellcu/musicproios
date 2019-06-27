@@ -11,7 +11,10 @@ import SCLAlertView
 import AlamofireImage
 
 class InstrumentSelectionViewController: BaseReservationViewController {
+    let expandedColor = UIColor(red: 0/255 ,green: 255/255 ,blue: 180/255 ,alpha: 1)
+    let collapsedColor = UIColor(red: 124/255, green: 124/255, blue: 124/255, alpha: 1)
     let prototypeCellIdentifier = "instrumentCell"
+    
     var userInstruments: [Instrument] = [] {
         didSet {
             self.collectionView.reloadData()
@@ -61,19 +64,38 @@ class InstrumentSelectionViewController: BaseReservationViewController {
         }
     }
     
+    private func setButtonState(_ button: UIButton, isCollapsed: Bool) {
+        let leftArrow = button.superview?.viewWithTag(1) as? UIImageView
+        let rightArrow = button.superview?.viewWithTag(2) as? UIImageView
+        
+        if isCollapsed {
+            button.setTitleColor(collapsedColor, for: .normal)
+            leftArrow?.image = UIImage(named: "fleizqoff")
+            rightArrow?.image = UIImage(named: "flederoff")
+        } else {
+            button.setTitleColor(expandedColor, for: .normal)
+            leftArrow?.image = UIImage(named: "flechaizq")
+            rightArrow?.image = UIImage(named: "flechader")
+        }
+    }
+    
     @IBAction func onAddStudentsTapped(_ sender: UIButton) {
         self.studentsViewCollapseConstraint?.priority = .defaultLow
+        self.setButtonState(self.selectInstrumentsButton, isCollapsed: true)
         self.collectionViewCollapseConstraint?.priority = .defaultHigh
+        self.setButtonState(self.addStudentsButton, isCollapsed: false)
         UIView.animate(withDuration: 0.5) {
-            self.scrollView.layoutIfNeeded()
+            self.collectionView.superview?.layoutIfNeeded()
         }
     }
     
     @IBAction func onSelectInstrumentTapped(_ sender: UIButton) {
         self.collectionViewCollapseConstraint?.priority = .defaultLow
+        self.setButtonState(self.selectInstrumentsButton, isCollapsed: false)
         self.studentsViewCollapseConstraint?.priority = .defaultHigh
+        self.setButtonState(self.addStudentsButton, isCollapsed: true)
         UIView.animate(withDuration: 0.5) {
-            self.scrollView.layoutIfNeeded()
+            self.collectionView.superview?.layoutIfNeeded()
         }
     }
     
@@ -107,14 +129,16 @@ extension InstrumentSelectionViewController: UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: prototypeCellIdentifier, for: indexPath) as! InstrumentCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: prototypeCellIdentifier, for: indexPath) as! InstrumentCell
         let instrument = self.instruments(fromSection: indexPath.section)?[indexPath.row]
         if let iconURL = instrument?.iconUrl {
-            let filter: ImageFilter = ScaledToSizeFilter(size: cell.instrumentIcon.frame.size)
-            cell.instrumentIcon.af_setImage(withURL: iconURL, filter: filter)
+            var filter: ImageFilter = ScaledToSizeFilter(size: cell.iconImageView.frame.size)
+            filter = TemplateFilter()
+            cell.iconImageView.af_setImage(withURL: iconURL, filter: filter)
         } else {
-            cell.instrumentIcon.image = UIImage(named: "no_instrument")
+            cell.iconImageView.image = UIImage(named: "no_instrument")
         }
+        cell.updateColors()
         
         return cell
     }

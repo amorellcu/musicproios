@@ -1,5 +1,5 @@
 //
-//  UIImageView.swift
+//  UIView.swift
 //  musicprof
 //
 //  Created by John Doe on 6/27/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable extension UIImageView {
+@IBDesignable extension UIView {
     @IBInspectable var borderWidth: CGFloat {
         set {
             layer.borderWidth = newValue

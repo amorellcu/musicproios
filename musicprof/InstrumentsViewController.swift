@@ -10,39 +10,6 @@ import UIKit
 import AlamofireImage
 import SCLAlertView
 
-@IBDesignable extension UILabel {
-    
-    @IBInspectable var borderWidth: CGFloat {
-        set {
-            layer.borderWidth = newValue
-        }
-        get {
-            return layer.borderWidth
-        }
-    }
-    
-    @IBInspectable var cornerRadius: CGFloat {
-        set {
-            layer.cornerRadius = newValue
-        }
-        get {
-            return layer.cornerRadius
-        }
-    }
-    
-    @IBInspectable var borderColor: UIColor? {
-        set {
-            guard let uiColor = newValue else { return }
-            layer.borderColor = uiColor.cgColor
-        }
-        get {
-            guard let color = layer.borderColor else { return nil }
-            return UIColor(cgColor: color)
-        }
-    }
-}
-
-
 class InstrumentsViewController: UIViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     let alertView = SCLAlertView()
     let prototypeCellIdentifier = "instrumentCell"
@@ -56,7 +23,7 @@ class InstrumentsViewController: UIViewController, UITextFieldDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: prototypeCellIdentifier, for: indexPath) as! InstrumentCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: prototypeCellIdentifier, for: indexPath) as! InstrumentCell
         let icon = icons[indexPath.item]
         
         if selectedInstrument == indexPath.item {
@@ -65,7 +32,7 @@ class InstrumentsViewController: UIViewController, UITextFieldDelegate, UICollec
             icon.tintColor = UIColor.white
         }
         
-        cell.instrumentIcon.image = icon.image
+        cell.iconImageView.image = icon.image
         
         return cell
     }

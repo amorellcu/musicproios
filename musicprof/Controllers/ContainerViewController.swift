@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class ContainerViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -26,11 +27,12 @@ class ContainerViewController: UIViewController {
         self.profileNameLabel.text = self.service.user?.name
         let placeholderAvatar = UIImage(named:"userdefault")
         if let avatarUrl = self.service.user?.avatarUrl {
-            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"))
+            let filter = ScaledToSizeCircleFilter(size: self.avatarImageView.frame.size)
+            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"), filter: filter)
         } else {
-            self.avatarImageView.image = placeholderAvatar
+            self.avatarImageView.image = placeholderAvatar?.af_imageAspectScaled(toFit: self.avatarImageView.frame.size).af_imageRoundedIntoCircle()
         }
-        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
+        //self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
         self.avatarImageView.clipsToBounds = true
     }
     
