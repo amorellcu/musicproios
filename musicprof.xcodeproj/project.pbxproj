@@ -63,9 +63,9 @@
 		A5CA35D8202CA10C002FFFD0 /* InstrumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA35D7202CA10C002FFFD0 /* InstrumentsViewController.swift */; };
 		A5CA35DA20311805002FFFD0 /* InstrumentsmeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA35D920311805002FFFD0 /* InstrumentsmeViewController.swift */; };
 		A5E1FB1C2042514000B15DD9 /* ProfesorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB1B2042514000B15DD9 /* ProfesorTableViewCell.swift */; };
-		A5E1FB1E2044BC2200B15DD9 /* ProfesorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB1D2044BC2200B15DD9 /* ProfesorDetailViewController.swift */; };
+		A5E1FB1E2044BC2200B15DD9 /* ProfessorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB1D2044BC2200B15DD9 /* ProfessorDetailsViewController.swift */; };
 		A5E1FB202044CE6600B15DD9 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */; };
-		A5E1FB242044DD4600B15DD9 /* Header1TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB232044DD4600B15DD9 /* Header1TableViewCell.swift */; };
+		A5E1FB242044DD4600B15DD9 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB232044DD4600B15DD9 /* HeaderCell.swift */; };
 		A5F6F61E201FD9E600264412 /* StudentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F6F61D201FD9E600264412 /* StudentClass.swift */; };
 		A5FF65842024FE34003778B3 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF65832024FE34003778B3 /* HeaderTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -169,9 +169,9 @@
 		A5CA35D7202CA10C002FFFD0 /* InstrumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsViewController.swift; sourceTree = "<group>"; };
 		A5CA35D920311805002FFFD0 /* InstrumentsmeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsmeViewController.swift; sourceTree = "<group>"; };
 		A5E1FB1B2042514000B15DD9 /* ProfesorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfesorTableViewCell.swift; sourceTree = "<group>"; };
-		A5E1FB1D2044BC2200B15DD9 /* ProfesorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfesorDetailViewController.swift; sourceTree = "<group>"; };
+		A5E1FB1D2044BC2200B15DD9 /* ProfessorDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorDetailsViewController.swift; sourceTree = "<group>"; };
 		A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
-		A5E1FB232044DD4600B15DD9 /* Header1TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header1TableViewCell.swift; sourceTree = "<group>"; };
+		A5E1FB232044DD4600B15DD9 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		A5F6F61D201FD9E600264412 /* StudentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentClass.swift; sourceTree = "<group>"; };
 		A5FF65832024FE34003778B3 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		D86ACBF90E826131BAF27404 /* Pods-musicprofTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofTests.debug.xcconfig"; path = "Target Support Files/Pods-musicprofTests/Pods-musicprofTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -295,6 +295,9 @@
 				5333E96122C0E46500175995 /* ProfessorListViewController.swift */,
 				5333E95F22C0E3FD00175995 /* ProfessorCell.swift */,
 				53D8E20122C3D5FB00E3FABB /* DateCell.swift */,
+				A5E1FB1D2044BC2200B15DD9 /* ProfessorDetailsViewController.swift */,
+				A5E1FB232044DD4600B15DD9 /* HeaderCell.swift */,
+				A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -331,7 +334,6 @@
 				53D98FBC22BD35290027FDCD /* Views */,
 				A5598C17201F8C3B000C64F6 /* AppDelegate.swift */,
 				A5FF65832024FE34003778B3 /* HeaderTableViewCell.swift */,
-				A5E1FB232044DD4600B15DD9 /* Header1TableViewCell.swift */,
 				A5AA588C202A57B100F4370A /* UsersTableViewCell.swift */,
 				A5E1FB1B2042514000B15DD9 /* ProfesorTableViewCell.swift */,
 				A5CA35D5202BA922002FFFD0 /* peopleTableViewCell.swift */,
@@ -344,8 +346,6 @@
 				A5598C70201FCB37000C64F6 /* RegisterStepOneViewController.swift */,
 				A5598C1B201F8C3B000C64F6 /* Main.storyboard */,
 				15588080209BB753003DC16A /* PackagesViewController.swift */,
-				A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */,
-				A5E1FB1D2044BC2200B15DD9 /* ProfesorDetailViewController.swift */,
 				A5598C1E201F8C3B000C64F6 /* Assets.xcassets */,
 				A5598C20201F8C3B000C64F6 /* LaunchScreen.storyboard */,
 				A5598C23201F8C3B000C64F6 /* Info.plist */,
@@ -648,7 +648,7 @@
 				A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */,
 				A5F6F61E201FD9E600264412 /* StudentClass.swift in Sources */,
 				534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */,
-				A5E1FB1E2044BC2200B15DD9 /* ProfesorDetailViewController.swift in Sources */,
+				A5E1FB1E2044BC2200B15DD9 /* ProfessorDetailsViewController.swift in Sources */,
 				15588081209BB753003DC16A /* PackagesViewController.swift in Sources */,
 				53D98FC822BD3FC30027FDCD /* ApiManager.swift in Sources */,
 				A5AD1EC020338A6F00A38F85 /* CalendarCell.swift in Sources */,
@@ -673,7 +673,7 @@
 				A5CA35D8202CA10C002FFFD0 /* InstrumentsViewController.swift in Sources */,
 				A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */,
 				534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */,
-				A5E1FB242044DD4600B15DD9 /* Header1TableViewCell.swift in Sources */,
+				A5E1FB242044DD4600B15DD9 /* HeaderCell.swift in Sources */,
 				15DFDFBE208E4E7500B28338 /* ApiStudent.swift in Sources */,
 				53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */,
 				53FD596222BE4D7D002F5172 /* ProfileViewController.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  Header1TableViewCell.swift
+//  TextTableViewCell.swift
 //  musicprof
 //
 //  Created by Alexis Morell Blanco on 26/02/18.
@@ -8,14 +8,13 @@
 
 import UIKit
 
-class Header1TableViewCell: UITableViewCell {
-    @IBOutlet weak var togglebutton: UIButton!
+class TextTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var contentLabel: UILabel!
     
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    @IBOutlet weak var imgizq: UIImageView!
-    
-    @IBOutlet weak var imgder: UIImageView!
+    override var textLabel: UILabel? {
+        return self.contentLabel
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

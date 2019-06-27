@@ -116,6 +116,13 @@ class ScheduleProfesorViewController: BaseReservationViewController {
 
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let controller = segue.destination as? ProfessorDetailsViewController, let sections = self.sections, let selection = self.selectedSection {
+            controller.professors = sections[selection].items
+        }
+    }
+    
     struct Section: Equatable {var name: String
         var date: Date
         var items: [Professor]
