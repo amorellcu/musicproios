@@ -15,6 +15,7 @@
 		5305F99622C4E950002284EF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5305F99522C4E950002284EF /* UIView.swift */; };
 		530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A77229A1656000AFC86 /* RootViewController.swift */; };
 		530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A79229B773A000AFC86 /* UIViewController.swift */; };
+		532CC89C22C50D3F00FB1822 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532CC89B22C50D3F00FB1822 /* TransparentButton.swift */; };
 		5333E96022C0E3FD00175995 /* ProfessorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E95F22C0E3FD00175995 /* ProfessorCell.swift */; };
 		5333E96222C0E46500175995 /* ProfessorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96122C0E46500175995 /* ProfessorListViewController.swift */; };
 		5333E96422C0EAAB00175995 /* Professor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96322C0EAAB00175995 /* Professor.swift */; };
@@ -126,6 +127,7 @@
 		5305F99522C4E950002284EF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		530F8A77229A1656000AFC86 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		530F8A79229B773A000AFC86 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		532CC89B22C50D3F00FB1822 /* TransparentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
 		5333E95F22C0E3FD00175995 /* ProfessorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorCell.swift; sourceTree = "<group>"; };
 		5333E96122C0E46500175995 /* ProfessorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorListViewController.swift; sourceTree = "<group>"; };
 		5333E96322C0EAAB00175995 /* Professor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Professor.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				53D98FBD22BD35D10027FDCD /* Reservation.storyboard */,
+				532CC89B22C50D3F00FB1822 /* TransparentButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				53D98FCC22BD459E0027FDCD /* ApiError.swift in Sources */,
 				A5A99ADA2025345D0050D8D8 /* ItemTableViewCell.swift in Sources */,
 				A5CA35D8202CA10C002FFFD0 /* InstrumentsViewController.swift in Sources */,
+				532CC89C22C50D3F00FB1822 /* TransparentButton.swift in Sources */,
 				A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */,
 				534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */,
 				A5E1FB242044DD4600B15DD9 /* HeaderCell.swift in Sources */,

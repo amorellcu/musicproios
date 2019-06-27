@@ -24,6 +24,7 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var previousMonthButton: UIButton!
     @IBOutlet weak var nextMonthButton: UIButton!
+    @IBOutlet weak var proceedButton: UIButton!
     
     let outsideDayColor = UIColor(red: 124/255 ,green: 124/255 ,blue: 124/255 ,alpha: 1)
     let dayColor = UIColor(red: 255/255 ,green: 210/255 ,blue: 69/255 ,alpha: 1)
@@ -34,6 +35,7 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
     var selectedDate: Date? {
         didSet {
             self.reservation.date = self.selectedDate
+            self.proceedButton.isEnabled = self.selectedDate != nil
         }
     }
     var validDates = [Int: [Date]]() {
@@ -51,8 +53,7 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.daysView.layer.cornerRadius = 28
-        self.daysView.clipsToBounds = true
+        self.daysView.layer.masksToBounds = true
         
         setupCalendarView()
     }
@@ -99,6 +100,9 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
         let monthName = self.calendar.monthSymbols[month - 1]
         self.monthLabel.text = monthName.uppercased()
         
+        self.previousMonthButton.isEnabled = !visibleDates.monthDates.contains(where: {$0.date == self.startDate})
+        self.nextMonthButton.isEnabled = !visibleDates.monthDates.contains(where: {$0.date == self.endDate})
+        
         if self.validDates[month] == nil {
             self.updateValidDates(forMonth: month)
         }
@@ -112,6 +116,10 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
     @IBAction func onNextMonthTapped(_ sender: Any) {
         self.calendarView.scrollToSegment(.next)
     }
+    
+    @IBAction func onProceedTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "selectTime", sender: calendar)
+    }
 }
 
 extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
@@ -120,10 +128,13 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         cell.dateLabel.text = cellState.text
         if cellState.isSelected {
             cell.dateLabel.textColor = self.selectedDayColor
+            cell.selectedView.backgroundColor = self.dayColor
         } else if cellState.dateBelongsTo == .thisMonth && self.isDateValid(date) {
             cell.dateLabel.textColor = self.dayColor
+            cell.selectedView.backgroundColor = UIColor.clear
         } else {
             cell.dateLabel.textColor = self.outsideDayColor
+            cell.selectedView.backgroundColor = UIColor.clear
         }
     }
     
@@ -151,7 +162,6 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         guard let cell = cell else { return }
         self.selectedDate = date
         self.configureCell(cell, forDate: date, cellState: cellState)
-        self.performSegue(withIdentifier: "selectTime", sender: calendar)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
