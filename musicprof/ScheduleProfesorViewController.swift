@@ -135,25 +135,17 @@ class ScheduleProfesorViewController: BaseReservationViewController {
 
 extension ScheduleProfesorViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.selectedSection == nil ? 1 : 3
+        return self.sections?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let sections = self.sections else { return 0 }
-        guard let index = self.selectedSection else { return sections.count }
-        switch section {
-        case 0:
-            return index
-        case 1:
-            return sections[index].items.count + 1
-        default:
-            return sections.count - 1 - index
-        }
+        return section == self.selectedSection ? sections[section].items.count + 1 : 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let sections = self.sections else { return UICollectionViewCell() }
-        if indexPath.section == 1 && indexPath.row > 0 {
+        if indexPath.row > 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "professorCell", for: indexPath) as! ProfessorCell
             guard let index = self.selectedSection else { return cell }
             let professor = sections[index].items[indexPath.row - 1]
@@ -166,39 +158,25 @@ extension ScheduleProfesorViewController: UICollectionViewDelegate, UICollection
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateCell
-            switch indexPath.section {
-            case 1:
-                cell.textLabel.text = sections[self.selectedSection!].name
-                cell.textLabel.backgroundColor = self.expandedColor
-            case 2:
-                cell.textLabel.text = sections[self.selectedSection! + 1 + indexPath.row].name
-                cell.textLabel.backgroundColor = self.collapsedColor
-            default:
-                cell.textLabel.text = sections[indexPath.row].name
-                cell.textLabel.backgroundColor = self.collapsedColor
-            }
+            cell.textLabel.text = sections[indexPath.section].name
+            cell.textLabel.backgroundColor = indexPath.section == self.selectedSection ? self.expandedColor : self.collapsedColor
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let sections = self.sections else { return }
-        switch indexPath.section {
-        case 1:
-            guard indexPath.row > 0 else { return }
-            self.selectedProfessor = sections[self.selectedSection!].items[indexPath.row]
+        if indexPath.row > 0 {
+            self.selectedProfessor = sections[indexPath.section].items[indexPath.row - 1]
             self.performSegue(withIdentifier: "selectProfessor", sender: collectionView)
-            return
-        case 2:
-            self.selectedSection = self.selectedSection! + 1 + indexPath.row
+        } else {
+            self.selectedSection = indexPath.section
             self.selectedProfessor = nil
-        default:
-            self.selectedSection = indexPath.row
-            self.selectedProfessor = nil
+            UIView.animate(withDuration: 0.5, animations: {
+                collectionView.layoutIfNeeded()
+            })
+            collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
         }
-        UIView.animate(withDuration: 0.5, animations: {
-            collectionView.layoutIfNeeded()
-        })
     }
 }
 
@@ -247,19 +225,8 @@ class ScheduleLayout: UICollectionViewLayout {
             yOffset += height
         }
         
-        for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
-            processSectionHeader(row: item, section: 0)
-        }
-        
-        guard collectionView.numberOfSections > 1 else {
-            return self.contentHeight = yOffset
-        }
-        
-        processSectionHeader(row: 0, section: 1)
-        
-        for item in 1 ..< collectionView.numberOfItems(inSection: 1) {
-            
-            let indexPath = IndexPath(item: item, section: 1)
+        func processSectionItem(row: Int, section: Int) {
+            let indexPath = IndexPath(row: row, section: section)
             
             let height = itemHeight
             let frame = CGRect(x: xOffset, y: yOffset, width: itemWidth, height: height)
@@ -276,13 +243,20 @@ class ScheduleLayout: UICollectionViewLayout {
             }
         }
         
-        if xOffset > 0 {
-            xOffset = 0
-            yOffset += itemHeight
-        }
-        
-        for item in 0 ..< collectionView.numberOfItems(inSection: 2) {
-            processSectionHeader(row: item, section: 2)
+        for section in 0 ..< collectionView.numberOfSections {
+            let itemCount = collectionView.numberOfItems(inSection: section)
+            guard itemCount > 0 else { continue }
+            
+            processSectionHeader(row: 0, section: section)
+            
+            for row in 1 ..< itemCount {
+                processSectionItem(row: row, section: section)
+            }
+            
+            if xOffset > 0 {
+                xOffset = 0
+                yOffset += itemHeight
+            }
         }
         
         self.contentHeight = yOffset
