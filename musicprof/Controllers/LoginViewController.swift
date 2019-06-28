@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
             self.service.getUserInfo {[weak self](result) in
                 self?.removeSpinner()
                 self?.handleResult(result, onSuccess: {
-                    self?.performSegue(withIdentifier: "calendar", sender: self)
+                    self?.performSegue(withIdentifier: "login", sender: self)
                 })
             }
         }
@@ -71,7 +71,7 @@ class LoginViewController: UIViewController {
                      }
                      }
                      */
-                    self?.performSegue(withIdentifier: "goToCalendar", sender: self)
+                    self?.performSegue(withIdentifier: "login", sender: self)
                 })
             }
         }
@@ -130,7 +130,7 @@ class LoginViewController: UIViewController {
                          }
                          }
                          */
-                        self?.performSegue(withIdentifier: "calendar", sender: self)
+                        self?.performSegue(withIdentifier: "login", sender: self)
                     })
                 })
             }
@@ -149,7 +149,7 @@ class LoginViewController: UIViewController {
             self?.removeSpinner()
             self?.handleResult(result) {
                 UserDefaults.standard.set(email, forKey: "user")
-                self?.performSegue(withIdentifier: "calendar", sender: sender)
+                self?.performSegue(withIdentifier: "login", sender: sender)
             }
         }
     }
