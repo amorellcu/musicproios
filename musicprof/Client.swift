@@ -11,6 +11,7 @@ import FacebookLogin
 import FBSDKLoginKit
 import FBSDKCoreKit
 import Alamofire
+import MobileCoreServices
 
 
 class Client: NSObject, Decodable, NSCoding, Student {
@@ -29,8 +30,9 @@ class Client: NSObject, Decodable, NSCoding, Student {
     override init() {
         self.id = -1
         self.userId = -1
-        self.name = ""
-        self.locationId = 86351
+        self.name = "test"
+        self.locationId = 409
+        self.address = "test address"
         super.init()
     }
     
@@ -110,11 +112,22 @@ extension Client {
         form.append(str.description.data(using: .utf8)!, withName: name)
     }
     
-    private func encodeIfPresent<T: CustomStringConvertible>(_ values: [T]?, withName name: String, to form: MultipartFormData) {
+    private func encodeValues<T: CustomStringConvertible>(_ values: [T]?, withName name: String, to form: MultipartFormData) {
         let values = values ?? []
         for i in 0 ..< values.count {
-            self.encode(values[i], withName: "\(name)[\(i)]", to: form)
+            self.encode(values[i], withName: "\(name)[]", to: form)
         }
+    }
+    
+    private func mimeType(forPathExtension pathExtension: String) -> String {
+        if
+            let id = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension as CFString, nil)?.takeRetainedValue(),
+            let contentType = UTTypeCopyPreferredTagWithClass(id, kUTTagClassMIMEType)?.takeRetainedValue()
+        {
+            return contentType as String
+        }
+        
+        return "application/octet-stream"
     }
     
     func encode(to form: MultipartFormData) {
@@ -126,11 +139,17 @@ extension Client {
         self.encodeIfPresent(self.phone, withName: CodingKeys.phone.rawValue, to: form)
         self.encodeIfPresent(self.address, withName: CodingKeys.address.rawValue, to: form)
         self.encodeIfPresent(self.locationId, withName: "coloniaId", to: form)
-        self.encodeIfPresent(self.instruments, withName: CodingKeys.instruments.rawValue, to: form)
+        self.encodeValues(self.instruments?.map({$0.id}), withName: CodingKeys.instruments.rawValue, to: form)
         self.encodeIfPresent(self.facebookId, withName: "facebookID", to: form)
         self.encode(1, withName: "paymentTypeId", to: form)
-        if let avatarUrl = self.avatarUrl, avatarUrl.isFileURL {
-            form.append(avatarUrl, withName: UserKeys.avatar.rawValue)
+        if let avatarUrl = self.avatarUrl {
+            if avatarUrl.isFileURL {
+                form.append(avatarUrl, withName: UserKeys.avatar.rawValue)
+            } else if let data = try? Data(contentsOf: avatarUrl) {
+                let ext = avatarUrl.pathExtension
+                let mimeType = self.mimeType(forPathExtension: ext)
+                form.append(data, withName: UserKeys.avatar.rawValue, mimeType: mimeType)
+            }
         }
     }
 }

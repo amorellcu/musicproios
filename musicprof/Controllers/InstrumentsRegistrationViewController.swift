@@ -84,10 +84,6 @@ class InstrumentsRegistrationViewController: UIViewController, RegistrationContr
          */
     }
     
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
-    }
-    
     func reset() {
         self.studentNameTextField?.text = ""
         self.collectionView.selectItem(at: nil, animated: true, scrollPosition: .top)
@@ -112,7 +108,7 @@ class InstrumentsRegistrationViewController: UIViewController, RegistrationContr
                     self.reset()
                 }
                 alertView.addButton("NO") {
-                    self.performSegue(withIdentifier: "backToLogin", sender: sender)
+                    self.performSegue(withIdentifier: "setPassword", sender: sender)
                 }
                 alertView.showSuccess("El estudiante \(self.studentNameTextField?.text ?? "") se ha agregado correctamente", subTitle: "¿Desea Agregar otro estudiante?")
             }
@@ -134,7 +130,7 @@ class InstrumentsRegistrationViewController: UIViewController, RegistrationContr
                 )
                 let alertView1 = SCLAlertView(appearance: appearance)
                 alertView1.addButton("OK") {
-                    self.performSegue(withIdentifier: "backToLogin", sender: sender)
+                    self.performSegue(withIdentifier: "setPassword", sender: sender)
                 }
                 alertView1.showSuccess("Gracias por Registrarte", subTitle: message)
             }
@@ -149,6 +145,9 @@ class InstrumentsRegistrationViewController: UIViewController, RegistrationContr
         // Pass the selected object to the new view controller.
         if let controller = segue.destination as? RegistrationController {
             controller.client = self.client
+        }
+        if let controller = segue.destination as? PasswordResetViewController {
+            controller.email = self.client.email
         }
     }
 }

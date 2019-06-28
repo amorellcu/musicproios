@@ -28,6 +28,7 @@
 		534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4D22BFC043009249FC /* StudentCell.swift */; };
 		536752C122C5E19B00DA1590 /* SubaccountListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536752C022C5E19B00DA1590 /* SubaccountListViewController.swift */; };
 		536C704122C1F30A00E217FF /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C704022C1F30A00E217FF /* UINavigationController.swift */; };
+		536F8A5A22C6510D0061CF17 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */; };
 		53907E0B22B1983300314EC8 /* InstrumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0A22B1983300314EC8 /* InstrumentCell.swift */; };
 		53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0C22B19EC700314EC8 /* Instrument.swift */; };
 		539C80B722C4C621009D8469 /* FilsonProBlack-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80AE22C4C5B2009D8469 /* FilsonProBlack-Black.otf */; };
@@ -141,6 +142,7 @@
 		534F1D4D22BFC043009249FC /* StudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCell.swift; sourceTree = "<group>"; };
 		536752C022C5E19B00DA1590 /* SubaccountListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubaccountListViewController.swift; sourceTree = "<group>"; };
 		536C704022C1F30A00E217FF /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		53907E0A22B1983300314EC8 /* InstrumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentCell.swift; sourceTree = "<group>"; };
 		53907E0C22B19EC700314EC8 /* Instrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
 		539C80A722C4C5AC009D8469 /* FilsonProLight-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProLight-Light.otf"; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				A5598C19201F8C3B000C64F6 /* ViewController.swift */,
 				A5598C70201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift */,
 				A5CA35D7202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift */,
+				536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */,
 				53FD596122BE4D7D002F5172 /* ProfileViewController.swift */,
 				536752C022C5E19B00DA1590 /* SubaccountListViewController.swift */,
 				53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */,
@@ -737,6 +740,7 @@
 				53DEFCE322C24CC30003852E /* LocationListViewController.swift in Sources */,
 				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,
 				53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */,
+				536F8A5A22C6510D0061CF17 /* PasswordResetViewController.swift in Sources */,
 				A5FF65842024FE34003778B3 /* HeaderTableViewCell.swift in Sources */,
 				5333E96222C0E46500175995 /* ProfessorListViewController.swift in Sources */,
 				53D98FCE22BD45F50027FDCD /* AppError.swift in Sources */,

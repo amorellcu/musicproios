@@ -284,8 +284,15 @@ class ApiManager {
         }, to: url) { (result) in
             switch result {
             case .success(let request, _, _):
-                let _ = request.responseDecodable { (result: ApiResult<UserData>) in
-                    handler(result.transform(with: {$0.client}))
+                let _ = request.responseDecodable { (result: ApiResult<LoginData>) in
+                    switch result {
+                    case .success(let data):
+                        self.createAdapter(accessToken: data.token, refreshToken: "")
+                        self.user = data.client
+                        handler(.success(data: data.client))
+                    case .failure(let error):
+                        handler(.failure(error: error))
+                    }
                 }
             case .failure(let error):
                 handler(.failure(error: error))
@@ -309,6 +316,24 @@ class ApiManager {
         }
     }
     
+    func sendResetCode(toEmail email: String, handler: @escaping (ApiResult<Void>) -> Void) {
+        let url = baseUrl.appendingPathComponent("password/email")
+        let parameters = ["email": email]
+        let _ = self.session
+            .request(url, method: .post, parameters: parameters,
+                     encoding: URLEncoding.httpBody, headers: headers)
+            .responseError(completionHandler: handler)
+    }
+    
+    func resetPassword(forUser email: String, password: String, code: String, handler: @escaping (ApiResult<Void>) -> Void) {
+        let url = baseUrl.appendingPathComponent("password/reset")
+        let parameters = ["email": email, "token": code, "password": password, "password_confirmation": password]
+        let _ = self.session
+            .request(url, method: .post, parameters: parameters,
+                     encoding: URLEncoding.httpBody, headers: headers)
+            .responseError(completionHandler: handler)
+    }
+    
     private func post<T: Encodable>(_ encodable: T, to url: URL, handler: @escaping (ApiResult<Void>) -> Void) {
         var data: Data
         do {
@@ -318,6 +343,8 @@ class ApiManager {
             handler(.failure(error: error))
             return
         }
+        var headers = self.headers
+        headers["Content-Type"] = "application/json"
         let _ = self.session
             .upload(data, to: url,
                     method: .post,
@@ -335,6 +362,8 @@ class ApiManager {
             handler(.failure(error: error))
             return
         }
+        var headers = self.headers
+        headers["Content-Type"] = "application/json"
         let _ = self.session
             .upload(data, to: url,
                     method: .post,

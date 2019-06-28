@@ -59,7 +59,7 @@ class ContactInfoRegistrationViewController: UIViewController, RegistrationContr
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        //self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
