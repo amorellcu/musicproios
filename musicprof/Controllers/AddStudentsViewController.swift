@@ -27,15 +27,11 @@ class AddStudentsViewController: BaseReservationViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var studentNameTextField: UITextField!
     @IBOutlet weak var addStudentButton: UIButton!
-    var scrollView: UIScrollView?
     
     override func viewDidLoad() {
         super.viewDidLoad()        
         // Do any additional setup after loading the view.
         self.studentNameTextField.delegate = self
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.resignFirstResponder))
         tap.cancelsTouchesInView = false
@@ -56,20 +52,6 @@ class AddStudentsViewController: BaseReservationViewController {
         view.endEditing(true)
     }
     
-    @objc func adjustForKeyboard(notification: Notification) {
-        let userInfo = notification.userInfo!
-        
-        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
-        if notification.name == Notification.Name.UIKeyboardWillHide {
-            scrollView?.contentInset = UIEdgeInsets.zero
-        } else {
-            scrollView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
-        }
-    }
-    
-    
     @IBAction func onAddStudentTapped(_ sender: Any) {
         guard let name = self.studentNameTextField.text, !name.isEmpty else {
             return
@@ -88,6 +70,7 @@ extension AddStudentsViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.addStudentButton.isEnabled = !(textField.text ?? "").isEmpty
+        self.container?.setDisplayMode(.full, animated: true)
     }
 }
 

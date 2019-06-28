@@ -26,7 +26,6 @@ class InstrumentSelectionViewController: BaseReservationViewController {
         }
     }
     
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var selectInstrumentsButton: UIButton!
     @IBOutlet weak var addStudentsButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -104,7 +103,6 @@ class InstrumentSelectionViewController: BaseReservationViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nestedController = segue.destination as? AddStudentsViewController {
             nestedController.parentController = self
-            nestedController.scrollView = self.scrollView
         }
         super.prepare(for: segue, sender: sender)
     }
