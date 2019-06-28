@@ -10,11 +10,12 @@ import Foundation
 import FacebookLogin
 import FBSDKLoginKit
 import FBSDKCoreKit
+import Alamofire
 
 
 class Client: NSObject, Decodable, NSCoding, Student {
-    let id: Int
-    let userId: Int
+    var id: Int
+    var userId: Int
     var name: String
     var email: String?
     var phone: String?
@@ -26,9 +27,10 @@ class Client: NSObject, Decodable, NSCoding, Student {
     var subaccounts: [Client]?
     
     override init() {
-        self.id = 0
-        self.userId = 0
+        self.id = -1
+        self.userId = -1
         self.name = ""
+        self.locationId = 86351
         super.init()
     }
     
@@ -95,6 +97,41 @@ class Client: NSObject, Decodable, NSCoding, Student {
         case email
         case avatar = "photo"
         case facebookId = "facebook_id"
+    }
+}
+
+extension Client {
+    private func encode(_ str: CustomStringConvertible, withName name: String, to form: MultipartFormData) {
+        form.append(str.description.data(using: .utf8)!, withName: name)
+    }
+    
+    private func encodeIfPresent(_ str: CustomStringConvertible?, withName name: String, to form: MultipartFormData) {
+        guard let str = str else { return }
+        form.append(str.description.data(using: .utf8)!, withName: name)
+    }
+    
+    private func encodeIfPresent<T: CustomStringConvertible>(_ values: [T]?, withName name: String, to form: MultipartFormData) {
+        let values = values ?? []
+        for i in 0 ..< values.count {
+            self.encode(values[i], withName: "\(name)[\(i)]", to: form)
+        }
+    }
+    
+    func encode(to form: MultipartFormData) {
+        if self.userId != self.id {
+            self.encode(self.userId, withName: "idCuenta", to: form)
+        }
+        self.encode(self.name, withName: CodingKeys.name.rawValue, to: form)
+        self.encodeIfPresent(self.email, withName: UserKeys.email.rawValue, to: form)
+        self.encodeIfPresent(self.phone, withName: CodingKeys.phone.rawValue, to: form)
+        self.encodeIfPresent(self.address, withName: CodingKeys.address.rawValue, to: form)
+        self.encodeIfPresent(self.locationId, withName: "coloniaId", to: form)
+        self.encodeIfPresent(self.instruments, withName: CodingKeys.instruments.rawValue, to: form)
+        self.encodeIfPresent(self.facebookId, withName: "facebookID", to: form)
+        self.encode(1, withName: "paymentTypeId", to: form)
+        if let avatarUrl = self.avatarUrl, avatarUrl.isFileURL {
+            form.append(avatarUrl, withName: UserKeys.avatar.rawValue)
+        }
     }
 }
 

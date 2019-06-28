@@ -97,6 +97,17 @@ class ContactInfoRegistrationViewController: UIViewController, RegistrationContr
         self.client.email = self.emailTextField.text
     }
     
+    @IBAction func onRegisterSubaccounts(_ sender: Any) {
+        self.showSpinner(onView: self.view)
+        self.service.registerClient(self.client) { (result) in
+            self.removeSpinner()
+            self.handleResult(result) {
+                self.client = $0
+                self.performSegue(withIdentifier: "registerStudents", sender: sender)
+            }
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

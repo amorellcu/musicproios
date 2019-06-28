@@ -277,6 +277,38 @@ class ApiManager {
         }
     }
     
+    func registerClient(_ client: Client, handler: @escaping (ApiResult<Client>) -> Void) {
+        let url = baseUrl.appendingPathComponent("registerClient")
+        let _ = self.session.upload(multipartFormData: { (form) in
+            client.encode(to: form)
+        }, to: url) { (result) in
+            switch result {
+            case .success(let request, _, _):
+                let _ = request.responseDecodable { (result: ApiResult<UserData>) in
+                    handler(result.transform(with: {$0.client}))
+                }
+            case .failure(let error):
+                handler(.failure(error: error))
+            }
+        }
+    }
+    
+    func registerSubaccount(_ client: Client, handler: @escaping (ApiResult<Client>) -> Void) {
+        let url = baseUrl.appendingPathComponent("registerSubcuenta")
+        let _ = self.session.upload(multipartFormData: { (form) in
+            client.encode(to: form)
+        }, to: url) { (result) in
+            switch result {
+            case .success(let request, _, _):
+                let _ = request.responseDecodable { (result: ApiResult<UserData>) in
+                    handler(result.transform(with: {$0.client}))
+                }
+            case .failure(let error):
+                handler(.failure(error: error))
+            }
+        }
+    }
+    
     private func post<T: Encodable>(_ encodable: T, to url: URL, handler: @escaping (ApiResult<Void>) -> Void) {
         var data: Data
         do {

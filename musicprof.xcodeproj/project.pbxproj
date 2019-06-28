@@ -80,8 +80,7 @@
 		A5AD1EB520334EA400A38F85 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD1EB420334EA400A38F85 /* CalendarViewController.swift */; };
 		A5AD1EC020338A6F00A38F85 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD1EBF20338A6F00A38F85 /* CalendarCell.swift */; };
 		A5CA35D6202BA922002FFFD0 /* peopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA35D5202BA922002FFFD0 /* peopleTableViewCell.swift */; };
-		A5CA35D8202CA10C002FFFD0 /* InstrumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA35D7202CA10C002FFFD0 /* InstrumentsViewController.swift */; };
-		A5CA35DA20311805002FFFD0 /* InstrumentsmeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA35D920311805002FFFD0 /* InstrumentsmeViewController.swift */; };
+		A5CA35D8202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA35D7202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift */; };
 		A5E1FB1C2042514000B15DD9 /* ProfesorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB1B2042514000B15DD9 /* ProfesorTableViewCell.swift */; };
 		A5E1FB1E2044BC2200B15DD9 /* ProfessorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB1D2044BC2200B15DD9 /* ProfessorDetailsViewController.swift */; };
 		A5E1FB202044CE6600B15DD9 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */; };
@@ -205,8 +204,7 @@
 		A5AD1EB420334EA400A38F85 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		A5AD1EBF20338A6F00A38F85 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		A5CA35D5202BA922002FFFD0 /* peopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = peopleTableViewCell.swift; sourceTree = "<group>"; };
-		A5CA35D7202CA10C002FFFD0 /* InstrumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsViewController.swift; sourceTree = "<group>"; };
-		A5CA35D920311805002FFFD0 /* InstrumentsmeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsmeViewController.swift; sourceTree = "<group>"; };
+		A5CA35D7202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsRegistrationViewController.swift; sourceTree = "<group>"; };
 		A5E1FB1B2042514000B15DD9 /* ProfesorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfesorTableViewCell.swift; sourceTree = "<group>"; };
 		A5E1FB1D2044BC2200B15DD9 /* ProfessorDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorDetailsViewController.swift; sourceTree = "<group>"; };
 		A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
@@ -347,6 +345,7 @@
 				530F8A77229A1656000AFC86 /* RootViewController.swift */,
 				A5598C19201F8C3B000C64F6 /* ViewController.swift */,
 				A5598C70201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift */,
+				A5CA35D7202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift */,
 				53FD596122BE4D7D002F5172 /* ProfileViewController.swift */,
 				536752C022C5E19B00DA1590 /* SubaccountListViewController.swift */,
 				53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */,
@@ -405,8 +404,6 @@
 				A5AA588C202A57B100F4370A /* UsersTableViewCell.swift */,
 				A5E1FB1B2042514000B15DD9 /* ProfesorTableViewCell.swift */,
 				A5CA35D5202BA922002FFFD0 /* peopleTableViewCell.swift */,
-				A5CA35D920311805002FFFD0 /* InstrumentsmeViewController.swift */,
-				A5CA35D7202CA10C002FFFD0 /* InstrumentsViewController.swift */,
 				15DE7EF020894273006672C1 /* ConfigurationsClass.swift */,
 				A56E0FF4203B810D002D2F28 /* ScheduleViewController.swift */,
 				A5A99AD92025345D0050D8D8 /* ItemTableViewCell.swift */,
@@ -725,7 +722,6 @@
 				A5E1FB1C2042514000B15DD9 /* ProfesorTableViewCell.swift in Sources */,
 				53E7D64422C54A35006DA7B4 /* Student.swift in Sources */,
 				5333E96B22C0F8FC00175995 /* BaseReservationViewController.swift in Sources */,
-				A5CA35DA20311805002FFFD0 /* InstrumentsmeViewController.swift in Sources */,
 				A5598C71201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift in Sources */,
 				A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */,
 				534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */,
@@ -753,7 +749,7 @@
 				53907E0B22B1983300314EC8 /* InstrumentCell.swift in Sources */,
 				53D98FCC22BD459E0027FDCD /* ApiError.swift in Sources */,
 				A5A99ADA2025345D0050D8D8 /* ItemTableViewCell.swift in Sources */,
-				A5CA35D8202CA10C002FFFD0 /* InstrumentsViewController.swift in Sources */,
+				A5CA35D8202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift in Sources */,
 				532CC89C22C50D3F00FB1822 /* TransparentButton.swift in Sources */,
 				A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */,
 				534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */,
