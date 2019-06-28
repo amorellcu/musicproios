@@ -66,11 +66,11 @@ class MapViewController: BaseReservationViewController {
     }
     
     @IBAction func onFixAddressTapped(_ sender: Any) {
-        guard let location = self.selectedLocation ?? self.userLocation else {
+        guard let location = self.selectedLocation ?? self.userLocation, let userId = self.reservation.studentId else {
             return
         }
         let address = location.address
-        self.service.updateAddress(address) {[weak self] (result) in
+        self.service.updateAddress(address, forUserWithId: userId) {[weak self] (result) in
             self?.handleResult(result) { client in
                 self?.reservation.address = client.address
                 self?.reservation.locationId = client.locationId

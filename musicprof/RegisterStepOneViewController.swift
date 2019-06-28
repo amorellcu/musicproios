@@ -127,20 +127,21 @@ class RegisterStepOneViewController: UIViewController {
 
     
     @IBAction func buttonAny(_ sender: Any) {
-        let student = Student()
-        if(self.perfil.image != nil)
-        {
-             student.setPhoto(aphoto: self.perfil.image!)
-        }
-        if(self.namePerfil.text != nil)
-        {
-            student.setName(aname: self.namePerfil.text!)
-        }
-        self.performSegue(withIdentifier: "instruments2Segue", sender: student)
+        //let student = Student()
+        //if(self.perfil.image != nil)
+        //{
+        //     student.setPhoto(aphoto: self.perfil.image!)
+        //}
+        //if(self.namePerfil.text != nil)
+        //{
+        //    student.setName(aname: self.namePerfil.text!)
+        //}
+        //self.performSegue(withIdentifier: "instruments2Segue", sender: student)
     }
     
     
     @IBAction func buttonme(_ sender: Any) {
+        /*
         let student = Student()
         if(self.perfil.image != nil)
         {
@@ -172,8 +173,9 @@ class RegisterStepOneViewController: UIViewController {
         if(self.photoUrl != ""){
             student.setUrlPhoto(aurlphoto: self.photoUrl)
         }
+ 
         self.performSegue(withIdentifier: "instruments1Segue", sender: student)
-    
+    */
     }
     
     // MARK: - Navigation
@@ -182,6 +184,7 @@ class RegisterStepOneViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        /*
         let student = sender as? Student
         let name = student?.getName()
         let photo = student?.getPhoto()
@@ -232,7 +235,7 @@ class RegisterStepOneViewController: UIViewController {
             }
         }
         
-
+*/
 
     }
     

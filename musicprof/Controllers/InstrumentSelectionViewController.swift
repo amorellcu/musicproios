@@ -39,7 +39,7 @@ class InstrumentSelectionViewController: BaseReservationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let instruments = self.service.user?.instruments {
+        if let instruments = self.student?.instruments {
             self.userInstruments = instruments
         }
         

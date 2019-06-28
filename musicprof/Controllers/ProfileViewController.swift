@@ -94,7 +94,7 @@ class ProfileViewController: BaseReservationViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if self.selectForMeButton === sender as? UIButton {
-            self.reservation.clientId = self.service.user!.id
+            self.reservation.studentId = self.service.user!.id
         }
         super.prepare(for: segue, sender: sender)
     }

@@ -259,11 +259,7 @@ class ApiManager {
             .responseDecodable(completionHandler: handler)
     }
     
-    func updateAddress(_ address: String, handler: @escaping (ApiResult<Client>) -> Void) {
-        guard let userId = self.user?.id else {
-            handler(.failure(error: AppError.invalidOperation))
-            return
-        }
+    func updateAddress(_ address: String, forUserWithId userId: Int, handler: @escaping (ApiResult<Client>) -> Void) {
         let url = baseUrl.appendingPathComponent("updateAddress")
         let parameters: Parameters = ["id": userId, "address": address]
         let _ = self.session

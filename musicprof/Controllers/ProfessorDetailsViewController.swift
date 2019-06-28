@@ -48,7 +48,7 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
             return
         }
         self.nameLabel.text = professor.name
-        if let avatarUrl = self.service.user?.avatarUrl {
+        if let avatarUrl = professor.avatarUrl {
             self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: placeholderAvatar)
         } else {
             self.avatarImageView.image = placeholderAvatar

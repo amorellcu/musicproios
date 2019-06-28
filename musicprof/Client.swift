@@ -8,8 +8,9 @@
 
 import Foundation
 
-class Client: NSObject, Decodable, NSCoding {
+class Client: NSObject, Decodable, NSCoding, Student {
     let id: Int
+    let userId: Int
     let name: String
     let email: String?
     let phone: String?
@@ -23,6 +24,7 @@ class Client: NSObject, Decodable, NSCoding {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let user = container.contains(.user) ? try container.nestedContainer(keyedBy: UserKeys.self, forKey: .user) : nil
+        self.userId = try container.decode(Int.self, forKey: .userId)
         self.id = try user?.decode(Int.self, forKey: .id) ?? container.decode(Int.self, forKey: .id)
         self.name = try (container.decodeIfPresent(String.self, forKey: .name)
             ?? user?.decodeIfPresent(String.self, forKey: .name))
@@ -40,6 +42,7 @@ class Client: NSObject, Decodable, NSCoding {
     
     required init?(coder: NSCoder) {
         self.id = coder.decodeInteger(forKey: UserKeys.id.rawValue)
+        self.userId = self.id
         self.name = coder.decodeObject(forKey: UserKeys.name.rawValue) as? String ?? ""
         self.email = coder.decodeObject(forKey: UserKeys.email.rawValue) as? String
         self.phone = coder.decodeObject(forKey: CodingKeys.phone.rawValue) as? String
@@ -64,7 +67,8 @@ class Client: NSObject, Decodable, NSCoding {
     }
     
     fileprivate enum CodingKeys: String, CodingKey {
-        case id = "users_id"
+        case id
+        case userId = "users_id"
         case user
         case phone
         case name

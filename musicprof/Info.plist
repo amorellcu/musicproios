@@ -47,6 +47,13 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Por favor dejeme usar su localización</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FilsonProRegular-Regular.otf</string>
+		<string>FilsonProBoldItalic-Italic.otf</string>
+		<string>FilsonProHeavy-Heavy.otf</string>
+		<string>FilsonProHeavyItalic-Italic.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -58,13 +65,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>FilsonProRegular-Regular.otf</string>
-		<string>FilsonProBoldItalic-Italic.otf</string>
-		<string>FilsonProHeavy-Heavy.otf</string>
-		<string>FilsonProHeavyItalic-Italic.otf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

@@ -23,8 +23,8 @@ class LocationListViewController: BaseReservationViewController {
     var nearbyLocations: [Location]? = []
     
     override func loadView() {
-        self.reservation.address = self.client?.address
-        self.reservation.locationId = self.client?.locationId
+        self.reservation.address = self.student?.address
+        self.reservation.locationId = self.student?.locationId
         super.loadView()
     }
 

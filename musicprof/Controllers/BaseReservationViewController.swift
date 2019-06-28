@@ -12,8 +12,8 @@ class BaseReservationViewController: UIViewController, ReservationController, Ne
     open var reservation: ReservationRequest!
     weak var container: ContainerViewController?
     
-    var client: Client? {
-        guard let clientId = self.reservation.clientId else { return nil }
+    var student: Student? {
+        guard let clientId = self.reservation.studentId else { return nil }
         return self.service.getClient(withId: clientId)
     }
     
