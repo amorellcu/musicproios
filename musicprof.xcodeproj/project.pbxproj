@@ -67,7 +67,7 @@
 		A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5315B32203CF27C0043A0E2 /* MapViewController.swift */; };
 		A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */; };
 		A5598C18201F8C3B000C64F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5598C17201F8C3B000C64F6 /* AppDelegate.swift */; };
-		A5598C1A201F8C3B000C64F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5598C19201F8C3B000C64F6 /* ViewController.swift */; };
+		A5598C1A201F8C3B000C64F6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5598C19201F8C3B000C64F6 /* LoginViewController.swift */; };
 		A5598C1D201F8C3B000C64F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5598C1B201F8C3B000C64F6 /* Main.storyboard */; };
 		A5598C1F201F8C3B000C64F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5598C1E201F8C3B000C64F6 /* Assets.xcassets */; };
 		A5598C22201F8C3B000C64F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5598C20201F8C3B000C64F6 /* LaunchScreen.storyboard */; };
@@ -187,7 +187,7 @@
 		A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchTable.swift; path = ../LocationSearchTable.swift; sourceTree = "<group>"; };
 		A5598C14201F8C3B000C64F6 /* musicprof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = musicprof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5598C17201F8C3B000C64F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A5598C19201F8C3B000C64F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A5598C19201F8C3B000C64F6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A5598C1C201F8C3B000C64F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5598C1E201F8C3B000C64F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5598C21201F8C3B000C64F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -304,6 +304,7 @@
 		53D98FBC22BD35290027FDCD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A5598C1B201F8C3B000C64F6 /* Main.storyboard */,
 				53D98FBD22BD35D10027FDCD /* Reservation.storyboard */,
 				532CC89B22C50D3F00FB1822 /* TransparentButton.swift */,
 			);
@@ -345,7 +346,7 @@
 				5333E96C22C0FD4E00175995 /* ContainerViewController.swift */,
 				5333E96A22C0F8FC00175995 /* BaseReservationViewController.swift */,
 				530F8A77229A1656000AFC86 /* RootViewController.swift */,
-				A5598C19201F8C3B000C64F6 /* ViewController.swift */,
+				A5598C19201F8C3B000C64F6 /* LoginViewController.swift */,
 				A5598C70201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift */,
 				A5CA35D7202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift */,
 				536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */,
@@ -410,7 +411,6 @@
 				15DE7EF020894273006672C1 /* ConfigurationsClass.swift */,
 				A56E0FF4203B810D002D2F28 /* ScheduleViewController.swift */,
 				A5A99AD92025345D0050D8D8 /* ItemTableViewCell.swift */,
-				A5598C1B201F8C3B000C64F6 /* Main.storyboard */,
 				15588080209BB753003DC16A /* PackagesViewController.swift */,
 				A5598C1E201F8C3B000C64F6 /* Assets.xcassets */,
 				A5598C20201F8C3B000C64F6 /* LaunchScreen.storyboard */,
@@ -713,7 +713,7 @@
 				A5E1FB202044CE6600B15DD9 /* TextTableViewCell.swift in Sources */,
 				5333E96622C0EF9600175995 /* ReservationRequest.swift in Sources */,
 				A5CA35D6202BA922002FFFD0 /* peopleTableViewCell.swift in Sources */,
-				A5598C1A201F8C3B000C64F6 /* ViewController.swift in Sources */,
+				A5598C1A201F8C3B000C64F6 /* LoginViewController.swift in Sources */,
 				53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */,
 				5333E96922C0F78900175995 /* ReservationController.swift in Sources */,
 				536752C122C5E19B00DA1590 /* SubaccountListViewController.swift in Sources */,

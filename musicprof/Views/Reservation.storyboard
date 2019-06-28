@@ -1791,7 +1791,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wv-7J-b19">
-                                                <rect key="frame" x="52" y="10" width="310" height="32"/>
+                                                <rect key="frame" x="52" y="8.6666666666666714" width="310" height="35"/>
                                                 <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                                 <state key="normal" title="SELECCIONA TU UBICACIÓN">
                                                     <color key="titleColor" red="0.0" green="0.99607843139999996" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

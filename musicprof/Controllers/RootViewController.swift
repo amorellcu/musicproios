@@ -22,35 +22,7 @@ class RootViewController: UIViewController {
         
         ////////////////////////////
         
-        if self.service.isSignedIn {
-            self.service.getUserInfo {(result) in
-                self.handleResult(result, onError: { (_) in
-                    self.performSegue(withIdentifier: "RequireLogin", sender: self)
-                }, onSuccess: {
-                    self.performSegue(withIdentifier: "goToCalendar", sender: self)
-                })
-            }
-        }
-        else if let accessToken = AccessToken.current{
-            print(">>> token found: "+accessToken.authenticationToken)
-            self.service.signIn(withFacebookToken: accessToken.authenticationToken) { [weak self] (result) in
-                self?.handleResult(result, onError: { (_) in
-                    self?.performSegue(withIdentifier: "RequireLogin", sender: self)
-                }, onSuccess: { (_) in
-                    // TODO: check for registration
-                    /*
-                     if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterStepOne") as? RegisterStepOneViewController {
-                     if let navigator = self.navigationController {
-                     navigator.pushViewController(viewController, animated: true)
-                     }
-                     }
-                     */
-                    self?.performSegue(withIdentifier: "goToCalendar", sender: self)
-                })
-            }
-        } else {
-            self.performSegue(withIdentifier: "RequireLogin", sender: self)
-        }
+        
         
         ////////////////////
         

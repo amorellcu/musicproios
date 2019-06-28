@@ -71,12 +71,16 @@ class PasswordResetViewController: UIViewController {
         self.showSpinner(onView: self.view)
         self.service.resetPassword(forUser: self.email, password: password, code: code) { (result) in
             self.removeSpinner()
-            if self.service.isSignedIn {
-                self.performSegue(withIdentifier: "login", sender: sender)
-            } else {
-                self.service.signIn(withEmail: self.email, password: password, handler: { (result) in
+            self.handleResult(result) {
+                if self.service.isSignedIn {
                     self.performSegue(withIdentifier: "login", sender: sender)
-                })
+                } else {
+                    self.service.signIn(withEmail: self.email, password: password, handler: { (result) in
+                        self.handleResult(result) {
+                            self.performSegue(withIdentifier: "login", sender: sender)
+                        }
+                    })
+                }
             }
         }
     }
