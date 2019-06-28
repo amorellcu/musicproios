@@ -32,7 +32,6 @@ class ContainerViewController: UIViewController {
         } else {
             self.avatarImageView.image = placeholderAvatar?.af_imageAspectScaled(toFit: self.avatarImageView.frame.size).af_imageRoundedIntoCircle()
         }
-        //self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
         self.avatarImageView.clipsToBounds = true
         
         

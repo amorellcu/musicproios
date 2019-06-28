@@ -47,6 +47,7 @@
 		539C80C522C4C621009D8469 /* FilsonProThin-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80B122C4C5B5009D8469 /* FilsonProThin-Thin.otf */; };
 		539C80C622C4C621009D8469 /* FilsonProThinItalic-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80AA22C4C5AE009D8469 /* FilsonProThinItalic-Italic.otf */; };
 		53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2527B22B6E360007C8BB1 /* Profile.swift */; };
+		53D1C57322C5F8C6002BDAE4 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1C57222C5F8C6002BDAE4 /* RegistrationController.swift */; };
 		53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */; };
 		53D8E20022C3AB2100E3FABB /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8E1FF22C3AB2100E3FABB /* Reservation.swift */; };
 		53D8E20222C3D5FB00E3FABB /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8E20122C3D5FB00E3FABB /* DateCell.swift */; };
@@ -71,7 +72,7 @@
 		A5598C22201F8C3B000C64F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5598C20201F8C3B000C64F6 /* LaunchScreen.storyboard */; };
 		A5598C2D201F8C3B000C64F6 /* musicprofTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5598C2C201F8C3B000C64F6 /* musicprofTests.swift */; };
 		A5598C38201F8C3C000C64F6 /* musicprofUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5598C37201F8C3C000C64F6 /* musicprofUITests.swift */; };
-		A5598C71201FCB37000C64F6 /* RegisterStepOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5598C70201FCB37000C64F6 /* RegisterStepOneViewController.swift */; };
+		A5598C71201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5598C70201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift */; };
 		A56E0FF5203B810D002D2F28 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E0FF4203B810D002D2F28 /* ScheduleViewController.swift */; };
 		A5A77C3820407866000F1E3E /* ScheduleProfesorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A77C3720407866000F1E3E /* ScheduleProfesorViewController.swift */; };
 		A5A99ADA2025345D0050D8D8 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A99AD92025345D0050D8D8 /* ItemTableViewCell.swift */; };
@@ -160,6 +161,7 @@
 		539C80B522C4C5B8009D8469 /* FilsonProBookItalic-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProBookItalic-Italic.otf"; sourceTree = "<group>"; };
 		539C80B622C4C5B9009D8469 /* FilsonProBold-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProBold-Bold.otf"; sourceTree = "<group>"; };
 		53C2527B22B6E360007C8BB1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		53D1C57222C5F8C6002BDAE4 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentSelectionViewController.swift; sourceTree = "<group>"; };
 		53D8E1FF22C3AB2100E3FABB /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		53D8E20122C3D5FB00E3FABB /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
@@ -195,7 +197,7 @@
 		A5598C33201F8C3C000C64F6 /* musicprofUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = musicprofUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5598C37201F8C3C000C64F6 /* musicprofUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = musicprofUITests.swift; sourceTree = "<group>"; };
 		A5598C39201F8C3C000C64F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A5598C70201FCB37000C64F6 /* RegisterStepOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStepOneViewController.swift; sourceTree = "<group>"; };
+		A5598C70201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoRegistrationViewController.swift; sourceTree = "<group>"; };
 		A56E0FF4203B810D002D2F28 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		A5A77C3720407866000F1E3E /* ScheduleProfesorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleProfesorViewController.swift; path = ../ScheduleProfesorViewController.swift; sourceTree = "<group>"; };
 		A5A99AD92025345D0050D8D8 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		5333E96722C0F76F00175995 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				53D1C57222C5F8C6002BDAE4 /* RegistrationController.swift */,
 				5333E96822C0F78900175995 /* ReservationController.swift */,
 				5333E96E22C0FDE500175995 /* NestedController.swift */,
 				53E7D64322C54A35006DA7B4 /* Student.swift */,
@@ -343,6 +346,7 @@
 				5333E96A22C0F8FC00175995 /* BaseReservationViewController.swift */,
 				530F8A77229A1656000AFC86 /* RootViewController.swift */,
 				A5598C19201F8C3B000C64F6 /* ViewController.swift */,
+				A5598C70201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift */,
 				53FD596122BE4D7D002F5172 /* ProfileViewController.swift */,
 				536752C022C5E19B00DA1590 /* SubaccountListViewController.swift */,
 				53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */,
@@ -406,7 +410,6 @@
 				15DE7EF020894273006672C1 /* ConfigurationsClass.swift */,
 				A56E0FF4203B810D002D2F28 /* ScheduleViewController.swift */,
 				A5A99AD92025345D0050D8D8 /* ItemTableViewCell.swift */,
-				A5598C70201FCB37000C64F6 /* RegisterStepOneViewController.swift */,
 				A5598C1B201F8C3B000C64F6 /* Main.storyboard */,
 				15588080209BB753003DC16A /* PackagesViewController.swift */,
 				A5598C1E201F8C3B000C64F6 /* Assets.xcassets */,
@@ -723,7 +726,7 @@
 				53E7D64422C54A35006DA7B4 /* Student.swift in Sources */,
 				5333E96B22C0F8FC00175995 /* BaseReservationViewController.swift in Sources */,
 				A5CA35DA20311805002FFFD0 /* InstrumentsmeViewController.swift in Sources */,
-				A5598C71201FCB37000C64F6 /* RegisterStepOneViewController.swift in Sources */,
+				A5598C71201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift in Sources */,
 				A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */,
 				534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */,
 				A5E1FB1E2044BC2200B15DD9 /* ProfessorDetailsViewController.swift in Sources */,
@@ -734,6 +737,7 @@
 				A5598C18201F8C3B000C64F6 /* AppDelegate.swift in Sources */,
 				5305F99622C4E950002284EF /* UIView.swift in Sources */,
 				530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */,
+				53D1C57322C5F8C6002BDAE4 /* RegistrationController.swift in Sources */,
 				53DEFCE322C24CC30003852E /* LocationListViewController.swift in Sources */,
 				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,
 				53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */,

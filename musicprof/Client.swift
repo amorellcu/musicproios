@@ -7,19 +7,30 @@
 //
 
 import Foundation
+import FacebookLogin
+import FBSDKLoginKit
+import FBSDKCoreKit
+
 
 class Client: NSObject, Decodable, NSCoding, Student {
     let id: Int
     let userId: Int
-    let name: String
-    let email: String?
-    let phone: String?
-    let address: String?
-    let locationId: Int?
-    let avatarUrl: URL?
-    let facebookId: String?
-    let instruments: [Instrument]?
-    let subaccounts: [Client]?
+    var name: String
+    var email: String?
+    var phone: String?
+    var address: String?
+    var locationId: Int?
+    var avatarUrl: URL?
+    var facebookId: String?
+    var instruments: [Instrument]?
+    var subaccounts: [Client]?
+    
+    override init() {
+        self.id = 0
+        self.userId = 0
+        self.name = ""
+        super.init()
+    }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -84,5 +95,29 @@ class Client: NSObject, Decodable, NSCoding, Student {
         case email
         case avatar = "photo"
         case facebookId = "facebook_id"
+    }
+}
+
+extension Client {
+    func loadFromFB(completion: @escaping (Error?) -> Void) {
+        guard FBSDKAccessToken.current() != nil else {
+            return completion(AppError.invalidOperation)
+        }
+        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large), email"]).start { (connection, result, error) -> Void in
+            if let error = error {
+                completion(error)
+            } else if let dict = result as? [String : Any] {
+                let picture = dict["picture"] as? [String: Any]
+                var data = picture?["data"] as? [String : Any]
+                let imageUrlString = data?["url"] as? String
+                self.avatarUrl = imageUrlString == nil ? nil : URL(string: imageUrlString!)
+                self.name = dict["name"] as? String ?? self.name
+                self.email = dict["email"] as? String ?? self.email
+                self.facebookId = (dict["id"] as? String)!
+                completion(nil)
+            } else {
+                completion(AppError.unsupportedData)
+            }
+        }
     }
 }
