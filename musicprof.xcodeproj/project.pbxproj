@@ -31,6 +31,10 @@
 		536F8A5A22C6510D0061CF17 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */; };
 		53907E0B22B1983300314EC8 /* InstrumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0A22B1983300314EC8 /* InstrumentCell.swift */; };
 		53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0C22B19EC700314EC8 /* Instrument.swift */; };
+		5393EB7322C7CC5C00C47E77 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5393EB7222C7CC5C00C47E77 /* Payment.storyboard */; };
+		5393EB7522C7CD4600C47E77 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393EB7422C7CD4600C47E77 /* MenuViewController.swift */; };
+		5393EB7722C7DC3200C47E77 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393EB7622C7DC3200C47E77 /* Package.swift */; };
+		5393EB7922C7EEF700C47E77 /* PackageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393EB7822C7EEF700C47E77 /* PackageCell.swift */; };
 		539C80B722C4C621009D8469 /* FilsonProBlack-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80AE22C4C5B2009D8469 /* FilsonProBlack-Black.otf */; };
 		539C80B822C4C621009D8469 /* FilsonProBlackItalic-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80AB22C4C5AF009D8469 /* FilsonProBlackItalic-Italic.otf */; };
 		539C80B922C4C621009D8469 /* FilsonProBold-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80B622C4C5B9009D8469 /* FilsonProBold-Bold.otf */; };
@@ -120,7 +124,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		15588080209BB753003DC16A /* PackagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackagesViewController.swift; sourceTree = "<group>"; };
+		15588080209BB753003DC16A /* PackagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PackagesViewController.swift; path = ../PackagesViewController.swift; sourceTree = "<group>"; };
 		15DE7EF020894273006672C1 /* ConfigurationsClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationsClass.swift; sourceTree = "<group>"; };
 		15DFDFBD208E4E7500B28338 /* ApiStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiStudent.swift; sourceTree = "<group>"; };
 		15DFDFC0208EA59F00B28338 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = ../Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
@@ -145,6 +149,10 @@
 		536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		53907E0A22B1983300314EC8 /* InstrumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentCell.swift; sourceTree = "<group>"; };
 		53907E0C22B19EC700314EC8 /* Instrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
+		5393EB7222C7CC5C00C47E77 /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
+		5393EB7422C7CD4600C47E77 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		5393EB7622C7DC3200C47E77 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		5393EB7822C7EEF700C47E77 /* PackageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageCell.swift; sourceTree = "<group>"; };
 		539C80A722C4C5AC009D8469 /* FilsonProLight-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProLight-Light.otf"; sourceTree = "<group>"; };
 		539C80A822C4C5AD009D8469 /* FilsonProHeavyItalic-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProHeavyItalic-Italic.otf"; sourceTree = "<group>"; };
 		539C80A922C4C5AD009D8469 /* FilsonProRegularItalic-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProRegularItalic-Italic.otf"; sourceTree = "<group>"; };
@@ -307,6 +315,7 @@
 				A5598C1B201F8C3B000C64F6 /* Main.storyboard */,
 				53D98FBD22BD35D10027FDCD /* Reservation.storyboard */,
 				532CC89B22C50D3F00FB1822 /* TransparentButton.swift */,
+				5393EB7222C7CC5C00C47E77 /* Payment.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -336,6 +345,7 @@
 				5333E96322C0EAAB00175995 /* Professor.swift */,
 				53D8E1FF22C3AB2100E3FABB /* Reservation.swift */,
 				5333E96522C0EF9600175995 /* ReservationRequest.swift */,
+				5393EB7622C7DC3200C47E77 /* Package.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -343,13 +353,14 @@
 		53D98FC622BD3F970027FDCD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5333E96C22C0FD4E00175995 /* ContainerViewController.swift */,
-				5333E96A22C0F8FC00175995 /* BaseReservationViewController.swift */,
 				530F8A77229A1656000AFC86 /* RootViewController.swift */,
 				A5598C19201F8C3B000C64F6 /* LoginViewController.swift */,
 				A5598C70201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift */,
 				A5CA35D7202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift */,
 				536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */,
+				5333E96C22C0FD4E00175995 /* ContainerViewController.swift */,
+				5393EB7422C7CD4600C47E77 /* MenuViewController.swift */,
+				5333E96A22C0F8FC00175995 /* BaseReservationViewController.swift */,
 				53FD596122BE4D7D002F5172 /* ProfileViewController.swift */,
 				536752C022C5E19B00DA1590 /* SubaccountListViewController.swift */,
 				53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */,
@@ -368,6 +379,8 @@
 				A5E1FB1D2044BC2200B15DD9 /* ProfessorDetailsViewController.swift */,
 				A5E1FB232044DD4600B15DD9 /* HeaderCell.swift */,
 				A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */,
+				15588080209BB753003DC16A /* PackagesViewController.swift */,
+				5393EB7822C7EEF700C47E77 /* PackageCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -411,7 +424,6 @@
 				15DE7EF020894273006672C1 /* ConfigurationsClass.swift */,
 				A56E0FF4203B810D002D2F28 /* ScheduleViewController.swift */,
 				A5A99AD92025345D0050D8D8 /* ItemTableViewCell.swift */,
-				15588080209BB753003DC16A /* PackagesViewController.swift */,
 				A5598C1E201F8C3B000C64F6 /* Assets.xcassets */,
 				A5598C20201F8C3B000C64F6 /* LaunchScreen.storyboard */,
 				A5598C23201F8C3B000C64F6 /* Info.plist */,
@@ -565,6 +577,7 @@
 				539C80C222C4C621009D8469 /* FilsonProMediumItalic-Italic.otf in Resources */,
 				539C80C622C4C621009D8469 /* FilsonProThinItalic-Italic.otf in Resources */,
 				539C80BE22C4C621009D8469 /* FilsonProHeavyItalic-Italic.otf in Resources */,
+				5393EB7322C7CC5C00C47E77 /* Payment.storyboard in Resources */,
 				539C80BC22C4C621009D8469 /* FilsonProBookItalic-Italic.otf in Resources */,
 				539C80C122C4C621009D8469 /* FilsonProMedium-Medium.otf in Resources */,
 				A5598C1D201F8C3B000C64F6 /* Main.storyboard in Resources */,
@@ -740,16 +753,19 @@
 				53DEFCE322C24CC30003852E /* LocationListViewController.swift in Sources */,
 				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,
 				53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */,
+				5393EB7522C7CD4600C47E77 /* MenuViewController.swift in Sources */,
 				536F8A5A22C6510D0061CF17 /* PasswordResetViewController.swift in Sources */,
 				A5FF65842024FE34003778B3 /* HeaderTableViewCell.swift in Sources */,
 				5333E96222C0E46500175995 /* ProfessorListViewController.swift in Sources */,
 				53D98FCE22BD45F50027FDCD /* AppError.swift in Sources */,
 				5333E96F22C0FDE500175995 /* NestedController.swift in Sources */,
 				53D98FCA22BD44A40027FDCD /* ApiResult.swift in Sources */,
+				5393EB7922C7EEF700C47E77 /* PackageCell.swift in Sources */,
 				A5A77C3820407866000F1E3E /* ScheduleProfesorViewController.swift in Sources */,
 				5333E96422C0EAAB00175995 /* Professor.swift in Sources */,
 				53FDE15122BE25C500EBC13F /* DataRequest.swift in Sources */,
 				53DEFCE122C241AF0003852E /* Location.swift in Sources */,
+				5393EB7722C7DC3200C47E77 /* Package.swift in Sources */,
 				53907E0B22B1983300314EC8 /* InstrumentCell.swift in Sources */,
 				53D98FCC22BD459E0027FDCD /* ApiError.swift in Sources */,
 				A5A99ADA2025345D0050D8D8 /* ItemTableViewCell.swift in Sources */,

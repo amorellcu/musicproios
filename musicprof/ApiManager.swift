@@ -259,6 +259,22 @@ class ApiManager {
             .responseDecodable(completionHandler: handler)
     }
     
+    func getPackages(forStateWithId stateId: Int? = nil, handler: @escaping (ApiResult<[Package]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getPackages")
+        var parameters: Parameters = [:]
+        if let stateId = stateId {
+            parameters["estadoId"] = stateId
+        }
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<PackageData>) in
+                handler(result.transform(with: {$0.packages}))
+        }
+    }
+    
     func updateAddress(_ address: String, forUserWithId userId: Int, handler: @escaping (ApiResult<Client>) -> Void) {
         let url = baseUrl.appendingPathComponent("updateAddress")
         let parameters: Parameters = ["id": userId, "address": address]
@@ -398,6 +414,10 @@ private struct LocationData: Decodable {
     private enum CodingKeys: String, CodingKey {
         case locations = "colonias"
     }
+}
+
+private struct PackageData: Decodable {
+    var packages: [Package]
 }
 
 class JWTAccessTokenAdapter : NSObject, RequestAdapter, RequestRetrier, NSCoding {

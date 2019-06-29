@@ -34,7 +34,7 @@ class ProfileViewController: BaseReservationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.container?.navigationController?.setTransparentBar()
+        self.navigationController?.setTransparentBar()
         self.phoneTextField.keyboardType = .numberPad
         self.emailTextField.text = self.service.user?.email
         self.phoneTextField.text = self.service.user?.phone

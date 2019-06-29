@@ -24,6 +24,7 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.setTransparentBar()
         self.profileNameLabel.text = self.service.user?.name
         let placeholderAvatar = UIImage(named:"userdefault")
         if let avatarUrl = self.service.user?.avatarUrl {
