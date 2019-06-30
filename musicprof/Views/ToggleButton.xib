@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FilsonProBoldItalic-Italic.otf">
+            <string>FilsonProBoldItalic-Italic</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ToggleButton" customModule="musicprof" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="1548" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2d-Te-6kv" userLabel="Content">
+                    <rect key="frame" x="0.0" y="0.0" width="1548" height="52"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechaizq" translatesAutoresizingMaskIntoConstraints="NO" id="bWf-48-J03">
+                            <rect key="frame" x="0.0" y="0.0" width="22" height="52"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="52" id="bkx-S2-puZ"/>
+                                <constraint firstAttribute="width" constant="22" id="gfs-j6-U3x"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechader" translatesAutoresizingMaskIntoConstraints="NO" id="Oku-hh-jOh">
+                            <rect key="frame" x="1526" y="0.0" width="22" height="52"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="52" id="P4h-LX-ZCZ"/>
+                                <constraint firstAttribute="width" constant="22" id="x4c-pm-CBx"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="v6r-SD-swG">
+                            <rect key="frame" x="40" y="0.0" width="1468" height="23"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="7B6-Xs-I7i"/>
+                                <constraint firstAttribute="height" constant="23" id="jgU-8k-XrW"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
+                            <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="v6r-SD-swG" firstAttribute="top" secondItem="y2d-Te-6kv" secondAttribute="top" id="3WV-kt-eX6"/>
+                        <constraint firstAttribute="trailing" secondItem="v6r-SD-swG" secondAttribute="trailing" constant="40" id="4qD-Fd-3cE"/>
+                        <constraint firstItem="Oku-hh-jOh" firstAttribute="top" secondItem="y2d-Te-6kv" secondAttribute="top" id="7S0-Ct-V25"/>
+                        <constraint firstItem="bWf-48-J03" firstAttribute="leading" secondItem="y2d-Te-6kv" secondAttribute="leading" id="BEB-4X-G0v"/>
+                        <constraint firstItem="bWf-48-J03" firstAttribute="top" secondItem="y2d-Te-6kv" secondAttribute="top" id="adx-13-RuM"/>
+                        <constraint firstAttribute="trailing" secondItem="Oku-hh-jOh" secondAttribute="trailing" id="jxO-iN-3gO"/>
+                        <constraint firstItem="v6r-SD-swG" firstAttribute="leading" secondItem="y2d-Te-6kv" secondAttribute="leading" constant="40" id="nPT-si-dFI"/>
+                        <constraint firstAttribute="height" constant="52" id="rB5-tX-b7x"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="y2d-Te-6kv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="G4X-GY-ARg"/>
+                <constraint firstItem="y2d-Te-6kv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Vre-6I-Xvh"/>
+                <constraint firstAttribute="bottom" secondItem="y2d-Te-6kv" secondAttribute="bottom" id="YM9-PV-yKC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="y2d-Te-6kv" secondAttribute="trailing" id="gFB-CA-EXo"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="leftImageView" destination="bWf-48-J03" id="SPF-Lg-qwL"/>
+                <outlet property="rightImageView" destination="Oku-hh-jOh" id="Qgf-zk-P4F"/>
+                <outlet property="textLabel" destination="v6r-SD-swG" id="d3x-58-Nc0"/>
+            </connections>
+            <point key="canvasLocation" x="-49.275362318840585" y="39.508928571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="flechader" width="70" height="156"/>
+        <image name="flechaizq" width="70" height="156"/>
+    </resources>
+</document>

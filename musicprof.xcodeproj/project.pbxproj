@@ -16,6 +16,8 @@
 		530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A77229A1656000AFC86 /* RootViewController.swift */; };
 		530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A79229B773A000AFC86 /* UIViewController.swift */; };
 		532CC89C22C50D3F00FB1822 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532CC89B22C50D3F00FB1822 /* TransparentButton.swift */; };
+		5332FBB822C91645000BF4B0 /* ProfileUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */; };
+		5332FBBA22C917F9000BF4B0 /* CustomTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5332FBB922C917F9000BF4B0 /* CustomTabController.swift */; };
 		5333E96022C0E3FD00175995 /* ProfessorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E95F22C0E3FD00175995 /* ProfessorCell.swift */; };
 		5333E96222C0E46500175995 /* ProfessorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96122C0E46500175995 /* ProfessorListViewController.swift */; };
 		5333E96422C0EAAB00175995 /* Professor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96322C0EAAB00175995 /* Professor.swift */; };
@@ -24,6 +26,9 @@
 		5333E96B22C0F8FC00175995 /* BaseReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96A22C0F8FC00175995 /* BaseReservationViewController.swift */; };
 		5333E96D22C0FD4E00175995 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96C22C0FD4E00175995 /* ContainerViewController.swift */; };
 		5333E96F22C0FDE500175995 /* NestedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96E22C0FDE500175995 /* NestedController.swift */; };
+		533E63F822C8BE0B007EE029 /* ToggleButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533E63F722C8BE0B007EE029 /* ToggleButton.xib */; };
+		533E63FA22C8BE43007EE029 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533E63F922C8BE43007EE029 /* ToggleButton.swift */; };
+		533E63FC22C8CA76007EE029 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 533E63FB22C8CA76007EE029 /* Profile.storyboard */; };
 		534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */; };
 		534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4D22BFC043009249FC /* StudentCell.swift */; };
 		536752C122C5E19B00DA1590 /* SubaccountListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536752C022C5E19B00DA1590 /* SubaccountListViewController.swift */; };
@@ -134,6 +139,8 @@
 		530F8A77229A1656000AFC86 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		530F8A79229B773A000AFC86 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		532CC89B22C50D3F00FB1822 /* TransparentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
+		5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateViewController.swift; sourceTree = "<group>"; };
+		5332FBB922C917F9000BF4B0 /* CustomTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabController.swift; sourceTree = "<group>"; };
 		5333E95F22C0E3FD00175995 /* ProfessorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorCell.swift; sourceTree = "<group>"; };
 		5333E96122C0E46500175995 /* ProfessorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorListViewController.swift; sourceTree = "<group>"; };
 		5333E96322C0EAAB00175995 /* Professor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Professor.swift; sourceTree = "<group>"; };
@@ -142,6 +149,9 @@
 		5333E96A22C0F8FC00175995 /* BaseReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseReservationViewController.swift; sourceTree = "<group>"; };
 		5333E96C22C0FD4E00175995 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		5333E96E22C0FDE500175995 /* NestedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedController.swift; sourceTree = "<group>"; };
+		533E63F722C8BE0B007EE029 /* ToggleButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleButton.xib; sourceTree = "<group>"; };
+		533E63F922C8BE43007EE029 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		533E63FB22C8CA76007EE029 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentsViewController.swift; sourceTree = "<group>"; };
 		534F1D4D22BFC043009249FC /* StudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCell.swift; sourceTree = "<group>"; };
 		536752C022C5E19B00DA1590 /* SubaccountListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubaccountListViewController.swift; sourceTree = "<group>"; };
@@ -316,6 +326,9 @@
 				53D98FBD22BD35D10027FDCD /* Reservation.storyboard */,
 				532CC89B22C50D3F00FB1822 /* TransparentButton.swift */,
 				5393EB7222C7CC5C00C47E77 /* Payment.storyboard */,
+				533E63F722C8BE0B007EE029 /* ToggleButton.xib */,
+				533E63F922C8BE43007EE029 /* ToggleButton.swift */,
+				533E63FB22C8CA76007EE029 /* Profile.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -381,6 +394,8 @@
 				A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */,
 				15588080209BB753003DC16A /* PackagesViewController.swift */,
 				5393EB7822C7EEF700C47E77 /* PackageCell.swift */,
+				5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */,
+				5332FBB922C917F9000BF4B0 /* CustomTabController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -569,10 +584,12 @@
 				539C80BD22C4C621009D8469 /* FilsonProHeavy-Heavy.otf in Resources */,
 				539C80C022C4C621009D8469 /* FilsonProLightItalic-Italic.otf in Resources */,
 				539C80BA22C4C621009D8469 /* FilsonProBoldItalic-Italic.otf in Resources */,
+				533E63FC22C8CA76007EE029 /* Profile.storyboard in Resources */,
 				539C80C422C4C621009D8469 /* FilsonProRegularItalic-Italic.otf in Resources */,
 				539C80BF22C4C621009D8469 /* FilsonProLight-Light.otf in Resources */,
 				539C80C522C4C621009D8469 /* FilsonProThin-Thin.otf in Resources */,
 				539C80B922C4C621009D8469 /* FilsonProBold-Bold.otf in Resources */,
+				533E63F822C8BE0B007EE029 /* ToggleButton.xib in Resources */,
 				539C80B722C4C621009D8469 /* FilsonProBlack-Black.otf in Resources */,
 				539C80C222C4C621009D8469 /* FilsonProMediumItalic-Italic.otf in Resources */,
 				539C80C622C4C621009D8469 /* FilsonProThinItalic-Italic.otf in Resources */,
@@ -728,6 +745,7 @@
 				A5CA35D6202BA922002FFFD0 /* peopleTableViewCell.swift in Sources */,
 				A5598C1A201F8C3B000C64F6 /* LoginViewController.swift in Sources */,
 				53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */,
+				533E63FA22C8BE43007EE029 /* ToggleButton.swift in Sources */,
 				5333E96922C0F78900175995 /* ReservationController.swift in Sources */,
 				536752C122C5E19B00DA1590 /* SubaccountListViewController.swift in Sources */,
 				53D8E20222C3D5FB00E3FABB /* DateCell.swift in Sources */,
@@ -739,9 +757,11 @@
 				53E7D64422C54A35006DA7B4 /* Student.swift in Sources */,
 				5333E96B22C0F8FC00175995 /* BaseReservationViewController.swift in Sources */,
 				A5598C71201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift in Sources */,
+				5332FBBA22C917F9000BF4B0 /* CustomTabController.swift in Sources */,
 				A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */,
 				534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */,
 				A5E1FB1E2044BC2200B15DD9 /* ProfessorDetailsViewController.swift in Sources */,
+				5332FBB822C91645000BF4B0 /* ProfileUpdateViewController.swift in Sources */,
 				15588081209BB753003DC16A /* PackagesViewController.swift in Sources */,
 				53D98FC822BD3FC30027FDCD /* ApiManager.swift in Sources */,
 				A5AD1EC020338A6F00A38F85 /* CalendarCell.swift in Sources */,

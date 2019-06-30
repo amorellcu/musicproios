@@ -1234,6 +1234,9 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="7fJ-7E-EXU" kind="relationship" relationship="rootViewController" id="WLO-1t-AA8"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="98h-ZX-Bca" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1378,6 +1381,16 @@
             </objects>
             <point key="canvasLocation" x="259" y="-599"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="u0H-kc-eNZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="7fJ-7E-EXU" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="tWc-cM-Q34"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ghe-Xf-gL8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436" y="696"/>
+        </scene>
     </scenes>
     <resources>
         <image name="close-icon" width="210" height="210"/>
@@ -1393,7 +1406,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NpH-0d-rDV"/>
-        <segue reference="oth-1J-5dq"/>
+        <segue reference="7E6-G8-f1n"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
