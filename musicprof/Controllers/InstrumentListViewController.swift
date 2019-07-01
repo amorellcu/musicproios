@@ -36,7 +36,6 @@ class InstrumentListViewController: UIViewController, RegistrationController, Ne
             }
         }
     }
-    
 
     // MARK: - Navigation
     

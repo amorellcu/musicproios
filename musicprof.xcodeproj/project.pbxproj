@@ -70,6 +70,7 @@
 		53D98FCA22BD44A40027FDCD /* ApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FC922BD44A40027FDCD /* ApiResult.swift */; };
 		53D98FCC22BD459E0027FDCD /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FCB22BD459E0027FDCD /* ApiError.swift */; };
 		53D98FCE22BD45F50027FDCD /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FCD22BD45F50027FDCD /* AppError.swift */; };
+		53DB770722CA81CE0050F7CD /* InstrumentsUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */; };
 		53DEFCE122C241AF0003852E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DEFCE022C241AF0003852E /* Location.swift */; };
 		53DEFCE322C24CC30003852E /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DEFCE222C24CC30003852E /* LocationListViewController.swift */; };
 		53E7D64422C54A35006DA7B4 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E7D64322C54A35006DA7B4 /* Student.swift */; };
@@ -197,6 +198,7 @@
 		53D98FC922BD44A40027FDCD /* ApiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResult.swift; sourceTree = "<group>"; };
 		53D98FCB22BD459E0027FDCD /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		53D98FCD22BD45F50027FDCD /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsUpdateViewController.swift; sourceTree = "<group>"; };
 		53DEFCE022C241AF0003852E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		53DEFCE222C24CC30003852E /* LocationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
 		53E7D64322C54A35006DA7B4 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 		53D98FC622BD3F970027FDCD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5332FBB922C917F9000BF4B0 /* CustomTabController.swift */,
 				530F8A77229A1656000AFC86 /* RootViewController.swift */,
 				A5598C19201F8C3B000C64F6 /* LoginViewController.swift */,
 				536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */,
@@ -407,7 +410,7 @@
 				15588080209BB753003DC16A /* PackagesViewController.swift */,
 				5393EB7822C7EEF700C47E77 /* PackageCell.swift */,
 				5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */,
-				5332FBB922C917F9000BF4B0 /* CustomTabController.swift */,
+				53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				A5A77C3820407866000F1E3E /* ScheduleProfesorViewController.swift in Sources */,
 				5333E96422C0EAAB00175995 /* Professor.swift in Sources */,
 				53FDE15122BE25C500EBC13F /* DataRequest.swift in Sources */,
+				53DB770722CA81CE0050F7CD /* InstrumentsUpdateViewController.swift in Sources */,
 				53DEFCE122C241AF0003852E /* Location.swift in Sources */,
 				53C5DA9722CA41340005AC14 /* ReservationCell.swift in Sources */,
 				5393EB7722C7DC3200C47E77 /* Package.swift in Sources */,

@@ -116,14 +116,14 @@
                                             <segue destination="0EP-oI-BD9" kind="embed" id="dzH-Ex-JnW"/>
                                         </connections>
                                     </containerView>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DzJ-vk-zPQ" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DzJ-vk-zPQ" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="766" width="414" height="52"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="Ri2-JH-Ap2"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="FilsonProHeavyItalic-Italic" family="FilsonProHeavy-Italic" pointSize="20"/>
-                                        <state key="normal" title="CONTINUAR &gt;">
+                                        <state key="normal" title="GUARDAR">
                                             <color key="titleColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -165,16 +165,16 @@
             </objects>
             <point key="canvasLocation" x="-381.15942028985512" y="27.455357142857142"/>
         </scene>
-        <!--Contact Info View Controller-->
+        <!--MI CUENTA-->
         <scene sceneID="y58-4G-SZZ">
             <objects>
-                <viewController storyboardIdentifier="ContactInfoViewController" id="Rwj-Fy-iqD" customClass="ContactInfoViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactInfoViewController" title="MI CUENTA" id="Rwj-Fy-iqD" customClass="ContactInfoViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jb4-qU-pRN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="674"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezK-W1-k0l">
-                                <rect key="frame" x="0.0" y="88" width="414" height="552"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04L-5n-Xz6">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
@@ -304,16 +304,16 @@
             </objects>
             <point key="canvasLocation" x="-381" y="772"/>
         </scene>
-        <!--Instrument List View Controller-->
+        <!--MIS INSTRUMENTOS-->
         <scene sceneID="KSN-Y7-TYR">
             <objects>
-                <viewController storyboardIdentifier="InstrumentListViewController" id="X0c-YQ-dal" customClass="InstrumentListViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InstrumentListViewController" title="MIS INSTRUMENTOS" id="X0c-YQ-dal" customClass="InstrumentsUpdateViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SoP-oW-Lc2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="674"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="33c-9x-PwJ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="552"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="j2l-EJ-yLh">
                                     <size key="itemSize" width="60" height="60"/>
@@ -402,16 +402,16 @@
             </objects>
             <point key="canvasLocation" x="602.89855072463774" y="770.75892857142856"/>
         </scene>
-        <!--Reservation List View Controller-->
+        <!--MIS CLASES RECIBIDAS-->
         <scene sceneID="qKL-eo-WBe">
             <objects>
-                <viewController storyboardIdentifier="ReservationListViewController" id="IuM-Ts-f9D" customClass="ReservationListViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReservationListViewController" title="MIS CLASES RECIBIDAS" id="IuM-Ts-f9D" customClass="ReservationListViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n4F-TJ-5EJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="674"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kQ0-jq-b7v">
-                                <rect key="frame" x="0.0" y="88" width="414" height="552"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reservationCell" id="KhX-29-gJG" customClass="ReservationCell" customModule="musicprof" customModuleProvider="target">
@@ -518,27 +518,6 @@
             </objects>
             <point key="canvasLocation" x="1511.5942028985507" y="771.42857142857144"/>
         </scene>
-        <!--Custom Tab Controller-->
-        <scene sceneID="SJs-hU-QyD">
-            <objects>
-                <viewController id="YPb-rz-dDt" customClass="CustomTabController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7Wf-Ni-i0K">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="674"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="5yK-1j-6Pd"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="nqH-hx-za7"/>
-                    <connections>
-                        <segue destination="Rwj-Fy-iqD" kind="show" identifier="showAccount" id="y63-WW-1zR"/>
-                        <segue destination="X0c-YQ-dal" kind="show" identifier="showInstruments" id="B5p-Ka-yfV"/>
-                        <segue destination="IuM-Ts-f9D" kind="show" identifier="showReservations" id="Tdw-Yf-G4j"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="081-Ia-8D8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1510.144927536232" y="27.455357142857142"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="43W-Ug-OHv">
             <objects>
@@ -549,9 +528,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="YPb-rz-dDt" kind="relationship" relationship="rootViewController" id="ffQ-2H-aPZ"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kYX-yP-LlL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
