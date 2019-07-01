@@ -26,6 +26,7 @@ class Client: NSObject, Decodable, NSCoding, Student {
     var facebookId: String?
     var instruments: [Instrument]?
     var subaccounts: [Client]?
+    var nextReservations: [Reservation]?
     
     override init() {
         self.id = -1
@@ -53,6 +54,7 @@ class Client: NSObject, Decodable, NSCoding, Student {
         self.facebookId = try user?.decodeIfPresent(String.self, forKey: .facebookId)
         self.instruments = try container.decodeIfPresent([Instrument].self, forKey: .instruments)
         self.subaccounts = try container.decodeIfPresent([Client].self, forKey: .subaccounts)
+        self.nextReservations = try container.decodeIfPresent([Reservation].self, forKey: .nextReservations)
     }
     
     required init?(coder: NSCoder) {
@@ -91,6 +93,7 @@ class Client: NSObject, Decodable, NSCoding, Student {
         case locationId = "colonia_id"
         case instruments
         case subaccounts
+        case nextReservations = "next_reservations"
     }
     
     fileprivate enum UserKeys: String, CodingKey {
@@ -99,6 +102,17 @@ class Client: NSObject, Decodable, NSCoding, Student {
         case email
         case avatar = "photo"
         case facebookId = "facebook_id"
+    }
+}
+
+enum ClientType: Int {
+    case account = 1
+    case subaccount = 2
+}
+
+extension Client {
+    var type: ClientType {
+        return self.userId == self.id ? .account : .subaccount
     }
 }
 
@@ -131,7 +145,7 @@ extension Client {
     }
     
     func encode(to form: MultipartFormData) {
-        if self.userId != self.id {
+        if self.type == .subaccount {
             self.encode(self.userId, withName: "idCuenta", to: form)
         }
         self.encode(self.name, withName: CodingKeys.name.rawValue, to: form)

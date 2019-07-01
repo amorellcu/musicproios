@@ -57,6 +57,10 @@
 		539C80C522C4C621009D8469 /* FilsonProThin-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80B122C4C5B5009D8469 /* FilsonProThin-Thin.otf */; };
 		539C80C622C4C621009D8469 /* FilsonProThinItalic-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80AA22C4C5AE009D8469 /* FilsonProThinItalic-Italic.otf */; };
 		53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2527B22B6E360007C8BB1 /* Profile.swift */; };
+		53C5DA9122CA29CF0005AC14 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9022CA29CF0005AC14 /* ContactInfoViewController.swift */; };
+		53C5DA9322CA2CE00005AC14 /* InstrumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */; };
+		53C5DA9522CA38030005AC14 /* ReservationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */; };
+		53C5DA9722CA41340005AC14 /* ReservationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9622CA41340005AC14 /* ReservationCell.swift */; };
 		53D1C57322C5F8C6002BDAE4 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1C57222C5F8C6002BDAE4 /* RegistrationController.swift */; };
 		53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */; };
 		53D8E20022C3AB2100E3FABB /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8E1FF22C3AB2100E3FABB /* Reservation.swift */; };
@@ -180,6 +184,10 @@
 		539C80B522C4C5B8009D8469 /* FilsonProBookItalic-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProBookItalic-Italic.otf"; sourceTree = "<group>"; };
 		539C80B622C4C5B9009D8469 /* FilsonProBold-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProBold-Bold.otf"; sourceTree = "<group>"; };
 		53C2527B22B6E360007C8BB1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		53C5DA9022CA29CF0005AC14 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
+		53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentListViewController.swift; sourceTree = "<group>"; };
+		53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationListViewController.swift; sourceTree = "<group>"; };
+		53C5DA9622CA41340005AC14 /* ReservationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationCell.swift; sourceTree = "<group>"; };
 		53D1C57222C5F8C6002BDAE4 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentSelectionViewController.swift; sourceTree = "<group>"; };
 		53D8E1FF22C3AB2100E3FABB /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
@@ -368,9 +376,13 @@
 			children = (
 				530F8A77229A1656000AFC86 /* RootViewController.swift */,
 				A5598C19201F8C3B000C64F6 /* LoginViewController.swift */,
-				A5598C70201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift */,
-				A5CA35D7202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift */,
 				536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */,
+				53C5DA9022CA29CF0005AC14 /* ContactInfoViewController.swift */,
+				A5598C70201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift */,
+				53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */,
+				A5CA35D7202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift */,
+				53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */,
+				53C5DA9622CA41340005AC14 /* ReservationCell.swift */,
 				5333E96C22C0FD4E00175995 /* ContainerViewController.swift */,
 				5393EB7422C7CD4600C47E77 /* MenuViewController.swift */,
 				5333E96A22C0F8FC00175995 /* BaseReservationViewController.swift */,
@@ -742,6 +754,7 @@
 				A5AA588D202A57B100F4370A /* UsersTableViewCell.swift in Sources */,
 				A5E1FB202044CE6600B15DD9 /* TextTableViewCell.swift in Sources */,
 				5333E96622C0EF9600175995 /* ReservationRequest.swift in Sources */,
+				53C5DA9522CA38030005AC14 /* ReservationListViewController.swift in Sources */,
 				A5CA35D6202BA922002FFFD0 /* peopleTableViewCell.swift in Sources */,
 				A5598C1A201F8C3B000C64F6 /* LoginViewController.swift in Sources */,
 				53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */,
@@ -785,6 +798,7 @@
 				5333E96422C0EAAB00175995 /* Professor.swift in Sources */,
 				53FDE15122BE25C500EBC13F /* DataRequest.swift in Sources */,
 				53DEFCE122C241AF0003852E /* Location.swift in Sources */,
+				53C5DA9722CA41340005AC14 /* ReservationCell.swift in Sources */,
 				5393EB7722C7DC3200C47E77 /* Package.swift in Sources */,
 				53907E0B22B1983300314EC8 /* InstrumentCell.swift in Sources */,
 				53D98FCC22BD459E0027FDCD /* ApiError.swift in Sources */,
@@ -795,11 +809,13 @@
 				534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */,
 				A5E1FB242044DD4600B15DD9 /* HeaderCell.swift in Sources */,
 				15DFDFBE208E4E7500B28338 /* ApiStudent.swift in Sources */,
+				53C5DA9322CA2CE00005AC14 /* InstrumentListViewController.swift in Sources */,
 				53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */,
 				53FD596222BE4D7D002F5172 /* ProfileViewController.swift in Sources */,
 				A56E0FF5203B810D002D2F28 /* ScheduleViewController.swift in Sources */,
 				5333E96022C0E3FD00175995 /* ProfessorCell.swift in Sources */,
 				53FDE14F22BE257D00EBC13F /* Client.swift in Sources */,
+				53C5DA9122CA29CF0005AC14 /* ContactInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

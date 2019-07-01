@@ -165,10 +165,10 @@
             </objects>
             <point key="canvasLocation" x="-381.15942028985512" y="27.455357142857142"/>
         </scene>
-        <!--View Controller-->
+        <!--Contact Info View Controller-->
         <scene sceneID="y58-4G-SZZ">
             <objects>
-                <viewController id="Rwj-Fy-iqD" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactInfoViewController" id="Rwj-Fy-iqD" customClass="ContactInfoViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jb4-qU-pRN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="674"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,6 +205,9 @@
                                                                 <color key="value" red="0.64316529040000003" green="0.54651182890000005" blue="0.25908902290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Rwj-Fy-iqD" id="QLG-bK-6fe"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Correo Eléctronico" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e0k-wG-nJ0">
                                                         <rect key="frame" x="0.0" y="72" width="352" height="52"/>
@@ -229,6 +232,9 @@
                                                                 <color key="value" red="0.64316529040000003" green="0.54651182890000005" blue="0.25908902290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Rwj-Fy-iqD" id="BNp-of-kGj"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Télefono" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dbJ-cR-ZKC">
                                                         <rect key="frame" x="0.0" y="144" width="352" height="52"/>
@@ -253,6 +259,9 @@
                                                                 <color key="value" red="0.64316529040000003" green="0.54651182890000005" blue="0.25908902290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Rwj-Fy-iqD" id="g4B-Cw-EE1"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -284,15 +293,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ecx-2S-aeq"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="e0k-wG-nJ0" id="1ic-ak-c65"/>
+                        <outlet property="nameTextField" destination="7gu-Fk-cDz" id="Fkd-r8-prA"/>
+                        <outlet property="phoneTextField" destination="dbJ-cR-ZKC" id="aJc-et-Hs6"/>
+                        <outlet property="scrollView" destination="ezK-W1-k0l" id="5a3-hW-yI1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hm7-Uq-rC5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-381" y="772"/>
         </scene>
-        <!--View Controller-->
+        <!--Instrument List View Controller-->
         <scene sceneID="KSN-Y7-TYR">
             <objects>
-                <viewController id="X0c-YQ-dal" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InstrumentListViewController" id="X0c-YQ-dal" customClass="InstrumentListViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SoP-oW-Lc2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="674"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -364,6 +379,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="X0c-YQ-dal" id="mKJ-BQ-BEP"/>
+                                    <outlet property="delegate" destination="X0c-YQ-dal" id="fbX-eC-kH3"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -375,15 +394,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VLJ-Ou-P3H"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="33c-9x-PwJ" id="Db7-ls-Mvo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e21-p2-8hP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="602.89855072463774" y="770.75892857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Reservation List View Controller-->
         <scene sceneID="qKL-eo-WBe">
             <objects>
-                <viewController id="IuM-Ts-f9D" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReservationListViewController" id="IuM-Ts-f9D" customClass="ReservationListViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n4F-TJ-5EJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="674"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -392,7 +414,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="552"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="packageCell" id="KhX-29-gJG" customClass="PackageCell" customModule="musicprof" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reservationCell" id="KhX-29-gJG" customClass="ReservationCell" customModule="musicprof" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KhX-29-gJG" id="wrk-8B-yUy">
@@ -402,30 +424,18 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJf-Ib-svj">
                                                     <rect key="frame" x="31" y="6.5" width="352" height="52"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbd-P4-9pf" userLabel="Count Label">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xx5-SN-dGN">
                                                             <rect key="frame" x="5" y="5" width="42" height="42"/>
-                                                            <color key="backgroundColor" red="0.99914997819999996" green="0.82194018359999999" blue="0.27153930069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="sbd-P4-9pf" secondAttribute="height" multiplier="1:1" id="296-zB-FCm"/>
+                                                                <constraint firstAttribute="width" secondItem="xx5-SN-dGN" secondAttribute="height" multiplier="1:1" id="APl-1d-n5Q"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
-                                                            <color key="textColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                    <real key="value" value="1"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="21"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </label>
+                                                        </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="x6w-ZS-bXx">
                                                             <rect key="frame" x="67" y="0.0" width="255" height="52"/>
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9r-eV-fVq" userLabel="Name Label">
                                                                     <rect key="frame" x="0.0" y="0.0" width="168.5" height="52"/>
-                                                                    <color key="backgroundColor" red="0.99914997819999996" green="0.82194018359999999" blue="0.27153930069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="52" id="1tg-kb-rTa"/>
                                                                     </constraints>
@@ -435,7 +445,7 @@
                                                                 </label>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expira en 10 días" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxU-RL-jfM" userLabel="Name Label">
                                                                     <rect key="frame" x="173.5" y="0.0" width="81.5" height="52"/>
-                                                                    <color key="backgroundColor" red="0.99914997819999996" green="0.82194018359999999" blue="0.27153930069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="52" id="vcm-ZP-4R2"/>
                                                                     </constraints>
@@ -446,16 +456,16 @@
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="0.82352941180000006" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.99607843139999996" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="sbd-P4-9pf" secondAttribute="bottom" constant="5" id="50e-vM-PHY"/>
                                                         <constraint firstAttribute="bottom" secondItem="x6w-ZS-bXx" secondAttribute="bottom" id="BLt-8y-n1F"/>
                                                         <constraint firstAttribute="height" constant="52" id="G98-JR-4T1"/>
                                                         <constraint firstAttribute="trailing" secondItem="x6w-ZS-bXx" secondAttribute="trailing" constant="30" id="M5G-tA-4YG"/>
                                                         <constraint firstItem="x6w-ZS-bXx" firstAttribute="top" secondItem="vJf-Ib-svj" secondAttribute="top" id="TG6-zQ-Myw"/>
-                                                        <constraint firstItem="sbd-P4-9pf" firstAttribute="top" secondItem="vJf-Ib-svj" secondAttribute="top" constant="5" id="jF0-rh-YOG"/>
-                                                        <constraint firstItem="x6w-ZS-bXx" firstAttribute="leading" secondItem="sbd-P4-9pf" secondAttribute="trailing" constant="20" id="jXm-PI-LBd"/>
-                                                        <constraint firstItem="sbd-P4-9pf" firstAttribute="leading" secondItem="vJf-Ib-svj" secondAttribute="leading" constant="5" id="nN8-jC-yy9"/>
+                                                        <constraint firstAttribute="bottom" secondItem="xx5-SN-dGN" secondAttribute="bottom" constant="5" id="VwY-13-s8m"/>
+                                                        <constraint firstItem="xx5-SN-dGN" firstAttribute="leading" secondItem="vJf-Ib-svj" secondAttribute="leading" constant="5" id="nd6-pU-8lT"/>
+                                                        <constraint firstItem="x6w-ZS-bXx" firstAttribute="leading" secondItem="xx5-SN-dGN" secondAttribute="trailing" constant="20" id="oOA-SN-4bR"/>
+                                                        <constraint firstItem="xx5-SN-dGN" firstAttribute="top" secondItem="vJf-Ib-svj" secondAttribute="top" constant="5" id="yCj-2O-Ksv"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -479,12 +489,16 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="detailsLabel" destination="c9r-eV-fVq" id="q20-uu-ceO"/>
-                                            <outlet property="expirationLabel" destination="jxU-RL-jfM" id="9ro-g6-v93"/>
-                                            <outlet property="quantityLabel" destination="sbd-P4-9pf" id="yiC-Bl-HKn"/>
+                                            <outlet property="dateLabel" destination="c9r-eV-fVq" id="hBq-8I-6pf"/>
+                                            <outlet property="instrumentImageView" destination="xx5-SN-dGN" id="s9d-FW-IxQ"/>
+                                            <outlet property="professorLabel" destination="jxU-RL-jfM" id="WB4-3E-g6H"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="IuM-Ts-f9D" id="OZ1-tZ-xtF"/>
+                                    <outlet property="delegate" destination="IuM-Ts-f9D" id="BJE-hP-xvw"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -496,6 +510,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="01G-SG-64w"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="kQ0-jq-b7v" id="Mzn-IM-H8t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6c3-dq-rbw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -509,6 +526,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="674"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="5yK-1j-6Pd"/>
                     </view>
                     <navigationItem key="navigationItem" id="nqH-hx-za7"/>
                     <connections>

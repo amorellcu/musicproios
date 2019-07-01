@@ -12,27 +12,18 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import AlamofireImage
 
-class ContactInfoRegistrationViewController: UIViewController, RegistrationController {
+class ContactInfoRegistrationViewController: ContactInfoViewController {
 
-    @IBOutlet weak var avatarImageView: UIImageView!    
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var phoneTextField: UITextField!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var avatarImageView: UIImageView!
     
-    var client: Client! = Client()
+    override func loadView() {
+        self.client = Client()
+        super.loadView()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.resignFirstResponder))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,11 +53,7 @@ class ContactInfoRegistrationViewController: UIViewController, RegistrationContr
         //self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
-    func updateFields() {
+    override func updateFields() {
         let placeholderAvatar = UIImage(named:"userdefault")
         if let avatarUrl = self.client.avatarUrl {
             let filter = ScaledToSizeCircleFilter(size: self.avatarImageView.frame.size)
@@ -74,27 +61,7 @@ class ContactInfoRegistrationViewController: UIViewController, RegistrationContr
         } else {
             self.avatarImageView.image = placeholderAvatar?.af_imageAspectScaled(toFit: self.avatarImageView.frame.size).af_imageRoundedIntoCircle()
         }
-        self.nameTextField.text = self.client.name
-        self.emailTextField.text = self.client.email
-    }
-    
-    @objc func adjustForKeyboard(notification: Notification) {
-        let userInfo = notification.userInfo!
-        
-        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
-        if notification.name == Notification.Name.UIKeyboardWillHide {
-            scrollView.contentInset = UIEdgeInsets.zero
-        } else {
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
-        }
-    }
-    
-    func updateClient() {
-        self.client.name = self.nameTextField.text ?? ""
-        self.client.phone = self.phoneTextField.text
-        self.client.email = self.emailTextField.text
+        super.updateFields()
     }
     
     @IBAction func onRegisterSubaccounts(_ sender: Any) {
@@ -106,27 +73,5 @@ class ContactInfoRegistrationViewController: UIViewController, RegistrationContr
                 self.performSegue(withIdentifier: "registerStudents", sender: sender)
             }
         }
-    }
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if let controller = segue.destination as? RegistrationController {
-            controller.client = self.client
-        }
-    }
-}
-
-extension ContactInfoRegistrationViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.updateClient()
     }
 }

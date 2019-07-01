@@ -10,18 +10,10 @@ import UIKit
 import AlamofireImage
 import SCLAlertView
 
-class InstrumentsRegistrationViewController: UIViewController, RegistrationController {
-    var client: Client!
-    
-    var instruments: [Instrument]? {
-        didSet {
-            self.collectionView.reloadData()
-        }
-    }
+class InstrumentsRegistrationViewController: InstrumentListViewController {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var studentNameTextField: UITextField?
     
     override func viewDidLoad() {
@@ -47,8 +39,6 @@ class InstrumentsRegistrationViewController: UIViewController, RegistrationContr
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIViewController.resignFirstResponder))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
-        
-        self.collectionView.allowsMultipleSelection = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -143,9 +133,7 @@ class InstrumentsRegistrationViewController: UIViewController, RegistrationContr
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if let controller = segue.destination as? RegistrationController {
-            controller.client = self.client
-        }
+        super.prepare(for: segue, sender: sender)
         if let controller = segue.destination as? PasswordResetViewController {
             controller.email = self.client.email
         }
@@ -156,26 +144,5 @@ extension InstrumentsRegistrationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-}
-
-extension InstrumentsRegistrationViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.instruments?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "instrumentCell", for: indexPath) as! InstrumentCell
-        let instrument = self.instruments?[indexPath.row]
-        if let iconURL = instrument?.iconUrl {
-            var filter: ImageFilter = ScaledToSizeFilter(size: cell.iconImageView.frame.size)
-            filter = TemplateFilter()
-            cell.iconImageView.af_setImage(withURL: iconURL, filter: filter)
-        } else {
-            cell.iconImageView.image = UIImage(named: "no_instrument")
-        }
-        cell.updateColors()
-        
-        return cell
     }
 }

@@ -275,6 +275,19 @@ class ApiManager {
         }
     }
     
+    func getReservations(of client: Client, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getStudentReservations")
+        let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<ReservationData>) in
+                handler(result.transform(with: {$0.reservations}))
+        }
+    }
+    
     func updateAddress(_ address: String, forUserWithId userId: Int, handler: @escaping (ApiResult<Client>) -> Void) {
         let url = baseUrl.appendingPathComponent("updateAddress")
         let parameters: Parameters = ["id": userId, "address": address]
@@ -418,6 +431,10 @@ private struct LocationData: Decodable {
 
 private struct PackageData: Decodable {
     var packages: [Package]
+}
+
+private struct ReservationData: Decodable {
+    var reservations: [Reservation]
 }
 
 class JWTAccessTokenAdapter : NSObject, RequestAdapter, RequestRetrier, NSCoding {

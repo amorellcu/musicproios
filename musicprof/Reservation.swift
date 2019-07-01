@@ -11,7 +11,9 @@ import Foundation
 struct Reservation: Decodable {
     var id: Int
     var date: Date
+    var professor: Professor?
     var professorId: Int?
+    var instrument: Instrument?
     var instrumentId: Int?
     var status: Int?
     
@@ -19,7 +21,9 @@ struct Reservation: Decodable {
         case id
         case date = "class_date_time"
         case professorId = "profesor_id"
+        case professor
         case instrumentId = "instrument_id"
+        case instrument
         case status = "class_status"
     }
 }

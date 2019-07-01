@@ -35,10 +35,11 @@ class ProfileUpdateViewController: UIViewController, RegistrationController, Nes
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.client = self.service.user!
         self.tableCollapseConstraint.priority = .defaultLow
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {        
         self.container?.setDisplayMode(.full, animated: animated)
     }
     
