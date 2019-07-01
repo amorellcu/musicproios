@@ -6,7 +6,7 @@
 //  Copyright © 2019 Alexis Morell Blanco. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class InstrumentsUpdateViewController: InstrumentListViewController {
     override var instruments: [Instrument]? {
@@ -20,5 +20,15 @@ class InstrumentsUpdateViewController: InstrumentListViewController {
             }
             
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let instrument = self.instruments?[indexPath.item] else { return }
+        self.client.instruments?.append(instrument)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let instrument = self.instruments?[indexPath.item] else { return }
+        self.client.instruments?.removeAll(where: {$0 == instrument})
     }
 }

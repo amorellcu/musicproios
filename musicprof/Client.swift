@@ -145,6 +145,9 @@ extension Client {
     }
     
     func encode(to form: MultipartFormData) {
+        if self.id >= 0 {
+            self.encode(self.id, withName: UserKeys.id.rawValue, to: form)
+        }
         if self.type == .subaccount {
             self.encode(self.userId, withName: "idCuenta", to: form)
         }
@@ -156,14 +159,8 @@ extension Client {
         self.encodeValues(self.instruments?.map({$0.id}), withName: CodingKeys.instruments.rawValue, to: form)
         self.encodeIfPresent(self.facebookId, withName: "facebookID", to: form)
         self.encode(1, withName: "paymentTypeId", to: form)
-        if let avatarUrl = self.avatarUrl {
-            if avatarUrl.isFileURL {
-                form.append(avatarUrl, withName: UserKeys.avatar.rawValue)
-            } else if let data = try? Data(contentsOf: avatarUrl) {
-                let ext = avatarUrl.pathExtension
-                let mimeType = self.mimeType(forPathExtension: ext)
-                form.append(data, withName: UserKeys.avatar.rawValue, mimeType: mimeType)
-            }
+        if let avatarUrl = self.avatarUrl, avatarUrl.isFileURL {
+            form.append(avatarUrl, withName: UserKeys.avatar.rawValue)
         }
     }
 }

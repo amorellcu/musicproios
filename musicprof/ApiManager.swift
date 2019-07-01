@@ -329,6 +329,28 @@ class ApiManager {
         }
     }
     
+    func updateProfile(_ client: Client, handler: @escaping (ApiResult<Client>) -> Void) {
+        let url = baseUrl.appendingPathComponent("updateClient")
+        let _ = self.session.upload(multipartFormData: { (form) in
+            client.encode(to: form)
+        }, to: url) { (result) in
+            switch result {
+            case .success(let request, _, _):
+                let _ = request.responseDecodable { (result: ApiResult<UserData>) in
+                    switch result {
+                    case .success(let data):
+                        self.user = data.client
+                        handler(.success(data: data.client))
+                    case .failure(let error):
+                        handler(.failure(error: error))
+                    }
+                }
+            case .failure(let error):
+                handler(.failure(error: error))
+            }
+        }
+    }
+    
     func registerSubaccount(_ client: Client, handler: @escaping (ApiResult<Client>) -> Void) {
         let url = baseUrl.appendingPathComponent("registerSubcuenta")
         let _ = self.session.upload(multipartFormData: { (form) in
