@@ -19,6 +19,7 @@ target 'musicprof' do
   pod 'FBSDKCoreKit', '~> 4.38.0'
   pod 'FBSDKLoginKit', '~> 4.38.0'
   pod 'FBSDKShareKit', '~> 4.38.0'
+  pod 'Braintree'
 
 end
 

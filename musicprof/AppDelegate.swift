@@ -8,9 +8,11 @@
 
 import UIKit
 import FBSDKLoginKit
+import Braintree
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    let PAYMENT_SCHEME = "com.musicprof.payments"
 
     var window: UIWindow?
 
@@ -21,7 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         UINavigationBar.appearance().isTranslucent = true
 
+        BTAppSwitch.setReturnURLScheme(PAYMENT_SCHEME)
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if url.scheme == PAYMENT_SCHEME {
+            return BTAppSwitch.handleOpen(url, options: options)
+        }
+        return false
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

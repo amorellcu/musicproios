@@ -61,6 +61,7 @@
 		53C5DA9322CA2CE00005AC14 /* InstrumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */; };
 		53C5DA9522CA38030005AC14 /* ReservationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */; };
 		53C5DA9722CA41340005AC14 /* ReservationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9622CA41340005AC14 /* ReservationCell.swift */; };
+		53C680AB22CB7CD200993110 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C680AA22CB7CD200993110 /* PaymentViewController.swift */; };
 		53D1C57322C5F8C6002BDAE4 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1C57222C5F8C6002BDAE4 /* RegistrationController.swift */; };
 		53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */; };
 		53D8E20022C3AB2100E3FABB /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8E1FF22C3AB2100E3FABB /* Reservation.swift */; };
@@ -189,6 +190,7 @@
 		53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentListViewController.swift; sourceTree = "<group>"; };
 		53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationListViewController.swift; sourceTree = "<group>"; };
 		53C5DA9622CA41340005AC14 /* ReservationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationCell.swift; sourceTree = "<group>"; };
+		53C680AA22CB7CD200993110 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		53D1C57222C5F8C6002BDAE4 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentSelectionViewController.swift; sourceTree = "<group>"; };
 		53D8E1FF22C3AB2100E3FABB /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 				A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */,
 				15588080209BB753003DC16A /* PackagesViewController.swift */,
 				5393EB7822C7EEF700C47E77 /* PackageCell.swift */,
+				53C680AA22CB7CD200993110 /* PaymentViewController.swift */,
 				5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */,
 				53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */,
 			);
@@ -690,6 +693,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/Braintree/Braintree.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
@@ -708,6 +712,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Braintree.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
@@ -760,6 +765,7 @@
 				53C5DA9522CA38030005AC14 /* ReservationListViewController.swift in Sources */,
 				A5CA35D6202BA922002FFFD0 /* peopleTableViewCell.swift in Sources */,
 				A5598C1A201F8C3B000C64F6 /* LoginViewController.swift in Sources */,
+				53C680AB22CB7CD200993110 /* PaymentViewController.swift in Sources */,
 				53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */,
 				533E63FA22C8BE43007EE029 /* ToggleButton.swift in Sources */,
 				5333E96922C0F78900175995 /* ReservationController.swift in Sources */,

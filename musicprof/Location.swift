@@ -12,11 +12,13 @@ struct Location: Decodable {
     var id: Int
     var zone: String
     var state: String?
+    var stateId: Int?
     var municipality: String?
     var city: String?
     
     fileprivate enum CodingKeys: String, CodingKey {
         case id
+        case stateId = "idEstado"
         case zone = "asentamiento"
         case state = "estado"
         case municipality = "municipio"
