@@ -31,7 +31,7 @@ class Client: NSObject, Decodable, NSCoding, Student {
     override init() {
         self.id = -1
         self.userId = -1
-        self.name = "test"
+        self.name = ""
         self.locationId = 409
         self.address = "test address"
         super.init()
@@ -166,25 +166,66 @@ extension Client {
 }
 
 extension Client {
-    func loadFromFB(completion: @escaping (Error?) -> Void) {
+    func loadFromFB(overwrite: Bool = false, completion: @escaping (Error?) -> Void) {
         guard FBSDKAccessToken.current() != nil else {
             return completion(AppError.invalidOperation)
         }
         FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large), email"]).start { (connection, result, error) -> Void in
-            if let error = error {
-                completion(error)
-            } else if let dict = result as? [String : Any] {
-                let picture = dict["picture"] as? [String: Any]
-                var data = picture?["data"] as? [String : Any]
-                let imageUrlString = data?["url"] as? String
-                self.avatarUrl = imageUrlString == nil ? nil : URL(string: imageUrlString!)
-                self.name = dict["name"] as? String ?? self.name
-                self.email = dict["email"] as? String ?? self.email
-                self.facebookId = (dict["id"] as? String)!
-                completion(nil)
-            } else {
-                completion(AppError.unsupportedData)
+            DispatchQueue.main.async {
+                if let error = error {
+                    completion(error)
+                } else if let dict = result as? [String : Any] {
+                    let picture = dict["picture"] as? [String: Any]
+                    var data = picture?["data"] as? [String : Any]
+                    let imageUrlString = data?["url"] as? String
+                    
+                    if overwrite {
+                        self.avatarUrl = (imageUrlString == nil ? nil : URL(string: imageUrlString!)) ?? self.avatarUrl
+                        self.name = dict["name"] as? String ?? self.name
+                        self.email = dict["email"] as? String ?? self.email
+                        self.facebookId = (dict["id"] as? String) ?? self.facebookId
+                    } else {
+                        self.avatarUrl = self.avatarUrl ?? (imageUrlString == nil ? nil : URL(string: imageUrlString!))
+                        self.name = self.name.isEmpty ? (dict["name"] as? String ?? "") : self.name
+                        self.email = self.email ?? dict["email"] as? String
+                        self.facebookId = self.facebookId ?? (dict["id"] as? String)
+                    }
+                    
+                    completion(nil)
+                } else {
+                    completion(AppError.unsupportedData)
+                }
             }
+        }
+    }
+    
+    func update(from other: Client, overwrite: Bool = false) {
+        if overwrite {
+            self.userId = other.userId < 0 ? self.userId : other.userId
+            self.id = other.id < 0 ? self.id : other.id
+            self.name = other.name.isEmpty ? self.name : other.name
+            self.email = other.email ?? self.email
+            self.phone = other.phone ?? self.phone
+            self.address = other.address ?? self.address
+            self.locationId = other.locationId ?? self.locationId
+            self.avatarUrl = other.avatarUrl ?? self.avatarUrl
+            self.facebookId = other.facebookId ?? self.facebookId
+            self.instruments = other.instruments ?? self.instruments
+            self.subaccounts = other.subaccounts ?? self.subaccounts
+            self.nextReservations = other.nextReservations ?? self.nextReservations
+        } else {
+            self.userId = self.userId < 0 ? other.userId : self.userId
+            self.id = self.id < 0 ? other.id : self.id
+            self.name = self.name.isEmpty ? other.name : self.name
+            self.email = self.email ?? other.email
+            self.phone = self.phone ?? other.phone
+            self.address = self.address ?? other.address
+            self.locationId = self.locationId ?? other.locationId
+            self.avatarUrl = self.avatarUrl ?? other.avatarUrl
+            self.facebookId = self.facebookId ?? other.facebookId
+            self.instruments = self.instruments ?? other.instruments
+            self.subaccounts = self.subaccounts ?? other.subaccounts
+            self.nextReservations = self.nextReservations ?? other.nextReservations
         }
     }
 }

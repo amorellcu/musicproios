@@ -22,6 +22,8 @@ extension UIViewController {
         switch error{
         case let serviceError as ApiError:
             msg = serviceError.description
+        case let appError as AppError:
+            msg = appError.description
         case let afError as AFError where afError.responseCode == 401:
             msg = "Your credentials expired. Please, login again."
             //completion = { self.signOut(completion: completion) }

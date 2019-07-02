@@ -13,6 +13,7 @@ enum AppError: String, Error {
     case notAnError = "Error interno."
     case unsupportedData = "Se recibieron datos erroneos del serivdor. Por favor, asegúrese de tener la última versión de la aplicación."
     case invalidOperation = "No se puede ejecutar la operación en este momento."
+    case registrationRequired = "Por favor, complete su registro en el sistema."
 }
 
 extension AppError: CustomStringConvertible {

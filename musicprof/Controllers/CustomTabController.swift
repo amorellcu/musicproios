@@ -83,7 +83,7 @@ extension CustomTabController: UINavigationControllerDelegate {
 
 extension CustomTabController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if selectedSection != nil && self.sections[indexPath.item] === selectedSection {
+        if selectedSection != nil && self.sections[indexPath.item] !== selectedSection {
             return 0
         }
         return 72

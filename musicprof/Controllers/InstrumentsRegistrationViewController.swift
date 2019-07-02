@@ -98,7 +98,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController {
                     self.reset()
                 }
                 alertView.addButton("NO") {
-                    self.performSegue(withIdentifier: "setPassword", sender: sender)
+                    self.performSegue(withIdentifier: "login", sender: sender)
                 }
                 alertView.showSuccess("El estudiante \(self.studentNameTextField?.text ?? "") se ha agregado correctamente", subTitle: "¿Desea Agregar otro estudiante?")
             }
@@ -120,7 +120,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController {
                 )
                 let alertView1 = SCLAlertView(appearance: appearance)
                 alertView1.addButton("OK") {
-                    self.performSegue(withIdentifier: "setPassword", sender: sender)
+                    self.performSegue(withIdentifier: "login", sender: sender)
                 }
                 alertView1.showSuccess("Gracias por Registrarte", subTitle: message)
             }

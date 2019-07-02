@@ -55,9 +55,19 @@ class ContactInfoRegistrationViewController: ContactInfoViewController {
     
     override func updateFields() {
         let placeholderAvatar = UIImage(named:"userdefault")
-        if let avatarUrl = self.client.avatarUrl {
+        if let avatarUrl = self.client.avatarUrl, avatarUrl.isFileURL {
+            self.avatarImageView.image = UIImage(contentsOfFile: avatarUrl.path)
+        } else if let avatarUrl = self.client.avatarUrl {
             let filter = ScaledToSizeCircleFilter(size: self.avatarImageView.frame.size)
-            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"), filter: filter)
+            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"), filter: filter) { response in
+                if let avatar = response.result.value, let data = UIImagePNGRepresentation(avatar) {
+                    let documentsPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+                    let destinationURL = documentsPath.appendingPathComponent("\(UUID()).png")
+                    if FileManager.default.createFile(atPath: destinationURL.path, contents: data, attributes: nil) {
+                        self.client.avatarUrl = destinationURL
+                    }
+                }
+            }
         } else {
             self.avatarImageView.image = placeholderAvatar?.af_imageAspectScaled(toFit: self.avatarImageView.frame.size).af_imageRoundedIntoCircle()
         }
@@ -65,6 +75,8 @@ class ContactInfoRegistrationViewController: ContactInfoViewController {
     }
     
     @IBAction func onRegisterSubaccounts(_ sender: Any) {
+        self.updateClient()
+        self.client.instruments = []
         self.showSpinner(onView: self.view)
         self.service.registerClient(self.client) { (result) in
             self.removeSpinner()

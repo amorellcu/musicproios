@@ -26,19 +26,23 @@ class ContainerViewController: UIViewController {
 
         self.navigationController?.setTransparentBar()
         self.profileNameLabel.text = self.service.user?.name
-        let placeholderAvatar = UIImage(named:"userdefault")
-        if let avatarUrl = self.service.user?.avatarUrl {
-            let filter = ScaledToSizeCircleFilter(size: self.avatarImageView.frame.size)
-            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"), filter: filter)
-        } else {
-            self.avatarImageView.image = placeholderAvatar?.af_imageAspectScaled(toFit: self.avatarImageView.frame.size).af_imageRoundedIntoCircle()
-        }
+        self.setAvatar(self.service.user?.avatarUrl)
         self.avatarImageView.clipsToBounds = true
         
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+    }
+    
+    private func setAvatar(_ url: URL?) {
+        let placeholderAvatar = UIImage(named:"userdefault")
+        if let avatarUrl = url {
+            let filter = ScaledToSizeCircleFilter(size: self.avatarImageView.frame.size)
+            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"), filter: filter)
+        } else {
+            self.avatarImageView.image = placeholderAvatar?.af_imageAspectScaled(toFit: self.avatarImageView.frame.size).af_imageRoundedIntoCircle()
+        }
     }
     
     @objc func adjustForKeyboard(notification: Notification) {

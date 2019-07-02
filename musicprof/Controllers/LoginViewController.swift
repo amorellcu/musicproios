@@ -48,29 +48,14 @@ class LoginViewController: UIViewController {
         self.passText.leftViewMode = UITextFieldViewMode.always
         self.passText.isSecureTextEntry = true
         
-        if self.service.isSignedIn {
+        if let accessToken = AccessToken.current{
+            print(">>> token found: "+accessToken.authenticationToken)
+            self.login(withFBToken: accessToken)
+        } else if self.service.isSignedIn {
             self.showSpinner(onView: self.view)
             self.service.getUserInfo {[weak self](result) in
                 self?.removeSpinner()
                 self?.handleResult(result, onSuccess: {
-                    self?.performSegue(withIdentifier: "login", sender: self)
-                })
-            }
-        }
-        else if let accessToken = AccessToken.current{
-            print(">>> token found: "+accessToken.authenticationToken)
-            self.showSpinner(onView: self.view)
-            self.service.signIn(withFacebookToken: accessToken.authenticationToken) { [weak self] (result) in
-                self?.removeSpinner()
-                self?.handleResult(result, onSuccess: { (_) in
-                    // TODO: check for registration
-                    /*
-                     if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterStepOne") as? RegisterStepOneViewController {
-                     if let navigator = self.navigationController {
-                     navigator.pushViewController(viewController, animated: true)
-                     }
-                     }
-                     */
                     self?.performSegue(withIdentifier: "login", sender: self)
                 })
             }
@@ -109,30 +94,37 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
+    private func login(withFBToken accessToken: AccessToken) {
+        self.showSpinner(onView: self.view)
+        self.service.signIn(withFacebookToken: accessToken.authenticationToken, handler: { (result) in
+            self.removeSpinner()
+            self.handleResult(result, onError: { error in
+                if let appError = error as? AppError, appError == AppError.registrationRequired {
+                    self.performSegue(withIdentifier: "RegisterStepOneSegue", sender: self)
+                }
+            }, onSuccess: {
+                self.performSegue(withIdentifier: "login", sender: self)
+            })
+        })
+    }
     
     @IBAction func onLoginWithFB(_ sender: Any) {
+        if let accessToken = AccessToken.current{
+            return self.login(withFBToken: accessToken)
+        }
         let loginManager = LoginManager()
         loginManager.loginBehavior = LoginBehavior.web
         loginManager.logIn(readPermissions: [ .publicProfile, .email ], viewController: self) { [weak self] loginResult in
-            switch loginResult {
-            case .failed(let error):
-                print(error)
-                self?.notify(error: error)
-            case .cancelled:
-                print("User cancelled login.")
-            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                self?.service.signIn(withFacebookToken: accessToken.authenticationToken, handler: { (result) in
-                    self?.handleResult(result, onSuccess: { (_) in
-                                                /*
-                         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterStepOne") as? RegisterStepOneViewController {
-                         if let navigator = self.navigationController {
-                         navigator.pushViewController(viewController, animated: true)
-                         }
-                         }
-                         */
-                        self?.performSegue(withIdentifier: "login", sender: self)
-                    })
-                })
+            DispatchQueue.main.async {
+                switch loginResult {
+                case .failed(let error):
+                    print(error)
+                    self?.notify(error: error)
+                case .cancelled:
+                    print("User cancelled login.")
+                case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+                    self?.login(withFBToken: accessToken)
+                }
             }
         }
     }

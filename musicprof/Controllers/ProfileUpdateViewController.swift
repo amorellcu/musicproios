@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FacebookCore
 
 class ProfileUpdateViewController: CustomTabController, RegistrationController, NestedController {
     var container: ContainerViewController?

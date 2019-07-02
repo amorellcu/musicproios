@@ -10,6 +10,8 @@ import Foundation
 import Alamofire
 import AlamofireImage
 import SwiftKeychainWrapper
+import FacebookCore
+import FacebookLogin
 
 class ApiManager {
     static let shared = ApiManager()
@@ -60,8 +62,6 @@ class ApiManager {
     
     func signIn(withEmail userName: String, password: String,
                 handler: @escaping (ApiResult<Client>) -> Void) {
-        self.signOut()
-        
         let url = baseUrl.appendingPathComponent("loginClient")
         let parameters = ["email": userName, "password": password]
         let _ = self.session
@@ -83,8 +83,6 @@ class ApiManager {
     
     func signIn(withFacebookToken accessToken: String,
                 handler: @escaping (ApiResult<Client>) -> Void) {
-        self.signOut()
-        
         let url = baseUrl.appendingPathComponent("loginWithFacebook")
         let parameters = ["accessToken": accessToken]
         let _ = self.session
@@ -92,12 +90,15 @@ class ApiManager {
                      parameters: parameters,
                      encoding: URLEncoding.default,
                      headers: self.headers)
-            .responseDecodable { (result: ApiResult<LoginData>) in
+            .responseDecodable { (result: ApiResult<FBLoginData>) in
                 switch result {
                 case .success(let data):
-                    self.createAdapter(accessToken: data.token, refreshToken: "")
+                    guard let token = data.token, let client = data.client else {
+                        return handler(.failure(error: AppError.registrationRequired))
+                    }
+                    self.createAdapter(accessToken: token, refreshToken: "")
                     self.user = data.client
-                    handler(.success(data: data.client))
+                    handler(.success(data: client))
                 case .failure(let error):
                     handler(.failure(error: error))
                 }
@@ -105,6 +106,9 @@ class ApiManager {
     }
     
     func signOut() {
+        if AccessToken.current != nil {
+            //LoginManager().logOut()
+        }        
         self.session.adapter = nil
         self.session.retrier = nil
         self.user = nil
@@ -433,6 +437,14 @@ class ApiManager {
 private struct LoginData: Decodable {
     var token: String
     var client: Client
+}
+
+private struct FBLoginData: Decodable {
+    var token: String?
+    var client: Client?
+    var facebookID: String?
+    var name: String?
+    var email: String?
 }
 
 private struct UserData: Decodable {
