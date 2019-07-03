@@ -516,7 +516,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6c3-dq-rbw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1511.5942028985507" y="771.42857142857144"/>
+            <point key="canvasLocation" x="1596" y="771"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="43W-Ug-OHv">
@@ -532,6 +532,117 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kYX-yP-LlL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="602.89855072463774" y="27.455357142857142"/>
+        </scene>
+        <!--CAMBIAR CONTRASENA-->
+        <scene sceneID="15f-bF-lbG">
+            <objects>
+                <viewController storyboardIdentifier="PasswordUpdateViewController" title="CAMBIAR CONTRASENA" id="BLQ-gv-nM6" customClass="PasswordUpdateViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0yz-AW-PJC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QeS-GS-fuJ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="94D-FA-mNt">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="164"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Dpu-bu-s4D">
+                                                <rect key="frame" x="31" y="20" width="352" height="124"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Contraseña" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="245-d6-0Lw">
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="52"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="52" id="mGH-ZR-ZkR"/>
+                                                        </constraints>
+                                                        <color key="textColor" red="1" green="0.82352941180000006" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.73806899790000002" green="0.61857867239999997" blue="0.25890570880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="26"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                                <color key="value" red="0.64316529040000003" green="0.54651182890000005" blue="0.25908902290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BLQ-gv-nM6" id="XVS-QF-oKq"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Confirmar Contraseña" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X0B-lK-HH7">
+                                                        <rect key="frame" x="0.0" y="72" width="352" height="52"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="52" id="SFn-IE-ju3"/>
+                                                        </constraints>
+                                                        <color key="textColor" red="1" green="0.82352941180000006" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.73806899790000002" green="0.61857867239999997" blue="0.25890570880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="26"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                                <color key="value" red="0.64316529040000003" green="0.54651182890000005" blue="0.25908902290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BLQ-gv-nM6" id="84D-NY-01F"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Dpu-bu-s4D" secondAttribute="trailing" constant="31" id="5aC-uo-MV8"/>
+                                            <constraint firstItem="Dpu-bu-s4D" firstAttribute="top" secondItem="94D-FA-mNt" secondAttribute="top" constant="20" id="PA4-SC-mnK"/>
+                                            <constraint firstAttribute="bottom" secondItem="Dpu-bu-s4D" secondAttribute="bottom" constant="20" id="wn8-Wd-dBv"/>
+                                            <constraint firstItem="Dpu-bu-s4D" firstAttribute="leading" secondItem="94D-FA-mNt" secondAttribute="leading" constant="31" id="yfS-Eh-dxD"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="94D-FA-mNt" secondAttribute="trailing" id="Ufb-kn-KTb"/>
+                                    <constraint firstAttribute="bottom" secondItem="94D-FA-mNt" secondAttribute="bottom" id="g9y-h6-aGe"/>
+                                    <constraint firstItem="94D-FA-mNt" firstAttribute="leading" secondItem="QeS-GS-fuJ" secondAttribute="leading" id="xlv-wK-o1w"/>
+                                    <constraint firstItem="94D-FA-mNt" firstAttribute="width" secondItem="QeS-GS-fuJ" secondAttribute="width" id="yTP-iJ-nYF"/>
+                                    <constraint firstItem="94D-FA-mNt" firstAttribute="top" secondItem="QeS-GS-fuJ" secondAttribute="top" id="zBY-M5-eAn"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Eof-Rp-gNa" firstAttribute="bottom" secondItem="QeS-GS-fuJ" secondAttribute="bottom" id="SV6-9n-Tkj"/>
+                            <constraint firstItem="QeS-GS-fuJ" firstAttribute="leading" secondItem="Eof-Rp-gNa" secondAttribute="leading" id="Vg6-ed-gI0"/>
+                            <constraint firstItem="QeS-GS-fuJ" firstAttribute="top" secondItem="Eof-Rp-gNa" secondAttribute="top" id="egO-42-9fE"/>
+                            <constraint firstItem="Eof-Rp-gNa" firstAttribute="trailing" secondItem="QeS-GS-fuJ" secondAttribute="trailing" id="rJb-uL-rcX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Eof-Rp-gNa"/>
+                    </view>
+                    <connections>
+                        <outlet property="passwordConfirmationTextField" destination="X0B-lK-HH7" id="qxL-Qx-3gP"/>
+                        <outlet property="passwordTextField" destination="245-d6-0Lw" id="bXx-qV-2nO"/>
+                        <outlet property="scrollView" destination="QeS-GS-fuJ" id="eB4-SE-HG6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QSU-Gl-hKN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2580" y="771"/>
         </scene>
     </scenes>
     <resources>

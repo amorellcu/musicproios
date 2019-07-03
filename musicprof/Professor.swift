@@ -22,7 +22,7 @@ class Professor: Decodable {
     var workExperience: String?
     var academicTraining: String?
     
-    var reservations: [Reservation]?
+    var classes: [Class]?
     var locations: [Location]?
     var instruments: [Instrument]?
     
@@ -56,7 +56,7 @@ class Professor: Decodable {
         
         self.instruments = try container.decodeIfPresent([Instrument].self, forKey: .instruments)
         self.locations = try container.decodeIfPresent([Location].self, forKey: .locations)
-        self.reservations = try container.decodeIfPresent([Reservation].self, forKey: .reservations)
+        self.classes = try container.decodeIfPresent([Class].self, forKey: .classes)
     }
     
     fileprivate enum CodingKeys: String, CodingKey {
@@ -70,7 +70,7 @@ class Professor: Decodable {
         case academicTraining = "formacion_academica"
         case locations = "colonias"
         case instruments
-        case reservations = "classes"
+        case classes = "classes"
     }
     
     fileprivate enum UserKeys: String, CodingKey {

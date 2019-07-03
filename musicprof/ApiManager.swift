@@ -107,7 +107,7 @@ class ApiManager {
     
     func signOut() {
         if AccessToken.current != nil {
-            //LoginManager().logOut()
+            LoginManager().logOut()
         }        
         self.session.adapter = nil
         self.session.retrier = nil
@@ -301,6 +301,19 @@ class ApiManager {
         }
     }
     
+    func getNextClasses(of client: Client, handler: @escaping (ApiResult<[Class]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getNextClasses")
+        let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<ClassData>) in
+                handler(result.transform(with: {$0.classes}))
+        }
+    }
+    
     func updateAddress(_ address: String, forUserWithId userId: Int, handler: @escaping (ApiResult<Client>) -> Void) {
         let url = baseUrl.appendingPathComponent("updateAddress")
         let parameters: Parameters = ["id": userId, "address": address]
@@ -398,6 +411,15 @@ class ApiManager {
             .responseError(completionHandler: handler)
     }
     
+    func changePassword(to password: String, handler: @escaping (ApiResult<Void>) -> Void) {
+        let url = baseUrl.appendingPathComponent("password/change")
+        let parameters = ["password": password, "password_confirmation": password]
+        let _ = self.session
+            .request(url, method: .post, parameters: parameters,
+                     encoding: URLEncoding.httpBody, headers: headers)
+            .responseError(completionHandler: handler)
+    }
+    
     private func post<T: Encodable>(_ encodable: T, to url: URL, handler: @escaping (ApiResult<Void>) -> Void) {
         var data: Data
         do {
@@ -478,6 +500,10 @@ private struct PackageData: Decodable {
 
 private struct ReservationData: Decodable {
     var reservations: [Reservation]
+}
+
+private struct ClassData: Decodable {
+    var classes: [Class]
 }
 
 class JWTAccessTokenAdapter : NSObject, RequestAdapter, RequestRetrier, NSCoding {

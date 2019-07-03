@@ -99,7 +99,7 @@ class ScheduleProfesorViewController: BaseReservationViewController {
             self?.handleResult(result) {
                 var professors = [Date:[Professor]]()
                 for professor in $0 {
-                    for reservation in professor.reservations ?? [] {
+                    for reservation in professor.classes ?? [] {
                         var items = professors[reservation.date] ?? []
                         items.append(professor)
                         professors[reservation.date] = items

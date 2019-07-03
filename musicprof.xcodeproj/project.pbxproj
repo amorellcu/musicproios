@@ -31,6 +31,8 @@
 		533E63FC22C8CA76007EE029 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 533E63FB22C8CA76007EE029 /* Profile.storyboard */; };
 		534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */; };
 		534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4D22BFC043009249FC /* StudentCell.swift */; };
+		53616E6C22CBAF6800B36549 /* PasswordUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53616E6B22CBAF6800B36549 /* PasswordUpdateViewController.swift */; };
+		5366CFD922CC9B4400FFDEE2 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5366CFD822CC9B4400FFDEE2 /* Reservation.swift */; };
 		536752C122C5E19B00DA1590 /* SubaccountListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536752C022C5E19B00DA1590 /* SubaccountListViewController.swift */; };
 		536C704122C1F30A00E217FF /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C704022C1F30A00E217FF /* UINavigationController.swift */; };
 		536F8A5A22C6510D0061CF17 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */; };
@@ -64,7 +66,7 @@
 		53C680AB22CB7CD200993110 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C680AA22CB7CD200993110 /* PaymentViewController.swift */; };
 		53D1C57322C5F8C6002BDAE4 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1C57222C5F8C6002BDAE4 /* RegistrationController.swift */; };
 		53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */; };
-		53D8E20022C3AB2100E3FABB /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8E1FF22C3AB2100E3FABB /* Reservation.swift */; };
+		53D8E20022C3AB2100E3FABB /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8E1FF22C3AB2100E3FABB /* Class.swift */; };
 		53D8E20222C3D5FB00E3FABB /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8E20122C3D5FB00E3FABB /* DateCell.swift */; };
 		53D98FBE22BD35D10027FDCD /* Reservation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53D98FBD22BD35D10027FDCD /* Reservation.storyboard */; };
 		53D98FC822BD3FC30027FDCD /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FC722BD3FC30027FDCD /* ApiManager.swift */; };
@@ -160,6 +162,8 @@
 		533E63FB22C8CA76007EE029 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentsViewController.swift; sourceTree = "<group>"; };
 		534F1D4D22BFC043009249FC /* StudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCell.swift; sourceTree = "<group>"; };
+		53616E6B22CBAF6800B36549 /* PasswordUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUpdateViewController.swift; sourceTree = "<group>"; };
+		5366CFD822CC9B4400FFDEE2 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		536752C022C5E19B00DA1590 /* SubaccountListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubaccountListViewController.swift; sourceTree = "<group>"; };
 		536C704022C1F30A00E217FF /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
@@ -193,7 +197,7 @@
 		53C680AA22CB7CD200993110 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		53D1C57222C5F8C6002BDAE4 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentSelectionViewController.swift; sourceTree = "<group>"; };
-		53D8E1FF22C3AB2100E3FABB /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
+		53D8E1FF22C3AB2100E3FABB /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		53D8E20122C3D5FB00E3FABB /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		53D98FBD22BD35D10027FDCD /* Reservation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Reservation.storyboard; sourceTree = "<group>"; };
 		53D98FC722BD3FC30027FDCD /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
@@ -368,7 +372,8 @@
 				53907E0C22B19EC700314EC8 /* Instrument.swift */,
 				53DEFCE022C241AF0003852E /* Location.swift */,
 				5333E96322C0EAAB00175995 /* Professor.swift */,
-				53D8E1FF22C3AB2100E3FABB /* Reservation.swift */,
+				53D8E1FF22C3AB2100E3FABB /* Class.swift */,
+				5366CFD822CC9B4400FFDEE2 /* Reservation.swift */,
 				5333E96522C0EF9600175995 /* ReservationRequest.swift */,
 				5393EB7622C7DC3200C47E77 /* Package.swift */,
 			);
@@ -414,6 +419,7 @@
 				53C680AA22CB7CD200993110 /* PaymentViewController.swift */,
 				5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */,
 				53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */,
+				53616E6B22CBAF6800B36549 /* PasswordUpdateViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -781,13 +787,14 @@
 				A5598C71201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift in Sources */,
 				5332FBBA22C917F9000BF4B0 /* CustomTabController.swift in Sources */,
 				A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */,
+				53616E6C22CBAF6800B36549 /* PasswordUpdateViewController.swift in Sources */,
 				534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */,
 				A5E1FB1E2044BC2200B15DD9 /* ProfessorDetailsViewController.swift in Sources */,
 				5332FBB822C91645000BF4B0 /* ProfileUpdateViewController.swift in Sources */,
 				15588081209BB753003DC16A /* PackagesViewController.swift in Sources */,
 				53D98FC822BD3FC30027FDCD /* ApiManager.swift in Sources */,
 				A5AD1EC020338A6F00A38F85 /* CalendarCell.swift in Sources */,
-				53D8E20022C3AB2100E3FABB /* Reservation.swift in Sources */,
+				53D8E20022C3AB2100E3FABB /* Class.swift in Sources */,
 				A5598C18201F8C3B000C64F6 /* AppDelegate.swift in Sources */,
 				5305F99622C4E950002284EF /* UIView.swift in Sources */,
 				530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */,
@@ -796,6 +803,7 @@
 				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,
 				53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */,
 				5393EB7522C7CD4600C47E77 /* MenuViewController.swift in Sources */,
+				5366CFD922CC9B4400FFDEE2 /* Reservation.swift in Sources */,
 				536F8A5A22C6510D0061CF17 /* PasswordResetViewController.swift in Sources */,
 				A5FF65842024FE34003778B3 /* HeaderTableViewCell.swift in Sources */,
 				5333E96222C0E46500175995 /* ProfessorListViewController.swift in Sources */,

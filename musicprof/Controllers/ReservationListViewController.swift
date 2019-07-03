@@ -15,7 +15,7 @@ class ReservationListViewController: UIViewController, RegistrationController, N
     
     let dateFormatter = DateFormatter()
     
-    var reservations: [Reservation]? {
+    var reservations: [Class]? {
         didSet {
             self.tableView.reloadData()
         }
@@ -44,7 +44,7 @@ class ReservationListViewController: UIViewController, RegistrationController, N
     }
     
     open func loadReservations(_ reservations: [Reservation]) {
-        self.reservations = reservations
+        self.reservations = reservations.compactMap({$0.classes})
     }
     
 

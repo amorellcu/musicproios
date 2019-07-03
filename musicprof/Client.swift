@@ -37,6 +37,22 @@ class Client: NSObject, Decodable, NSCoding, Student {
         super.init()
     }
     
+    init(copy other: Client) {
+        self.userId = other.userId
+        self.id = other.id
+        self.name = other.name
+        self.email = other.email
+        self.phone = other.phone
+        self.address = other.address
+        self.locationId = other.locationId
+        self.avatarUrl = other.avatarUrl
+        self.facebookId = other.facebookId
+        self.instruments = other.instruments
+        self.subaccounts = other.subaccounts
+        self.nextReservations = other.nextReservations
+        super.init()
+    }
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let user = container.contains(.user) ? try container.nestedContainer(keyedBy: UserKeys.self, forKey: .user) : nil
@@ -162,6 +178,19 @@ extension Client {
         if let avatarUrl = self.avatarUrl, avatarUrl.isFileURL {
             form.append(avatarUrl, withName: UserKeys.avatar.rawValue)
         }
+    }
+}
+
+extension Client {
+    override func isEqual(_ object: Any?) -> Bool {
+        let lhs = self
+        guard let rhs = object as? Client else { return false }
+        return lhs.id == rhs.id && lhs.userId == rhs.userId &&
+            lhs.name == rhs.name && lhs.email == rhs.email &&
+            lhs.phone == rhs.phone &&
+            lhs.address == rhs.address && lhs.locationId == rhs.locationId &&
+            lhs.facebookId == rhs.facebookId && lhs.avatarUrl == rhs.avatarUrl &&
+            Set(lhs.instruments ?? []) == Set(rhs.instruments ?? [])
     }
 }
 
