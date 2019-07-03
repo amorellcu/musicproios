@@ -20,6 +20,7 @@ target 'musicprof' do
   pod 'FBSDKLoginKit', '~> 4.38.0'
   pod 'FBSDKShareKit', '~> 4.38.0'
   pod 'Braintree'
+  pod 'ActionSheetPicker-3.0', '~> 2.3.0'
 
 end
 

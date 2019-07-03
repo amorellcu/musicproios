@@ -11,7 +11,9 @@ import MapKit
 import CoreLocation
 import SCLAlertView
 
-class MapViewController: BaseReservationViewController {
+class MapViewController: UIViewController, NestedController {
+    var container: ContainerViewController?
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var fixAddressButton: UIButton!
     
@@ -29,6 +31,11 @@ class MapViewController: BaseReservationViewController {
         didSet {
             self.fixAddressButton.isEnabled = self.userLocation != nil || self.selectedLocation != nil
         }
+    }
+    
+    var selectedAddress: String? {
+        let location = self.selectedLocation ?? self.userLocation
+        return location?.address
     }
     
     override func viewDidLoad() {
@@ -52,7 +59,8 @@ class MapViewController: BaseReservationViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.container?.navigationItem.titleView = searchController.searchBar
+        let navigationItem = self.container?.navigationItem ?? self.navigationItem
+        navigationItem.titleView = searchController.searchBar
         self.container?.setDisplayMode(.collapsed, animated: animated)
     }
     
@@ -66,17 +74,8 @@ class MapViewController: BaseReservationViewController {
     }
     
     @IBAction func onFixAddressTapped(_ sender: Any) {
-        guard let location = self.selectedLocation ?? self.userLocation, let userId = self.reservation.studentId else {
-            return
-        }
-        let address = location.address
-        self.service.updateAddress(address, forUserWithId: userId) {[weak self] (result) in
-            self?.handleResult(result) { client in
-                self?.reservation.address = client.address
-                self?.reservation.locationId = client.locationId
-                self?.performSegue(withIdentifier: "backToLocations", sender: sender)
-            }
-        }
+        guard self.selectedAddress != nil else { return }
+        self.performSegue(withIdentifier: "updateAddress", sender: sender)
     }
     
     @IBAction func onMapTapped(_ sender: UITapGestureRecognizer) {

@@ -15,6 +15,7 @@
 		5305F99622C4E950002284EF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5305F99522C4E950002284EF /* UIView.swift */; };
 		530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A77229A1656000AFC86 /* RootViewController.swift */; };
 		530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A79229B773A000AFC86 /* UIViewController.swift */; };
+		5327962222CCBE2C0085FAFD /* Maps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5327962122CCBE2C0085FAFD /* Maps.storyboard */; };
 		532CC89C22C50D3F00FB1822 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532CC89B22C50D3F00FB1822 /* TransparentButton.swift */; };
 		5332FBB822C91645000BF4B0 /* ProfileUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */; };
 		5332FBBA22C917F9000BF4B0 /* CustomTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5332FBB922C917F9000BF4B0 /* CustomTabController.swift */; };
@@ -75,7 +76,6 @@
 		53D98FCE22BD45F50027FDCD /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D98FCD22BD45F50027FDCD /* AppError.swift */; };
 		53DB770722CA81CE0050F7CD /* InstrumentsUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */; };
 		53DEFCE122C241AF0003852E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DEFCE022C241AF0003852E /* Location.swift */; };
-		53DEFCE322C24CC30003852E /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DEFCE222C24CC30003852E /* LocationListViewController.swift */; };
 		53E7D64422C54A35006DA7B4 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E7D64322C54A35006DA7B4 /* Student.swift */; };
 		53FD596222BE4D7D002F5172 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FD596122BE4D7D002F5172 /* ProfileViewController.swift */; };
 		53FDE14F22BE257D00EBC13F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDE14E22BE257D00EBC13F /* Client.swift */; };
@@ -146,6 +146,7 @@
 		5305F99522C4E950002284EF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		530F8A77229A1656000AFC86 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		530F8A79229B773A000AFC86 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		5327962122CCBE2C0085FAFD /* Maps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Maps.storyboard; sourceTree = "<group>"; };
 		532CC89B22C50D3F00FB1822 /* TransparentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
 		5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateViewController.swift; sourceTree = "<group>"; };
 		5332FBB922C917F9000BF4B0 /* CustomTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabController.swift; sourceTree = "<group>"; };
@@ -206,7 +207,6 @@
 		53D98FCD22BD45F50027FDCD /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsUpdateViewController.swift; sourceTree = "<group>"; };
 		53DEFCE022C241AF0003852E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		53DEFCE222C24CC30003852E /* LocationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
 		53E7D64322C54A35006DA7B4 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		53FD596122BE4D7D002F5172 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		53FDE14E22BE257D00EBC13F /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
@@ -345,6 +345,7 @@
 				533E63F722C8BE0B007EE029 /* ToggleButton.xib */,
 				533E63F922C8BE43007EE029 /* ToggleButton.swift */,
 				533E63FB22C8CA76007EE029 /* Profile.storyboard */,
+				5327962122CCBE2C0085FAFD /* Maps.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -402,7 +403,6 @@
 				53907E0A22B1983300314EC8 /* InstrumentCell.swift */,
 				534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */,
 				534F1D4D22BFC043009249FC /* StudentCell.swift */,
-				53DEFCE222C24CC30003852E /* LocationListViewController.swift */,
 				A5315B32203CF27C0043A0E2 /* MapViewController.swift */,
 				A5315B34203DF90A0043A0E2 /* LocationSearchTable.swift */,
 				A5AD1EB420334EA400A38F85 /* CalendarViewController.swift */,
@@ -608,6 +608,7 @@
 				539C80BD22C4C621009D8469 /* FilsonProHeavy-Heavy.otf in Resources */,
 				539C80C022C4C621009D8469 /* FilsonProLightItalic-Italic.otf in Resources */,
 				539C80BA22C4C621009D8469 /* FilsonProBoldItalic-Italic.otf in Resources */,
+				5327962222CCBE2C0085FAFD /* Maps.storyboard in Resources */,
 				533E63FC22C8CA76007EE029 /* Profile.storyboard in Resources */,
 				539C80C422C4C621009D8469 /* FilsonProRegularItalic-Italic.otf in Resources */,
 				539C80BF22C4C621009D8469 /* FilsonProLight-Light.otf in Resources */,
@@ -696,6 +697,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-musicprof/Pods-musicprof-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AEAccordion/AEAccordion.framework",
+				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
@@ -715,6 +717,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AEAccordion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
@@ -799,7 +802,6 @@
 				5305F99622C4E950002284EF /* UIView.swift in Sources */,
 				530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */,
 				53D1C57322C5F8C6002BDAE4 /* RegistrationController.swift in Sources */,
-				53DEFCE322C24CC30003852E /* LocationListViewController.swift in Sources */,
 				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,
 				53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */,
 				5393EB7522C7CD4600C47E77 /* MenuViewController.swift in Sources */,

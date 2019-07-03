@@ -28,8 +28,11 @@ extension ApiError {
     static func from(jsonData data: Data) throws -> ApiError {
         let decoder = JSONDecoder()
         let item = try decoder.decode(ApiError.self, from: data)
-        guard item.result != "OK" && !(200..<300).contains(item.code) else {
+        guard !(200..<300).contains(item.code) else {
             throw AppError.notAnError
+        }
+        if item.result != "OK" {
+            //throw AppError.unsupportedData
         }
         return item
     }

@@ -1,4 +1,5 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.3.0)
   - AEAccordion (2.1.1)
   - Alamofire (4.8.2)
   - AlamofireImage (3.5.2):
@@ -58,6 +59,7 @@ PODS:
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0 (~> 2.3.0)
   - AEAccordion
   - Alamofire (~> 4.8)
   - AlamofireImage (~> 3.5)
@@ -75,6 +77,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - ActionSheetPicker-3.0
     - AEAccordion
     - Alamofire
     - AlamofireImage
@@ -93,6 +96,7 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   AEAccordion: 8dbe0aa4af3873e684f7542376f852c3c39ba599
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
@@ -110,6 +114,6 @@ SPEC CHECKSUMS:
   SwiftLocation: a3c3bc2023118171ef3572188a31def94aa0892c
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 650ad644afe47e81f081b8eeda6baf8c51822f51
+PODFILE CHECKSUM: 7ab61f40f054062365f12ed4df127a43f4eae8f5
 
 COCOAPODS: 1.7.2

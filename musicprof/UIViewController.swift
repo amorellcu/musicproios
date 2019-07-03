@@ -54,6 +54,35 @@ extension UIViewController {
         self.present(controller, animated: true)
     }
     
+    func handleResult<T>(_ result: ApiResult<[T]>, onError: ((Error) -> Void)? = nil, onSuccess: (([T]) throws -> Void)? = nil) {
+        switch result {
+        case let .success(data):
+            guard let onSuccess = onSuccess else { break }
+            do {
+                try onSuccess(data)
+            } catch {
+                self.notify(error: error)
+                guard let onError = onError else { break }
+                onError(error)
+            }
+        case let .failure(error):
+            if let apiError = error as? ApiError, apiError.result == "ZERO_RESULTS" {
+                guard let onSuccess = onSuccess else { break }
+                do {
+                    try onSuccess([])
+                } catch {
+                    self.notify(error: error)
+                    guard let onError = onError else { break }
+                    onError(error)
+                }
+            } else {
+                self.notify(error: error)
+                guard let onError = onError else { break }
+                onError(error)
+            }
+        }
+    }
+    
     func handleResult<T>(_ result: ApiResult<T>, onError: ((Error) -> Void)? = nil, onSuccess: ((T) throws -> Void)? = nil) {
         switch result {
         case let .success(data):
