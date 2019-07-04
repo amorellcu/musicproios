@@ -13,6 +13,8 @@ import FBSDKCoreKit
 import AlamofireImage
 
 class ContactInfoRegistrationViewController: ContactInfoViewController {
+    
+    var tapGestureRecognizer: UITapGestureRecognizer!
 
     @IBOutlet weak var avatarImageView: UIImageView!
     
@@ -24,6 +26,12 @@ class ContactInfoRegistrationViewController: ContactInfoViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        if let avatarImageView = self.avatarImageView {
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ContactInfoRegistrationViewController.onChangeAvatar))
+            avatarImageView.addGestureRecognizer(gestureRecognizer)
+            self.tapGestureRecognizer = gestureRecognizer
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,6 +92,13 @@ class ContactInfoRegistrationViewController: ContactInfoViewController {
                 self.client = $0
                 self.performSegue(withIdentifier: "registerStudents", sender: sender)
             }
+        }
+    }
+    
+    @objc func onChangeAvatar() {
+        ImageImporter(viewController: self).getPicture(for: self.client) { [weak self] in
+            guard let url = self?.client?.avatarUrl, url.isFileURL else { return }
+            self?.container?.avatarImageView.image = UIImage(contentsOfFile: url.path)?.af_imageRoundedIntoCircle()
         }
     }
 }

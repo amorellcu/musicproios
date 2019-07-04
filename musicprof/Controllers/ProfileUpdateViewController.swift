@@ -12,6 +12,7 @@ import SCLAlertView
 
 class ProfileUpdateViewController: CustomTabController, RegistrationController, NestedController {
     var container: ContainerViewController?
+    var tapGestureRecognizer: UITapGestureRecognizer?
     
     var client: Client!
     var originalClient: Client?
@@ -40,10 +41,28 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
         self.client = self.service.user!
         self.originalClient = self.originalClient ?? Client(copy: self.client)
         self.updateControllers()
+        
+        if let avatarImageView = self.container?.avatarImageView {
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileUpdateViewController.onChangeAvatar))
+            avatarImageView.addGestureRecognizer(gestureRecognizer)
+            self.tapGestureRecognizer = gestureRecognizer
+            self.tapGestureRecognizer?.isEnabled = false
+        }
     }
 
-    override func viewWillAppear(_ animated: Bool) {        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.container?.setDisplayMode(.full, animated: animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tapGestureRecognizer?.isEnabled = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.tapGestureRecognizer?.isEnabled = false
     }
     
     private func updateControllers() {
@@ -74,6 +93,7 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
                 self?.client = $0
                 self?.originalClient = Client(copy: $0)
                 self?.updateControllers()
+                SCLAlertView().showSuccess("Cuenta Actualizada", subTitle: "La configuración de su cuenta se actualizó correctamente.")
             }
         }
     }
@@ -95,14 +115,20 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
         self.showSpinner(onView: self.view)
         self.service.changePassword(to: password) { [weak self] (result) in
             self?.removeSpinner()
-            self?.handleResult(result, onSuccess: handler)
+            self?.handleResult(result) {
+                let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                    showCloseButton: false
+                ))
+                alert.addButton("Aceptar", action: handler)
+                alert.showSuccess("Contraseña Actualizada", subTitle: "La contraseña se actualizó correctamente.")
+            }
         }
     }
     
     @objc func onChangeAvatar() {
         ImageImporter(viewController: self).getPicture(for: self.client) { [weak self] in
             guard let url = self?.client?.avatarUrl, url.isFileURL else { return }
-            self?.container?.avatarImageView.image = UIImage(contentsOfFile: url.path)
+            self?.container?.avatarImageView.image = UIImage(contentsOfFile: url.path)?.af_imageRoundedIntoCircle()
         }
     }
 }
