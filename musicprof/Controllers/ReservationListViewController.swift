@@ -83,8 +83,11 @@ extension ReservationListViewController: UITableViewDelegate, UITableViewDataSou
         }
         
         cell.dateLabel.text = self.dateFormatter.string(from: reservation.date)
-        cell.professorLabel.text = reservation.professor?.name
+        cell.professorLabel?.text = reservation.professor?.name
         
         return cell
+    }
+    
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
     }
 }

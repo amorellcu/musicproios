@@ -1310,10 +1310,23 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="oQF-FF-nzv" kind="relationship" relationship="rootViewController" id="x55-jl-lgi"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="80M-Tc-tjX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2580" y="1123"/>
+        </scene>
+        <!--Classes-->
+        <scene sceneID="SuC-Sm-BTE">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Classes" id="oQF-FF-nzv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Aht-Pd-tfG"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pax-Dq-bzh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2580" y="1623"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="cSe-oF-pgK">

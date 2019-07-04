@@ -297,7 +297,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T6m-qU-wrF">
-                                                        <rect key="frame" x="52" y="8.6666666666666643" width="310" height="35"/>
+                                                        <rect key="frame" x="52" y="10" width="310" height="32"/>
                                                         <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                                         <state key="normal" title="SELECCIONA TU INSTRUMENTO">
                                                             <color key="titleColor" red="0.48627450980392156" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -412,7 +412,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ky0-XW-gSX">
-                                                        <rect key="frame" x="52" y="8.6666666666666572" width="310" height="35"/>
+                                                        <rect key="frame" x="52" y="10" width="310" height="32"/>
                                                         <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                                         <state key="normal" title="AGREGAR OTRO ESTUDIANTE">
                                                             <color key="titleColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

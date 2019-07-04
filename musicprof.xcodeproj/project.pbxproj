@@ -38,6 +38,8 @@
 		536752C122C5E19B00DA1590 /* SubaccountListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536752C022C5E19B00DA1590 /* SubaccountListViewController.swift */; };
 		536C704122C1F30A00E217FF /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C704022C1F30A00E217FF /* UINavigationController.swift */; };
 		536F8A5A22C6510D0061CF17 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */; };
+		5380312C22CE42570016175E /* ClassListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5380312B22CE42570016175E /* ClassListViewController.swift */; };
+		5380312E22CE44ED0016175E /* Classes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5380312D22CE44ED0016175E /* Classes.storyboard */; };
 		53907E0B22B1983300314EC8 /* InstrumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0A22B1983300314EC8 /* InstrumentCell.swift */; };
 		53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0C22B19EC700314EC8 /* Instrument.swift */; };
 		5393EB7322C7CC5C00C47E77 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5393EB7222C7CC5C00C47E77 /* Payment.storyboard */; };
@@ -170,6 +172,8 @@
 		536752C022C5E19B00DA1590 /* SubaccountListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubaccountListViewController.swift; sourceTree = "<group>"; };
 		536C704022C1F30A00E217FF /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
+		5380312B22CE42570016175E /* ClassListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassListViewController.swift; sourceTree = "<group>"; };
+		5380312D22CE44ED0016175E /* Classes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Classes.storyboard; sourceTree = "<group>"; };
 		53907E0A22B1983300314EC8 /* InstrumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentCell.swift; sourceTree = "<group>"; };
 		53907E0C22B19EC700314EC8 /* Instrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
 		5393EB7222C7CC5C00C47E77 /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
@@ -347,6 +351,7 @@
 				533E63F722C8BE0B007EE029 /* ToggleButton.xib */,
 				533E63F922C8BE43007EE029 /* ToggleButton.swift */,
 				533E63FB22C8CA76007EE029 /* Profile.storyboard */,
+				5380312D22CE44ED0016175E /* Classes.storyboard */,
 				5327962122CCBE2C0085FAFD /* Maps.storyboard */,
 			);
 			path = Views;
@@ -423,6 +428,7 @@
 				5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */,
 				53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */,
 				53616E6B22CBAF6800B36549 /* PasswordUpdateViewController.swift */,
+				5380312B22CE42570016175E /* ClassListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -627,6 +633,7 @@
 				539C80C122C4C621009D8469 /* FilsonProMedium-Medium.otf in Resources */,
 				A5598C1D201F8C3B000C64F6 /* Main.storyboard in Resources */,
 				539C80C322C4C621009D8469 /* FilsonProRegular-Regular.otf in Resources */,
+				5380312E22CE44ED0016175E /* Classes.storyboard in Resources */,
 				53D98FBE22BD35D10027FDCD /* Reservation.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -806,6 +813,7 @@
 				5305F99622C4E950002284EF /* UIView.swift in Sources */,
 				530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */,
 				53D1C57322C5F8C6002BDAE4 /* RegistrationController.swift in Sources */,
+				5380312C22CE42570016175E /* ClassListViewController.swift in Sources */,
 				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,
 				53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */,
 				5393EB7522C7CD4600C47E77 /* MenuViewController.swift in Sources */,

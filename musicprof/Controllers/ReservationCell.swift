@@ -12,7 +12,7 @@ class ReservationCell: UITableViewCell {
     
     @IBOutlet weak var instrumentImageView: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var professorLabel: UILabel!
+    @IBOutlet weak var professorLabel: UILabel?
 
     override func awakeFromNib() {
         super.awakeFromNib()
