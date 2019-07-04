@@ -74,6 +74,12 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Para tomar la foto de su Perfil de Usuario</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Para escoger la foto de su Perfil de Usuario</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Para detectar su dirección.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

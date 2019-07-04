@@ -12,6 +12,7 @@
 		15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE7EF020894273006672C1 /* ConfigurationsClass.swift */; };
 		15DFDFBE208E4E7500B28338 /* ApiStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDFBD208E4E7500B28338 /* ApiStudent.swift */; };
 		18F3B0C6C9FD26CAF18EF54A /* libPods-musicprofUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75154C0B7B893B2085E3E130 /* libPods-musicprofUITests.a */; };
+		530591E522CCF07E00905D71 /* ImageImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530591E422CCF07E00905D71 /* ImageImporter.swift */; };
 		5305F99622C4E950002284EF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5305F99522C4E950002284EF /* UIView.swift */; };
 		530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A77229A1656000AFC86 /* RootViewController.swift */; };
 		530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A79229B773A000AFC86 /* UIViewController.swift */; };
@@ -143,6 +144,7 @@
 		15DFDFC0208EA59F00B28338 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = ../Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
 		2470988358F77C3194BB7B7D /* Pods-musicprof.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprof.debug.xcconfig"; path = "Target Support Files/Pods-musicprof/Pods-musicprof.debug.xcconfig"; sourceTree = "<group>"; };
 		4AF714FBEDDAEBE65E173A2A /* libPods-musicprofTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-musicprofTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		530591E422CCF07E00905D71 /* ImageImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageImporter.swift; sourceTree = "<group>"; };
 		5305F99522C4E950002284EF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		530F8A77229A1656000AFC86 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		530F8A79229B773A000AFC86 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				5366CFD822CC9B4400FFDEE2 /* Reservation.swift */,
 				5333E96522C0EF9600175995 /* ReservationRequest.swift */,
 				5393EB7622C7DC3200C47E77 /* Package.swift */,
+				530591E422CCF07E00905D71 /* ImageImporter.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				5333E96B22C0F8FC00175995 /* BaseReservationViewController.swift in Sources */,
 				A5598C71201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift in Sources */,
 				5332FBBA22C917F9000BF4B0 /* CustomTabController.swift in Sources */,
+				530591E522CCF07E00905D71 /* ImageImporter.swift in Sources */,
 				A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */,
 				53616E6C22CBAF6800B36549 /* PasswordUpdateViewController.swift in Sources */,
 				534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */,

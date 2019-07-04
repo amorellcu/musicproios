@@ -98,6 +98,13 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
             self?.handleResult(result, onSuccess: handler)
         }
     }
+    
+    @objc func onChangeAvatar() {
+        ImageImporter(viewController: self).getPicture(for: self.client) { [weak self] in
+            guard let url = self?.client?.avatarUrl, url.isFileURL else { return }
+            self?.container?.avatarImageView.image = UIImage(contentsOfFile: url.path)
+        }
+    }
 }
 
 
