@@ -223,7 +223,7 @@ class ApiManager {
     
     func getAvailableDays(for request: ReservationRequest, inMonth month: Int, handler: @escaping (ApiResult<[Date]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getAvailableClassOnMonth")
-        let parameters: Parameters = ["coloniaId": request.locationId as Any,
+        let parameters: Parameters = ["coloniaId": request.locationId ?? self.user?.locationId as Any,
                                       "instrumentId": request.instrument?.id as Any,
                                       "month": month]
         let _ = self.session
@@ -231,18 +231,21 @@ class ApiManager {
                      parameters: parameters,
                      encoding: URLEncoding.default,
                      headers: self.headers)
-            .responseDecodable(completionHandler: handler)
+            .responseDecodable { (result: ApiResult<[DateWrapper]>) in
+                handler(result.transform(with: {$0.compactMap({$0.date})}))
+        }
     }
     
     func getAvailableProfessors(for request: ReservationRequest, inDay date: Date, handler: @escaping (ApiResult<[Professor]>) -> Void) {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar.current
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let dateStr = dateFormatter.string(from: date)
         
         let url = baseUrl.appendingPathComponent("getAvailableProfesorsOnDate")
-        let parameters: Parameters = ["coloniaId": request.locationId as Any,
+        let parameters: Parameters = ["coloniaId": request.locationId ?? self.user?.locationId as Any,
                                       "instrumentId": request.instrument?.id as Any,
-                                      "date": dateStr]
+                                      "classDate": dateStr]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
@@ -257,13 +260,14 @@ class ApiManager {
         }
         
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar.current
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let dateStr = dateFormatter.string(from: date)
         
         let url = baseUrl.appendingPathComponent("getAvailableProfesors")
-        let parameters: Parameters = ["coloniaId": request.locationId as Any,
+        let parameters: Parameters = ["coloniaId": request.locationId ?? self.user?.locationId as Any,
                                       "instrumentId": request.instrument?.id as Any,
-                                      "date": dateStr]
+                                      "classDate": dateStr]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
@@ -460,6 +464,9 @@ class ApiManager {
     
     func makeReservation(_ request: ReservationRequest,
                          handler: @escaping (ApiResult<Void>) -> Void) {
+        var request = request
+        request.locationId = request.locationId ?? self.user?.locationId
+        request.address = request.address ?? self.getClient(withId: request.studentId!)?.address
         let url = baseUrl.appendingPathComponent("classReservation")
         self.post(request, to: url, handler: handler)
     }
@@ -504,6 +511,14 @@ private struct ReservationData: Decodable {
 
 private struct ClassData: Decodable {
     var classes: [Class]
+}
+
+private struct DateWrapper: Decodable {
+    var date: Date
+    
+    enum CodingKeys: String, CodingKey {
+        case date = "class_date_time"
+    }
 }
 
 class JWTAccessTokenAdapter : NSObject, RequestAdapter, RequestRetrier, NSCoding {

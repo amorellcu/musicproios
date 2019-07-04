@@ -52,8 +52,8 @@ class ScheduleProfesorViewController: BaseReservationViewController {
         }
         self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
-        //self.updateSections()
-        self.setDefaultSections()
+        self.updateSections()
+        //self.setDefaultSections()
     }
     
     override func viewWillAppear(_ animated: Bool) {
