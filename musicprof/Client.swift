@@ -119,6 +119,14 @@ class Client: NSObject, Decodable, NSCoding, Student {
         case avatar = "photo"
         case facebookId = "facebook_id"
     }
+    
+    fileprivate enum EncodingKeys: String, CodingKey {
+        case id
+        case name
+        case userId = "idCuenta"
+        case address
+        case instruments
+    }
 }
 
 enum ClientType: Int, Codable {
@@ -178,6 +186,20 @@ extension Client {
         if let avatarUrl = self.avatarUrl, avatarUrl.isFileURL {
             form.append(avatarUrl, withName: UserKeys.avatar.rawValue)
         }
+    }
+}
+
+extension Client: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: EncodingKeys.self)
+        if self.id >= 0 {
+            try container.encode(self.id, forKey: .id)
+        } else {
+            try container.encode(self.userId, forKey: .userId)
+        }
+        try container.encode(self.name, forKey: .name)
+        try container.encodeIfPresent(self.address, forKey: .address)
+        try container.encodeIfPresent(self.instruments?.map {$0.id}, forKey: .instruments)
     }
 }
 

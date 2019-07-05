@@ -12,6 +12,8 @@ import SCLAlertView
 
 class InstrumentsRegistrationViewController: InstrumentListViewController {
     
+    var editClient: Client?
+    
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var studentNameTextField: UITextField?
@@ -30,6 +32,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController {
         }
         self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
         self.avatarImageView.clipsToBounds = true
+        self.studentNameTextField?.text = self.editClient?.name ?? ""
         self.studentNameTextField?.delegate = self
         
         let notificationCenter = NotificationCenter.default
@@ -46,10 +49,19 @@ class InstrumentsRegistrationViewController: InstrumentListViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    func updateInstruments() {
         self.service.getInstruments { [weak self] (result) in
-            self?.handleResult(result) {
-                self?.instruments = $0
+            self?.handleResult(result) { values in
+                self?.instruments = values
+                
+                if let selectedValues = self?.editClient?.instruments {
+                    for i in 0..<values.count {
+                        if selectedValues.contains(values[i]) {
+                            let indexPath = IndexPath(item: i, section: 0)
+                            self?.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+                        }
+                    }
+                }
             }
         }
     }
@@ -101,6 +113,28 @@ class InstrumentsRegistrationViewController: InstrumentListViewController {
                     self.performSegue(withIdentifier: "login", sender: sender)
                 }
                 alertView.showSuccess("El estudiante \(self.studentNameTextField?.text ?? "") se ha agregado correctamente", subTitle: "¿Desea Agregar otro estudiante?")
+            }
+        }
+    }
+    
+    @IBAction func onUpdateSubbacount(_ sender: Any) {
+        let instruments = self.instruments ?? []
+        let selection = self.collectionView.indexPathsForSelectedItems ?? []
+        
+        let client = self.editClient!
+        client.name = self.studentNameTextField?.text ?? ""
+        client.instruments = selection.map({instruments[$0.item]})
+        
+        self.service.updateSubaccount(client) { (result) in
+            self.handleResult(result) {
+                let appearance = SCLAlertView.SCLAppearance(
+                    showCloseButton: false
+                )
+                let alertView = SCLAlertView(appearance: appearance)
+                alertView.addButton("Aceptar") {
+                    self.performSegue(withIdentifier: "login", sender: sender)
+                }
+                alertView.showSuccess("Estudiante actualizado", subTitle: "El estudiante \(self.studentNameTextField?.text ?? "") se actualizó correctamente")
             }
         }
     }

@@ -23,7 +23,8 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
         let controllers = [self.storyboard!.instantiateViewController(withIdentifier: "ContactInfoViewController"),
                            self.storyboard!.instantiateViewController(withIdentifier: "InstrumentListViewController"),
                            self.storyboard!.instantiateViewController(withIdentifier: "ReservationListViewController"),
-                           self.storyboard!.instantiateViewController(withIdentifier: "PasswordUpdateViewController")]
+                           self.storyboard!.instantiateViewController(withIdentifier: "PasswordUpdateViewController"),
+                           self.storyboard!.instantiateViewController(withIdentifier: "SubaccountListViewController")]
         for controller in controllers.lazy.compactMap({$0 as? RegistrationController}) {
             controller.client = self.client
         }

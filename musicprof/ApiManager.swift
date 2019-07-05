@@ -394,6 +394,7 @@ class ApiManager {
     
     func registerSubaccount(_ client: Client, handler: @escaping (ApiResult<Client>) -> Void) {
         let url = baseUrl.appendingPathComponent("registerSubcuenta")
+        /*
         let _ = self.session.upload(multipartFormData: { (form) in
             client.encode(to: form)
         }, to: url) { (result) in
@@ -405,6 +406,29 @@ class ApiManager {
             case .failure(let error):
                 handler(.failure(error: error))
             }
+        }*/
+        self.post(client, to: url) { (result: ApiResult<SubaccountData>) in
+            handler(result.transform(with: {$0.subaccount}))
+        }
+    }
+    
+    func updateSubaccount(_ client: Client, handler: @escaping (ApiResult<Client>) -> Void) {
+        let url = baseUrl.appendingPathComponent("updateSubcuenta")
+        /*
+        let _ = self.session.upload(multipartFormData: { (form) in
+            client.encode(to: form)
+        }, to: url) { (result) in
+            switch result {
+            case .success(let request, _, _):
+                let _ = request.responseDecodable { (result: ApiResult<UserData>) in
+                    handler(result.transform(with: {$0.client}))
+                }
+            case .failure(let error):
+                handler(.failure(error: error))
+            }
+        }*/
+        self.post(client, to: url) { (result: ApiResult<SubaccountData2>) in
+            handler(result.transform(with: {$0.subaccount}))
         }
     }
     
@@ -498,6 +522,18 @@ private struct FBLoginData: Decodable {
 
 private struct UserData: Decodable {
     var client: Client
+}
+
+private struct SubaccountData: Decodable {
+    var subaccount: Client
+    
+    private enum CodingKeys: String, CodingKey {
+        case subaccount = "subcuenta"
+    }
+}
+
+private struct SubaccountData2: Decodable {
+    var subaccount: Client
 }
 
 private struct InstrumentData: Decodable {

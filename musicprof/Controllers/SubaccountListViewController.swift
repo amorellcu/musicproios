@@ -2,21 +2,45 @@
 //  SubaccountListViewController.swift
 //  musicprof
 //
-//  Created by John Doe on 6/28/19.
+//  Created by John Doe on 7/5/19.
 //  Copyright © 2019 Alexis Morell Blanco. All rights reserved.
 //
 
 import UIKit
 
-class SubaccountListViewController: BaseReservationViewController {
+class SubaccountListViewController: UIViewController, NestedController, RegistrationController {
+    var client: Client!
+    var container: ContainerViewController?
+    
     @IBOutlet weak var tableView: UITableView!
     
-    var elements = [Student]()
-
+    var elements = [Client]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.elements = self.service.user?.subaccounts ?? []
+        
+        self.elements = self.client.subaccounts ?? []
+    }
+    
+    @IBAction func onAddSubaccount(_ sender: Any) {
+        self.performSegue(withIdentifier: "addSubaccount", sender: sender)
+    }
+    
+    @IBAction func unwindToSubaccountList(_ segue: UIStoryboardSegue) {
+        self.tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let controller = segue.destination as? InstrumentsRegistrationViewController else { return }
+        switch segue.identifier {
+        case "addSubaccount":
+            controller.client = self.client
+        case "editSubaccount":
+            controller.client = self.client
+            controller.editClient = self.elements[self.tableView.indexPathForSelectedRow!.item]
+        default:
+            break
+        }
     }
 }
 
@@ -29,11 +53,5 @@ extension SubaccountListViewController: UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "studentCell")!
         cell.textLabel?.text = self.elements[indexPath.item].name
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.reservation.studentId = self.elements[indexPath.item].id
-        self.reservation.studentType = .subaccount
-        self.performSegue(withIdentifier: "selectInstrument", sender: tableView)
     }
 }
