@@ -95,6 +95,7 @@ class ProfileViewController: BaseReservationViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if self.selectForMeButton === sender as? UIButton {
             self.reservation.studentId = self.service.user!.id
+            self.reservation.studentType = .account
         }
         super.prepare(for: segue, sender: sender)
     }

@@ -54,9 +54,9 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
             self.avatarImageView.image = placeholderAvatar
         }
         sections = [
-            Section(name: "RESEÑA PERSONAL", items: professor.personalReview == nil ? [] : [professor.personalReview!], collapsed: false),
-            Section(name: "EXPERIENCIA LABORAL", items: professor.workExperience == nil ? [] : [professor.workExperience!],collapsed: true),
-            Section(name: "FORMACIÓN ACADEMICA", items: professor.academicTraining == nil ? [] : [professor.academicTraining!],collapsed: true),
+            Section(name: "RESEÑA PERSONAL", items: professor.personalReview == nil || professor.personalReview!.isEmpty ? [] : [professor.personalReview!], collapsed: false),
+            Section(name: "EXPERIENCIA LABORAL", items: professor.workExperience == nil || professor.workExperience!.isEmpty ? [] : [professor.workExperience!],collapsed: true),
+            Section(name: "FORMACIÓN ACADEMICA", items: professor.academicTraining == nil || professor.academicTraining!.isEmpty ? [] : [professor.academicTraining!],collapsed: true),
         ].filter({$0.items.count > 0})
     }
 

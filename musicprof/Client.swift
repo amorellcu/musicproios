@@ -121,7 +121,7 @@ class Client: NSObject, Decodable, NSCoding, Student {
     }
 }
 
-enum ClientType: Int {
+enum ClientType: Int, Codable {
     case account = 1
     case subaccount = 2
 }

@@ -49,25 +49,33 @@ extension DataRequest {
     
     func responseDecodable<T: Decodable>(completionHandler: @escaping (ApiResult<T>) -> Void) -> DataRequest {
         return self.responseData { responseData in
-            do {
-                self.logRequest(from: responseData)
-                self.logResponse(responseData)
-                var data : ValidResponse<T> = try DataRequest.decodeResponse(from: responseData)
-                data.code = data.code ?? responseData.response?.statusCode
-                if let code = data.code, (200..<300).contains(code) {
-                    completionHandler(ApiResult<T>.success(data: data.data))
-                } else if let code = data.code {
-                    let error = ApiError(result: data.result, code: code, message: data.message)
-                    completionHandler(.failure(error: error))
-                } else {
-                    completionHandler(.failure(error: AppError.unsupportedData))
+            
+            self.logRequest(from: responseData)
+            self.logResponse(responseData)
+            
+            DispatchQueue.global().async {
+                do {
+                    var data : ValidResponse<T> = try DataRequest.decodeResponse(from: responseData)
+                    DispatchQueue.main.async {
+                        data.code = data.code ?? responseData.response?.statusCode
+                        if let code = data.code, (200..<300).contains(code) {
+                            completionHandler(ApiResult<T>.success(data: data.data))
+                        } else if let code = data.code {
+                            let error = ApiError(result: data.result, code: code, message: data.message)
+                            completionHandler(.failure(error: error))
+                        } else {
+                            completionHandler(.failure(error: AppError.unsupportedData))
+                        }
+                    }
+                } catch {
+                    let serviceError = responseData.data == nil
+                        ? nil
+                        : try? ApiError.from(jsonData: responseData.data!)
+                    let error = serviceError ?? responseData.error ?? error
+                    DispatchQueue.main.async {
+                        completionHandler(.failure(error: error))
+                    }
                 }
-            } catch {
-                let serviceError = responseData.data == nil
-                    ? nil
-                    : try? ApiError.from(jsonData: responseData.data!)
-                let error = serviceError ?? responseData.error ?? error
-                completionHandler(.failure(error: error))
             }
         }
     }

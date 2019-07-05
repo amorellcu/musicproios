@@ -36,12 +36,12 @@ class ContainerViewController: UIViewController {
     }
     
     private func setAvatar(_ url: URL?) {
-        let placeholderAvatar = UIImage(named:"userdefault")
+        let placeholderAvatar = UIImage(named:"userdefault")?.af_imageAspectScaled(toFit: self.avatarImageView.frame.size).af_imageRoundedIntoCircle()
         if let avatarUrl = url {
             let filter = ScaledToSizeCircleFilter(size: self.avatarImageView.frame.size)
-            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"), filter: filter)
+            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: placeholderAvatar, filter: filter)
         } else {
-            self.avatarImageView.image = placeholderAvatar?.af_imageAspectScaled(toFit: self.avatarImageView.frame.size).af_imageRoundedIntoCircle()
+            self.avatarImageView.image = placeholderAvatar
         }
     }
     

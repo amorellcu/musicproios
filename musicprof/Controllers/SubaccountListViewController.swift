@@ -33,6 +33,7 @@ extension SubaccountListViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.reservation.studentId = self.elements[indexPath.item].id
+        self.reservation.studentType = .subaccount
         self.performSegue(withIdentifier: "selectInstrument", sender: tableView)
     }
 }
