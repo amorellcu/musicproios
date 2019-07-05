@@ -18,6 +18,8 @@ class ScheduleProfesorViewController: BaseReservationViewController {
     let expandedColor = UIColor(red: 0/255 ,green: 255/255 ,blue: 180/255 ,alpha: 1)
     let collapsedColor = UIColor(red: 1, green: 210/255, blue: 69/255, alpha: 1)
     
+    var date: Date!
+    
     var sections: [Section]? = nil {
         didSet {
             self.collectionView.reloadData()
@@ -26,12 +28,18 @@ class ScheduleProfesorViewController: BaseReservationViewController {
     
     var selectedSection: Int? {
         didSet {
+            if let sections = sections, let selectedSection = selectedSection {
+                self.reservation.date = sections[selectedSection].date
+            }
             self.collectionView.reloadData()
         }
     }
     
     var selectedProfessor: Professor? {
         didSet {
+            if let sections = sections, let selectedSection = selectedSection {
+                self.reservation.date = sections[selectedSection].date
+            }
             self.reservation.professor = self.selectedProfessor
         }
     }
@@ -40,6 +48,7 @@ class ScheduleProfesorViewController: BaseReservationViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         if let date = self.reservation.date {
+            self.date = self.calendar.startOfDay(for: date)
             let formatter = DateFormatter()
             formatter.calendar = self.calendar
             formatter.locale = self.calendar.locale
@@ -66,7 +75,7 @@ class ScheduleProfesorViewController: BaseReservationViewController {
     }
     
     func setDefaultSections() {
-        guard let date = self.reservation.date else { return }
+        guard let date = self.date else { return }
         
         let formatter = DateFormatter()
         formatter.calendar = self.calendar
@@ -86,7 +95,7 @@ class ScheduleProfesorViewController: BaseReservationViewController {
     }
     
     func updateSections(){
-        guard var date = self.reservation.date else { return }
+        guard var date = self.date else { return }
         
         let formatter = DateFormatter()
         formatter.calendar = self.calendar

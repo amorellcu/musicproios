@@ -39,14 +39,31 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
     }
     
     private func updateProfessor() {
-        let placeholderAvatar = UIImage(named:"profedetails")
         guard let professor = self.reservation.professor else {
             self.nameLabel.text = nil
-            self.avatarImageView.image = placeholderAvatar
+            self.avatarImageView.image = UIImage(named:"profedetails")
             self.sections = []
             self.confirmButton.isEnabled = false
             return
         }
+        
+        self.updateProfessor(professor)
+        
+        guard sections.count == 0 else { return }
+        
+        self.service.getProfessor(withId: professor.id) { [weak self] (result) in
+            self?.handleResult(result) { value in
+                self?.reservation.professor = value
+                if let index = self?.professors.firstIndex(where: {value.id == $0.id}) {
+                    self?.professors[index] = value
+                }
+                self?.updateProfessor(value)
+            }
+        }
+    }
+    
+    private func updateProfessor(_ professor: Professor) {
+        let placeholderAvatar = UIImage(named:"profedetails")
         self.nameLabel.text = professor.name
         if let avatarUrl = professor.avatarUrl {
             self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: placeholderAvatar)
@@ -57,7 +74,7 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
             Section(name: "RESEÑA PERSONAL", items: professor.personalReview == nil || professor.personalReview!.isEmpty ? [] : [professor.personalReview!], collapsed: false),
             Section(name: "EXPERIENCIA LABORAL", items: professor.workExperience == nil || professor.workExperience!.isEmpty ? [] : [professor.workExperience!],collapsed: true),
             Section(name: "FORMACIÓN ACADEMICA", items: professor.academicTraining == nil || professor.academicTraining!.isEmpty ? [] : [professor.academicTraining!],collapsed: true),
-        ].filter({$0.items.count > 0})
+            ].filter({$0.items.count > 0})
     }
 
     override func didReceiveMemoryWarning() {

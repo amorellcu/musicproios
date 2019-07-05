@@ -276,6 +276,17 @@ class ApiManager {
             .responseDecodable(completionHandler: handler)
     }
     
+    func getProfessor(withId id: Int, handler: @escaping (ApiResult<Professor>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getProfesorsData")
+        let parameters: Parameters = ["profesorId": id]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable(completionHandler: handler)
+    }
+    
     func getPackages(forStateWithId stateId: Int? = nil, handler: @escaping (ApiResult<[Package]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getPackages")
         var parameters: Parameters = [:]
@@ -463,7 +474,7 @@ class ApiManager {
     }
     
     func makeReservation(_ request: ReservationRequest,
-                         handler: @escaping (ApiResult<Void>) -> Void) {
+                         handler: @escaping (ApiResult<Reservation>) -> Void) {
         var request = request
         request.locationId = request.locationId ?? self.user?.locationId
         request.address = request.address ?? self.getClient(withId: request.studentId!)?.address
