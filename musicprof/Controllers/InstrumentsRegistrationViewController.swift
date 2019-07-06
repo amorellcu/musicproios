@@ -14,24 +14,26 @@ class InstrumentsRegistrationViewController: InstrumentListViewController {
     
     var editClient: Client?
     
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var avatarImageView: UIImageView?
+    @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var studentNameTextField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.nameLabel.text = self.client.name
-        let placeholderAvatar = UIImage(named:"userdefault")
-        if let avatarUrl = self.client.avatarUrl {
-            let filter = ScaledToSizeCircleFilter(size: self.avatarImageView.frame.size)
-            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"), filter: filter)
-        } else {
-            self.avatarImageView.image = placeholderAvatar?.af_imageAspectScaled(toFit: self.avatarImageView.frame.size).af_imageRoundedIntoCircle()
+        self.nameLabel?.text = self.client.name
+        if let avatarImageView = self.avatarImageView {
+            let placeholderAvatar = UIImage(named:"userdefault")
+            if let avatarUrl = self.client.avatarUrl {
+                let filter = ScaledToSizeCircleFilter(size: avatarImageView.frame.size)
+                avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"), filter: filter)
+            } else {
+                avatarImageView.image = placeholderAvatar?.af_imageAspectScaled(toFit: avatarImageView.frame.size).af_imageRoundedIntoCircle()
+            }
+            avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
+            avatarImageView.clipsToBounds = true
         }
-        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
-        self.avatarImageView.clipsToBounds = true
         self.studentNameTextField?.text = self.editClient?.name ?? ""
         self.studentNameTextField?.delegate = self
         
@@ -49,18 +51,13 @@ class InstrumentsRegistrationViewController: InstrumentListViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func updateInstruments() {
-        self.service.getInstruments { [weak self] (result) in
-            self?.handleResult(result) { values in
-                self?.instruments = values
-                
-                if let selectedValues = self?.editClient?.instruments {
-                    for i in 0..<values.count {
-                        if selectedValues.contains(values[i]) {
-                            let indexPath = IndexPath(item: i, section: 0)
-                            self?.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
-                        }
-                    }
+    override func updateInstruments(_ instruments: [Instrument]) {
+        super.updateInstruments(instruments)
+        if let selectedValues = self.editClient?.instruments {
+            for i in 0..<instruments.count {
+                if selectedValues.contains(instruments[i]) {
+                    let indexPath = IndexPath(item: i, section: 0)
+                    self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
                 }
             }
         }
@@ -110,7 +107,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController {
                     self.reset()
                 }
                 alertView.addButton("NO") {
-                    self.performSegue(withIdentifier: "login", sender: sender)
+                    self.performSegue(withIdentifier: "subaccountCreated", sender: sender)
                 }
                 alertView.showSuccess("El estudiante \(self.studentNameTextField?.text ?? "") se ha agregado correctamente", subTitle: "¿Desea Agregar otro estudiante?")
             }
@@ -132,7 +129,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController {
                 )
                 let alertView = SCLAlertView(appearance: appearance)
                 alertView.addButton("Aceptar") {
-                    self.performSegue(withIdentifier: "login", sender: sender)
+                    self.performSegue(withIdentifier: "subaccountUpdated", sender: sender)
                 }
                 alertView.showSuccess("Estudiante actualizado", subTitle: "El estudiante \(self.studentNameTextField?.text ?? "") se actualizó correctamente")
             }
@@ -154,7 +151,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController {
                 )
                 let alertView1 = SCLAlertView(appearance: appearance)
                 alertView1.addButton("OK") {
-                    self.performSegue(withIdentifier: "login", sender: sender)
+                    self.performSegue(withIdentifier: "registered", sender: sender)
                 }
                 alertView1.showSuccess("Gracias por Registrarte", subTitle: message)
             }

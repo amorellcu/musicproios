@@ -8,7 +8,8 @@
 
 import UIKit
 
-class SubaccountListViewController: UIViewController, NestedController, RegistrationController {
+class SubaccountListViewController: UIViewController, NestedController, RegistrationController, ProfileSection {
+    weak var updater: ProfileUpdateViewController?
     var client: Client!
     var container: ContainerViewController?
     
@@ -22,8 +23,18 @@ class SubaccountListViewController: UIViewController, NestedController, Registra
         self.elements = self.client.subaccounts ?? []
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.selectRow(at: nil, animated: animated, scrollPosition: .none)
+    }
+    
+    func refresh() {
+        guard self.isViewLoaded else { return }
+        self.tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
+        self.tableView.reloadData()
+    }
+    
     @IBAction func onAddSubaccount(_ sender: Any) {
-        self.performSegue(withIdentifier: "addSubaccount", sender: sender)
+        self.updater?.performSegue(withIdentifier: "addSubaccount", sender: sender)
     }
     
     @IBAction func unwindToSubaccountList(_ segue: UIStoryboardSegue) {
@@ -53,5 +64,9 @@ extension SubaccountListViewController: UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "studentCell")!
         cell.textLabel?.text = self.elements[indexPath.item].name
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.updater?.performSegue(withIdentifier: "editSubaccount", sender: self.elements[indexPath.row])
     }
 }

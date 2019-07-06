@@ -408,7 +408,10 @@ class ApiManager {
             }
         }*/
         self.post(client, to: url) { (result: ApiResult<SubaccountData>) in
-            handler(result.transform(with: {$0.subaccount}))
+            handler(result.transform(with: { data in
+                self.user?.subaccounts?.append(data.subaccount)
+                return data.subaccount
+            }))
         }
     }
     
@@ -428,7 +431,12 @@ class ApiManager {
             }
         }*/
         self.post(client, to: url) { (result: ApiResult<SubaccountData2>) in
-            handler(result.transform(with: {$0.subaccount}))
+            handler(result.transform(with: { data in
+                if let index = self.user?.subaccounts?.firstIndex(where: {$0.id == data.subaccount.id}) {
+                    self.user?.subaccounts?[index] = data.subaccount
+                }
+                return data.subaccount
+            }))
         }
     }
     

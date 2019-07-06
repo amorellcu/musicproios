@@ -16,6 +16,7 @@
 		5305F99622C4E950002284EF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5305F99522C4E950002284EF /* UIView.swift */; };
 		530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A77229A1656000AFC86 /* RootViewController.swift */; };
 		530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A79229B773A000AFC86 /* UIViewController.swift */; };
+		53130DC822D06DF3008B06B2 /* ProfileSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53130DC722D06DF3008B06B2 /* ProfileSection.swift */; };
 		5327962222CCBE2C0085FAFD /* Maps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5327962122CCBE2C0085FAFD /* Maps.storyboard */; };
 		532CC89C22C50D3F00FB1822 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532CC89B22C50D3F00FB1822 /* TransparentButton.swift */; };
 		5332FBB822C91645000BF4B0 /* ProfileUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */; };
@@ -151,6 +152,7 @@
 		5305F99522C4E950002284EF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		530F8A77229A1656000AFC86 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		530F8A79229B773A000AFC86 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		53130DC722D06DF3008B06B2 /* ProfileSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSection.swift; sourceTree = "<group>"; };
 		5327962122CCBE2C0085FAFD /* Maps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Maps.storyboard; sourceTree = "<group>"; };
 		532CC89B22C50D3F00FB1822 /* TransparentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
 		5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateViewController.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				5333E96822C0F78900175995 /* ReservationController.swift */,
 				5333E96E22C0FDE500175995 /* NestedController.swift */,
 				53E7D64322C54A35006DA7B4 /* Student.swift */,
+				53130DC722D06DF3008B06B2 /* ProfileSection.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 				536752C122C5E19B00DA1590 /* SubaccountSelectionViewController.swift in Sources */,
 				53D8E20222C3D5FB00E3FABB /* DateCell.swift in Sources */,
 				5333E96D22C0FD4E00175995 /* ContainerViewController.swift in Sources */,
+				53130DC822D06DF3008B06B2 /* ProfileSection.swift in Sources */,
 				536C704122C1F30A00E217FF /* UINavigationController.swift in Sources */,
 				530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */,
 				A5AD1EB520334EA400A38F85 /* CalendarViewController.swift in Sources */,

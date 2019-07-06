@@ -67,8 +67,14 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
     }
     
     private func updateControllers() {
-        for controller in self.viewControllers.lazy.compactMap({$0 as? RegistrationController}) {
-            controller.client = self.client
+        for controller in self.viewControllers {
+            if let controller = controller as? RegistrationController {
+                controller.client = self.client
+            }
+            if let controller = controller as? ProfileSection {
+                controller.updater = self
+                controller.refresh()
+            }
         }
     }
     
@@ -131,6 +137,25 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
             guard let url = self?.client?.avatarUrl, url.isFileURL else { return }
             self?.container?.avatarImageView.image = UIImage(contentsOfFile: url.path)?.af_imageRoundedIntoCircle()
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        guard let controller = segue.destination as? InstrumentsRegistrationViewController else { return }
+        switch segue.identifier {
+        case "addSubaccount":
+            controller.client = self.client
+        case "editSubaccount":
+            controller.client = self.client
+            controller.editClient = sender as? Client
+        default:
+            break
+        }
+    }
+    
+    @IBAction func unwindToProfile(_ segue: UIStoryboardSegue) {
+        self.client = self.service.user!
+        self.updateControllers()
     }
 }
 

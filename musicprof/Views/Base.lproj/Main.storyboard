@@ -771,7 +771,7 @@
                         <outlet property="avatarImageView" destination="cnr-0h-hwl" id="wMb-Xb-7CE"/>
                         <outlet property="collectionView" destination="OpJ-7v-VUw" id="Mxk-p7-uSi"/>
                         <outlet property="nameLabel" destination="21s-qd-ZHt" id="NkI-kR-1dT"/>
-                        <segue destination="eme-28-BRA" kind="presentation" identifier="login" id="HQt-aR-Oo2"/>
+                        <segue destination="eme-28-BRA" kind="presentation" identifier="registered" id="HQt-aR-Oo2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Jz-qe-ZLR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1000,7 +1000,7 @@
                         <outlet property="collectionView" destination="8kE-fC-pRN" id="ClZ-99-4R7"/>
                         <outlet property="nameLabel" destination="msX-Ml-bIV" id="ikk-yI-613"/>
                         <outlet property="studentNameTextField" destination="Sh8-Pb-qis" id="OQz-j6-ufW"/>
-                        <segue destination="eme-28-BRA" kind="presentation" identifier="login" id="DtK-N4-rWl"/>
+                        <segue destination="eme-28-BRA" kind="presentation" identifier="subaccountCreated" id="DtK-N4-rWl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="epD-cj-qMo" userLabel="First Responder" sceneMemberID="firstResponder"/>

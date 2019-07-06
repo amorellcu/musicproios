@@ -26,15 +26,23 @@ class InstrumentListViewController: UIViewController, RegistrationController, Ne
 
         // Do any additional setup after loading the view.
         self.collectionView.allowsMultipleSelection = true
+        self.updateInstruments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.container?.setDisplayMode(.full, animated: animated)
+    }
+    
+    open func updateInstruments() {
         self.service.getInstruments { [weak self] (result) in
             self?.handleResult(result) {
-                self?.instruments = $0
+                self?.updateInstruments($0)
             }
         }
+    }
+    
+    open func updateInstruments(_ instruments: [Instrument]) {
+        self.instruments = instruments
     }
 
     // MARK: - Navigation
