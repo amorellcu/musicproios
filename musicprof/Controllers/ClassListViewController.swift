@@ -15,11 +15,11 @@ class ClassListViewController: ReservationListViewController {
         
         self.dateFormatter.timeStyle = .none
         self.dateFormatter.dateStyle = .long
-        self.reservations = self.service.user?.nextReservations?.compactMap({$0.classes})
+        self.reservations = self.service.currentClient?.nextReservations?.compactMap({$0.classes})
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.client = self.service.user
+        self.client = self.service.currentClient
         super.viewWillAppear(animated)
     }
     

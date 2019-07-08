@@ -16,7 +16,7 @@ class SubaccountSelectionViewController: BaseReservationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.elements = self.service.user?.subaccounts ?? []
+        self.elements = self.service.currentClient?.subaccounts ?? []
     }
 }
 

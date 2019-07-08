@@ -14,7 +14,7 @@ import Alamofire
 import MobileCoreServices
 
 
-class Client: NSObject, Decodable, NSCoding, Student {
+class Client: NSObject, Decodable, NSCoding, Student, User {
     var id: Int
     var userId: Int
     var name: String

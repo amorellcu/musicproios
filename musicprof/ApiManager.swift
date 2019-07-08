@@ -24,7 +24,7 @@ class ApiManager {
     let session: SessionManager
     let imageDownloader: ImageDownloader
     
-    private(set) var user: Client? {
+    private(set) var user: (User & NSCoding)? {
         didSet {
             if let user = self.user {
                 self.keychain.set(user, forKey: "user")
@@ -32,6 +32,14 @@ class ApiManager {
                 self.keychain.removeObject(forKey: "user")
             }
         }
+    }
+    
+    var currentClient: Client? {
+        return user as? Client
+    }
+    
+    var currentProfessor: Professor? {
+        return user as? Professor
     }
     
     var isSignedIn: Bool {
@@ -50,7 +58,7 @@ class ApiManager {
         adapter?.baseUrl = self.baseUrl
         self.session.adapter = adapter
         self.session.retrier = adapter
-        self.user = self.keychain.object(forKey: "user") as? Client
+        self.user = self.keychain.object(forKey: "user") as? User & NSCoding
     }
     
     func createAdapter(accessToken: String, refreshToken: String) {
@@ -61,7 +69,7 @@ class ApiManager {
     }
     
     func signIn(withEmail userName: String, password: String,
-                handler: @escaping (ApiResult<Client>) -> Void) {
+                handler: @escaping (ApiResult<User>) -> Void) {
         let url = baseUrl.appendingPathComponent("loginClient")
         let parameters = ["email": userName, "password": password]
         let _ = self.session
@@ -73,8 +81,12 @@ class ApiManager {
                 switch result {
                 case .success(let data):
                     self.createAdapter(accessToken: data.token, refreshToken: "")
-                    self.user = data.client
-                    handler(.success(data: data.client))
+                    if let user = (data.client ?? data.professor) as? (NSCoding & User) {
+                        self.user = user
+                        handler(.success(data: user))
+                    } else {
+                        handler(.failure(error: AppError.unsupportedData))
+                    }
                 case .failure(let error):
                     handler(.failure(error: error))
                 }
@@ -82,7 +94,7 @@ class ApiManager {
     }
     
     func signIn(withFacebookToken accessToken: String,
-                handler: @escaping (ApiResult<Client>) -> Void) {
+                handler: @escaping (ApiResult<User>) -> Void) {
         let url = baseUrl.appendingPathComponent("loginWithFacebook")
         let parameters = ["accessToken": accessToken]
         let _ = self.session
@@ -97,8 +109,12 @@ class ApiManager {
                         return handler(.failure(error: AppError.registrationRequired))
                     }
                     self.createAdapter(accessToken: token, refreshToken: "")
-                    self.user = data.client
-                    handler(.success(data: client))
+                    if let user = (data.client ?? data.professor) as? (NSCoding & User) {
+                        self.user = user
+                        handler(.success(data: user))
+                    } else {
+                        handler(.failure(error: AppError.unsupportedData))
+                    }
                 case .failure(let error):
                     handler(.failure(error: error))
                 }
@@ -137,15 +153,7 @@ class ApiManager {
             .responseError(completionHandler: handler)
     }
     
-    func getClient(withId id: Int) -> Client? {
-        guard let user = self.user else { return nil }
-        if user.id == id {
-            return user
-        }
-        return user.subaccounts?.first(where: {$0.id == id})
-    }
-    
-    func getUserInfo(handler: @escaping (ApiResult<Client>) -> Void) {
+    func getClient(handler: @escaping (ApiResult<Client>) -> Void) {
         guard let userId = self.user?.id else {
             handler(.failure(error: AppError.invalidOperation))
             return
@@ -166,6 +174,20 @@ class ApiManager {
                 case .failure(let error):
                     handler(.failure(error: error))
                 }
+        }
+    }
+    
+    func getUserInfo(handler: @escaping (ApiResult<User>) -> Void) {
+        if self.user is Client {
+            self.getClient { (result) in
+                handler(result.transform(with: { $0 as User }))
+            }
+        } else if let professor = self.user as? Professor {
+            self.getProfessor(withId: professor.id) { (result) in
+                handler(result.transform(with: { $0 as User }))
+            }
+        } else {
+            handler(.failure(error: AppError.invalidOperation))
         }
     }
     
@@ -236,7 +258,7 @@ class ApiManager {
     
     func getAvailableDays(for request: ReservationRequest, inMonth month: Int, handler: @escaping (ApiResult<[Date]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getAvailableClassOnMonth")
-        let parameters: Parameters = ["coloniaId": request.locationId ?? self.user?.locationId as Any,
+        let parameters: Parameters = ["coloniaId": request.locationId ?? (self.user as? Client)?.locationId as Any,
                                       "instrumentId": request.instrument?.id as Any,
                                       "month": month]
         let _ = self.session
@@ -256,7 +278,7 @@ class ApiManager {
         let dateStr = dateFormatter.string(from: date)
         
         let url = baseUrl.appendingPathComponent("getAvailableProfesorsOnDate")
-        let parameters: Parameters = ["coloniaId": request.locationId ?? self.user?.locationId as Any,
+        let parameters: Parameters = ["coloniaId": request.locationId ?? (self.user as? Client)?.locationId as Any,
                                       "instrumentId": request.instrument?.id as Any,
                                       "classDate": dateStr]
         let _ = self.session
@@ -278,7 +300,7 @@ class ApiManager {
         let dateStr = dateFormatter.string(from: date)
         
         let url = baseUrl.appendingPathComponent("getAvailableProfesors")
-        let parameters: Parameters = ["coloniaId": request.locationId ?? self.user?.locationId as Any,
+        let parameters: Parameters = ["coloniaId": request.locationId ?? (self.user as? Client)?.locationId as Any,
                                       "instrumentId": request.instrument?.id as Any,
                                       "classDate": dateStr]
         let _ = self.session
@@ -371,8 +393,12 @@ class ApiManager {
                     switch result {
                     case .success(let data):
                         self.createAdapter(accessToken: data.token, refreshToken: "")
-                        self.user = data.client
-                        handler(.success(data: data.client))
+                        if let client = data.client {
+                            self.user = client
+                            handler(.success(data: client))
+                        } else {
+                            handler(.failure(error: AppError.unsupportedData))
+                        }
                     case .failure(let error):
                         handler(.failure(error: error))
                     }
@@ -422,7 +448,9 @@ class ApiManager {
         }*/
         self.post(client, to: url) { (result: ApiResult<SubaccountData>) in
             handler(result.transform(with: { data in
-                self.user?.subaccounts?.append(data.subaccount)
+                if let client = self.user as? Client {
+                    client.subaccounts?.append(data.subaccount)
+                }
                 return data.subaccount
             }))
         }
@@ -445,8 +473,8 @@ class ApiManager {
         }*/
         self.post(client, to: url) { (result: ApiResult<SubaccountData2>) in
             handler(result.transform(with: { data in
-                if let index = self.user?.subaccounts?.firstIndex(where: {$0.id == data.subaccount.id}) {
-                    self.user?.subaccounts?[index] = data.subaccount
+                if let client = self.user as? Client, let index = client.subaccounts?.firstIndex(where: {$0.id == data.subaccount.id}) {
+                    client.subaccounts?[index] = data.subaccount
                 }
                 return data.subaccount
             }))
@@ -521,8 +549,8 @@ class ApiManager {
     func makeReservation(_ request: ReservationRequest,
                          handler: @escaping (ApiResult<Reservation>) -> Void) {
         var request = request
-        request.locationId = request.locationId ?? self.user?.locationId
-        request.address = request.address ?? self.getClient(withId: request.studentId!)?.address
+        request.locationId = request.locationId ?? (self.user as? Client)?.locationId
+        request.address = request.address ?? (self.user as? Client)?.address
         let url = baseUrl.appendingPathComponent("classReservation")
         self.post(request, to: url, handler: handler)
     }
@@ -530,7 +558,14 @@ class ApiManager {
 
 private struct LoginData: Decodable {
     var token: String
-    var client: Client
+    var client: Client?
+    var professor: Professor?
+    
+    private enum CodingKeys: String, CodingKey {
+        case token
+        case client
+        case professor = "profesor"
+    }
 }
 
 private struct FBLoginData: Decodable {
@@ -539,6 +574,16 @@ private struct FBLoginData: Decodable {
     var facebookID: String?
     var name: String?
     var email: String?
+    var professor: Professor?
+    
+    private enum CodingKeys: String, CodingKey {
+        case token
+        case client
+        case facebookID
+        case name
+        case email
+        case professor = "profesor"
+    }
 }
 
 private struct UserData: Decodable {

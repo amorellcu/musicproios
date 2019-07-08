@@ -39,7 +39,7 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.client = self.service.user!
+        self.client = self.service.currentClient!
         self.originalClient = self.originalClient ?? Client(copy: self.client)
         self.updateControllers()
         
@@ -154,7 +154,7 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
     }
     
     @IBAction func unwindToProfile(_ segue: UIStoryboardSegue) {
-        self.client = self.service.user!
+        self.client = self.service.currentClient!
         self.updateControllers()
     }
 }

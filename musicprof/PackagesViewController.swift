@@ -37,7 +37,7 @@ class PackagesViewController: UIViewController, NestedController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.container?.setDisplayMode(.picture, animated: animated)
-        guard let locationId = self.service.user?.locationId else { return }
+        guard let locationId = self.service.currentClient?.locationId else { return }
         
         self.service.getLocation(withId: locationId) { (result) in
             self.handleResult(result) {

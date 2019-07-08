@@ -29,6 +29,7 @@
 		5333E96B22C0F8FC00175995 /* BaseReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96A22C0F8FC00175995 /* BaseReservationViewController.swift */; };
 		5333E96D22C0FD4E00175995 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96C22C0FD4E00175995 /* ContainerViewController.swift */; };
 		5333E96F22C0FDE500175995 /* NestedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333E96E22C0FDE500175995 /* NestedController.swift */; };
+		5336832022D3A98800C702D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5336831F22D3A98800C702D6 /* User.swift */; };
 		533E63F822C8BE0B007EE029 /* ToggleButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533E63F722C8BE0B007EE029 /* ToggleButton.xib */; };
 		533E63FA22C8BE43007EE029 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533E63F922C8BE43007EE029 /* ToggleButton.swift */; };
 		533E63FC22C8CA76007EE029 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 533E63FB22C8CA76007EE029 /* Profile.storyboard */; };
@@ -165,6 +166,7 @@
 		5333E96A22C0F8FC00175995 /* BaseReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseReservationViewController.swift; sourceTree = "<group>"; };
 		5333E96C22C0FD4E00175995 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		5333E96E22C0FDE500175995 /* NestedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedController.swift; sourceTree = "<group>"; };
+		5336831F22D3A98800C702D6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		533E63F722C8BE0B007EE029 /* ToggleButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleButton.xib; sourceTree = "<group>"; };
 		533E63F922C8BE43007EE029 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		533E63FB22C8CA76007EE029 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				53D98FC922BD44A40027FDCD /* ApiResult.swift */,
 				53D98FCB22BD459E0027FDCD /* ApiError.swift */,
 				53D98FCD22BD45F50027FDCD /* AppError.swift */,
+				5336831F22D3A98800C702D6 /* User.swift */,
 				53FDE14E22BE257D00EBC13F /* Client.swift */,
 				53907E0C22B19EC700314EC8 /* Instrument.swift */,
 				53DEFCE022C241AF0003852E /* Location.swift */,
@@ -845,6 +848,7 @@
 				A5A99ADA2025345D0050D8D8 /* ItemTableViewCell.swift in Sources */,
 				A5CA35D8202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift in Sources */,
 				532CC89C22C50D3F00FB1822 /* TransparentButton.swift in Sources */,
+				5336832022D3A98800C702D6 /* User.swift in Sources */,
 				A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */,
 				534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */,
 				A5E1FB242044DD4600B15DD9 /* HeaderCell.swift in Sources */,

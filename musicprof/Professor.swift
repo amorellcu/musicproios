@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Professor: Decodable {
+class Professor: NSObject, Decodable, NSCoding, User {
     var id: Int
     var name: String
     var phone: String?
@@ -57,6 +57,28 @@ class Professor: Decodable {
         self.instruments = try container.decodeIfPresent([Instrument].self, forKey: .instruments)
         self.locations = try container.decodeIfPresent([Location].self, forKey: .locations)
         self.classes = try container.decodeIfPresent([Class].self, forKey: .classes)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.id = coder.decodeInteger(forKey: UserKeys.id.rawValue)
+        self.name = coder.decodeObject(forKey: UserKeys.name.rawValue) as? String ?? ""
+        self.email = coder.decodeObject(forKey: UserKeys.email.rawValue) as? String
+        self.phone = coder.decodeObject(forKey: CodingKeys.phone.rawValue) as? String
+        self.address = coder.decodeObject(forKey: CodingKeys.address.rawValue) as? String
+        let avatar = coder.decodeObject(forKey: UserKeys.avatar.rawValue) as? String
+        self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
+        self.facebookId = coder.decodeObject(forKey: UserKeys.facebookId.rawValue) as? String
+        self.instruments = nil
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(self.id, forKey: UserKeys.id.rawValue)
+        coder.encode(self.name, forKey: UserKeys.name.rawValue)
+        coder.encode(self.email, forKey: UserKeys.avatar.rawValue)
+        coder.encode(self.phone, forKey: CodingKeys.phone.rawValue)
+        coder.encode(self.address, forKey: CodingKeys.address.rawValue)
+        coder.encode(self.avatarUrl?.absoluteURL, forKey: UserKeys.avatar.rawValue)
+        coder.encode(self.facebookId, forKey: UserKeys.facebookId.rawValue)
     }
     
     fileprivate enum CodingKeys: String, CodingKey {

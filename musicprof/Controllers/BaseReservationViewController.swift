@@ -14,7 +14,10 @@ class BaseReservationViewController: UIViewController, ReservationController, Ne
     
     var student: Student? {
         guard let clientId = self.reservation.studentId else { return nil }
-        return self.service.getClient(withId: clientId)
+        if let type = self.reservation.studentType, type == .account {
+            return self.service.currentClient
+        }
+        return self.service.currentClient?.subaccounts?.first(where: {$0.id == clientId})
     }
     
     var calendar: Calendar! {
