@@ -79,7 +79,7 @@ class PackagesViewController: UIViewController, NestedController {
     }
     
     private func pay(forPackage package: Package, withToken token: BTPayPalAccountNonce) {
-        self.service.performPaypalPayment(withToken: token.description, handler: { (result) in
+        self.service.performPaypalPayment(for: package, withToken: token.description, handler: { (result) in
             self.handleResult(result) {
                 SCLAlertView().showSuccess("Paquete Adquirido", subTitle: "Ahora puede reservar \(package.quantity) clases más.")
             }

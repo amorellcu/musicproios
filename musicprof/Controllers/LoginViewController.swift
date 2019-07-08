@@ -167,7 +167,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func unwindToLogin(_ segue: UIStoryboardSegue) {
-        
+        self.service.signOut()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

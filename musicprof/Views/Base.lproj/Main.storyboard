@@ -1366,41 +1366,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close-icon" translatesAutoresizingMaskIntoConstraints="NO" id="7fq-EQ-Jd6">
-                                        <rect key="frame" x="256.5" y="0.0" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="7fq-EQ-Jd6" secondAttribute="height" multiplier="1:1" id="8Ch-FI-zEp"/>
-                                            <constraint firstAttribute="width" constant="30" id="Pal-hD-3Hk"/>
-                                        </constraints>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3Y-iX-YE5" userLabel="CloseButton">
-                                        <rect key="frame" x="256.5" y="0.0" width="30" height="30"/>
-                                        <connections>
-                                            <action selector="onCloseTapped:" destination="g0i-i6-gZc" eventType="touchUpInside" id="gaC-Jx-3KW"/>
-                                        </connections>
-                                    </button>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fig-al-SSk">
-                                        <rect key="frame" x="256.5" y="0.0" width="30" height="30"/>
-                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="7fq-EQ-Jd6" firstAttribute="centerX" secondItem="Df4-CK-Xfh" secondAttribute="trailing" id="0g8-19-zzP"/>
                                     <constraint firstItem="Df4-CK-Xfh" firstAttribute="centerX" secondItem="fHr-xa-ujc" secondAttribute="centerX" id="1jF-WW-sih"/>
-                                    <constraint firstItem="C3Y-iX-YE5" firstAttribute="trailing" secondItem="7fq-EQ-Jd6" secondAttribute="trailing" id="1nO-CT-V19"/>
-                                    <constraint firstItem="fig-al-SSk" firstAttribute="centerY" secondItem="7fq-EQ-Jd6" secondAttribute="centerY" id="2v9-di-FAY"/>
-                                    <constraint firstItem="7fq-EQ-Jd6" firstAttribute="centerY" secondItem="Df4-CK-Xfh" secondAttribute="top" id="CUM-Md-Krn"/>
                                     <constraint firstItem="mqt-53-qwK" firstAttribute="leading" secondItem="fHr-xa-ujc" secondAttribute="leading" constant="31" id="EMB-AT-wNE"/>
-                                    <constraint firstItem="fig-al-SSk" firstAttribute="height" secondItem="7fq-EQ-Jd6" secondAttribute="height" id="FRQ-bt-x3L"/>
-                                    <constraint firstItem="fig-al-SSk" firstAttribute="centerX" secondItem="7fq-EQ-Jd6" secondAttribute="centerX" id="GLS-TH-YOb"/>
-                                    <constraint firstItem="C3Y-iX-YE5" firstAttribute="top" secondItem="7fq-EQ-Jd6" secondAttribute="top" id="GSL-Yh-r8y"/>
-                                    <constraint firstItem="fig-al-SSk" firstAttribute="width" secondItem="7fq-EQ-Jd6" secondAttribute="width" id="J0a-mo-afJ"/>
                                     <constraint firstAttribute="bottom" secondItem="Df4-CK-Xfh" secondAttribute="bottom" priority="750" constant="13" id="J8H-B7-3cM"/>
                                     <constraint firstItem="mqt-53-qwK" firstAttribute="top" secondItem="Df4-CK-Xfh" secondAttribute="bottom" constant="10" id="JAH-Ry-lQc"/>
                                     <constraint firstAttribute="bottom" secondItem="mqt-53-qwK" secondAttribute="bottom" priority="999" constant="13" id="Nfn-dJ-iIw"/>
-                                    <constraint firstItem="C3Y-iX-YE5" firstAttribute="leading" secondItem="7fq-EQ-Jd6" secondAttribute="leading" id="aWC-Jx-PWX"/>
-                                    <constraint firstItem="C3Y-iX-YE5" firstAttribute="bottom" secondItem="7fq-EQ-Jd6" secondAttribute="bottom" id="euv-al-UpB"/>
                                     <constraint firstAttribute="trailing" secondItem="mqt-53-qwK" secondAttribute="trailing" constant="31" id="hQG-kY-ycr"/>
                                     <constraint firstAttribute="height" priority="500" id="sSe-Q9-6Pr"/>
                                     <constraint firstItem="Df4-CK-Xfh" firstAttribute="top" secondItem="fHr-xa-ujc" secondAttribute="top" constant="15" id="vMi-Go-xQ8"/>
@@ -1426,15 +1399,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="85K-x3-2OA"/>
                     </view>
-                    <navigationItem key="navigationItem" id="YgR-8I-2db"/>
+                    <navigationItem key="navigationItem" id="YgR-8I-2db">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="menu" id="obW-7K-uvJ">
+                            <connections>
+                                <action selector="onMenuTapped:" destination="g0i-i6-gZc" id="Qm9-gf-Aga"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="activityIndicator" destination="fig-al-SSk" id="9aR-oR-zNq"/>
                         <outlet property="avatarImageView" destination="Df4-CK-Xfh" id="or9-nJ-0vm"/>
-                        <outlet property="closeIconImageView" destination="7fq-EQ-Jd6" id="d4Q-N2-gXJ"/>
                         <outlet property="fullDisplayConstraint" destination="Nfn-dJ-iIw" id="T4e-j0-4ew"/>
                         <outlet property="pictureDisplayConstraint" destination="J8H-B7-3cM" id="2pB-dQ-cNm"/>
                         <outlet property="profileNameLabel" destination="mqt-53-qwK" id="Mym-WU-V2Y"/>
-                        <outlet property="signOutButton" destination="C3Y-iX-YE5" id="X0x-Ci-dmv"/>
                         <segue destination="HHg-Jg-TtF" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogin:" id="eM0-Ri-RDB"/>
                     </connections>
                 </viewController>
@@ -1455,7 +1431,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="close-icon" width="210" height="210"/>
         <image name="fb" width="31" height="61"/>
         <image name="flechader" width="70" height="156"/>
         <image name="flechaizq" width="70" height="156"/>
@@ -1464,6 +1439,7 @@
         <image name="iconPerfil" width="30" height="30"/>
         <image name="iconbuy" width="30" height="30"/>
         <image name="logo" width="291" height="400"/>
+        <image name="menu" width="100" height="75"/>
         <image name="userdefault" width="112.5" height="112.5"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -12,9 +12,6 @@ import AlamofireImage
 class ContainerViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
-    @IBOutlet weak var closeIconImageView: UIImageView!
-    @IBOutlet weak var signOutButton: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var fullDisplayConstraint: NSLayoutConstraint!
     @IBOutlet weak var pictureDisplayConstraint: NSLayoutConstraint!
@@ -69,26 +66,34 @@ class ContainerViewController: UIViewController {
         controller.container = self
     }
     
-    @IBAction func onCloseTapped(_ sender: UIButton) {
-        self.onLogoutAction(activityIndicator: activityIndicator, closeIcon: closeIconImageView)
+    @IBAction func onMenuTapped(_ sender: Any) {
+        let title = "Opciones"
+        let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        controller.addAction(UIAlertAction(title: "Cerrar sesión", style: .default, handler: { (_) in
+            self.performSegue(withIdentifier: "unwindToLogin", sender: self)
+        }))
+        controller.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+        
+        if let popoverController = controller.popoverPresentationController {
+            popoverController.sourceView = self.view
+            let bounds = self.view.bounds
+            popoverController.sourceRect = CGRect(x: bounds.midX, y: bounds.maxY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
+        
+        self.present(controller, animated: true)
     }
     
     private func updateVisibility() {
         switch self.displayMode {
         case .collapsed:
             self.avatarImageView.isHidden = true
-            self.closeIconImageView.isHidden = true
-            self.signOutButton.isHidden = true
             self.profileNameLabel.isHidden = true
         case .picture:
             self.avatarImageView.isHidden = false
-            self.closeIconImageView.isHidden = false
-            self.signOutButton.isHidden = false
             self.profileNameLabel.isHidden = true
         case .full:
             self.avatarImageView.isHidden = false
-            self.closeIconImageView.isHidden = false
-            self.signOutButton.isHidden = false
             self.profileNameLabel.isHidden = false
         }
     }

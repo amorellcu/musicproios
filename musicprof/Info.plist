@@ -32,6 +32,14 @@
 				<string>com.musicprof.payments</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.venmo.touch.v2</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -53,8 +61,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Para tomar la foto de su Perfil de Usuario</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Para detectar su dirección.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Por favor dejeme usar su localización</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Para escoger la foto de su Perfil de Usuario</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>FilsonProRegular-Regular.otf</string>
@@ -74,12 +88,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>Para tomar la foto de su Perfil de Usuario</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Para escoger la foto de su Perfil de Usuario</string>
-	<key>NSLocationUsageDescription</key>
-	<string>Para detectar su dirección.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
