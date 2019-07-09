@@ -11,7 +11,6 @@ import FacebookLogin
 import FBSDKLoginKit
 import FBSDKCoreKit
 import Alamofire
-import MobileCoreServices
 
 
 class Client: NSObject, Decodable, NSCoding, Student, User {
@@ -140,49 +139,22 @@ extension Client {
     }
 }
 
-extension Client {
-    private func encode(_ str: CustomStringConvertible, withName name: String, to form: MultipartFormData) {
-        form.append(str.description.data(using: .utf8)!, withName: name)
-    }
-    
-    private func encodeIfPresent(_ str: CustomStringConvertible?, withName name: String, to form: MultipartFormData) {
-        guard let str = str else { return }
-        form.append(str.description.data(using: .utf8)!, withName: name)
-    }
-    
-    private func encodeValues<T: CustomStringConvertible>(_ values: [T]?, withName name: String, to form: MultipartFormData) {
-        let values = values ?? []
-        for i in 0 ..< values.count {
-            self.encode(values[i], withName: "\(name)[]", to: form)
-        }
-    }
-    
-    private func mimeType(forPathExtension pathExtension: String) -> String {
-        if
-            let id = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension as CFString, nil)?.takeRetainedValue(),
-            let contentType = UTTypeCopyPreferredTagWithClass(id, kUTTagClassMIMEType)?.takeRetainedValue()
-        {
-            return contentType as String
-        }
-        
-        return "application/octet-stream"
-    }
-    
+extension Client: MultiformEncodable {
     func encode(to form: MultipartFormData) {
         if self.id >= 0 {
-            self.encode(self.id, withName: UserKeys.id.rawValue, to: form)
+            form.encode(self.id, withName: UserKeys.id.rawValue)
         }
         if self.type == .subaccount {
-            self.encode(self.userId, withName: "idCuenta", to: form)
+            form.encode(self.userId, withName: "idCuenta")
         }
-        self.encode(self.name, withName: CodingKeys.name.rawValue, to: form)
-        self.encodeIfPresent(self.email, withName: UserKeys.email.rawValue, to: form)
-        self.encodeIfPresent(self.phone, withName: CodingKeys.phone.rawValue, to: form)
-        self.encodeIfPresent(self.address, withName: CodingKeys.address.rawValue, to: form)
-        self.encodeIfPresent(self.locationId, withName: "coloniaId", to: form)
-        self.encodeValues(self.instruments?.map({$0.id}), withName: CodingKeys.instruments.rawValue, to: form)
-        self.encodeIfPresent(self.facebookId, withName: "facebookID", to: form)
-        self.encode(1, withName: "paymentTypeId", to: form)
+        form.encode(self.name, withName: CodingKeys.name.rawValue)
+        form.encodeIfPresent(self.email, withName: UserKeys.email.rawValue)
+        form.encodeIfPresent(self.phone, withName: CodingKeys.phone.rawValue)
+        form.encodeIfPresent(self.address, withName: CodingKeys.address.rawValue)
+        form.encodeIfPresent(self.locationId, withName: "coloniaId")
+        form.encodeValues(self.instruments?.map({$0.id}), withName: CodingKeys.instruments.rawValue)
+        form.encodeIfPresent(self.facebookId, withName: "facebookID")
+        form.encode(1, withName: "paymentTypeId")
         if let avatarUrl = self.avatarUrl, avatarUrl.isFileURL {
             form.append(avatarUrl, withName: UserKeys.avatar.rawValue)
         }
@@ -217,39 +189,6 @@ extension Client {
 }
 
 extension Client {
-    func loadFromFB(overwrite: Bool = false, completion: @escaping (Error?) -> Void) {
-        guard FBSDKAccessToken.current() != nil else {
-            return completion(AppError.invalidOperation)
-        }
-        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large), email"]).start { (connection, result, error) -> Void in
-            DispatchQueue.main.async {
-                if let error = error {
-                    completion(error)
-                } else if let dict = result as? [String : Any] {
-                    let picture = dict["picture"] as? [String: Any]
-                    var data = picture?["data"] as? [String : Any]
-                    let imageUrlString = data?["url"] as? String
-                    
-                    if overwrite {
-                        self.avatarUrl = (imageUrlString == nil ? nil : URL(string: imageUrlString!)) ?? self.avatarUrl
-                        self.name = dict["name"] as? String ?? self.name
-                        self.email = dict["email"] as? String ?? self.email
-                        self.facebookId = (dict["id"] as? String) ?? self.facebookId
-                    } else {
-                        self.avatarUrl = self.avatarUrl ?? (imageUrlString == nil ? nil : URL(string: imageUrlString!))
-                        self.name = self.name.isEmpty ? (dict["name"] as? String ?? "") : self.name
-                        self.email = self.email ?? dict["email"] as? String
-                        self.facebookId = self.facebookId ?? (dict["id"] as? String)
-                    }
-                    
-                    completion(nil)
-                } else {
-                    completion(AppError.unsupportedData)
-                }
-            }
-        }
-    }
-    
     func update(from other: Client, overwrite: Bool = false) {
         if overwrite {
             self.userId = other.userId < 0 ? self.userId : other.userId

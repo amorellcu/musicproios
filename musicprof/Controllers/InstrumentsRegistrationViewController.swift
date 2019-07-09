@@ -10,8 +10,9 @@ import UIKit
 import AlamofireImage
 import SCLAlertView
 
-class InstrumentsRegistrationViewController: InstrumentListViewController {
+class InstrumentsRegistrationViewController: InstrumentListViewController, ClientRegistrationController {
     
+    var client: Client!
     var editClient: Client?
     
     @IBOutlet weak var avatarImageView: UIImageView?

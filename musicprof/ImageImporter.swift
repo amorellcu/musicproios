@@ -17,9 +17,9 @@ class ImageImporter {
         self.viewController = viewController
     }
     
-    func getPicture(for client: Client, completion: @escaping () -> ()) {
+    func getPicture(for user: User, completion: @escaping () -> ()) {
         let title = "Cambiar imagen"
-        let delegate = PickerDelegate(client: client, callback: completion)
+        let delegate = PickerDelegate(user: user, callback: completion)
         let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             controller.addAction(UIAlertAction(title: "Mis fotos", style: .default) { action in
@@ -31,9 +31,9 @@ class ImageImporter {
                 self.recordImageWithCamera(delegate: delegate)
             })
         }
-        if client.facebookId != nil && AccessToken.current != nil  {
+        if user.facebookId != nil && AccessToken.current != nil  {
             controller.addAction(UIAlertAction(title: "Mi foto de Facebook", style: .default) { action in
-                self.getPictureFromFB(for: client, completion: completion)
+                self.getPictureFromFB(for: user, completion: completion)
             })
         }
         controller.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
@@ -50,7 +50,7 @@ class ImageImporter {
     
     
     
-    func getPictureFromFB(for client: Client, completion: @escaping () -> ()) {
+    func getPictureFromFB(for user: User, completion: @escaping () -> ()) {
         let fbClient = Client()
         fbClient.loadFromFB { (error) in
             if let error = error {
@@ -58,7 +58,7 @@ class ImageImporter {
             } else if let avatarUrl = fbClient.avatarUrl {
                 let request = URLRequest(url: avatarUrl)
                 ImageDownloader.default.download([request]) { response in
-                    if let avatar = response.result.value, PickerDelegate.updatePicture(of: client, with: avatar) {
+                    if let avatar = response.result.value, PickerDelegate.updatePicture(of: user, with: avatar) {
                         completion()
                     } else {
                         self.viewController.notify(message: "No se pudo descargar la foto.", title: "Error")
@@ -90,29 +90,29 @@ class ImageImporter {
     
     class PickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         let callback: () -> ()
-        let client: Client
+        let user: User
         
-        init(client: Client, callback: @escaping () -> ()) {
-            self.client = client
+        init(user: User, callback: @escaping () -> ()) {
+            self.user = user
             self.callback = callback
             super.init()
         }
         
-        static func updatePicture(of client: Client, with image: UIImage) -> Bool {
+        static func updatePicture(of user: User, with image: UIImage) -> Bool {
             guard let data = UIImagePNGRepresentation(image) else { return false }
             let documentsPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
             let destinationURL = documentsPath.appendingPathComponent("\(UUID()).png")
             if !FileManager.default.createFile(atPath: destinationURL.path, contents: data, attributes: nil) {
                 return false
             }
-            client.avatarUrl = destinationURL
+            user.avatarUrl = destinationURL
             return true
         }
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
             picker.dismiss(animated: true, completion: nil)
             
-            if let image = info[UIImagePickerControllerEditedImage] as? UIImage, PickerDelegate.updatePicture(of: client, with: image) {
+            if let image = info[UIImagePickerControllerEditedImage] as? UIImage, PickerDelegate.updatePicture(of: user, with: image) {
                 self.callback()
             }
         }

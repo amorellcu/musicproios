@@ -24,10 +24,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Profile Update View Controller-->
+        <!--Client Update View Controller-->
         <scene sceneID="V08-o6-IV7">
             <objects>
-                <viewController id="yoO-MX-DLs" customClass="ProfileUpdateViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yoO-MX-DLs" customClass="ClientUpdateViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FZM-Wv-wmY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

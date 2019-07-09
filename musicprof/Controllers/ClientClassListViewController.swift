@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ClassListViewController: ReservationListViewController {
+class ClientClassListViewController: ReservationListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +19,12 @@ class ClassListViewController: ReservationListViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.client = self.service.currentClient
         super.viewWillAppear(animated)
     }
     
     override func updateReservations() {
-        self.service.getNextClasses(of: self.client) { [weak self] (result) in
+        guard let client = self.service.currentClient else { return }
+        self.service.getNextClasses(of: client) { [weak self] (result) in
             self?.handleResult(result) {
                 self?.reservations = $0
             }

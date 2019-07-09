@@ -10,7 +10,7 @@ import UIKit
 
 class PasswordUpdateViewController: UIViewController, RegistrationController, NestedController {
     var container: ContainerViewController?
-    var client: Client!
+    var user: User!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -64,7 +64,7 @@ class PasswordUpdateViewController: UIViewController, RegistrationController, Ne
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let controller = segue.destination as? RegistrationController {
-            controller.client = self.client
+            controller.user = self.user
         }
         if let controller = segue.destination as? NestedController {
             controller.container = self.container

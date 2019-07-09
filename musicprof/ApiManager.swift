@@ -144,11 +144,11 @@ class ApiManager {
     func performPaypalPayment(for package: Package, withToken token: String,
                               handler: @escaping (ApiResult<Void>) -> Void) {
         let url = baseUrl.appendingPathComponent("CreateTransaction")
-        let parameters = ["payment_method_nonce": token]
+        let parameters: Parameters = ["nonce": token, "packageId": package.id]
         let _ = self.session
-            .request(url, method: .get,
+            .request(url, method: .post,
                      parameters: parameters,
-                     encoding: URLEncoding.default,
+                     encoding: URLEncoding.httpBody,
                      headers: self.headers)
             .responseError(completionHandler: handler)
     }
@@ -319,7 +319,15 @@ class ApiManager {
                      parameters: parameters,
                      encoding: URLEncoding.default,
                      headers: self.headers)
-            .responseDecodable(completionHandler: handler)
+            .responseDecodable { (result: ApiResult<Professor>) in
+                switch result {
+                case .success(let professor) where professor.id == self.currentProfessor?.id :
+                    self.user = professor
+                default:
+                    break
+                }
+                handler(result)
+        }
     }
     
     func getPackages(forStateWithId stateId: Int? = nil, handler: @escaping (ApiResult<[Package]>) -> Void) {
@@ -348,6 +356,30 @@ class ApiManager {
                      headers: self.headers)
             .responseDecodable { (result: ApiResult<ReservationData>) in
                 handler(result.transform(with: {$0.reservations}))
+        }
+    }
+    
+    func getReservations(of professor: Professor, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getProfesorReservations")
+        let parameters: Parameters = ["id": professor.id]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<ReservationData>) in
+                handler(result.transform(with: {$0.reservations}))
+        }
+    }
+    
+    func getReservations(of user: User, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
+        switch user {
+        case let client as Client:
+            getReservations(of: client, handler: handler)
+        case let professor as Professor:
+            getReservations(of: professor, handler: handler)
+        default:
+            handler(.failure(error: AppError.invalidOperation))
         }
     }
     
@@ -421,6 +453,32 @@ class ApiManager {
                     case .success(let data):
                         self.user = data.client
                         handler(.success(data: data.client))
+                    case .failure(let error):
+                        handler(.failure(error: error))
+                    }
+                }
+            case .failure(let error):
+                handler(.failure(error: error))
+            }
+        }
+    }
+    
+    func updateProfile(_ professor: Professor, password: String? = nil, handler: @escaping (ApiResult<Professor>) -> Void) {
+        let url = baseUrl.appendingPathComponent("updateProfessor?profesorId\(professor.id)")
+        let _ = self.session.upload(multipartFormData: { (form) in
+            professor.encode(to: form)
+            if let password = password {
+                form.encode(password, withName: "password")
+                form.encode(password, withName: "password_confirmation")
+            }
+        }, to: url) { (result) in
+            switch result {
+            case .success(let request, _, _):
+                let _ = request.responseDecodable { (result: ApiResult<Professor>) in
+                    switch result {
+                    case .success(let data):
+                        self.user = data
+                        handler(.success(data: data))
                     case .failure(let error):
                         handler(.failure(error: error))
                     }
@@ -588,6 +646,14 @@ private struct FBLoginData: Decodable {
 
 private struct UserData: Decodable {
     var client: Client
+}
+
+private struct ProfessorData: Decodable {
+    var professor: Professor
+    
+    private enum CodingKeys: String, CodingKey {
+        case professor = "profesor"
+    }
 }
 
 private struct SubaccountData: Decodable {

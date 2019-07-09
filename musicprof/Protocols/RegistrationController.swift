@@ -9,7 +9,25 @@
 import UIKit
 
 protocol RegistrationController: class {
+    var user: User! { get set }
+}
+
+protocol ClientRegistrationController: RegistrationController {
     var client: Client! { get set }
 }
 
-var client: Client?
+extension ClientRegistrationController {
+    
+    var user: User! {
+        get { return client }
+        set { client = newValue as? Client }
+    }
+ 
+    
+    /*
+    var client: Client! {
+        get { return user as? Client }
+        set { user = newValue }
+    }
+ */
+}

@@ -33,15 +33,20 @@
 		533E63F822C8BE0B007EE029 /* ToggleButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533E63F722C8BE0B007EE029 /* ToggleButton.xib */; };
 		533E63FA22C8BE43007EE029 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533E63F922C8BE43007EE029 /* ToggleButton.swift */; };
 		533E63FC22C8CA76007EE029 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 533E63FB22C8CA76007EE029 /* Profile.storyboard */; };
+		53459CF722D4B3120007ECE6 /* MultiformEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53459CF622D4B3120007ECE6 /* MultiformEncodable.swift */; };
 		534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */; };
 		534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4D22BFC043009249FC /* StudentCell.swift */; };
+		5357A5DC22D4928000936FA6 /* Professors.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5357A5DB22D4928000936FA6 /* Professors.storyboard */; };
+		5357A5DE22D494C000936FA6 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357A5DD22D494C000936FA6 /* LoginController.swift */; };
+		5357A5E022D49B4300936FA6 /* ClientUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357A5DF22D49B4300936FA6 /* ClientUpdateViewController.swift */; };
+		5357A5E222D49B5A00936FA6 /* ProfessorUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357A5E122D49B5A00936FA6 /* ProfessorUpdateViewController.swift */; };
 		53616E6C22CBAF6800B36549 /* PasswordUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53616E6B22CBAF6800B36549 /* PasswordUpdateViewController.swift */; };
 		5364C6C022CFB3140052E6FA /* SubaccountListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5364C6BF22CFB3140052E6FA /* SubaccountListViewController.swift */; };
 		5366CFD922CC9B4400FFDEE2 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5366CFD822CC9B4400FFDEE2 /* Reservation.swift */; };
 		536752C122C5E19B00DA1590 /* SubaccountSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536752C022C5E19B00DA1590 /* SubaccountSelectionViewController.swift */; };
 		536C704122C1F30A00E217FF /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C704022C1F30A00E217FF /* UINavigationController.swift */; };
 		536F8A5A22C6510D0061CF17 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */; };
-		5380312C22CE42570016175E /* ClassListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5380312B22CE42570016175E /* ClassListViewController.swift */; };
+		5380312C22CE42570016175E /* ClientClassListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5380312B22CE42570016175E /* ClientClassListViewController.swift */; };
 		5380312E22CE44ED0016175E /* Classes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5380312D22CE44ED0016175E /* Classes.storyboard */; };
 		53907E0B22B1983300314EC8 /* InstrumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0A22B1983300314EC8 /* InstrumentCell.swift */; };
 		53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0C22B19EC700314EC8 /* Instrument.swift */; };
@@ -170,15 +175,20 @@
 		533E63F722C8BE0B007EE029 /* ToggleButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleButton.xib; sourceTree = "<group>"; };
 		533E63F922C8BE43007EE029 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		533E63FB22C8CA76007EE029 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		53459CF622D4B3120007ECE6 /* MultiformEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiformEncodable.swift; sourceTree = "<group>"; };
 		534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentsViewController.swift; sourceTree = "<group>"; };
 		534F1D4D22BFC043009249FC /* StudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCell.swift; sourceTree = "<group>"; };
+		5357A5DB22D4928000936FA6 /* Professors.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Professors.storyboard; sourceTree = "<group>"; };
+		5357A5DD22D494C000936FA6 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		5357A5DF22D49B4300936FA6 /* ClientUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUpdateViewController.swift; sourceTree = "<group>"; };
+		5357A5E122D49B5A00936FA6 /* ProfessorUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorUpdateViewController.swift; sourceTree = "<group>"; };
 		53616E6B22CBAF6800B36549 /* PasswordUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUpdateViewController.swift; sourceTree = "<group>"; };
 		5364C6BF22CFB3140052E6FA /* SubaccountListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubaccountListViewController.swift; sourceTree = "<group>"; };
 		5366CFD822CC9B4400FFDEE2 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		536752C022C5E19B00DA1590 /* SubaccountSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubaccountSelectionViewController.swift; sourceTree = "<group>"; };
 		536C704022C1F30A00E217FF /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
-		5380312B22CE42570016175E /* ClassListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassListViewController.swift; sourceTree = "<group>"; };
+		5380312B22CE42570016175E /* ClientClassListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientClassListViewController.swift; sourceTree = "<group>"; };
 		5380312D22CE44ED0016175E /* Classes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Classes.storyboard; sourceTree = "<group>"; };
 		53907E0A22B1983300314EC8 /* InstrumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentCell.swift; sourceTree = "<group>"; };
 		53907E0C22B19EC700314EC8 /* Instrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
@@ -321,6 +331,8 @@
 				5333E96E22C0FDE500175995 /* NestedController.swift */,
 				53E7D64322C54A35006DA7B4 /* Student.swift */,
 				53130DC722D06DF3008B06B2 /* ProfileSection.swift */,
+				5357A5DD22D494C000936FA6 /* LoginController.swift */,
+				53459CF622D4B3120007ECE6 /* MultiformEncodable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -360,6 +372,7 @@
 				533E63FB22C8CA76007EE029 /* Profile.storyboard */,
 				5380312D22CE44ED0016175E /* Classes.storyboard */,
 				5327962122CCBE2C0085FAFD /* Maps.storyboard */,
+				5357A5DB22D4928000936FA6 /* Professors.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -434,10 +447,12 @@
 				5393EB7822C7EEF700C47E77 /* PackageCell.swift */,
 				53C680AA22CB7CD200993110 /* PaymentViewController.swift */,
 				5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */,
+				5357A5DF22D49B4300936FA6 /* ClientUpdateViewController.swift */,
+				5357A5E122D49B5A00936FA6 /* ProfessorUpdateViewController.swift */,
 				53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */,
 				53616E6B22CBAF6800B36549 /* PasswordUpdateViewController.swift */,
 				5364C6BF22CFB3140052E6FA /* SubaccountListViewController.swift */,
-				5380312B22CE42570016175E /* ClassListViewController.swift */,
+				5380312B22CE42570016175E /* ClientClassListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -639,6 +654,7 @@
 				539C80BE22C4C621009D8469 /* FilsonProHeavyItalic-Italic.otf in Resources */,
 				5393EB7322C7CC5C00C47E77 /* Payment.storyboard in Resources */,
 				539C80BC22C4C621009D8469 /* FilsonProBookItalic-Italic.otf in Resources */,
+				5357A5DC22D4928000936FA6 /* Professors.storyboard in Resources */,
 				539C80C122C4C621009D8469 /* FilsonProMedium-Medium.otf in Resources */,
 				A5598C1D201F8C3B000C64F6 /* Main.storyboard in Resources */,
 				539C80C322C4C621009D8469 /* FilsonProRegular-Regular.otf in Resources */,
@@ -802,9 +818,11 @@
 				5333E96D22C0FD4E00175995 /* ContainerViewController.swift in Sources */,
 				53130DC822D06DF3008B06B2 /* ProfileSection.swift in Sources */,
 				536C704122C1F30A00E217FF /* UINavigationController.swift in Sources */,
+				5357A5E222D49B5A00936FA6 /* ProfessorUpdateViewController.swift in Sources */,
 				530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */,
 				A5AD1EB520334EA400A38F85 /* CalendarViewController.swift in Sources */,
 				A5E1FB1C2042514000B15DD9 /* ProfesorTableViewCell.swift in Sources */,
+				5357A5E022D49B4300936FA6 /* ClientUpdateViewController.swift in Sources */,
 				53E7D64422C54A35006DA7B4 /* Student.swift in Sources */,
 				5333E96B22C0F8FC00175995 /* BaseReservationViewController.swift in Sources */,
 				A5598C71201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift in Sources */,
@@ -823,7 +841,7 @@
 				5305F99622C4E950002284EF /* UIView.swift in Sources */,
 				530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */,
 				53D1C57322C5F8C6002BDAE4 /* RegistrationController.swift in Sources */,
-				5380312C22CE42570016175E /* ClassListViewController.swift in Sources */,
+				5380312C22CE42570016175E /* ClientClassListViewController.swift in Sources */,
 				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,
 				53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */,
 				5393EB7522C7CD4600C47E77 /* MenuViewController.swift in Sources */,
@@ -831,6 +849,7 @@
 				536F8A5A22C6510D0061CF17 /* PasswordResetViewController.swift in Sources */,
 				A5FF65842024FE34003778B3 /* HeaderTableViewCell.swift in Sources */,
 				5333E96222C0E46500175995 /* ProfessorListViewController.swift in Sources */,
+				53459CF722D4B3120007ECE6 /* MultiformEncodable.swift in Sources */,
 				53D98FCE22BD45F50027FDCD /* AppError.swift in Sources */,
 				5333E96F22C0FDE500175995 /* NestedController.swift in Sources */,
 				53D98FCA22BD44A40027FDCD /* ApiResult.swift in Sources */,
@@ -858,6 +877,7 @@
 				53FD596222BE4D7D002F5172 /* ProfileViewController.swift in Sources */,
 				A56E0FF5203B810D002D2F28 /* ScheduleViewController.swift in Sources */,
 				5333E96022C0E3FD00175995 /* ProfessorCell.swift in Sources */,
+				5357A5DE22D494C000936FA6 /* LoginController.swift in Sources */,
 				53FDE14F22BE257D00EBC13F /* Client.swift in Sources */,
 				53C5DA9122CA29CF0005AC14 /* ContactInfoViewController.swift in Sources */,
 			);

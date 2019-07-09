@@ -10,39 +10,17 @@ import UIKit
 import FacebookCore
 import SCLAlertView
 
-class ProfileUpdateViewController: CustomTabController, RegistrationController, NestedController {
+class ProfileUpdateViewController: CustomTabController, NestedController {
     var container: ContainerViewController?
     var tapGestureRecognizer: UITapGestureRecognizer?
     
-    var client: Client!
-    var originalClient: Client?
+    open var user: User!
     
     @IBOutlet weak var updateButton: UIButton!
-    
-    private lazy var viewControllers: [UIViewController] = {
-        let controllers = [self.storyboard!.instantiateViewController(withIdentifier: "ContactInfoViewController"),
-                           self.storyboard!.instantiateViewController(withIdentifier: "InstrumentListViewController"),
-                           self.storyboard!.instantiateViewController(withIdentifier: "ReservationListViewController"),
-                           self.storyboard!.instantiateViewController(withIdentifier: "PasswordUpdateViewController"),
-                           self.storyboard!.instantiateViewController(withIdentifier: "SubaccountListViewController")]
-        for controller in controllers.lazy.compactMap({$0 as? RegistrationController}) {
-            controller.client = self.client
-        }
-        return controllers
-    }()
-    
-    override var sections: [UIViewController]  {
-        return viewControllers
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        self.client = self.service.currentClient!
-        self.originalClient = self.originalClient ?? Client(copy: self.client)
-        self.updateControllers()
-        
         if let avatarImageView = self.container?.avatarImageView {
             let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileUpdateViewController.onChangeAvatar))
             avatarImageView.addGestureRecognizer(gestureRecognizer)
@@ -66,10 +44,10 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
         self.tapGestureRecognizer?.isEnabled = false
     }
     
-    private func updateControllers() {
-        for controller in self.viewControllers {
+    func updateControllers() {
+        for controller in self.sections {
             if let controller = controller as? RegistrationController {
-                controller.client = self.client
+                controller.user = self.user
             }
             if let controller = controller as? ProfileSection {
                 controller.updater = self
@@ -78,8 +56,8 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
         }
     }
     
-    @IBAction func onUpdateAccount(_ sender: Any) {
-        if let passwordController = self.viewControllers.compactMap({$0 as? PasswordUpdateViewController}).first {
+    @IBAction open func onUpdateAccount(_ sender: Any) {
+        if let passwordController = self.sections.compactMap({$0 as? PasswordUpdateViewController}).first {
             self.changePassword(with: passwordController) {
                 self.updateAccount()
             }
@@ -89,20 +67,7 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
         
     }
     
-    func updateAccount() {
-        guard self.client != self.originalClient else {
-            return
-        }
-        self.showSpinner(onView: self.view)
-        self.service.updateProfile(self.client) { [weak self] (result) in
-            self?.removeSpinner()
-            self?.handleResult(result) {
-                self?.client = $0
-                self?.originalClient = Client(copy: $0)
-                self?.updateControllers()
-                SCLAlertView().showSuccess("Cuenta Actualizada", subTitle: "La configuración de su cuenta se actualizó correctamente.")
-            }
-        }
+    open func updateAccount() {
     }
     
     func changePassword(with controller: PasswordUpdateViewController, continueWith handler: @escaping () -> Void) {
@@ -133,29 +98,10 @@ class ProfileUpdateViewController: CustomTabController, RegistrationController, 
     }
     
     @objc func onChangeAvatar() {
-        ImageImporter(viewController: self).getPicture(for: self.client) { [weak self] in
-            guard let url = self?.client?.avatarUrl, url.isFileURL else { return }
+        ImageImporter(viewController: self).getPicture(for: self.user) { [weak self] in
+            guard let url = self?.user?.avatarUrl, url.isFileURL else { return }
             self?.container?.avatarImageView.image = UIImage(contentsOfFile: url.path)?.af_imageRoundedIntoCircle()
         }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        guard let controller = segue.destination as? InstrumentsRegistrationViewController else { return }
-        switch segue.identifier {
-        case "addSubaccount":
-            controller.client = self.client
-        case "editSubaccount":
-            controller.client = self.client
-            controller.editClient = sender as? Client
-        default:
-            break
-        }
-    }
-    
-    @IBAction func unwindToProfile(_ segue: UIStoryboardSegue) {
-        self.client = self.service.currentClient!
-        self.updateControllers()
     }
 }
 

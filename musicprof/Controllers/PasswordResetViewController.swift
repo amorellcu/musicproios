@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class PasswordResetViewController: UIViewController {
+class PasswordResetViewController: UIViewController, LoginController {
     
     var email: String!
     
@@ -73,11 +73,11 @@ class PasswordResetViewController: UIViewController {
             self.removeSpinner()
             self.handleResult(result) {
                 if self.service.isSignedIn {
-                    self.performSegue(withIdentifier: "login", sender: sender)
+                    self.login(withAccount: self.service.user!)
                 } else {
                     self.service.signIn(withEmail: self.email, password: password, handler: { (result) in
                         self.handleResult(result) {
-                            self.performSegue(withIdentifier: "login", sender: sender)
+                            self.login(withAccount: $0)
                         }
                     })
                 }

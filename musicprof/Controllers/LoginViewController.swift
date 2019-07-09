@@ -16,7 +16,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginController {
 
     @IBOutlet weak var customFBLoginButton: UIButton!
     @IBOutlet weak var emailText: UITextField!
@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
             self.service.getUserInfo {[weak self](result) in
                 self?.removeSpinner()
                 self?.handleResult(result, onSuccess: {
-                    self?.performSegue(withIdentifier: "login", sender: self)
+                    self?.login(withAccount: $0)
                 })
             }
         }
@@ -103,7 +103,7 @@ class LoginViewController: UIViewController {
                     self.performSegue(withIdentifier: "RegisterStepOneSegue", sender: self)
                 }
             }, onSuccess: {
-                self.performSegue(withIdentifier: "login", sender: self)
+                self.login(withAccount: $0)
             })
         })
     }

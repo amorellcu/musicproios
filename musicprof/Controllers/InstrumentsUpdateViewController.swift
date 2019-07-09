@@ -8,7 +8,9 @@
 
 import UIKit
 
-class InstrumentsUpdateViewController: InstrumentListViewController {
+class InstrumentsUpdateViewController: InstrumentListViewController, ClientRegistrationController {
+    var client: Client!
+    
     override var instruments: [Instrument]? {
         didSet {
             guard let clientInstruments = self.client.instruments, let instruments = self.instruments else { return }

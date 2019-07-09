@@ -20,7 +20,12 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
     
     var container: ContainerViewController?
     
-    open var client: Client! = Client()
+    open var user: User! = Client()
+    
+    var client: Client! {
+        get { return self.user as? Client }
+        set { self.user = newValue }
+    }
     
     var locations: [Location]?
     
@@ -46,7 +51,9 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
         
         self.addressTextField?.inputAccessoryView = toolbar
         
-        if let locationId = self.client.locationId {
+        guard self.locationButton != nil else { return }
+        
+        if let locationId = self.client?.locationId {
             self.service.getLocation(withId: locationId) { [weak self] (result) in
                 self?.handleResult(result) {
                     self?.setLocation($0)
@@ -73,10 +80,10 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
     }
     
     open func updateFields() {
-        self.nameTextField.text = self.client.name
-        self.emailTextField.text = self.client.email
-        self.phoneTextField.text = self.client.phone
-        self.addressTextField?.text = self.client.address
+        self.nameTextField.text = self.user.name
+        self.emailTextField.text = self.user.email
+        self.phoneTextField.text = self.user.phone
+        self.addressTextField?.text = self.user.address
     }
     
     @objc func adjustForKeyboard(notification: Notification) {
@@ -93,10 +100,10 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
     }
     
     open func updateClient() {
-        self.client.name = self.nameTextField.text ?? ""
-        self.client.phone = self.phoneTextField.text
-        self.client.email = self.emailTextField.text
-        self.client.address = self.addressTextField?.text ?? self.client.address
+        self.user.name = self.nameTextField.text ?? ""
+        self.user.phone = self.phoneTextField.text
+        self.user.email = self.emailTextField.text
+        self.user.address = self.addressTextField?.text ?? self.user.address
     }
     
     @objc func openMap() {
@@ -104,12 +111,12 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
     }
     
     private func setLocation(_ location: Location) {
-        self.client.locationId = location.id
+        self.client?.locationId = location.id
         self.locationButton?.setTitle(location.description, for: .normal)
     }
     
     private func showMapSelectionMenu(withOptions locations: [Location]) {
-        let selection = locations.firstIndex(where: {$0.id == self.client.locationId}) ?? 0
+        let selection = locations.firstIndex(where: {$0.id == self.client?.locationId}) ?? 0
         ActionSheetStringPicker.show(withTitle: "Selecciona tu Ubicación", rows: locations, initialSelection: selection, doneBlock: { (_, index, location) in
             self.setLocation(locations[index])
         }, cancel: { (_) in
@@ -118,7 +125,8 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
     }
     
     private func updateLocations(completion: (([Location]) -> ())? = nil) {
-        guard let address = self.client.address, !address.isEmpty else { return }
+        guard self.locationButton != nil else { return }
+        guard let address = self.user.address, !address.isEmpty else { return }
         self.showSpinner(onView: self.view)
         self.service.getLocations(at: address) { [weak self] (result) in
             self?.removeSpinner()
@@ -143,6 +151,7 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
     }
     
     @IBAction func unwindToContactDetails(_ segue: UIStoryboardSegue) {
+        guard self.locationButton != nil else { return }
         if segue.identifier == "updateAddress", let controller = segue.source as? MapViewController {
             self.addressTextField?.text = controller.selectedAddress
             self.updateClient()
@@ -170,7 +179,7 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let controller = segue.destination as? RegistrationController {
-            controller.client = self.client
+            controller.user = self.user
         }
         if let controller = segue.destination as? NestedController {
             controller.container = self.container

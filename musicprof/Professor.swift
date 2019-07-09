@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class Professor: NSObject, Decodable, NSCoding, User {
     var id: Int
@@ -34,6 +35,25 @@ class Professor: NSObject, Decodable, NSCoding, User {
         self.personalReview = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
         self.workExperience = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
         self.academicTraining = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
+    }
+    
+    override init() {
+        self.id = -1
+        self.name = "Profesor"
+        super.init()
+    }
+    
+    init(copy other: Professor) {
+        self.id = other.id
+        self.name = other.name
+        self.email = other.email
+        self.phone = other.phone
+        self.address = other.address
+        self.avatarUrl = other.avatarUrl
+        self.facebookId = other.facebookId
+        self.personalReview = other.personalReview
+        self.workExperience = other.workExperience
+        self.academicTraining = other.academicTraining
     }
     
     required init(from decoder: Decoder) throws {
@@ -101,5 +121,34 @@ class Professor: NSObject, Decodable, NSCoding, User {
         case email
         case avatar = "photo"
         case facebookId = "facebook_id"
+    }
+}
+
+extension Professor {
+    override func isEqual(_ object: Any?) -> Bool {
+        let lhs = self
+        guard let rhs = object as? Client else { return false }
+        return lhs.id == rhs.id &&
+            lhs.name == rhs.name && lhs.email == rhs.email &&
+            lhs.phone == rhs.phone &&
+            lhs.address == rhs.address && 
+            lhs.facebookId == rhs.facebookId && lhs.avatarUrl == rhs.avatarUrl &&
+            Set(lhs.instruments ?? []) == Set(rhs.instruments ?? [])
+    }
+}
+
+extension Professor: MultiformEncodable {
+    func encode(to form: MultipartFormData) {
+        form.encode(self.name, withName: CodingKeys.name.rawValue)
+        form.encodeIfPresent(self.email, withName: UserKeys.email.rawValue)
+        form.encodeIfPresent(self.phone, withName: CodingKeys.phone.rawValue)
+        form.encodeIfPresent(self.address, withName: CodingKeys.address.rawValue)
+        form.encodeValues(self.locations?.map({$0.id}), withName: "coloniaId")
+        form.encodeValues(self.instruments?.map({$0.id}), withName: CodingKeys.instruments.rawValue)
+        form.encodeIfPresent(self.facebookId, withName: "facebookID")
+        form.encode(1, withName: "paymentTypeId")
+        if let avatarUrl = self.avatarUrl, avatarUrl.isFileURL {
+            form.append(avatarUrl, withName: UserKeys.avatar.rawValue)
+        }
     }
 }

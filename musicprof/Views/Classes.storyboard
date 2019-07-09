@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kMA-fo-t5e">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,13 +17,13 @@
         <!--MIS CLASES-->
         <scene sceneID="I8j-sv-XkC">
             <objects>
-                <viewController storyboardIdentifier="ClassListViewController" title="MIS CLASES" id="kMA-fo-t5e" customClass="ClassListViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ClassListViewController" title="MIS CLASES" id="kMA-fo-t5e" customClass="ClientClassListViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iT6-MW-tqC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5P-iL-Shm" userLabel="Header">
-                                <rect key="frame" x="0.0" y="54" width="414" height="52"/>
+                                <rect key="frame" x="0.0" y="30" width="600" height="52"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechaizq" translatesAutoresizingMaskIntoConstraints="NO" id="Hdy-QW-efq">
                                         <rect key="frame" x="0.0" y="0.0" width="22" height="52"/>
@@ -37,7 +33,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MIS PROXIMAS CLASES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Agh-Mr-DuW">
-                                        <rect key="frame" x="52" y="16" width="310" height="23"/>
+                                        <rect key="frame" x="52" y="16" width="496" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="93U-dj-0PW"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="Ww9-fH-sM6"/>
@@ -47,7 +43,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechader" translatesAutoresizingMaskIntoConstraints="NO" id="Lj9-EJ-BsP">
-                                        <rect key="frame" x="392" y="0.0" width="22" height="52"/>
+                                        <rect key="frame" x="578" y="0.0" width="22" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="Llc-I6-qqC"/>
                                             <constraint firstAttribute="height" constant="52" id="qDm-DZ-abt"/>
@@ -69,14 +65,14 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ENg-Jw-RKY">
-                                <rect key="frame" x="0.0" y="116" width="414" height="674"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="436"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reservationCell" id="Jcj-1o-22a" customClass="ReservationCell" customModule="musicprof" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jcj-1o-22a" id="2jq-4T-W7O">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jTX-MT-mmC">
@@ -148,7 +144,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kta-os-Pb8" userLabel="Header">
-                                <rect key="frame" x="0.0" y="800" width="414" height="52"/>
+                                <rect key="frame" x="0.0" y="538" width="600" height="52"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechaizq" translatesAutoresizingMaskIntoConstraints="NO" id="YE4-yS-JoD">
                                         <rect key="frame" x="0.0" y="0.0" width="22" height="52"/>
@@ -158,14 +154,14 @@
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechader" translatesAutoresizingMaskIntoConstraints="NO" id="r4P-92-X07">
-                                        <rect key="frame" x="392" y="0.0" width="22" height="52"/>
+                                        <rect key="frame" x="578" y="0.0" width="22" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="06U-62-nhx"/>
                                             <constraint firstAttribute="height" constant="52" id="WDg-Ba-FpK"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHo-5G-RVG">
-                                        <rect key="frame" x="37" y="10" width="340" height="32"/>
+                                        <rect key="frame" x="37" y="8.5" width="526" height="35"/>
                                         <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                         <state key="normal" title="RESERVAR NUEVA CLASE">
                                             <color key="titleColor" red="0.0" green="0.99607843139999996" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -9,9 +9,8 @@
 import UIKit
 import AlamofireImage
 
-class InstrumentListViewController: UIViewController, RegistrationController, NestedController {
+class InstrumentListViewController: UIViewController, NestedController {
     var container: ContainerViewController?
-    var client: Client!
     
     var instruments: [Instrument]? {
         didSet {
@@ -51,9 +50,6 @@ class InstrumentListViewController: UIViewController, RegistrationController, Ne
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if let controller = segue.destination as? RegistrationController {
-            controller.client = self.client
-        }
         if let controller = segue.destination as? NestedController {
             controller.container = self.container
         }

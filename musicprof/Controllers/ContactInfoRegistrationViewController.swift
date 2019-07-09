@@ -12,7 +12,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import AlamofireImage
 
-class ContactInfoRegistrationViewController: ContactInfoViewController {
+class ContactInfoRegistrationViewController: ContactInfoViewController, ClientRegistrationController {
     
     var tapGestureRecognizer: UITapGestureRecognizer!
 

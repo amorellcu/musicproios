@@ -9,9 +9,8 @@
 import UIKit
 import AlamofireImage
 
-class ReservationListViewController: UIViewController, RegistrationController, NestedController {
+class ReservationListViewController: UIViewController, NestedController {
     var container: ContainerViewController?
-    var client: Client!
     
     let dateFormatter = DateFormatter()
     
@@ -36,7 +35,8 @@ class ReservationListViewController: UIViewController, RegistrationController, N
     }
     
     open func updateReservations() {
-        self.service.getReservations(of: self.client) { [weak self] (result) in
+        guard let user = self.service.user else { return }
+        self.service.getReservations(of: user) { [weak self] (result) in
             self?.handleResult(result) {
                 self?.loadReservations($0)
             }
@@ -54,9 +54,6 @@ class ReservationListViewController: UIViewController, RegistrationController, N
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if let controller = segue.destination as? RegistrationController {
-            controller.client = self.client
-        }
         if let controller = segue.destination as? NestedController {
             controller.container = self.container
         }
