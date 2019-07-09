@@ -575,6 +575,43 @@
             </objects>
             <point key="canvasLocation" x="5272" y="1182"/>
         </scene>
+        <!--MI RESENA PERSONAL-->
+        <scene sceneID="iyV-lB-10Q">
+            <objects>
+                <viewController storyboardIdentifier="PersonalReviewViewController" title="MI RESENA PERSONAL" id="y8l-gP-eV4" customClass="PersonalReviewViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mTU-Gd-sql">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RtF-wI-GlW">
+                                <rect key="frame" x="30" y="64" width="354" height="778"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" red="1" green="0.82352941180000006" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="y8l-gP-eV4" id="neA-1d-zXK"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RtF-wI-GlW" firstAttribute="leading" secondItem="4La-QC-MJ8" secondAttribute="leading" constant="30" id="Rql-b1-bjU"/>
+                            <constraint firstItem="RtF-wI-GlW" firstAttribute="top" secondItem="4La-QC-MJ8" secondAttribute="top" constant="20" id="XSl-9o-l38"/>
+                            <constraint firstItem="4La-QC-MJ8" firstAttribute="bottom" secondItem="RtF-wI-GlW" secondAttribute="bottom" constant="20" id="kFZ-vL-SIl"/>
+                            <constraint firstItem="4La-QC-MJ8" firstAttribute="trailing" secondItem="RtF-wI-GlW" secondAttribute="trailing" constant="30" id="yS1-FC-f8u"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4La-QC-MJ8"/>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="RtF-wI-GlW" id="QiI-8l-ss0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X7s-1R-jKu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6242" y="1182"/>
+        </scene>
         <!--MIS INSTRUMENTOS-->
         <scene sceneID="5qg-Ny-3RN">
             <objects>
@@ -788,6 +825,80 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXr-gy-axk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4257" y="1182"/>
+        </scene>
+        <!--MI FORMACIÓN ACADÉMICA-->
+        <scene sceneID="ecO-bc-tgl">
+            <objects>
+                <viewController storyboardIdentifier="AcademicTrainingViewController" title="MI FORMACIÓN ACADÉMICA" id="kRu-QV-hgI" customClass="AcademicTrainingViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2cv-ut-Otd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OaB-KS-mIp">
+                                <rect key="frame" x="30" y="64" width="354" height="778"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" red="1" green="0.82352941180000006" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="kRu-QV-hgI" id="gF8-It-jgv"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="OaB-KS-mIp" firstAttribute="top" secondItem="0C4-kG-ZGf" secondAttribute="top" constant="20" id="9ra-VA-lrh"/>
+                            <constraint firstItem="OaB-KS-mIp" firstAttribute="leading" secondItem="0C4-kG-ZGf" secondAttribute="leading" constant="30" id="VBe-NA-D2e"/>
+                            <constraint firstItem="0C4-kG-ZGf" firstAttribute="bottom" secondItem="OaB-KS-mIp" secondAttribute="bottom" constant="20" id="j9p-zn-2Od"/>
+                            <constraint firstItem="0C4-kG-ZGf" firstAttribute="trailing" secondItem="OaB-KS-mIp" secondAttribute="trailing" constant="30" id="xpq-cK-CWQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0C4-kG-ZGf"/>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="OaB-KS-mIp" id="XeK-Xk-2nV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jJq-ZA-yLR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7232" y="1182"/>
+        </scene>
+        <!--MI EXPERIENCIA LABORAL-->
+        <scene sceneID="ZfO-fG-JAO">
+            <objects>
+                <viewController storyboardIdentifier="WorkExperienceViewController" title="MI EXPERIENCIA LABORAL" id="X4t-bK-Tz2" customClass="WorkExperienceViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="va2-oF-cEa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bCI-gx-YPq">
+                                <rect key="frame" x="30" y="64" width="354" height="778"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" red="1" green="0.82352941180000006" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="X4t-bK-Tz2" id="5yq-kx-qLA"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tMa-kj-E8M" firstAttribute="trailing" secondItem="bCI-gx-YPq" secondAttribute="trailing" constant="30" id="7cx-jW-xta"/>
+                            <constraint firstItem="bCI-gx-YPq" firstAttribute="top" secondItem="tMa-kj-E8M" secondAttribute="top" constant="20" id="CXO-IT-orB"/>
+                            <constraint firstItem="bCI-gx-YPq" firstAttribute="leading" secondItem="tMa-kj-E8M" secondAttribute="leading" constant="30" id="a1H-jL-41i"/>
+                            <constraint firstItem="tMa-kj-E8M" firstAttribute="bottom" secondItem="bCI-gx-YPq" secondAttribute="bottom" constant="20" id="mJd-bs-FWz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tMa-kj-E8M"/>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="bCI-gx-YPq" id="Z7Q-HN-gxA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2vU-Ip-VDw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8258" y="1182"/>
         </scene>
     </scenes>
     <resources>

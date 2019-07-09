@@ -72,7 +72,7 @@ class PackagesViewController: UIViewController, NestedController {
         driver.appSwitchDelegate = self
         
         let request = BTPayPalRequest(amount: String(describing: amount))
-        request.currencyCode = "USD"
+        request.currencyCode = "MXN"
         
         driver.requestOneTimePayment(request) { (account, error) in
             if let account = account {

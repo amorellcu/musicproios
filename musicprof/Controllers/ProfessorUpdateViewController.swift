@@ -20,6 +20,9 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
     private lazy var viewControllers: [UIViewController] = {
         let controllers = [self.storyboard!.instantiateViewController(withIdentifier: "ContactInfoViewController"),
                            self.storyboard!.instantiateViewController(withIdentifier: "InstrumentListViewController"),
+                           self.storyboard!.instantiateViewController(withIdentifier: "PersonalReviewViewController"),
+                           self.storyboard!.instantiateViewController(withIdentifier: "AcademicTrainingViewController"),
+                           self.storyboard!.instantiateViewController(withIdentifier: "WorkExperienceViewController"),
                            self.storyboard!.instantiateViewController(withIdentifier: "PasswordUpdateViewController")]
         for controller in controllers.lazy.compactMap({$0 as? RegistrationController}) {
             controller.user = self.user
@@ -49,7 +52,7 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
         }
         
         var newPassword: String? = nil
-        if let controller = self.sections.compactMap({$0 as? PasswordUpdateViewController}).first {
+        if let controller = self.sections.compactMap({$0 as? PasswordUpdateViewController}).first, controller.isViewLoaded {
             let password = controller.passwordTextField.text ?? ""
             let passwordConfirmation = controller.passwordConfirmationTextField.text ?? ""
             if !password.isEmpty && !passwordConfirmation.isEmpty && password == passwordConfirmation {

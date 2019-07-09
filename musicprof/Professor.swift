@@ -144,6 +144,9 @@ extension Professor {
             lhs.phone == rhs.phone &&
             lhs.address == rhs.address && 
             lhs.facebookId == rhs.facebookId && lhs.avatarUrl == rhs.avatarUrl &&
+            lhs.workExperience == rhs.workExperience &&
+            lhs.academicTraining == rhs.academicTraining &&
+            lhs.personalReview == rhs.personalReview &&
             Set(lhs.instruments ?? []) == Set(rhs.instruments ?? [])
     }
 }
@@ -159,6 +162,9 @@ extension Professor: MultiformEncodable {
         form.encodeValues(self.locations?.map({$0.id}), withName: "coloniaId")
         form.encodeValues(self.instruments?.map({$0.id}), withName: CodingKeys.instruments.rawValue)
         form.encodeIfPresent(self.facebookId, withName: "facebookID")
+        form.encodeIfPresent(self.personalReview, withName: CodingKeys.personalReview.rawValue)
+        form.encodeIfPresent(self.academicTraining, withName: CodingKeys.academicTraining.rawValue)
+        form.encodeIfPresent(self.workExperience, withName: CodingKeys.workExperience.rawValue)
         form.encode(1, withName: "paymentTypeId")
         if let avatarUrl = self.avatarUrl, avatarUrl.isFileURL {
             form.append(avatarUrl, withName: UserKeys.avatar.rawValue)

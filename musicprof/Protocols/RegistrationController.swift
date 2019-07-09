@@ -17,17 +17,19 @@ protocol ClientRegistrationController: RegistrationController {
 }
 
 extension ClientRegistrationController {
-    
     var user: User! {
         get { return client }
         set { client = newValue as? Client }
     }
- 
-    
-    /*
-    var client: Client! {
-        get { return user as? Client }
-        set { user = newValue }
+}
+
+protocol ProfessorRegistrationController: RegistrationController {
+    var professor: Professor! { get set }
+}
+
+extension ProfessorRegistrationController {
+    var user: User! {
+        get { return professor }
+        set { professor = newValue as? Professor }
     }
- */
 }

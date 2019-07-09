@@ -88,6 +88,7 @@
 		53DB770722CA81CE0050F7CD /* InstrumentsUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */; };
 		53DEFCE122C241AF0003852E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DEFCE022C241AF0003852E /* Location.swift */; };
 		53E7D64422C54A35006DA7B4 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E7D64322C54A35006DA7B4 /* Student.swift */; };
+		53F8C4F622D50439001B0301 /* ProfessorTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8C4F522D50439001B0301 /* ProfessorTextViewController.swift */; };
 		53FD596222BE4D7D002F5172 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FD596122BE4D7D002F5172 /* ProfileViewController.swift */; };
 		53FDE14F22BE257D00EBC13F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDE14E22BE257D00EBC13F /* Client.swift */; };
 		53FDE15122BE25C500EBC13F /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDE15022BE25C500EBC13F /* DataRequest.swift */; };
@@ -230,6 +231,7 @@
 		53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsUpdateViewController.swift; sourceTree = "<group>"; };
 		53DEFCE022C241AF0003852E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		53E7D64322C54A35006DA7B4 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		53F8C4F522D50439001B0301 /* ProfessorTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorTextViewController.swift; sourceTree = "<group>"; };
 		53FD596122BE4D7D002F5172 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		53FDE14E22BE257D00EBC13F /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		53FDE15022BE25C500EBC13F /* DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 				53616E6B22CBAF6800B36549 /* PasswordUpdateViewController.swift */,
 				5364C6BF22CFB3140052E6FA /* SubaccountListViewController.swift */,
 				5380312B22CE42570016175E /* ClientClassListViewController.swift */,
+				53F8C4F522D50439001B0301 /* ProfessorTextViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -822,6 +825,7 @@
 				530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */,
 				A5AD1EB520334EA400A38F85 /* CalendarViewController.swift in Sources */,
 				A5E1FB1C2042514000B15DD9 /* ProfesorTableViewCell.swift in Sources */,
+				53F8C4F622D50439001B0301 /* ProfessorTextViewController.swift in Sources */,
 				5357A5E022D49B4300936FA6 /* ClientUpdateViewController.swift in Sources */,
 				53E7D64422C54A35006DA7B4 /* Student.swift in Sources */,
 				5333E96B22C0F8FC00175995 /* BaseReservationViewController.swift in Sources */,
