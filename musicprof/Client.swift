@@ -21,6 +21,7 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
     var phone: String?
     var address: String?
     var locationId: Int?
+    var location: Location?
     var avatarUrl: URL?
     var facebookId: String?
     var instruments: [Instrument]?
@@ -46,6 +47,7 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
         self.locationId = other.locationId
         self.avatarUrl = other.avatarUrl
         self.facebookId = other.facebookId
+        self.location = other.location
         self.instruments = other.instruments
         self.subaccounts = other.subaccounts
         self.nextReservations = other.nextReservations
@@ -64,6 +66,7 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
         self.phone = try container.decodeIfPresent(String.self, forKey: .phone)
         self.address = try container.decodeIfPresent(String.self, forKey: .address)
         self.locationId = try container.decodeIfPresent(Int.self, forKey: .locationId)
+        self.location = try container.decodeIfPresent(Location.self, forKey: .location)
         let avatar = try user?.decodeIfPresent(String.self, forKey: .avatar)
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
         self.facebookId = try user?.decodeIfPresent(String.self, forKey: .facebookId)
@@ -106,6 +109,7 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
         case name
         case address
         case locationId = "colonia_id"
+        case location = "colonia"
         case instruments
         case subaccounts
         case nextReservations = "next_reservations"

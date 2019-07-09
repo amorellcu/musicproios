@@ -52,8 +52,9 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
         self.addressTextField?.inputAccessoryView = toolbar
         
         guard self.locationButton != nil else { return }
-        
-        if let locationId = self.client?.locationId {
+        if let location = self.client?.location {
+            self.setLocation(location)
+        } else if let locationId = self.client?.locationId {
             self.service.getLocation(withId: locationId) { [weak self] (result) in
                 self?.handleResult(result) {
                     self?.setLocation($0)

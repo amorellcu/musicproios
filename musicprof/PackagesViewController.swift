@@ -37,15 +37,22 @@ class PackagesViewController: UIViewController, NestedController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.container?.setDisplayMode(.picture, animated: animated)
-        guard let locationId = self.service.currentClient?.locationId else { return }
         
-        self.service.getLocation(withId: locationId) { (result) in
-            self.handleResult(result) {
-                self.service.getPackages(forStateWithId: $0.stateId) { (result) in
-                    self.handleResult(result) {
-                        self.packages = $0
-                    }
+        if let location = self.service.currentClient?.location {
+            self.updatePackages(from: location)
+        } else if let locationId = self.service.currentClient?.locationId {
+            self.service.getLocation(withId: locationId) { (result) in
+                self.handleResult(result) {
+                    self.updatePackages(from: $0)
                 }
+            }
+        }
+    }
+    
+    func updatePackages(from location: Location) {
+        self.service.getPackages(forStateWithId: location.stateId) { (result) in
+            self.handleResult(result) {
+                self.packages = $0
             }
         }
     }
@@ -79,8 +86,8 @@ class PackagesViewController: UIViewController, NestedController {
     }
     
     private func pay(forPackage package: Package, withToken token: BTPayPalAccountNonce) {
-        print("Got a nonce: \(token)")
-        self.service.performPaypalPayment(for: package, withToken: token.description, handler: { (result) in
+        print("Got a nonce: \(token.nonce)")
+        self.service.performPaypalPayment(for: package, withToken: token.nonce, handler: { (result) in
             self.handleResult(result) {
                 SCLAlertView().showSuccess("Paquete Adquirido", subTitle: "Ahora puede reservar \(package.quantity) clases más.")
             }
@@ -100,7 +107,7 @@ extension PackagesViewController: UITableViewDelegate, UITableViewDataSource {
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "es-US")
         cell.quantityLabel.text = formatter.string(from: NSNumber(value: package.quantity))
-        cell.expirationLabel.text = package.expiresOn == nil ? "" : "Expira: \(package.expiresOn) días."
+        cell.expirationLabel.text = package.expiresOn == nil ? "" : "Expira: \(package.expiresOn!) días."
         formatter.numberStyle = .currency
         let priceStr = (package.price == nil ? nil : formatter.string(from: NSNumber(value: package.price!))) ?? ""
         let rightAlign = NSMutableParagraphStyle()
