@@ -19,6 +19,7 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
     
     private lazy var viewControllers: [UIViewController] = {
         let controllers = [self.storyboard!.instantiateViewController(withIdentifier: "ContactInfoViewController"),
+                           self.storyboard!.instantiateViewController(withIdentifier: "InstrumentListViewController"),
                            self.storyboard!.instantiateViewController(withIdentifier: "PasswordUpdateViewController")]
         for controller in controllers.lazy.compactMap({$0 as? RegistrationController}) {
             controller.user = self.user

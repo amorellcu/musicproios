@@ -464,14 +464,15 @@ class ApiManager {
     }
     
     func updateProfile(_ professor: Professor, password: String? = nil, handler: @escaping (ApiResult<Professor>) -> Void) {
-        let url = baseUrl.appendingPathComponent("updateProfessor?profesorId\(professor.id)")
+        var url = URLComponents(url: baseUrl.appendingPathComponent("getProfesorsData"), resolvingAgainstBaseURL: false)!
+        url.queryItems = [URLQueryItem(name: "profesorId", value: professor.id.description)]
         let _ = self.session.upload(multipartFormData: { (form) in
             professor.encode(to: form)
             if let password = password {
                 form.encode(password, withName: "password")
                 form.encode(password, withName: "password_confirmation")
             }
-        }, to: url) { (result) in
+        }, to: try! url.asURL()) { (result) in
             switch result {
             case .success(let request, _, _):
                 let _ = request.responseDecodable { (result: ApiResult<Professor>) in

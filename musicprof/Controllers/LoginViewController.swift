@@ -141,7 +141,7 @@ class LoginViewController: UIViewController, LoginController {
             self?.removeSpinner()
             self?.handleResult(result) {
                 UserDefaults.standard.set(email, forKey: "user")
-                self?.performSegue(withIdentifier: "login", sender: sender)
+                self?.login(withAccount: $0)
             }
         }
     }

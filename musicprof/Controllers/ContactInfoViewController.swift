@@ -151,11 +151,11 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
         }
     }
     
-    @IBAction func unwindToContactDetails(_ segue: UIStoryboardSegue) {
-        guard self.locationButton != nil else { return }
+    @IBAction func unwindToContactDetails(_ segue: UIStoryboardSegue) {        
         if segue.identifier == "updateAddress", let controller = segue.source as? MapViewController {
             self.addressTextField?.text = controller.selectedAddress
             self.updateClient()
+            guard self.locationButton != nil else { return }
             if let address = controller.selectedAddress, !address.isEmpty {
                 self.showSpinner(onView: self.view)
                 self.service.getLocations(at: address) { [weak self] (result) in

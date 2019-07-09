@@ -16,6 +16,8 @@ class Professor: NSObject, Decodable, NSCoding, User {
     var email: String?
     var address: String?
     var price: Float? = nil
+    var levelId: Int?
+    var municipalityId: Int?
     var avatarUrl: URL?
     var facebookId: String?
     
@@ -51,9 +53,14 @@ class Professor: NSObject, Decodable, NSCoding, User {
         self.address = other.address
         self.avatarUrl = other.avatarUrl
         self.facebookId = other.facebookId
+        self.levelId = other.levelId
+        self.municipalityId = other.municipalityId
         self.personalReview = other.personalReview
         self.workExperience = other.workExperience
         self.academicTraining = other.academicTraining
+        self.classes = other.classes
+        self.locations = other.locations
+        self.instruments = other.instruments
     }
     
     required init(from decoder: Decoder) throws {
@@ -69,6 +76,8 @@ class Professor: NSObject, Decodable, NSCoding, User {
         let avatar = try user?.decodeIfPresent(String.self, forKey: .avatar)
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
         self.facebookId = try user?.decodeIfPresent(String.self, forKey: .facebookId)
+        self.levelId = try container.decodeIfPresent(Int.self, forKey: .levelId)
+        self.municipalityId = try container.decodeIfPresent(Int.self, forKey: .municipalityId)
         
         self.personalReview = try container.decodeIfPresent(String.self, forKey: .personalReview)
         self.workExperience = try container.decodeIfPresent(String.self, forKey: .workExperience)
@@ -107,6 +116,8 @@ class Professor: NSObject, Decodable, NSCoding, User {
         case phone
         case name
         case address
+        case municipalityId = "id_municipio"
+        case levelId = "level_id"
         case personalReview = "resenna_personal"
         case workExperience = "experiencia_laboral"
         case academicTraining = "formacion_academica"
@@ -127,7 +138,7 @@ class Professor: NSObject, Decodable, NSCoding, User {
 extension Professor {
     override func isEqual(_ object: Any?) -> Bool {
         let lhs = self
-        guard let rhs = object as? Client else { return false }
+        guard let rhs = object as? Professor else { return false }
         return lhs.id == rhs.id &&
             lhs.name == rhs.name && lhs.email == rhs.email &&
             lhs.phone == rhs.phone &&
@@ -143,6 +154,8 @@ extension Professor: MultiformEncodable {
         form.encodeIfPresent(self.email, withName: UserKeys.email.rawValue)
         form.encodeIfPresent(self.phone, withName: CodingKeys.phone.rawValue)
         form.encodeIfPresent(self.address, withName: CodingKeys.address.rawValue)
+        form.encodeIfPresent(self.levelId, withName: CodingKeys.levelId.rawValue)
+        form.encodeIfPresent(self.municipalityId, withName: CodingKeys.municipalityId.rawValue)
         form.encodeValues(self.locations?.map({$0.id}), withName: "coloniaId")
         form.encodeValues(self.instruments?.map({$0.id}), withName: CodingKeys.instruments.rawValue)
         form.encodeIfPresent(self.facebookId, withName: "facebookID")
