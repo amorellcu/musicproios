@@ -35,4 +35,17 @@ class ClientClassListViewController: ReservationListViewController {
         self.tabBarController?.selectedIndex = 0
         //self.performSegue(withIdentifier: "makeReservation", sender: sender)
     }
+    
+    @IBAction func unwindToClientClasses(_ segue: UIStoryboardSegue) {
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        guard let selection = self.tableView.indexPathForSelectedRow, let reservations = self.reservations else { return }
+        let theClass = reservations[selection.item]
+        self.tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
+        guard let controller = segue.destination as? ChatViewController else { return }
+        controller.theClass = theClass
+    }
 }

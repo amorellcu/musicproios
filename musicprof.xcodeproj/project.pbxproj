@@ -46,6 +46,8 @@
 		536752C122C5E19B00DA1590 /* SubaccountSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536752C022C5E19B00DA1590 /* SubaccountSelectionViewController.swift */; };
 		536C704122C1F30A00E217FF /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C704022C1F30A00E217FF /* UINavigationController.swift */; };
 		536F8A5A22C6510D0061CF17 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */; };
+		537D421122D60CD50011A504 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537D421022D60CD50011A504 /* ChatViewController.swift */; };
+		537D421322D60FE00011A504 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537D421222D60FE00011A504 /* MessageCell.swift */; };
 		5380312C22CE42570016175E /* ClientClassListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5380312B22CE42570016175E /* ClientClassListViewController.swift */; };
 		5380312E22CE44ED0016175E /* Classes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5380312D22CE44ED0016175E /* Classes.storyboard */; };
 		53907E0B22B1983300314EC8 /* InstrumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0A22B1983300314EC8 /* InstrumentCell.swift */; };
@@ -189,6 +191,8 @@
 		536752C022C5E19B00DA1590 /* SubaccountSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubaccountSelectionViewController.swift; sourceTree = "<group>"; };
 		536C704022C1F30A00E217FF /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		536F8A5922C6510D0061CF17 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
+		537D421022D60CD50011A504 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		537D421222D60FE00011A504 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		5380312B22CE42570016175E /* ClientClassListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientClassListViewController.swift; sourceTree = "<group>"; };
 		5380312D22CE44ED0016175E /* Classes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Classes.storyboard; sourceTree = "<group>"; };
 		53907E0A22B1983300314EC8 /* InstrumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentCell.swift; sourceTree = "<group>"; };
@@ -454,8 +458,10 @@
 				53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */,
 				53616E6B22CBAF6800B36549 /* PasswordUpdateViewController.swift */,
 				5364C6BF22CFB3140052E6FA /* SubaccountListViewController.swift */,
-				5380312B22CE42570016175E /* ClientClassListViewController.swift */,
 				53F8C4F522D50439001B0301 /* ProfessorTextViewController.swift */,
+				5380312B22CE42570016175E /* ClientClassListViewController.swift */,
+				537D421022D60CD50011A504 /* ChatViewController.swift */,
+				537D421222D60FE00011A504 /* MessageCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -807,6 +813,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5AA588D202A57B100F4370A /* UsersTableViewCell.swift in Sources */,
+				537D421322D60FE00011A504 /* MessageCell.swift in Sources */,
 				A5E1FB202044CE6600B15DD9 /* TextTableViewCell.swift in Sources */,
 				5333E96622C0EF9600175995 /* ReservationRequest.swift in Sources */,
 				53C5DA9522CA38030005AC14 /* ReservationListViewController.swift in Sources */,
@@ -830,6 +837,7 @@
 				53E7D64422C54A35006DA7B4 /* Student.swift in Sources */,
 				5333E96B22C0F8FC00175995 /* BaseReservationViewController.swift in Sources */,
 				A5598C71201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift in Sources */,
+				537D421122D60CD50011A504 /* ChatViewController.swift in Sources */,
 				5332FBBA22C917F9000BF4B0 /* CustomTabController.swift in Sources */,
 				530591E522CCF07E00905D71 /* ImageImporter.swift in Sources */,
 				A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */,
