@@ -60,6 +60,9 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
                     self?.setLocation($0)
                 }
             }
+        } else {
+            let text = "Seleccionar Ubicación"
+            self.locationButton?.setTitle(text, for: .normal)
         }
     }
     
