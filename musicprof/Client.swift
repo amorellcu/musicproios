@@ -32,7 +32,6 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
         self.id = -1
         self.userId = -1
         self.name = ""
-        self.address = "test address"
         super.init()
     }
     
