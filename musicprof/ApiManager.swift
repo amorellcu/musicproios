@@ -396,6 +396,23 @@ class ApiManager {
         }
     }
     
+    func getMessages(from reservation: Reservation, handler: @escaping (ApiResult<[Message]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getLogHistory")
+        var parameters: Parameters = ["clientId": reservation.clientId,
+                                      "logFor": 1,
+                                      "profesorId": reservation.classes?.professorId]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable(completionHandler: handler)
+    }
+    
+    func sendMessage(_ message: String, for reservation: Reservation, handler: @escaping (ApiResult<Message>) -> Void) {
+        handler(.success(data: Message(text: message, source: .local)))
+    }
+    
     func updateAddress(_ address: String, forUserWithId userId: Int, handler: @escaping (ApiResult<Client>) -> Void) {
         let url = baseUrl.appendingPathComponent("updateAddress")
         let parameters: Parameters = ["id": userId, "address": address]

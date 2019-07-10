@@ -10,12 +10,15 @@ import UIKit
 
 class ClientClassListViewController: ReservationListViewController {
     
+    var reservations: [Reservation]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.dateFormatter.timeStyle = .none
         self.dateFormatter.dateStyle = .long
-        self.reservations = self.service.currentClient?.nextReservations?.compactMap({$0.classes})
+        self.reservations = self.service.currentClient?.nextReservations
+        self.classes = self.reservations?.compactMap({$0.classes})
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,7 +29,7 @@ class ClientClassListViewController: ReservationListViewController {
         guard let client = self.service.currentClient else { return }
         self.service.getNextClasses(of: client) { [weak self] (result) in
             self?.handleResult(result) {
-                self?.reservations = $0
+                self?.classes = $0
             }
         }
     }
@@ -46,6 +49,6 @@ class ClientClassListViewController: ReservationListViewController {
         let theClass = reservations[selection.item]
         self.tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
         guard let controller = segue.destination as? ChatViewController else { return }
-        controller.theClass = theClass
+        controller.reservation = theClass
     }
 }

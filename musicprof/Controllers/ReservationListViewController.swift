@@ -14,7 +14,7 @@ class ReservationListViewController: UIViewController, NestedController {
     
     let dateFormatter = DateFormatter()
     
-    var reservations: [Class]? {
+    var classes: [Class]? {
         didSet {
             self.tableView.reloadData()
         }
@@ -44,7 +44,7 @@ class ReservationListViewController: UIViewController, NestedController {
     }
     
     open func loadReservations(_ reservations: [Reservation]) {
-        self.reservations = reservations.compactMap({$0.classes})
+        self.classes = reservations.compactMap({$0.classes})
     }
     
 
@@ -62,11 +62,11 @@ class ReservationListViewController: UIViewController, NestedController {
 
 extension ReservationListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.reservations?.count ?? 0
+        return self.classes?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let reservation = self.reservations?[indexPath.item] else {
+        guard let reservation = self.classes?[indexPath.item] else {
             return UITableViewCell()
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "reservationCell") as! ReservationCell

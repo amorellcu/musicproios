@@ -17,6 +17,7 @@
 		530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A77229A1656000AFC86 /* RootViewController.swift */; };
 		530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A79229B773A000AFC86 /* UIViewController.swift */; };
 		53130DC822D06DF3008B06B2 /* ProfileSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53130DC722D06DF3008B06B2 /* ProfileSection.swift */; };
+		531FC38422D627B700BDDFCF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531FC38322D627B700BDDFCF /* Message.swift */; };
 		5327962222CCBE2C0085FAFD /* Maps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5327962122CCBE2C0085FAFD /* Maps.storyboard */; };
 		532CC89C22C50D3F00FB1822 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532CC89B22C50D3F00FB1822 /* TransparentButton.swift */; };
 		5332FBB822C91645000BF4B0 /* ProfileUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */; };
@@ -162,6 +163,7 @@
 		530F8A77229A1656000AFC86 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		530F8A79229B773A000AFC86 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		53130DC722D06DF3008B06B2 /* ProfileSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSection.swift; sourceTree = "<group>"; };
+		531FC38322D627B700BDDFCF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		5327962122CCBE2C0085FAFD /* Maps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Maps.storyboard; sourceTree = "<group>"; };
 		532CC89B22C50D3F00FB1822 /* TransparentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
 		5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateViewController.swift; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 				5366CFD822CC9B4400FFDEE2 /* Reservation.swift */,
 				5333E96522C0EF9600175995 /* ReservationRequest.swift */,
 				5393EB7622C7DC3200C47E77 /* Package.swift */,
+				531FC38322D627B700BDDFCF /* Message.swift */,
 				530591E422CCF07E00905D71 /* ImageImporter.swift */,
 			);
 			name = Models;
@@ -860,6 +863,7 @@
 				5366CFD922CC9B4400FFDEE2 /* Reservation.swift in Sources */,
 				536F8A5A22C6510D0061CF17 /* PasswordResetViewController.swift in Sources */,
 				A5FF65842024FE34003778B3 /* HeaderTableViewCell.swift in Sources */,
+				531FC38422D627B700BDDFCF /* Message.swift in Sources */,
 				5333E96222C0E46500175995 /* ProfessorListViewController.swift in Sources */,
 				53459CF722D4B3120007ECE6 /* MultiformEncodable.swift in Sources */,
 				53D98FCE22BD45F50027FDCD /* AppError.swift in Sources */,
