@@ -104,11 +104,14 @@ class LoginViewController: UIViewController, LoginController {
             case .failure(let error):
                 switch error {
                 case let appError as AppError where appError == AppError.registrationRequired:
+                    self.register()
+                    /*
                     let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(showCloseButton: false))
                     alert.addButton("Aceptar", action: {
                         self.register()
                     })
                     alert.showNotice("Bienvenido", subTitle: "Antes de continuar es necesario que complete el registro.")
+                    */
                 default:
                     self.notify(error: error)
                 }
@@ -159,6 +162,8 @@ class LoginViewController: UIViewController, LoginController {
     }
     
     func register() {
+        self.performSegue(withIdentifier: "registerStudent", sender: self)
+        /*
         let title = "Registrarse"
         let message = "¿Qué tipo de cuenta desea crear?"
         let controller = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
@@ -178,6 +183,7 @@ class LoginViewController: UIViewController, LoginController {
         }
         
         self.present(controller, animated: true)
+         */
     }
     
     @IBAction func onResetPassword(_ sender: Any) {
