@@ -123,6 +123,8 @@ class ProfessorContactInfoRegistrationViewController: ContactInfoRegistrationVie
     }
     
     @IBAction func onRegisterTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "selectInstruments", sender: sender)
+        /*
         self.updateClient()
         self.professor.instruments = []
         self.showSpinner(onView: self.view)
@@ -130,8 +132,9 @@ class ProfessorContactInfoRegistrationViewController: ContactInfoRegistrationVie
             self.removeSpinner()
             self.handleResult(result) {
                 self.professor = $0
-                self.performSegue(withIdentifier: "selectInstruments", sender: sender)
+                self.performSegue(withIdentifier: "register", sender: sender)
             }
         }
+ */
     }
 }

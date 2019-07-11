@@ -16,8 +16,8 @@ class Professor: NSObject, Decodable, NSCoding, User {
     var email: String?
     var address: String?
     var price: Float? = nil
-    var levelId: Int?
-    var municipalityId: Int?
+    var levelId: Int? = 1
+    var municipalityId: Int? = 121
     var avatarUrl: URL?
     var facebookId: String?
     

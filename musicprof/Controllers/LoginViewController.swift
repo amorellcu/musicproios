@@ -98,13 +98,21 @@ class LoginViewController: UIViewController, LoginController {
         self.showSpinner(onView: self.view)
         self.service.signIn(withFacebookToken: accessToken.authenticationToken, handler: { (result) in
             self.removeSpinner()
-            self.handleResult(result, onError: { error in
-                if let appError = error as? AppError, appError == AppError.registrationRequired {
-                    self.register()
+            switch result {
+            case .success(let data):
+                self.login(withAccount: data)
+            case .failure(let error):
+                switch error {
+                case let appError as AppError where appError == AppError.registrationRequired:
+                    let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(showCloseButton: false))
+                    alert.addButton("Aceptar", action: {
+                        self.register()
+                    })
+                    alert.showNotice("Bienvenido", subTitle: "Antes de continuar es necesario que complete el registro.")
+                default:
+                    self.notify(error: error)
                 }
-            }, onSuccess: {
-                self.login(withAccount: $0)
-            })
+            }
         })
     }
     
