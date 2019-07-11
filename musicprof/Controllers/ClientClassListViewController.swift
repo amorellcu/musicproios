@@ -27,7 +27,7 @@ class ClientClassListViewController: ReservationListViewController {
     
     override func updateReservations() {
         guard let client = self.service.currentClient else { return }
-        self.service.getNextClasses(of: client) { [weak self] (result) in
+        self.service.getNextClasses(of: client, type: .account) { [weak self] (result) in
             self?.handleResult(result) {
                 self?.classes = $0
             }

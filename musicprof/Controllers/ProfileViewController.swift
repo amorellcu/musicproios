@@ -28,6 +28,7 @@ class ProfileViewController: BaseReservationViewController {
         var calendar = Calendar.current
         calendar.locale = Locale(identifier: "es-Es")
         self.reservation.calendar = calendar
+        self.reservation.clientId = self.service.currentClient?.id
         super.loadView()
     }
     

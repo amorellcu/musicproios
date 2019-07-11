@@ -346,9 +346,9 @@ class ApiManager {
         }
     }
     
-    func getReservations(of client: Client, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
+    func getReservations(of client: Client, type: ClientType, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getStudentReservations")
-        let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue]
+        let parameters: Parameters = ["id": client.id, "reservationFor": type.rawValue]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
@@ -383,9 +383,9 @@ class ApiManager {
         }
     }
     
-    func getNextClasses(of client: Client, handler: @escaping (ApiResult<[Class]>) -> Void) {
+    func getNextClasses(of client: Client, type: ClientType, handler: @escaping (ApiResult<[Class]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getNextClasses")
-        let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue]
+        let parameters: Parameters = ["id": client.id, "reservationFor": type.rawValue]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
@@ -625,6 +625,7 @@ class ApiManager {
     func makeReservation(_ request: ReservationRequest,
                          handler: @escaping (ApiResult<Reservation>) -> Void) {
         var request = request
+        request.clientId = self.currentClient?.id
         request.locationId = request.locationId ?? (self.user as? Client)?.locationId
         request.address = request.address ?? (self.user as? Client)?.address
         let url = baseUrl.appendingPathComponent("classReservation")
