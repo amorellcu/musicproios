@@ -29,3 +29,9 @@ struct Reservation: Decodable {
         case classes
     }
 }
+
+extension Reservation {
+    var studentType: StudentType {
+        return self.subaccountId == nil ? .account : .subaccount
+    }
+}

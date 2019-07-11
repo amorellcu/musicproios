@@ -131,6 +131,16 @@ class ApiManager {
         self.keychain.removeObject(forKey: "adapter")
     }
     
+    func getStudent(for reservation: ReservationRequest) -> Student? {
+        guard let studentType = reservation.studentType else { return nil }
+        switch studentType {
+        case .account:
+            return self.currentClient
+        default:
+            return self.currentClient?.subaccounts?.first(where: {$0.id == reservation.studentId})
+        }
+    }
+    
     func getPaypalToken(handler: @escaping (ApiResult<String>) -> Void) {
         let url = baseUrl.appendingPathComponent("getClientToken")
         let headers = ["Accept": "text/plain"]
@@ -258,7 +268,7 @@ class ApiManager {
     
     func getAvailableDays(for request: ReservationRequest, inMonth month: Int, handler: @escaping (ApiResult<[Date]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getAvailableClassOnMonth")
-        let parameters: Parameters = ["coloniaId": request.locationId ?? (self.user as? Client)?.locationId as Any,
+        let parameters: Parameters = ["coloniaId": request.locationId ?? self.getStudent(for: request)?.locationId as Any,
                                       "instrumentId": request.instrument?.id as Any,
                                       "month": month]
         let _ = self.session
@@ -278,7 +288,7 @@ class ApiManager {
         let dateStr = dateFormatter.string(from: date)
         
         let url = baseUrl.appendingPathComponent("getAvailableProfesorsOnDate")
-        let parameters: Parameters = ["coloniaId": request.locationId ?? (self.user as? Client)?.locationId as Any,
+        let parameters: Parameters = ["coloniaId": request.locationId ?? self.getStudent(for: request)?.locationId as Any,
                                       "instrumentId": request.instrument?.id as Any,
                                       "classDate": dateStr]
         let _ = self.session
@@ -300,7 +310,7 @@ class ApiManager {
         let dateStr = dateFormatter.string(from: date)
         
         let url = baseUrl.appendingPathComponent("getAvailableProfesors")
-        let parameters: Parameters = ["coloniaId": request.locationId ?? (self.user as? Client)?.locationId as Any,
+        let parameters: Parameters = ["coloniaId": request.locationId ?? self.getStudent(for: request)?.locationId as Any,
                                       "instrumentId": request.instrument?.id as Any,
                                       "classDate": dateStr]
         let _ = self.session
@@ -346,9 +356,9 @@ class ApiManager {
         }
     }
     
-    func getReservations(of client: Client, type: StudentType, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
+    func getReservations(of client: Student, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getStudentReservations")
-        let parameters: Parameters = ["id": client.id, "reservationFor": type.rawValue]
+        let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
@@ -375,7 +385,7 @@ class ApiManager {
     func getReservations(of user: User, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
         switch user {
         case let client as Client:
-            getReservations(of: client, handler: handler)
+            getReservations(of: client as Student, handler: handler)
         case let professor as Professor:
             getReservations(of: professor, handler: handler)
         default:
@@ -383,9 +393,9 @@ class ApiManager {
         }
     }
     
-    func getNextClasses(of client: Client, type: StudentType, handler: @escaping (ApiResult<[Class]>) -> Void) {
+    func getNextClasses(of client: Student, type: StudentType, handler: @escaping (ApiResult<[Class]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getNextClasses")
-        let parameters: Parameters = ["id": client.id, "reservationFor": type.rawValue]
+        let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
@@ -397,10 +407,17 @@ class ApiManager {
     }
     
     func getMessages(from reservation: Reservation, handler: @escaping (ApiResult<[Message]>) -> Void) {
+        var dateStr : String? = nil
+        if let date = reservation.classes?.date {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy"
+            dateStr = formatter.string(from: date)
+        }
         let url = baseUrl.appendingPathComponent("getLogHistory")
         var parameters: Parameters = ["clientId": reservation.clientId,
-                                      "logFor": 1,
-                                      "profesorId": reservation.classes?.professorId]
+                                      "logFor": reservation.studentType.rawValue,
+                                      "profesorId": reservation.classes?.professorId,
+                                      "date": dateStr]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
@@ -411,6 +428,22 @@ class ApiManager {
     
     func sendMessage(_ message: String, for reservation: Reservation, handler: @escaping (ApiResult<Message>) -> Void) {
         handler(.success(data: Message(text: message, source: .local)))
+        
+        let url = baseUrl.appendingPathComponent("insertLog")
+        let _ = self.session.upload(multipartFormData: { (form) in
+            form.encodeIfPresent(reservation.classes?.id, withName: "classId")
+            form.encode(reservation.clientId, withName: "clientId")
+            form.encode(reservation.studentType.rawValue, withName: "logFor")
+            form.encode(message, withName: "message")
+            form.encodeIfPresent(reservation.classes?.professorId, withName: "profesorId")
+        }, to: url) { (result) in
+            switch result {
+            case .success(let request, _, _):
+                let _ = request.responseDecodable(completionHandler: handler)
+            case .failure(let error):
+                handler(.failure(error: error))
+            }
+        }
     }
     
     func updateAddress(_ address: String, forUserWithId userId: Int, handler: @escaping (ApiResult<Client>) -> Void) {
@@ -599,9 +632,8 @@ class ApiManager {
     func makeReservation(_ request: ReservationRequest,
                          handler: @escaping (ApiResult<Reservation>) -> Void) {
         var request = request
-        request.clientId = self.currentClient?.id
-        request.locationId = request.locationId ?? (self.user as? Client)?.locationId
-        request.address = request.address ?? (self.user as? Client)?.address
+        request.locationId = request.locationId ?? self.getStudent(for: request)?.locationId
+        request.address = request.address ?? self.getStudent(for: request)?.address
         let url = baseUrl.appendingPathComponent("classReservation")
         self.post(request, to: url, handler: handler)
     }
