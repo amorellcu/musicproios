@@ -25,8 +25,12 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
     var avatarUrl: URL?
     var facebookId: String?
     var instruments: [Instrument]?
-    var subaccounts: [Client]?
+    var subaccounts: [Subaccount]?
     var nextReservations: [Reservation]?
+    
+    var type: StudentType {
+        return .account 
+    }
     
     override init() {
         self.id = -1
@@ -69,7 +73,7 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
         self.facebookId = try user?.decodeIfPresent(String.self, forKey: .facebookId)
         self.instruments = try container.decodeIfPresent([Instrument].self, forKey: .instruments)
-        self.subaccounts = try container.decodeIfPresent([Client].self, forKey: .subaccounts)
+        self.subaccounts = try container.decodeIfPresent([Subaccount].self, forKey: .subaccounts)
         self.nextReservations = try container.decodeIfPresent([Reservation].self, forKey: .nextReservations)
     }
     
@@ -120,25 +124,6 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
         case avatar = "photo"
         case facebookId = "facebook_id"
     }
-    
-    fileprivate enum EncodingKeys: String, CodingKey {
-        case id
-        case name
-        case userId = "idCuenta"
-        case address
-        case instruments
-    }
-}
-
-enum ClientType: Int, Codable {
-    case account = 1
-    case subaccount = 2
-}
-
-extension Client {
-    var type: ClientType {
-        return self.userId == self.id ? .account : .subaccount
-    }
 }
 
 extension Client: MultiformEncodable {
@@ -160,20 +145,6 @@ extension Client: MultiformEncodable {
         if let avatarUrl = self.avatarUrl, avatarUrl.isFileURL {
             form.append(avatarUrl, withName: UserKeys.avatar.rawValue)
         }
-    }
-}
-
-extension Client: Encodable {
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: EncodingKeys.self)
-        if self.id >= 0 {
-            try container.encode(self.id, forKey: .id)
-        } else {
-            try container.encode(self.userId, forKey: .userId)
-        }
-        try container.encode(self.name, forKey: .name)
-        try container.encodeIfPresent(self.address, forKey: .address)
-        try container.encodeIfPresent(self.instruments?.map {$0.id}, forKey: .instruments)
     }
 }
 

@@ -13,7 +13,7 @@ import SCLAlertView
 class InstrumentsRegistrationViewController: InstrumentListViewController, ClientRegistrationController {
     
     var client: Client!
-    var editClient: Client?
+    var subaccount: Subaccount?
     
     @IBOutlet weak var avatarImageView: UIImageView?
     @IBOutlet weak var nameLabel: UILabel?
@@ -35,7 +35,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
             avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
             avatarImageView.clipsToBounds = true
         }
-        self.studentNameTextField?.text = self.editClient?.name ?? ""
+        self.studentNameTextField?.text = self.subaccount?.name ?? ""
         self.studentNameTextField?.delegate = self
         
         let notificationCenter = NotificationCenter.default
@@ -54,7 +54,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
     
     override func updateInstruments(_ instruments: [Instrument]) {
         super.updateInstruments(instruments)
-        if let selectedValues = self.editClient?.instruments {
+        if let selectedValues = self.subaccount?.instruments {
             for i in 0..<instruments.count {
                 if selectedValues.contains(instruments[i]) {
                     let indexPath = IndexPath(item: i, section: 0)
@@ -93,7 +93,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         let instruments = self.instruments ?? []
         let selection = self.collectionView.indexPathsForSelectedItems ?? []
         
-        let client = Client()
+        let client = Subaccount()
         client.userId = self.client.id
         client.name = self.studentNameTextField?.text ?? ""
         client.instruments = selection.map({instruments[$0.item]})
@@ -119,7 +119,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         let instruments = self.instruments ?? []
         let selection = self.collectionView.indexPathsForSelectedItems ?? []
         
-        let client = self.editClient!
+        let client = self.subaccount!
         client.name = self.studentNameTextField?.text ?? ""
         client.instruments = selection.map({instruments[$0.item]})
         

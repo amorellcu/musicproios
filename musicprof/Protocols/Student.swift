@@ -15,4 +15,10 @@ protocol Student {
     var address: String? { get }
     var locationId: Int? { get }
     var instruments: [Instrument]? { get }
+    var type: StudentType { get }
+}
+
+enum StudentType: Int, Codable {
+    case account = 1
+    case subaccount = 2
 }

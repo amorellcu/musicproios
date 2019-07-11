@@ -346,7 +346,7 @@ class ApiManager {
         }
     }
     
-    func getReservations(of client: Client, type: ClientType, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
+    func getReservations(of client: Client, type: StudentType, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getStudentReservations")
         let parameters: Parameters = ["id": client.id, "reservationFor": type.rawValue]
         let _ = self.session
@@ -383,7 +383,7 @@ class ApiManager {
         }
     }
     
-    func getNextClasses(of client: Client, type: ClientType, handler: @escaping (ApiResult<[Class]>) -> Void) {
+    func getNextClasses(of client: Client, type: StudentType, handler: @escaping (ApiResult<[Class]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getNextClasses")
         let parameters: Parameters = ["id": client.id, "reservationFor": type.rawValue]
         let _ = self.session
@@ -507,21 +507,8 @@ class ApiManager {
         }
     }
     
-    func registerSubaccount(_ client: Client, handler: @escaping (ApiResult<Client>) -> Void) {
+    func registerSubaccount(_ client: Subaccount, handler: @escaping (ApiResult<Subaccount>) -> Void) {
         let url = baseUrl.appendingPathComponent("registerSubcuenta")
-        /*
-        let _ = self.session.upload(multipartFormData: { (form) in
-            client.encode(to: form)
-        }, to: url) { (result) in
-            switch result {
-            case .success(let request, _, _):
-                let _ = request.responseDecodable { (result: ApiResult<UserData>) in
-                    handler(result.transform(with: {$0.client}))
-                }
-            case .failure(let error):
-                handler(.failure(error: error))
-            }
-        }*/
         self.post(client, to: url) { (result: ApiResult<SubaccountData>) in
             handler(result.transform(with: { data in
                 if let client = self.user as? Client {
@@ -532,21 +519,8 @@ class ApiManager {
         }
     }
     
-    func updateSubaccount(_ client: Client, handler: @escaping (ApiResult<Client>) -> Void) {
+    func updateSubaccount(_ client: Subaccount, handler: @escaping (ApiResult<Subaccount>) -> Void) {
         let url = baseUrl.appendingPathComponent("updateSubcuenta")
-        /*
-        let _ = self.session.upload(multipartFormData: { (form) in
-            client.encode(to: form)
-        }, to: url) { (result) in
-            switch result {
-            case .success(let request, _, _):
-                let _ = request.responseDecodable { (result: ApiResult<UserData>) in
-                    handler(result.transform(with: {$0.client}))
-                }
-            case .failure(let error):
-                handler(.failure(error: error))
-            }
-        }*/
         self.post(client, to: url) { (result: ApiResult<SubaccountData2>) in
             handler(result.transform(with: { data in
                 if let client = self.user as? Client, let index = client.subaccounts?.firstIndex(where: {$0.id == data.subaccount.id}) {
@@ -676,7 +650,7 @@ private struct ProfessorData: Decodable {
 }
 
 private struct SubaccountData: Decodable {
-    var subaccount: Client
+    var subaccount: Subaccount
     
     private enum CodingKeys: String, CodingKey {
         case subaccount = "subcuenta"
@@ -684,7 +658,7 @@ private struct SubaccountData: Decodable {
 }
 
 private struct SubaccountData2: Decodable {
-    var subaccount: Client
+    var subaccount: Subaccount
 }
 
 private struct InstrumentData: Decodable {

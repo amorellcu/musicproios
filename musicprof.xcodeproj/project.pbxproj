@@ -73,6 +73,7 @@
 		539C80C422C4C621009D8469 /* FilsonProRegularItalic-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80A922C4C5AD009D8469 /* FilsonProRegularItalic-Italic.otf */; };
 		539C80C522C4C621009D8469 /* FilsonProThin-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80B122C4C5B5009D8469 /* FilsonProThin-Thin.otf */; };
 		539C80C622C4C621009D8469 /* FilsonProThinItalic-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80AA22C4C5AE009D8469 /* FilsonProThinItalic-Italic.otf */; };
+		53ACA34D22D744BC00A7CF04 /* Subaccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ACA34C22D744BC00A7CF04 /* Subaccount.swift */; };
 		53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2527B22B6E360007C8BB1 /* Profile.swift */; };
 		53C5DA9122CA29CF0005AC14 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9022CA29CF0005AC14 /* ContactInfoViewController.swift */; };
 		53C5DA9322CA2CE00005AC14 /* InstrumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */; };
@@ -219,6 +220,7 @@
 		539C80B422C4C5B7009D8469 /* FilsonProBoldItalic-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProBoldItalic-Italic.otf"; sourceTree = "<group>"; };
 		539C80B522C4C5B8009D8469 /* FilsonProBookItalic-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProBookItalic-Italic.otf"; sourceTree = "<group>"; };
 		539C80B622C4C5B9009D8469 /* FilsonProBold-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProBold-Bold.otf"; sourceTree = "<group>"; };
+		53ACA34C22D744BC00A7CF04 /* Subaccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subaccount.swift; sourceTree = "<group>"; };
 		53C2527B22B6E360007C8BB1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		53C5DA9022CA29CF0005AC14 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentListViewController.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				53D98FCD22BD45F50027FDCD /* AppError.swift */,
 				5336831F22D3A98800C702D6 /* User.swift */,
 				53FDE14E22BE257D00EBC13F /* Client.swift */,
+				53ACA34C22D744BC00A7CF04 /* Subaccount.swift */,
 				53907E0C22B19EC700314EC8 /* Instrument.swift */,
 				53DEFCE022C241AF0003852E /* Location.swift */,
 				5333E96322C0EAAB00175995 /* Professor.swift */,
@@ -867,6 +870,7 @@
 				5333E96222C0E46500175995 /* ProfessorListViewController.swift in Sources */,
 				53459CF722D4B3120007ECE6 /* MultiformEncodable.swift in Sources */,
 				53D98FCE22BD45F50027FDCD /* AppError.swift in Sources */,
+				53ACA34D22D744BC00A7CF04 /* Subaccount.swift in Sources */,
 				5333E96F22C0FDE500175995 /* NestedController.swift in Sources */,
 				53D98FCA22BD44A40027FDCD /* ApiResult.swift in Sources */,
 				5393EB7922C7EEF700C47E77 /* PackageCell.swift in Sources */,

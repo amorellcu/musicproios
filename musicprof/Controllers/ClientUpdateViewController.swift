@@ -65,7 +65,7 @@ class ClientUpdateViewController: ProfileUpdateViewController, ClientRegistratio
             controller.client = self.client
         case "editSubaccount":
             controller.client = self.client
-            controller.editClient = sender as? Client
+            controller.subaccount = sender as? Subaccount
         default:
             break
         }

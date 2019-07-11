@@ -14,7 +14,7 @@ struct ReservationRequest {
     var instrument: Instrument?
     var clientId: Int?
     var studentId: Int?
-    var studentType: ClientType?
+    var studentType: StudentType?
     var locationId: Int?
     var studentNames: [String]?
     var address: String?

@@ -15,7 +15,7 @@ class SubaccountListViewController: UIViewController, NestedController, ClientRe
     
     @IBOutlet weak var tableView: UITableView!
     
-    var elements = [Client]()
+    var elements = [Subaccount]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class SubaccountListViewController: UIViewController, NestedController, ClientRe
             controller.client = self.client
         case "editSubaccount":
             controller.client = self.client
-            controller.editClient = self.elements[self.tableView.indexPathForSelectedRow!.item]
+            controller.subaccount = self.elements[self.tableView.indexPathForSelectedRow!.item]
         default:
             break
         }
