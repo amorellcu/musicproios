@@ -11,7 +11,7 @@ import UIKit
 class SubaccountListViewController: UIViewController, NestedController, ClientRegistrationController, ProfileSection {
     weak var updater: ProfileUpdateViewController?
     var client: Client!
-    var container: ContainerViewController?
+    weak var container: ContainerViewController?
     
     @IBOutlet weak var tableView: UITableView!
     

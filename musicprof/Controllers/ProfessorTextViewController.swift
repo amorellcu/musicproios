@@ -11,7 +11,7 @@ import UIKit
 class ProfessorTextViewController: UIViewController, NestedController, ProfessorRegistrationController, ProfileSection {
     weak var updater: ProfileUpdateViewController?
     var professor: Professor!
-    var container: ContainerViewController?
+    weak var container: ContainerViewController?
     
     open var text: String?
     

@@ -251,7 +251,7 @@ class ApiManager {
                      parameters: parameters,
                      encoding: URLEncoding.default,
                      headers: self.headers)
-            .responseDecodable { (result: ApiResult<LocationData>) in
+            .responseDecodable { (result: ApiResult<LocationData2>) in
                 handler(result.transform(with: {$0.locations}))
         }
     }
@@ -695,6 +695,14 @@ private struct LocationData: Decodable {
     
     private enum CodingKeys: String, CodingKey {
         case locations = "colonias"
+    }
+}
+
+private struct LocationData2: Decodable {
+    var locations: [Location]
+    
+    private enum CodingKeys: String, CodingKey {
+        case locations = "colonia"
     }
 }
 

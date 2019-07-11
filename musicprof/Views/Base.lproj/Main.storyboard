@@ -567,12 +567,21 @@
                         <outlet property="scrollView" destination="fVO-Pl-J5S" id="S0k-8e-rJR"/>
                         <segue destination="ljl-PP-J0J" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogin:" id="hHE-zW-ySN"/>
                         <segue destination="rzx-JK-kEg" kind="show" identifier="registerStudents" id="daR-1N-egf"/>
+                        <segue destination="UFf-fD-xh4" kind="presentation" identifier="openMap" id="kMf-8X-xHA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4u-q7-2W1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ljl-PP-J0J" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="257" y="-1335"/>
+        </scene>
+        <!--Maps-->
+        <scene sceneID="Hpx-lO-hkz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Maps" id="UFf-fD-xh4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HUd-vK-0qe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436" y="-1335"/>
         </scene>
         <!--Instruments Registration View Controller-->
         <scene sceneID="ePF-Hg-wZT">

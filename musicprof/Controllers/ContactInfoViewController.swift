@@ -8,6 +8,7 @@
 
 import UIKit
 import ActionSheetPicker_3_0
+import SCLAlertView
 
 class ContactInfoViewController: UIViewController, RegistrationController, NestedController {
     
@@ -18,7 +19,7 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
     @IBOutlet weak var locationButton: UIButton?
     @IBOutlet weak var scrollView: UIScrollView?
     
-    var container: ContainerViewController?
+    weak var container: ContainerViewController?
     
     open var user: User! = Client()
     
@@ -142,14 +143,26 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
     }
     
     @IBAction func onSelectLocation(_ sender: Any) {
-        if let locations = self.locations, locations.count > 1 {
-            return self.showMapSelectionMenu(withOptions: locations)
+        guard let address = self.client.address, !address.isEmpty else {
+            SCLAlertView().showNotice("Acción inválida", subTitle: "Introduzca su dirección antes de seleccionar su ubicación.")
+            return
         }
-        self.updateLocations { [weak self] (locations) in
-            if locations.count == 1 {
-                self?.setLocation(locations[0])
-            } else if locations.count > 0 {
-                self?.showMapSelectionMenu(withOptions: locations)
+        if let locations = self.locations {
+            switch locations.count {
+            case 0:
+                SCLAlertView().showNotice("Sin opciones", subTitle: "No se detectaron ubicaciones para su dirección")
+            case 1:
+                SCLAlertView().showNotice("Sin opciones", subTitle: "Se encontró solo una ubicación para su dirección")
+            default:
+                self.showMapSelectionMenu(withOptions: locations)
+            }
+        } else {
+            self.updateLocations { [weak self] (locations) in
+                if locations.count == 1 {
+                    self?.setLocation(locations[0])
+                } else if locations.count > 0 {
+                    self?.showMapSelectionMenu(withOptions: locations)
+                }
             }
         }
     }
@@ -160,16 +173,12 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
             self.updateClient()
             guard self.locationButton != nil else { return }
             if let address = controller.selectedAddress, !address.isEmpty {
-                self.showSpinner(onView: self.view)
-                self.service.getLocations(at: address) { [weak self] (result) in
-                    self?.removeSpinner()
-                    self?.handleResult(result) { locations in
-                        self?.locations = locations
-                        if locations.count == 1 {
-                            self?.setLocation(locations[0])
-                        } else if locations.count > 0 {
-                            self?.showMapSelectionMenu(withOptions: locations)
-                        }
+                self.updateLocations { [weak self] locations in
+                    self?.locations = locations
+                    if locations.count == 1 {
+                        self?.setLocation(locations[0])
+                    } else if locations.count > 0 {
+                        self?.showMapSelectionMenu(withOptions: locations)
                     }
                 }
             }
@@ -199,6 +208,14 @@ extension ContactInfoViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.updateClient()
+        self.updateLocations { [weak self] locations in
+            self?.locations = locations
+            if locations.count == 1 {
+                self?.setLocation(locations[0])
+            } else if locations.count > 0 {
+                self?.showMapSelectionMenu(withOptions: locations)
+            }
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

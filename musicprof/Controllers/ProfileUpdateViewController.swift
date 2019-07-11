@@ -11,12 +11,19 @@ import FacebookCore
 import SCLAlertView
 
 class ProfileUpdateViewController: CustomTabController, NestedController {
-    var container: ContainerViewController?
+    weak var container: ContainerViewController?
     var tapGestureRecognizer: UITapGestureRecognizer?
+    var imageImporter: ImageImporter!
     
     open var user: User!
     
     @IBOutlet weak var updateButton: UIButton!
+    
+    override func loadView() {
+        imageImporter = ImageImporter(viewController: self)
+        
+        super.loadView()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +105,7 @@ class ProfileUpdateViewController: CustomTabController, NestedController {
     }
     
     @objc func onChangeAvatar() {
-        ImageImporter(viewController: self).getPicture(for: self.user) { [weak self] in
+        imageImporter.getPicture(for: self.user) { [weak self] in
             guard let url = self?.user?.avatarUrl, url.isFileURL else { return }
             self?.container?.avatarImageView.image = UIImage(contentsOfFile: url.path)?.af_imageRoundedIntoCircle()
         }

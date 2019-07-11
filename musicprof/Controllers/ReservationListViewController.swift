@@ -10,7 +10,7 @@ import UIKit
 import AlamofireImage
 
 class ReservationListViewController: UIViewController, NestedController {
-    var container: ContainerViewController?
+    weak var container: ContainerViewController?
     
     let dateFormatter = DateFormatter()
     

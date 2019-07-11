@@ -12,6 +12,7 @@ import AlamofireImage
 
 class ImageImporter {
     let viewController: UIViewController
+    var delegates = [PickerDelegate]()
     
     init(viewController: UIViewController) {
         self.viewController = viewController
@@ -19,7 +20,7 @@ class ImageImporter {
     
     func getPicture(for user: User, completion: @escaping () -> ()) {
         let title = "Cambiar imagen"
-        let delegate = PickerDelegate(user: user, callback: completion)
+        let delegate = PickerDelegate(importer: self, user: user, callback: completion)
         let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             controller.addAction(UIAlertAction(title: "Mis fotos", style: .default) { action in
@@ -73,28 +74,32 @@ class ImageImporter {
     func selectImageFromGallery(delegate: PickerDelegate) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = delegate
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
         imagePicker.mediaTypes = ["public.image"]
+        self.delegates.append(delegate)
         self.viewController.present(imagePicker, animated: true, completion: nil)
     }
     
     func recordImageWithCamera(delegate: PickerDelegate) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = delegate
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
         imagePicker.sourceType = .camera
         imagePicker.mediaTypes = ["public.image"]
+        self.delegates.append(delegate)
         self.viewController.present(imagePicker, animated: true, completion: nil)
     }
     
     class PickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        unowned var imageImporter: ImageImporter!
         let callback: () -> ()
         let user: User
         
-        init(user: User, callback: @escaping () -> ()) {
+        init(importer: ImageImporter, user: User, callback: @escaping () -> ()) {
             self.user = user
             self.callback = callback
+            self.imageImporter = importer
             super.init()
         }
         
@@ -112,9 +117,16 @@ class ImageImporter {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
             picker.dismiss(animated: true, completion: nil)
             
-            if let image = info[UIImagePickerControllerEditedImage] as? UIImage, PickerDelegate.updatePicture(of: user, with: image) {
+            if let image = info[UIImagePickerControllerEditedImage] as? UIImage ?? info[UIImagePickerControllerOriginalImage] as? UIImage,
+                PickerDelegate.updatePicture(of: user, with: image) {
                 self.callback()
             }
+            
+            self.imageImporter.delegates.removeAll(where: {$0 === self})
+        }
+        
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            self.imageImporter.delegates.removeAll(where: {$0 === self})
         }
     }
 }

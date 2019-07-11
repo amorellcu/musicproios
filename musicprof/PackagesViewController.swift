@@ -11,7 +11,7 @@ import Braintree
 import SCLAlertView
 
 class PackagesViewController: UIViewController, NestedController {
-    var container: ContainerViewController?
+    weak var container: ContainerViewController?
     
     var braintreeClient: BTAPIClient?
     

@@ -12,7 +12,7 @@ import CoreLocation
 import SCLAlertView
 
 class MapViewController: UIViewController, NestedController {
-    var container: ContainerViewController?
+    weak var container: ContainerViewController?
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var fixAddressButton: UIButton!

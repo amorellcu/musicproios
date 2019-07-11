@@ -9,7 +9,7 @@
 import UIKit
 
 class MenuViewController: UITabBarController, NestedController {
-    var container: ContainerViewController?
+    weak var container: ContainerViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()

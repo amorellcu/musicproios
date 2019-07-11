@@ -10,7 +10,7 @@ import UIKit
 import AlamofireImage
 
 class InstrumentListViewController: UIViewController, NestedController {
-    var container: ContainerViewController?
+    weak var container: ContainerViewController?
     
     var instruments: [Instrument]? {
         didSet {

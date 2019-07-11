@@ -9,7 +9,7 @@
 import UIKit
 
 class PasswordUpdateViewController: UIViewController, RegistrationController, NestedController {
-    var container: ContainerViewController?
+    weak var container: ContainerViewController?
     var user: User!
     
     @IBOutlet weak var scrollView: UIScrollView!

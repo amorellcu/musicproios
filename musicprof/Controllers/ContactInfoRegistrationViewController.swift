@@ -14,11 +14,13 @@ import AlamofireImage
 
 class ContactInfoRegistrationViewController: ContactInfoViewController, ClientRegistrationController {
     
+    var imageImporter: ImageImporter!
     var tapGestureRecognizer: UITapGestureRecognizer!
 
     @IBOutlet weak var avatarImageView: UIImageView!
     
     override func loadView() {
+        imageImporter = ImageImporter(viewController: self)
         self.client = Client()
         super.loadView()
     }
@@ -96,7 +98,7 @@ class ContactInfoRegistrationViewController: ContactInfoViewController, ClientRe
     }
     
     @objc func onChangeAvatar() {
-        ImageImporter(viewController: self).getPicture(for: self.client) { [weak self] in
+        imageImporter.getPicture(for: self.client) { [weak self] in
             guard let url = self?.client?.avatarUrl, url.isFileURL else { return }
             self?.container?.avatarImageView.image = UIImage(contentsOfFile: url.path)?.af_imageRoundedIntoCircle()
         }
