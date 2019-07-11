@@ -30,9 +30,9 @@ class PasswordResetViewController: UIViewController, LoginController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
 
-        self.showSpinner(onView: self.view)
+        let alert = self.showSpinner(withMessage: "Enviando código de verificación...")
         self.service.sendResetCode(toEmail: self.email) { (result) in
-            self.removeSpinner()
+            alert.hideView()
             self.handleResult(result)
         }
         
@@ -68,9 +68,9 @@ class PasswordResetViewController: UIViewController, LoginController {
     @IBAction func onResetPassword(_ sender: Any) {
         let password = self.passwordTextField.text ?? ""
         let code = self.codeTextField.text ?? ""
-        self.showSpinner(onView: self.view)
+        let alert = self.showSpinner(withMessage: "Cambiando contraseña...")
         self.service.resetPassword(forUser: self.email, password: password, code: code) { (result) in
-            self.removeSpinner()
+            alert.hideView()
             self.handleResult(result) {
                 if self.service.isSignedIn {
                     self.login(withAccount: self.service.user!)

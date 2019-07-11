@@ -131,18 +131,22 @@ extension UIViewController {
         ai.startAnimating()
         ai.center = spinnerView.center
         
-        DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
-            onView.addSubview(spinnerView)
-        }
+        spinnerView.addSubview(ai)
+        onView.addSubview(spinnerView)
+
         
         vSpinner = spinnerView
     }
     
+    func showSpinner(withMessage message: String? = nil) -> SCLAlertView {
+        let appearance = SCLAlertView.SCLAppearance(showCloseButton: false, shouldAutoDismiss: false)
+        let alert = SCLAlertView(appearance: appearance)
+        alert.showWait("Espere, por favor", subTitle: message ?? "")
+        return alert
+    }
+    
     func removeSpinner() {
-        DispatchQueue.main.async {
-            vSpinner?.removeFromSuperview()
-            vSpinner = nil
-        }
+        vSpinner?.removeFromSuperview()
+        vSpinner = nil
     }
 }

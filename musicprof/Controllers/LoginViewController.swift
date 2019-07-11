@@ -48,16 +48,19 @@ class LoginViewController: UIViewController, LoginController {
         self.passText.leftViewMode = UITextFieldViewMode.always
         self.passText.isSecureTextEntry = true
         
-        if let accessToken = AccessToken.current{
+        if let accessToken = AccessToken.current {
             print(">>> token found: "+accessToken.authenticationToken)
             self.login(withFBToken: accessToken)
         } else if self.service.isSignedIn {
-            self.showSpinner(onView: self.view)
+            let alert = self.showSpinner(withMessage: "Comprobando credenciales...")
             self.service.getUserInfo {[weak self](result) in
-                self?.removeSpinner()
-                self?.handleResult(result, onSuccess: {
-                    self?.login(withAccount: $0)
-                })
+                alert.hideView()
+                switch result {
+                case .success(let user):
+                    self?.login(withAccount: user)
+                default:
+                    break
+                }
             }
         }
     }
@@ -95,9 +98,9 @@ class LoginViewController: UIViewController, LoginController {
     }
     
     private func login(withFBToken accessToken: AccessToken) {
-        self.showSpinner(onView: self.view)
+        let alert = self.showSpinner(withMessage: "Comprobando credenciales...")
         self.service.signIn(withFacebookToken: accessToken.authenticationToken, handler: { (result) in
-            self.removeSpinner()
+            alert.hideView()
             switch result {
             case .success(let data):
                 self.login(withAccount: data)
@@ -147,9 +150,9 @@ class LoginViewController: UIViewController, LoginController {
                 SCLAlertView().showError("Error Validación", subTitle: "Asegurese que el usuario o la clave no esten vacios") // Error
                 return
         }
-        self.showSpinner(onView: self.view)
+        let alert = self.showSpinner(withMessage: "Comprobando credenciales...")
         self.service.signIn(withEmail: email, password: pass) { [weak self] (result) in
-            self?.removeSpinner()
+            alert.hideView()
             self?.handleResult(result) {
                 UserDefaults.standard.set(email, forKey: "user")
                 self?.login(withAccount: $0)

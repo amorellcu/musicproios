@@ -77,7 +77,7 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
         super.viewWillAppear(animated)
         self.container?.setDisplayMode(.picture, animated: true)
         self.updateFields()
-        self.updateLocations()
+        //self.updateLocations()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -132,9 +132,9 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
     private func updateLocations(completion: (([Location]) -> ())? = nil) {
         guard self.locationButton != nil else { return }
         guard let address = self.user.address, !address.isEmpty else { return }
-        self.showSpinner(onView: self.view)
+        let alert = self.showSpinner(withMessage: "Buscando ubicaciones...")
         self.service.getLocations(at: address) { [weak self] (result) in
-            self?.removeSpinner()
+            alert.hideView()
             self?.handleResult(result) { locations in
                 self?.locations = locations
                 completion?(locations)
@@ -207,6 +207,7 @@ extension ContactInfoViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        guard textField.text != self.user.address else { return }
         self.updateClient()
         self.updateLocations { [weak self] locations in
             self?.locations = locations

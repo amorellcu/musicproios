@@ -60,9 +60,9 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
             }
         }
         
-        self.showSpinner(onView: self.view)
+        let alert = self.showSpinner(withMessage: "Actualizando datos...")
         self.service.updateProfile(self.professor, password: newPassword) { [weak self] (result) in
-            self?.removeSpinner()
+            alert.hideView()
             self?.handleResult(result) {
                 self?.professor = $0
                 self?.originalProfessor = Professor(copy: $0)

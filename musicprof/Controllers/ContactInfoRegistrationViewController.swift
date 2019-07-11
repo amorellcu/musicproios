@@ -100,9 +100,9 @@ class ClientContactInfoRegistrationViewController: ContactInfoRegistrationViewCo
     @IBAction func onRegisterSubaccounts(_ sender: Any) {
         self.updateClient()
         self.client.instruments = []
-        self.showSpinner(onView: self.view)
+        let alert = self.showSpinner(withMessage: "Creando la cuenta...")
         self.service.registerClient(self.client) { (result) in
-            self.removeSpinner()
+            alert.hideView()
             self.handleResult(result) {
                 self.client = $0
                 self.performSegue(withIdentifier: "registerStudents", sender: sender)

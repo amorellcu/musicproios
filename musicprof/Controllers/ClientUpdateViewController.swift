@@ -45,9 +45,9 @@ class ClientUpdateViewController: ProfileUpdateViewController, ClientRegistratio
         guard self.client != self.originalClient else {
             return
         }
-        self.showSpinner(onView: self.view)
+        let alert = self.showSpinner(withMessage: "Actualizando datos...")
         self.service.updateProfile(self.client) { [weak self] (result) in
-            self?.removeSpinner()
+            alert.hideView()
             self?.handleResult(result) {
                 self?.client = $0
                 self?.originalClient = Client(copy: $0)

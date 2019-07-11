@@ -91,9 +91,9 @@ class ProfileUpdateViewController: CustomTabController, NestedController {
         }
         controller.passwordTextField.text = nil
         controller.passwordConfirmationTextField.text = nil
-        self.showSpinner(onView: self.view)
+        let alert = self.showSpinner(withMessage: "Cambiando contraseña...")
         self.service.changePassword(to: password) { [weak self] (result) in
-            self?.removeSpinner()
+            alert.hideView()
             self?.handleResult(result) {
                 let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
                     showCloseButton: false
