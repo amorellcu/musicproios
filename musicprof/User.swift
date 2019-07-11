@@ -20,6 +20,7 @@ protocol User: class {
     var address: String? { get set }
     var avatarUrl: URL? { get set }
     var facebookId: String? { get set }
+    var instruments: [Instrument]? { get set }
 }
 
 extension User {

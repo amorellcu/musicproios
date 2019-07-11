@@ -100,7 +100,7 @@ class LoginViewController: UIViewController, LoginController {
             self.removeSpinner()
             self.handleResult(result, onError: { error in
                 if let appError = error as? AppError, appError == AppError.registrationRequired {
-                    self.performSegue(withIdentifier: "RegisterStepOneSegue", sender: self)
+                    self.register()
                 }
             }, onSuccess: {
                 self.login(withAccount: $0)
@@ -147,7 +147,29 @@ class LoginViewController: UIViewController, LoginController {
     }
     
     @IBAction func onSignUp(_ sender: Any) {
-        self.performSegue(withIdentifier: "RegisterStepOneSegue", sender: self)
+        self.register()
+    }
+    
+    func register() {
+        let title = "Registrarse"
+        let message = "¿Qué tipo de cuenta desea crear?"
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        controller.addAction(UIAlertAction(title: "Registrar Profesor", style: .default) { action in
+            self.performSegue(withIdentifier: "registerProfessor", sender: self)
+        })
+        controller.addAction(UIAlertAction(title: "Registrar Estudiante", style: .default) { action in
+            self.performSegue(withIdentifier: "registerStudent", sender: self)
+        })
+        controller.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+        
+        if let popoverController = controller.popoverPresentationController {
+            popoverController.sourceView = self.view
+            let bounds = self.view.bounds
+            popoverController.sourceRect = CGRect(x: bounds.midX, y: bounds.maxY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
+        
+        self.present(controller, animated: true)
     }
     
     @IBAction func onResetPassword(_ sender: Any) {

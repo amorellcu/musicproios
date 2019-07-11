@@ -12,7 +12,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import AlamofireImage
 
-class ContactInfoRegistrationViewController: ContactInfoViewController, ClientRegistrationController {
+class ContactInfoRegistrationViewController: ContactInfoViewController {
     
     var imageImporter: ImageImporter!
     var tapGestureRecognizer: UITapGestureRecognizer!
@@ -21,7 +21,6 @@ class ContactInfoRegistrationViewController: ContactInfoViewController, ClientRe
     
     override func loadView() {
         imageImporter = ImageImporter(viewController: self)
-        self.client = Client()
         super.loadView()
     }
     
@@ -49,7 +48,7 @@ class ContactInfoRegistrationViewController: ContactInfoViewController, ClientRe
         if FBSDKAccessToken.current() == nil {
             self.updateFields()
         } else {
-            self.client.loadFromFB { [weak self] (error) in
+            self.user.loadFromFB { [weak self] (error) in
                 if (error == nil) {
                     self?.updateFields()
                 }
@@ -65,16 +64,16 @@ class ContactInfoRegistrationViewController: ContactInfoViewController, ClientRe
     
     override func updateFields() {
         let placeholderAvatar = UIImage(named:"userdefault")
-        if let avatarUrl = self.client.avatarUrl, avatarUrl.isFileURL {
+        if let avatarUrl = self.user.avatarUrl, avatarUrl.isFileURL {
             self.avatarImageView.image = UIImage(contentsOfFile: avatarUrl.path)
-        } else if let avatarUrl = self.client.avatarUrl {
+        } else if let avatarUrl = self.user.avatarUrl {
             let filter = ScaledToSizeCircleFilter(size: self.avatarImageView.frame.size)
             self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"), filter: filter) { response in
                 if let avatar = response.result.value, let data = UIImagePNGRepresentation(avatar) {
                     let documentsPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
                     let destinationURL = documentsPath.appendingPathComponent("\(UUID()).png")
                     if FileManager.default.createFile(atPath: destinationURL.path, contents: data, attributes: nil) {
-                        self.client.avatarUrl = destinationURL
+                        self.user.avatarUrl = destinationURL
                     }
                 }
             }
@@ -82,6 +81,20 @@ class ContactInfoRegistrationViewController: ContactInfoViewController, ClientRe
             self.avatarImageView.image = placeholderAvatar?.af_imageAspectScaled(toFit: self.avatarImageView.frame.size).af_imageRoundedIntoCircle()
         }
         super.updateFields()
+    }
+    
+    @objc func onChangeAvatar() {
+        imageImporter.getPicture(for: self.user) { [weak self] in
+            guard let url = self?.user?.avatarUrl, url.isFileURL else { return }
+            self?.container?.avatarImageView.image = UIImage(contentsOfFile: url.path)?.af_imageRoundedIntoCircle()
+        }
+    }
+}
+
+class ClientContactInfoRegistrationViewController: ContactInfoRegistrationViewController, ClientRegistrationController {
+    override func loadView() {
+        self.client = Client()
+        super.loadView()
     }
     
     @IBAction func onRegisterSubaccounts(_ sender: Any) {
@@ -96,11 +109,29 @@ class ContactInfoRegistrationViewController: ContactInfoViewController, ClientRe
             }
         }
     }
+}
+
+class ProfessorContactInfoRegistrationViewController: ContactInfoRegistrationViewController, ProfessorRegistrationController {
+    var professor: Professor! {
+        get { return self.user as? Professor }
+        set { self.user = newValue }
+    }
     
-    @objc func onChangeAvatar() {
-        imageImporter.getPicture(for: self.client) { [weak self] in
-            guard let url = self?.client?.avatarUrl, url.isFileURL else { return }
-            self?.container?.avatarImageView.image = UIImage(contentsOfFile: url.path)?.af_imageRoundedIntoCircle()
+    override func loadView() {
+        self.professor = Professor()
+        super.loadView()
+    }
+    
+    @IBAction func onRegisterTapped(_ sender: Any) {
+        self.updateClient()
+        self.professor.instruments = []
+        self.showSpinner(onView: self.view)
+        self.service.registerProfessor(self.professor) { (result) in
+            self.removeSpinner()
+            self.handleResult(result) {
+                self.professor = $0
+                self.performSegue(withIdentifier: "selectInstruments", sender: sender)
+            }
         }
     }
 }

@@ -140,9 +140,9 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
     @IBAction func onRegister(_ sender: Any) {
         let instruments = self.instruments ?? []
         let selection = self.collectionView.indexPathsForSelectedItems ?? []
-        self.client.instruments = selection.map({instruments[$0.item]})
+        self.user.instruments = selection.map({instruments[$0.item]})
         
-        self.service.registerClient(self.client) { (result) in
+        self.service.registerUser(self.user) { (result) in
             self.handleResult(result) {
                 let message = self.client.facebookId == nil ?
                     "Esperamos que disfrute la experiencia de nuestra aplicación" :

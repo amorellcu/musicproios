@@ -464,6 +464,21 @@ class ApiManager {
         }
     }
     
+    func registerUser(_ user: User, handler: @escaping (ApiResult<User>) -> Void) {
+        switch user {
+        case let client as Client:
+            self.registerClient(client) { result in
+                handler(result.transform(with: {$0 as User}))
+            }
+        case let professor as Professor:
+            self.registerProfessor(professor) { result in
+                handler(result.transform(with: {$0 as User}))
+            }
+        default:
+            handler(.failure(error: AppError.invalidOperation))
+        }
+    }
+    
     func registerClient(_ client: Client, handler: @escaping (ApiResult<Client>) -> Void) {
         let url = baseUrl.appendingPathComponent("registerClient")
         let _ = self.session.upload(multipartFormData: { (form) in
@@ -503,6 +518,36 @@ class ApiManager {
                     case .success(let data):
                         self.user = data.client
                         handler(.success(data: data.client))
+                    case .failure(let error):
+                        handler(.failure(error: error))
+                    }
+                }
+            case .failure(let error):
+                handler(.failure(error: error))
+            }
+        }
+    }
+    
+    func registerProfessor(_ professor: Professor, password: String? = nil, handler: @escaping (ApiResult<Professor>) -> Void) {
+        let url = baseUrl.appendingPathComponent("registerProfesors")
+        let _ = self.session.upload(multipartFormData: { (form) in
+            professor.encode(to: form)
+            if let password = password {
+                form.encode(password, withName: "password")
+                form.encode(password, withName: "password_confirmation")
+            }
+        }, to: url) { (result) in
+            switch result {
+            case .success(let request, _, _):
+                let _ = request.responseDecodable { (result: ApiResult<LoginData>) in
+                    switch result {
+                    case .success(let data):
+                        if let professor = data.professor {
+                            self.user = professor
+                            handler(.success(data: professor))
+                        } else {
+                            handler(.failure(error: AppError.unsupportedData))
+                        }
                     case .failure(let error):
                         handler(.failure(error: error))
                     }
