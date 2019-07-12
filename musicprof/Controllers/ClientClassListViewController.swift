@@ -27,14 +27,15 @@ class ClientClassListViewController: ReservationListViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.selectRow(at: nil, animated: animated, scrollPosition: .none)
-        self.reservations = self.service.currentClient?.nextReservations ?? []
+        self.updateReservations()
     }
     
     override func updateReservations() {
         guard let client = self.service.currentClient else { return }
-        self.service.getNextClasses(of: client, type: .account) { [weak self] (result) in
+        self.reservations = client.nextReservations ?? []
+        self.service.getNextReservations(of: client) { [weak self] (result) in
             self?.handleResult(result) {
-                self?.classes = $0
+                self?.reservations = $0
             }
         }
     }

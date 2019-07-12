@@ -406,6 +406,21 @@ class ApiManager {
         }
     }
     
+    func getNextReservations(of client: Student, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getStudentReservations")
+        let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue, "next": true]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<ReservationData>) in
+                handler(result.transform(with: {
+                    $0.reservations                    
+                }))
+        }
+    }
+    
     func getMessages(from reservation: Reservation, handler: @escaping (ApiResult<[Message]>) -> Void) {
         var dateStr : String? = nil
         if let date = reservation.classes?.date {
