@@ -7,22 +7,28 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class ClientClassListViewController: ReservationListViewController {
     
-    var reservations: [Reservation]?
+    var reservations: [Reservation] = [] {
+        didSet {
+            self.classes = self.reservations.compactMap({$0.classes})
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.dateFormatter.timeStyle = .none
         self.dateFormatter.dateStyle = .long
-        self.reservations = self.service.currentClient?.nextReservations
-        self.classes = self.reservations?.compactMap({$0.classes})
+        self.reservations = self.service.currentClient?.nextReservations ?? []
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tableView.selectRow(at: nil, animated: animated, scrollPosition: .none)
     }
     
     override func updateReservations() {
@@ -40,15 +46,51 @@ class ClientClassListViewController: ReservationListViewController {
     }
     
     @IBAction func unwindToClientClasses(_ segue: UIStoryboardSegue) {
-        
+        if let controller = segue.source as? ChatViewController, let selection = self.tableView.indexPathForSelectedRow?.item {
+            if controller.reservation?.status == .cancelled {
+                self.reservations.remove(at: selection)
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.item < self.reservations.count && self.reservations[indexPath.item].status == .cancelled else {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cancelledCell") as! ReservationCell
+        self.configureCell(cell, forRowAt: indexPath)
+        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        guard let selection = self.tableView.indexPathForSelectedRow, let reservations = self.reservations else { return }
+        guard let selection = self.tableView.indexPathForSelectedRow else { return }
         let theClass = reservations[selection.item]
-        self.tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
+        
         guard let controller = segue.destination as? ChatViewController else { return }
         controller.reservation = theClass
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        super.tableView(tableView, commit: editingStyle, forRowAt: indexPath)
+        guard editingStyle == .delete else {
+            return
+        }
+        let reservation = self.reservations[indexPath.item]
+        self.ask(question: "¿Está seguro de que quiere cancelar la reservación?",
+                 title: "Cancelando", yesButton: "Sí", noButton: "No") { (shouldCancel) in
+                    guard shouldCancel else { return }
+                    let alert = self.showSpinner(withMessage: "Cancelando la reservación...")
+                    self.service.cancelReservation(reservation, handler: { [weak self] (result) in
+                        alert.hideView()
+                        self?.handleResult(result) {
+                            self?.reservations.remove(at: indexPath.item)
+                        }
+                    })
+        }
     }
 }

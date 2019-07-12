@@ -58,19 +58,9 @@ class ReservationListViewController: UIViewController, NestedController {
             controller.container = self.container
         }
     }
-}
-
-extension ReservationListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.classes?.count ?? 0
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let reservation = self.classes?[indexPath.item] else {
-            return UITableViewCell()
-        }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reservationCell") as! ReservationCell
-        
+    open func configureCell(_ cell: ReservationCell, forRowAt indexPath: IndexPath) {
+        guard let reservation = self.classes?[indexPath.item] else { return }
         if let iconURL = reservation.instrument?.iconUrl {
             var filter: ImageFilter = ScaledToSizeFilter(size: cell.instrumentImageView.frame.size)
             filter = TemplateFilter()
@@ -81,10 +71,34 @@ extension ReservationListViewController: UITableViewDelegate, UITableViewDataSou
         
         cell.dateLabel.text = self.dateFormatter.string(from: reservation.date)
         cell.professorLabel?.text = reservation.professor?.name
-        
+    }
+}
+
+extension ReservationListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.classes?.count ?? 0
+    }
+    
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard self.classes != nil else {
+            return UITableViewCell()
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reservationCell") as! ReservationCell
+        self.configureCell(cell, forRowAt: indexPath)
         return cell
     }
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+    }
+    
+    open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    open func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Cancelar"
+    }
+    
+    open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {        
     }
 }

@@ -9,15 +9,17 @@
 import Foundation
 
 struct Reservation: Decodable {
+    var id: Int
     var classId: Int
     var clientId: Int
-    var status: Int
+    var status: ReservationState
     var subaccountId: Int?
     var creditId: Int?
     var address: String?
     var classes: Class?
     
     enum CodingKeys: String, CodingKey {
+        case id
         case classId = "class_id"
         case clientId = "client_id"
         case status = "reservation_status"
@@ -32,4 +34,9 @@ extension Reservation {
     var studentType: StudentType {
         return self.subaccountId == nil ? .account : .subaccount
     }
+}
+
+enum ReservationState: Int, Decodable {
+    case normal = 0
+    case cancelled = 1
 }

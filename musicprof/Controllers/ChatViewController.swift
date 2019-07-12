@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import SCLAlertView
 
 class ChatViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -60,6 +61,8 @@ class ChatViewController: UIViewController {
         } else {
             self.instrumentImageView.image = filter.filter(UIImage(named: "no_instrument")!)
         }
+        
+        self.cancelButton.isEnabled = self.reservation?.status == .normal
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,7 +147,19 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func onCancelTapped(_ sender: Any) {
-        
+        guard let reservation = self.reservation else { return }
+        self.ask(question: "¿Está seguro de que quiere cancelar la reservación?",
+                 title: "Cancelando", yesButton: "Sí", noButton: "No") { (shouldCancel) in
+                    guard shouldCancel else { return }
+                    let alert = self.showSpinner(withMessage: "Cancelando la reservación...")
+                    self.service.cancelReservation(reservation, handler: { [weak self] (result) in
+                        alert.hideView()
+                        self?.handleResult(result) {
+                            self?.reservation?.status = .cancelled
+                            self?.cancelButton.isEnabled = false
+                        }
+                    })
+        }
     }
 }
 

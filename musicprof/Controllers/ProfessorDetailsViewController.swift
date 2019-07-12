@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class ProfessorDetailsViewController: BaseReservationViewController  {
     @IBOutlet weak var nameLabel: UILabel!
@@ -97,6 +98,7 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
     @IBAction func onConfirmReservationTapped(_ sender: UIButton) {
         self.service.makeReservation(self.reservation) { [weak self] (result) in
             self?.handleResult(result) {
+                SCLAlertView().showSuccess("Reservado", subTitle: "La reservación se completó satisfactoriamente.")
                 self?.performSegue(withIdentifier: "backToStart", sender: sender)
             }
         }

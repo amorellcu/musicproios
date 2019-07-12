@@ -429,8 +429,6 @@ class ApiManager {
     }
     
     func sendMessage(_ message: String, for reservation: Reservation, handler: @escaping (ApiResult<Message>) -> Void) {
-        //handler(.success(data: Message(id: -1, classId: nil, clientId: nil, subaccountId: nil, professorId: nil, text: message, date: nil)))
-        
         let url = baseUrl.appendingPathComponent("insertLog")
         let _ = self.session.upload(multipartFormData: { (form) in
             form.encodeIfPresent(reservation.classes?.id, withName: "classId")
@@ -684,7 +682,27 @@ class ApiManager {
         request.locationId = request.locationId ?? self.getStudent(for: request)?.locationId
         request.address = request.address ?? self.getStudent(for: request)?.address
         let url = baseUrl.appendingPathComponent("classReservation")
-        self.post(request, to: url, handler: handler)
+        self.post(request, to: url) { (result: ApiResult<ReservationData2>) in
+            handler(result.transform(with: {$0.reservation}))
+        }
+    }
+    
+    func cancelReservation(_ reservation: Reservation, handler: @escaping (ApiResult<Reservation>) -> Void) {
+        let url = baseUrl.appendingPathComponent("cancelReservation")
+        let _ = self.session.upload(multipartFormData: { (form) in
+            form.encodeIfPresent(reservation.classes?.id, withName: "classId")
+            form.encode(reservation.clientId, withName: "id")
+            form.encode(reservation.studentType.rawValue, withName: "reservationFor")
+        }, to: url) { (result) in
+            switch result {
+            case .success(let request, _, _):
+                let _ = request.responseDecodable(completionHandler: { (result: ApiResult<ReservationData2>) in
+                    handler(result.transform(with: {$0.reservation}))
+                })
+            case .failure(let error):
+                handler(.failure(error: error))
+            }
+        }
     }
 }
 
@@ -768,6 +786,10 @@ private struct PackageData: Decodable {
 
 private struct ReservationData: Decodable {
     var reservations: [Reservation]
+}
+
+private struct ReservationData2: Decodable {
+    var reservation: Reservation
 }
 
 private struct ClassData: Decodable {

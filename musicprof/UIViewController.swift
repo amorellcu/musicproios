@@ -48,10 +48,10 @@ extension UIViewController {
     }
     
     func ask(question: String, title: String, yesButton: String = "Aceptar", noButton: String = "Cancelar", completion handler: ((Bool) -> Void)? = nil) {
-        let controller = UIAlertController(title: title, message: question, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(title: noButton, style: .cancel, handler: {_ in handler?(false)}))
-        controller.addAction(UIAlertAction(title: yesButton, style: .default, handler: {_ in handler?(true)}))
-        self.present(controller, animated: true)
+        let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(showCloseButton: false))
+        alert.addButton(yesButton, action: {handler?(true)})
+        alert.addButton(noButton, action: {handler?(false)})
+        alert.showInfo(title, subTitle: question)
     }
     
     func handleResult<T>(_ result: ApiResult<[T]>, onError: ((Error) -> Void)? = nil, onSuccess: (([T]) throws -> Void)? = nil) {
