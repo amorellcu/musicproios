@@ -9,12 +9,25 @@
 import Foundation
 
 struct Message: Decodable {
+    var id: Int
+    var classId: Int?
+    var clientId: Int?
+    var subaccountId: Int?
+    var professorId: Int?
     var text: String
-    var source: MessageSource
+    var date: Date?
+    var source: MessageSource {
+        return .local
+    }
     
     enum CodingKeys: String, CodingKey {
-        case text
-        case source
+        case id
+        case classId = "class_id"
+        case clientId = "client_id"
+        case subaccountId = "subcuenta_id"
+        case professorId = "profesor_id"
+        case text = "message"
+        case date = "log_date_time"
     }
 }
 

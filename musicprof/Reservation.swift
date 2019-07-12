@@ -9,7 +9,6 @@
 import Foundation
 
 struct Reservation: Decodable {
-    var id: Int
     var classId: Int
     var clientId: Int
     var status: Int
@@ -19,7 +18,6 @@ struct Reservation: Decodable {
     var classes: Class?
     
     enum CodingKeys: String, CodingKey {
-        case id
         case classId = "class_id"
         case clientId = "client_id"
         case status = "reservation_status"

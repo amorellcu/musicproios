@@ -31,7 +31,7 @@ class ChatViewController: UIViewController {
         didSet {
             self.tableView.reloadData()
             guard messages.count > 0, messages.count != oldValue.count else { return }
-            self.tableView.scrollToRow(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
+            //self.tableView.scrollToRow(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
         }
     }
     
@@ -52,6 +52,14 @@ class ChatViewController: UIViewController {
         self.setAvatar(clientAvatar, for: self.avatarImageView)
         self.professorAvatar = self.reservation?.classes?.professor?.avatarUrl
         self.setAvatar(professorAvatar, for: self.professorImageView)
+        
+        //self.setAvatar(reservation?.classes?.instrument?.iconUrl, for: self.instrumentImageView, defaultName: "no_instrument")
+        let filter = TemplateFilter()
+        if let iconURL = reservation?.classes?.instrument?.iconUrl {
+            self.instrumentImageView.af_setImage(withURL: iconURL, filter: filter)
+        } else {
+            self.instrumentImageView.image = filter.filter(UIImage(named: "no_instrument")!)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,8 +91,8 @@ class ChatViewController: UIViewController {
         }
     }
     
-    private func setAvatar(_ url: URL?, for imageView: UIImageView) {
-        let placeholderAvatar = UIImage(named:"userdefault")?.af_imageAspectScaled(toFit: imageView.frame.size).af_imageRoundedIntoCircle()
+    private func setAvatar(_ url: URL?, for imageView: UIImageView, defaultName: String? = nil) {
+        let placeholderAvatar = UIImage(named: defaultName ?? "userdefault")?.af_imageAspectScaled(toFit: imageView.frame.size).af_imageRoundedIntoCircle()
         if let avatarUrl = url {
             let filter = ScaledToSizeCircleFilter(size: imageView.frame.size)
             imageView.af_setImage(withURL: avatarUrl, placeholderImage: placeholderAvatar, filter: filter)
@@ -107,7 +115,7 @@ class ChatViewController: UIViewController {
             let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
             let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
             
-            self.textInputConstraint.constant = keyboardViewEndFrame.height
+            self.textInputConstraint.constant = -keyboardViewEndFrame.height
             self.fullProfileConstriant.priority = keyboardViewEndFrame.height == 0 ? .defaultHigh : .defaultLow
             guard let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
             UIView.animate(withDuration: duration) {
@@ -115,15 +123,20 @@ class ChatViewController: UIViewController {
             }
         }
     }
-
-    @IBAction func onSubmitTapped(_ sender: Any) {
-        let text = self.messageTextField.text ?? ""
+    
+    func submitMessage(from textField: UITextField) {
+        let text = textField.text ?? ""
         guard !text.isEmpty, let reservation = self.reservation else { return }
+        textField.text = ""
         self.service.sendMessage(text, for: reservation) { (result) in
             self.handleResult(result) {
                 self.messages.append($0)
             }
         }
+    }
+
+    @IBAction func onSubmitTapped(_ sender: Any) {
+        self.submitMessage(from: self.messageTextField)
     }
     
     @IBAction func onDetailsTapped(_ sender: Any) {
@@ -156,5 +169,12 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = message.text
         self.setAvatar(avatarUrl, for: cell.imageView!)
         return cell
+    }
+}
+
+extension ChatViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.submitMessage(from: textField)
+        return true
     }
 }

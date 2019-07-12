@@ -221,10 +221,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4TP-FY-zZr" userLabel="Profile">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4TP-FY-zZr" userLabel="Profile">
                                 <rect key="frame" x="0.0" y="44" width="414" height="349.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-50" translatesAutoresizingMaskIntoConstraints="NO" id="Y20-hX-lco" userLabel="Pictures">
+                                    <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" spacing="-50" translatesAutoresizingMaskIntoConstraints="NO" id="Y20-hX-lco" userLabel="Pictures">
                                         <rect key="frame" x="82" y="15" width="250" height="150"/>
                                         <subviews>
                                             <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userdefault" translatesAutoresizingMaskIntoConstraints="NO" id="v1P-ri-dfZ">
@@ -288,7 +288,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fp3-pZ-XNN" userLabel="Buttons">
+                                    <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fp3-pZ-XNN" userLabel="Buttons">
                                         <rect key="frame" x="31" y="230" width="352" height="52"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlX-eC-6qX">
@@ -343,7 +343,7 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5b-DR-Ci4" userLabel="Instrument">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5b-DR-Ci4" userLabel="Instrument">
                                         <rect key="frame" x="167" y="216" width="80" height="80"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QtS-4g-Kbk">
@@ -357,6 +357,7 @@
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_instrument" translatesAutoresizingMaskIntoConstraints="NO" id="vBk-7p-RYc">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                <color key="tintColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlp-X1-dq0" userLabel="Border">
                                                 <rect key="frame" x="0.0" y="0.0" width="82" height="82"/>
@@ -397,7 +398,7 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="16J-t0-pnI" userLabel="Professor">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="16J-t0-pnI" userLabel="Professor">
                                         <rect key="frame" x="48" y="307" width="318.5" height="22.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profesor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRe-h9-Yo9">
@@ -455,12 +456,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2t-ZJ-eNZ" userLabel="Text Input">
                                 <rect key="frame" x="0.0" y="822" width="414" height="40"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Escribe algo..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XTf-Vj-kjd" userLabel="Message Input">
-                                        <rect key="frame" x="20" y="0.0" width="350" height="40"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWS-vX-tHn">
                                         <rect key="frame" x="370" y="0.0" width="44" height="40"/>
                                         <constraints>
@@ -472,6 +467,15 @@
                                             <action selector="onSubmitTapped:" destination="YiU-Cc-CyE" eventType="touchUpInside" id="94G-EM-qMq"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Escribe algo..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XTf-Vj-kjd" userLabel="Message Input">
+                                        <rect key="frame" x="20" y="0.0" width="350" height="40"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="YiU-Cc-CyE" id="IAF-6z-Qwd"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -595,6 +599,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="YiU-Cc-CyE" id="l0f-S9-oYf"/>
+                                    <outlet property="delegate" destination="YiU-Cc-CyE" id="d7m-rX-blh"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

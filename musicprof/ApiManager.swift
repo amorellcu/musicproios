@@ -423,11 +423,13 @@ class ApiManager {
                      parameters: parameters,
                      encoding: URLEncoding.default,
                      headers: self.headers)
-            .responseDecodable(completionHandler: handler)
+            .responseDecodable { (result: ApiResult<MessageData>) in
+                handler(result.transform(with: {$0.logs}))
+        }
     }
     
     func sendMessage(_ message: String, for reservation: Reservation, handler: @escaping (ApiResult<Message>) -> Void) {
-        handler(.success(data: Message(text: message, source: .local)))
+        //handler(.success(data: Message(id: -1, classId: nil, clientId: nil, subaccountId: nil, professorId: nil, text: message, date: nil)))
         
         let url = baseUrl.appendingPathComponent("insertLog")
         let _ = self.session.upload(multipartFormData: { (form) in
@@ -439,7 +441,9 @@ class ApiManager {
         }, to: url) { (result) in
             switch result {
             case .success(let request, _, _):
-                let _ = request.responseDecodable(completionHandler: handler)
+                let _ = request.responseDecodable { (result: ApiResult<MessageData2>) in
+                    handler(result.transform(with: {$0.log}))
+                }
             case .failure(let error):
                 handler(.failure(error: error))
             }
@@ -776,6 +780,14 @@ private struct DateWrapper: Decodable {
     enum CodingKeys: String, CodingKey {
         case date = "class_date_time"
     }
+}
+
+private struct MessageData: Decodable {
+    var logs: [Message]
+}
+
+private struct MessageData2: Decodable {
+    var log: Message
 }
 
 class JWTAccessTokenAdapter : NSObject, RequestAdapter, RequestRetrier, NSCoding {
