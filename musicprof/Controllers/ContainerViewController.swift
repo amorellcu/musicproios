@@ -17,6 +17,8 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var pictureDisplayConstraint: NSLayoutConstraint!
     
     private(set) var displayMode: DisplayMode = .full
+    private(set) var preferredDisplayMode: DisplayMode = .full
+    private var isKeyboardVisible: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +27,18 @@ class ContainerViewController: UIViewController {
         self.profileNameLabel.text = self.service.user?.name
         self.setAvatar(self.service.user?.avatarUrl)
         self.avatarImageView.clipsToBounds = true
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.onKeyboardHidden(animated: animated)
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillShow, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func setAvatar(_ url: URL?) {
@@ -43,15 +52,11 @@ class ContainerViewController: UIViewController {
     }
     
     @objc func adjustForKeyboard(notification: Notification) {
-        //let userInfo = notification.userInfo!
-        
-        //let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        //let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
         if notification.name == Notification.Name.UIKeyboardWillHide {
-            //self.setDisplayMode(.full, animated: true)
+            self.onKeyboardHidden(animated: true)
         } else {
-            self.setDisplayMode(.collapsed, animated: true)
+            self.isKeyboardVisible = true
+            self.internalSetDisplayMode(.collapsed, animated: true)
         }
     }
     
@@ -113,6 +118,19 @@ class ContainerViewController: UIViewController {
     }
     
     func setDisplayMode(_ displayMode: DisplayMode, animated: Bool) {
+        guard self.preferredDisplayMode != displayMode else { return }
+        self.preferredDisplayMode = displayMode
+        if !self.isKeyboardVisible {
+            self.internalSetDisplayMode(displayMode, animated: animated)
+        }
+    }
+    
+    private func onKeyboardHidden(animated: Bool) {
+        self.isKeyboardVisible = false
+        self.internalSetDisplayMode(self.preferredDisplayMode, animated: animated)
+    }
+    
+    private func internalSetDisplayMode(_ displayMode: DisplayMode, animated: Bool) {
         guard self.displayMode != displayMode else { return }
         let isGrowing = displayMode.rawValue > self.displayMode.rawValue
         self.displayMode = displayMode

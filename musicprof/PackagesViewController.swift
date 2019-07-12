@@ -73,6 +73,10 @@ class PackagesViewController: UIViewController, NestedController {
         
         let request = BTPayPalRequest(amount: String(describing: amount))
         request.currencyCode = "MXN"
+        request.localeCode = "es-MX"
+        request.lineItems = [BTPayPalLineItem(quantity: "1", unitAmount: package.priceStr,
+                                              name: package.quantity == 1 ? "Paquete de 1 clase." : "Paquete de \(package.quantity) clases.",
+                                              kind: .debit)]
         
         driver.requestOneTimePayment(request) { (account, error) in
             if let account = account {
@@ -87,9 +91,12 @@ class PackagesViewController: UIViewController, NestedController {
     
     private func pay(forPackage package: Package, withToken token: BTPayPalAccountNonce) {
         print("Got a nonce: \(token.nonce)")
+        let alert = self.showSpinner(withMessage: "Completando transacción...")
         self.service.performPaypalPayment(for: package, withToken: token.nonce, handler: { (result) in
+            alert.hideView()
             self.handleResult(result) {
-                SCLAlertView().showSuccess("Paquete Adquirido", subTitle: "Ahora puede reservar \(package.quantity) clases más.")
+                SCLAlertView().showSuccess("Paquete Adquirido",
+                                           subTitle: package.quantity == 1 ? "Ahora puede reservar 1 clase más." : "Ahora puede reservar \(package.quantity) clases más.")
             }
         })
     }

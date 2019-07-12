@@ -33,12 +33,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYe-th-1MO">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uuh-UK-fhu">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Nombre Completo" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AQa-rJ-tIs">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Nombre Completo" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AQa-rJ-tIs">
                                                 <rect key="frame" x="30" y="10" width="353" height="52"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -62,7 +62,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Correo Eléctronico" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kss-P5-cbx">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Correo Eléctronico" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kss-P5-cbx">
                                                 <rect key="frame" x="30" y="82" width="353" height="52"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -86,7 +86,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Télefono" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ht-Vb-uJ0">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Télefono" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ht-Vb-uJ0">
                                                 <rect key="frame" x="30" y="154" width="353" height="52"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -242,7 +242,7 @@
                         <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="AYe-th-1MO" firstAttribute="trailing" secondItem="Kf6-gi-ayu" secondAttribute="trailing" id="6UM-6u-Z7M"/>
-                            <constraint firstItem="AYe-th-1MO" firstAttribute="top" secondItem="FAT-YC-96U" secondAttribute="top" id="KnF-7Q-stZ"/>
+                            <constraint firstItem="AYe-th-1MO" firstAttribute="top" secondItem="Kf6-gi-ayu" secondAttribute="top" id="9CC-9X-YM5"/>
                             <constraint firstItem="Uuh-UK-fhu" firstAttribute="width" secondItem="FAT-YC-96U" secondAttribute="width" id="aWD-xh-2RJ"/>
                             <constraint firstItem="AYe-th-1MO" firstAttribute="bottom" secondItem="Kf6-gi-ayu" secondAttribute="bottom" id="i96-uW-fbR"/>
                             <constraint firstItem="AYe-th-1MO" firstAttribute="leading" secondItem="Kf6-gi-ayu" secondAttribute="leading" id="oTZ-0x-deW"/>
@@ -1624,6 +1624,6 @@
         <image name="profedetails" width="848" height="446"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ewv-3i-HRL"/>
+        <segue reference="voP-ga-zAQ"/>
     </inferredMetricsTieBreakers>
 </document>
