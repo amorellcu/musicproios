@@ -22,13 +22,12 @@ class ClientClassListViewController: ReservationListViewController {
         
         self.dateFormatter.timeStyle = .none
         self.dateFormatter.dateStyle = .long
-        self.reservations = self.service.currentClient?.nextReservations ?? []
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.selectRow(at: nil, animated: animated, scrollPosition: .none)
+        self.reservations = self.service.currentClient?.nextReservations ?? []
     }
     
     override func updateReservations() {

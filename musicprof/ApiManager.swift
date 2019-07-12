@@ -683,7 +683,10 @@ class ApiManager {
         request.address = request.address ?? self.getStudent(for: request)?.address
         let url = baseUrl.appendingPathComponent("classReservation")
         self.post(request, to: url) { (result: ApiResult<ReservationData2>) in
-            handler(result.transform(with: {$0.reservation}))
+            handler(result.transform(with: {
+                self.currentClient?.nextReservations?.append($0.reservation)
+                return $0.reservation
+            }))
         }
     }
     
@@ -697,7 +700,10 @@ class ApiManager {
             switch result {
             case .success(let request, _, _):
                 let _ = request.responseDecodable(completionHandler: { (result: ApiResult<ReservationData2>) in
-                    handler(result.transform(with: {$0.reservation}))
+                    handler(result.transform(with: { data in
+                        self.currentClient?.nextReservations?.removeAll(where: {$0.id == data.reservation.id})
+                        return data.reservation
+                    }))
                 })
             case .failure(let error):
                 handler(.failure(error: error))

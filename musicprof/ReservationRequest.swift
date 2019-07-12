@@ -10,6 +10,7 @@ import Foundation
 
 struct ReservationRequest {
     var date: Date?
+    var classes: Class?
     var professor: Professor?
     var instrument: Instrument?
     var studentId: Int?
