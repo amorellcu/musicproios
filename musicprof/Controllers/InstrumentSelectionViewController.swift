@@ -37,17 +37,27 @@ class InstrumentSelectionViewController: BaseReservationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let instruments = self.student?.instruments {
-            self.userInstruments = instruments
-        }
-        
-        self.updateInstruments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.container?.setDisplayMode(.full, animated: animated)
+        
+        if let instruments = self.student?.instruments {
+            self.userInstruments = instruments
+            self.updateInstruments()
+        } else if let student = self.student {
+            let alert = self.showSpinner(withMessage: "Buscando instrumentos...")
+            self.service.getInstruments(of: student) { [weak self] (result) in
+                alert.hideView()
+                self?.handleResult(result) {
+                    self?.userInstruments = $0
+                    self?.updateInstruments()
+                }
+            }
+        } else {
+            self.updateInstruments()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,7 +71,8 @@ class InstrumentSelectionViewController: BaseReservationViewController {
             alert.hideView()
             self?.handleResult(result) {
                 guard let strongSelf = self else { return }
-                strongSelf.instruments = Array(Set($0).subtracting(strongSelf.userInstruments))
+                let otherInstruments = Array(Set($0).subtracting(strongSelf.userInstruments))
+                strongSelf.instruments = strongSelf.userInstruments + otherInstruments.sorted(by: {$0.id <= $1.id})
             }
         }
     }
@@ -114,19 +125,15 @@ class InstrumentSelectionViewController: BaseReservationViewController {
 extension InstrumentSelectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     private func instruments(fromSection section: Int) -> [Instrument]? {
         switch section {
-        case 0:
-            return self.userInstruments
+        //case 0:
+        //    return self.userInstruments
         default:
             return self.instruments
         }
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.instruments == nil ? 1 : 2
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.instruments(fromSection: section)?.count ?? 1
+        return self.instruments(fromSection: section)?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
