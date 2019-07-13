@@ -13,7 +13,7 @@ class Subaccount: Decodable, Student {
     var userId: Int = -1
     var name: String = ""
     var phone: String?
-    var address: String?
+    var address: String? = "Address"
     var locationId: Int?
     var location: Location?
     var instruments: [Instrument]?
@@ -30,6 +30,7 @@ class Subaccount: Decodable, Student {
         case address
         case locationId = "colonia_id"
         case location = "colonia"
+        case instruments
     }
     
     fileprivate enum EncodingKeys: String, CodingKey {

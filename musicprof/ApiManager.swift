@@ -212,6 +212,27 @@ class ApiManager {
         }
     }
     
+    func getInstruments(of student: Student, handler: @escaping (ApiResult<[Instrument]>) -> Void) {
+        var url: URL
+        var parameters: Parameters
+        if student is Client
+        {
+            url = baseUrl.appendingPathComponent("getClientInstruments")
+            parameters = ["clientId": student.id]
+        } else {
+            url = baseUrl.appendingPathComponent("getSubaccountInstruments")
+            parameters = ["subaccountId": student.id]
+        }
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<InstrumentData>) in
+                handler(result.transform(with: {$0.instruments}))
+        }
+    }
+    
     func getLocations(name: String? = nil, stateId: Int? = nil, cityId: Int? = nil,
                       handler: @escaping (ApiResult<[Location]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getColonias")
@@ -395,7 +416,7 @@ class ApiManager {
     
     func getNextClasses(of client: Student, type: StudentType, handler: @escaping (ApiResult<[Class]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getNextClasses")
-        let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue]
+        let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue, "next": false]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,

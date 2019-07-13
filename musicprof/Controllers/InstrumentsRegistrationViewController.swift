@@ -54,12 +54,29 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
     
     override func updateInstruments(_ instruments: [Instrument]) {
         super.updateInstruments(instruments)
-        if let selectedValues = self.subaccount?.instruments {
-            for i in 0..<instruments.count {
-                if selectedValues.contains(instruments[i]) {
-                    let indexPath = IndexPath(item: i, section: 0)
-                    self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+        guard let account = self.subaccount else { return }
+        if let selectedValues = account.instruments {
+            self.selectInstruments(selectedValues)
+        } else {
+            let alert = self.showSpinner(withMessage: "Buscando instrumentos del estudiante...")
+            self.service.getInstruments(of: account) { [weak self] (result) in
+                alert.hideView()
+                self?.handleResult(result) {
+                    account.instruments = $0
+                    self?.selectInstruments($0)
                 }
+            }
+        }
+    }
+    
+    func selectInstruments(_ selectedValues: [Instrument]) {
+        guard let instruments = self.instruments else {
+            return
+        }
+        for i in 0..<instruments.count {
+            if selectedValues.contains(instruments[i]) {
+                let indexPath = IndexPath(item: i, section: 0)
+                self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
             }
         }
     }
@@ -96,6 +113,8 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         let client = Subaccount()
         client.userId = self.client.id
         client.name = self.studentNameTextField?.text ?? ""
+        client.address = self.client.address
+        client.locationId = self.client.locationId
         client.instruments = selection.map({instruments[$0.item]})
         
         let alert = self.showSpinner(withMessage: "Registrando estudiante...")

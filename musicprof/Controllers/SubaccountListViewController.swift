@@ -29,6 +29,7 @@ class SubaccountListViewController: UIViewController, NestedController, ClientRe
     
     func refresh() {
         guard self.isViewLoaded else { return }
+        self.elements = self.client.subaccounts ?? []
         self.tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
         self.tableView.reloadData()
     }
