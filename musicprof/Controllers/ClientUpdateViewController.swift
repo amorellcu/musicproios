@@ -52,6 +52,7 @@ class ClientUpdateViewController: ProfileUpdateViewController, ClientRegistratio
                 self?.client = $0
                 self?.originalClient = Client(copy: $0)
                 self?.updateControllers()
+                self?.container?.refresh()
                 SCLAlertView().showSuccess("Cuenta Actualizada", subTitle: "La configuración de su cuenta se actualizó correctamente.")
             }
         }

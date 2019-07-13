@@ -12,6 +12,7 @@ import AlamofireImage
 class ContainerViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
+    @IBOutlet weak var creditsLabel: UILabel!
     
     @IBOutlet weak var fullDisplayConstraint: NSLayoutConstraint!
     @IBOutlet weak var pictureDisplayConstraint: NSLayoutConstraint!
@@ -24,17 +25,35 @@ class ContainerViewController: UIViewController {
         super.viewDidLoad()
 
         self.navigationController?.setTransparentBar()
-        self.profileNameLabel.text = self.service.user?.name
-        self.setAvatar(self.service.user?.avatarUrl)
         self.avatarImageView.clipsToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.onKeyboardHidden(animated: animated)
         
+        refresh()
+        
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillShow, object: nil)
+    }
+    
+    func refresh() {
+        self.profileNameLabel.text = self.service.user?.name
+        if let client = self.service.user as? Client {
+            if let credits = client.credits {
+                self.creditsLabel.text = credits.description
+            } else {
+                self.creditsLabel.text = "?"
+                self.service.getClientCredits { [weak self] (result) in
+                    self?.handleResult(result) {
+                        client.credits = $0
+                        self?.creditsLabel.text = $0.description
+                    }
+                }
+            }
+        }
+        self.setAvatar(self.service.user?.avatarUrl)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

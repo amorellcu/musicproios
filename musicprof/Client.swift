@@ -24,6 +24,7 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
     var location: Location?
     var avatarUrl: URL?
     var facebookId: String?
+    var credits: Int?
     var instruments: [Instrument]?
     var subaccounts: [Subaccount]?
     var nextReservations: [Reservation]?
@@ -61,14 +62,13 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
         let user = container.contains(.user) ? try container.nestedContainer(keyedBy: UserKeys.self, forKey: .user) : nil
         self.userId = try container.decode(Int.self, forKey: .userId)
         self.id = try user?.decode(Int.self, forKey: .id) ?? container.decode(Int.self, forKey: .id)
-        self.name = try (container.decodeIfPresent(String.self, forKey: .name)
-            ?? user?.decodeIfPresent(String.self, forKey: .name))
-            ?? ""
+        self.name = try (user?.decodeIfPresent(String.self, forKey: .name)) ?? ""
         self.email = try user?.decodeIfPresent(String.self, forKey: .email)
         self.phone = try container.decodeIfPresent(String.self, forKey: .phone)
         self.address = try container.decodeIfPresent(String.self, forKey: .address)
         self.locationId = try container.decodeIfPresent(Int.self, forKey: .locationId)
         self.location = try container.decodeIfPresent(Location.self, forKey: .location)
+        self.credits = try container.decodeIfPresent(Int.self, forKey: .credits)
         let avatar = try user?.decodeIfPresent(String.self, forKey: .avatar)
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
         self.facebookId = try user?.decodeIfPresent(String.self, forKey: .facebookId)
@@ -108,10 +108,10 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
         case userId = "users_id"
         case user
         case phone
-        case name
         case address
         case locationId = "colonia_id"
         case location = "colonia"
+        case credits = "credit"
         case instruments
         case subaccounts
         case nextReservations = "next_reservations"
@@ -134,7 +134,7 @@ extension Client: MultiformEncodable {
         if self.type == .subaccount {
             form.encode(self.userId, withName: "idCuenta")
         }
-        form.encode(self.name, withName: CodingKeys.name.rawValue)
+        form.encode(self.name, withName: UserKeys.name.rawValue)
         form.encodeIfPresent(self.email, withName: UserKeys.email.rawValue)
         form.encodeIfPresent(self.phone, withName: CodingKeys.phone.rawValue)
         form.encodeIfPresent(self.address, withName: CodingKeys.address.rawValue)

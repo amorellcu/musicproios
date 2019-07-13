@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class BaseReservationViewController: BaseNestedViewController, ReservationController {
     open var reservation: ReservationRequest!    
@@ -29,6 +30,12 @@ class BaseReservationViewController: BaseNestedViewController, ReservationContro
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let credits = self.service.currentClient?.credits, credits == 0 {
+            SCLAlertView().showWarning("Compre un paquete", subTitle: "Por favor, compre un paquete de clases antes de continuar.")
+        }
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)

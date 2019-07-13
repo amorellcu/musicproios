@@ -141,13 +141,21 @@ class ApiManager {
         }
     }
     
-    func getPaypalToken(handler: @escaping (ApiResult<String>) -> Void) {
-        let url = baseUrl.appendingPathComponent("getClientToken")
-        let headers = ["Accept": "text/plain"]
+    func getClientCredits(handler: @escaping (ApiResult<Int>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getClientCredits")
         let _ = self.session
             .request(url, method: .get,
                      encoding: URLEncoding.default,
-                     headers: headers)
+                     headers: self.headers)
+            .responseDecodable(completionHandler: handler)
+    }
+    
+    func getPaypalToken(handler: @escaping (ApiResult<String>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getClientToken")
+        let _ = self.session
+            .request(url, method: .get,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
             .responseDecodable(completionHandler: handler)        
     }
     

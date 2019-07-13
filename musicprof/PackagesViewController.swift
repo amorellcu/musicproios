@@ -95,6 +95,10 @@ class PackagesViewController: BaseNestedViewController {
         self.service.performPaypalPayment(for: package, withToken: token.nonce, handler: { (result) in
             alert.hideView()
             self.handleResult(result) {
+                if let client = self.service.currentClient, let credits = client.credits {
+                    client.credits = credits + package.quantity
+                }
+                self.container?.refresh()
                 SCLAlertView().showSuccess("Paquete Adquirido",
                                            subTitle: package.quantity == 1 ? "Ahora puede reservar 1 clase más." : "Ahora puede reservar \(package.quantity) clases más.")
             }
