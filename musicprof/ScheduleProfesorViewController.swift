@@ -104,7 +104,9 @@ class ScheduleProfesorViewController: BaseReservationViewController {
         formatter.timeStyle = .short
         
         date = self.calendar.startOfDay(for: date)
+        let alert = self.showSpinner(withMessage: "Buscando clases disponibles...")
         self.service.getAvailableProfessors(for: self.reservation, inDay: date) { [weak self] (result) in
+            alert.hideView()
             self?.handleResult(result) {
                 var professors = [Date:[Professor]]()
                 for professor in $0 {

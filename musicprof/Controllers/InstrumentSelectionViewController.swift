@@ -55,7 +55,9 @@ class InstrumentSelectionViewController: BaseReservationViewController {
     }
     
     private func updateInstruments() {
+        let alert = self.showSpinner(withMessage: "Buscando instrumentos...")
         self.service.getInstruments { [weak self] (result: ApiResult<[Instrument]>) in
+            alert.hideView()
             self?.handleResult(result) {
                 guard let strongSelf = self else { return }
                 strongSelf.instruments = Array(Set($0).subtracting(strongSelf.userInstruments))

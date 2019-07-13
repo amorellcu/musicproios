@@ -68,7 +68,9 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
     }
     
     private func updateValidDates(forMonth month: Int) {
+        let alert = self.showSpinner(withMessage: "Buscando días disponibles...")
         self.service.getAvailableDays(for: self.reservation, inMonth: month) { [weak self] (result) in
+            alert.hideView()
             self?.handleResult(result) {
                 guard let stronSelf = self else { return }
                 stronSelf.validDates[month] = $0.map { stronSelf.calendar.startOfDay(for: $0) }

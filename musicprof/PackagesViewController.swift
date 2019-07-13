@@ -104,11 +104,11 @@ class PackagesViewController: UIViewController, NestedController {
 
 extension PackagesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.packages?.count ?? 0
+        return self.packages?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let packages = self.packages else { return UITableViewCell() }
+        guard let packages = self.packages else { return tableView.dequeueReusableCell(withIdentifier: "loadingCell")! }
         let package = packages[indexPath.item]
         let cell = tableView.dequeueReusableCell(withIdentifier: "packageCell") as! PackageCell
         let formatter = NumberFormatter()
@@ -130,7 +130,7 @@ extension PackagesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return self.braintreeClient == nil ? nil : indexPath
+        return self.braintreeClient == nil || self.packages == nil ? nil : indexPath
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

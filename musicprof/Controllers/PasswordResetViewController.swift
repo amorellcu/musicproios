@@ -31,9 +31,9 @@ class PasswordResetViewController: UIViewController, LoginController {
         view.addGestureRecognizer(tap)
 
         let alert = self.showSpinner(withMessage: "Enviando código de verificación...")
-        self.service.sendResetCode(toEmail: self.email) { (result) in
+        self.service.sendResetCode(toEmail: self.email) { [weak self] (result) in
             alert.hideView()
-            self.handleResult(result)
+            self?.handleResult(result)
         }
         
         self.validate()
@@ -69,15 +69,16 @@ class PasswordResetViewController: UIViewController, LoginController {
         let password = self.passwordTextField.text ?? ""
         let code = self.codeTextField.text ?? ""
         let alert = self.showSpinner(withMessage: "Cambiando contraseña...")
-        self.service.resetPassword(forUser: self.email, password: password, code: code) { (result) in
+        self.service.resetPassword(forUser: self.email, password: password, code: code) { [weak self] (result) in
             alert.hideView()
-            self.handleResult(result) {
-                if self.service.isSignedIn {
-                    self.login(withAccount: self.service.user!)
+            self?.handleResult(result) {
+                guard let strongSelf = self else { return }
+                if strongSelf.service.isSignedIn {
+                    strongSelf.login(withAccount: strongSelf.service.user!)
                 } else {
-                    self.service.signIn(withEmail: self.email, password: password, handler: { (result) in
-                        self.handleResult(result) {
-                            self.login(withAccount: $0)
+                    strongSelf.service.signIn(withEmail: strongSelf.email, password: password, handler: { (result) in
+                        self?.handleResult(result) {
+                            self?.login(withAccount: $0)
                         }
                     })
                 }

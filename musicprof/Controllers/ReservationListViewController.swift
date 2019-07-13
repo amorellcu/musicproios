@@ -76,16 +76,20 @@ class ReservationListViewController: UIViewController, NestedController {
 
 extension ReservationListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.classes?.count ?? 0
+        return self.classes?.count ?? 1
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard self.classes != nil else {
-            return UITableViewCell()
+            return tableView.dequeueReusableCell(withIdentifier: "loadingCell")!
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "reservationCell") as! ReservationCell
         self.configureCell(cell, forRowAt: indexPath)
         return cell
+    }
+    
+    open func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return self.classes == nil ? nil : indexPath
     }
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        

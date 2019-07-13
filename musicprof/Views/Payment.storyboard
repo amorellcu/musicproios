@@ -162,6 +162,25 @@
                                                     <outlet property="quantityLabel" destination="lhk-lQ-z1e" id="fWB-Yx-JJU"/>
                                                 </connections>
                                             </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="loadingCell" id="jK1-aQ-tye" customClass="PackageCell" customModule="musicprof" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="93" width="414" height="65"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jK1-aQ-tye" id="nGN-wN-OXf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Iut-C2-WVg">
+                                                            <rect key="frame" x="197" y="22.5" width="20" height="20"/>
+                                                        </activityIndicatorView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Iut-C2-WVg" firstAttribute="centerY" secondItem="nGN-wN-OXf" secondAttribute="centerY" id="HQt-g5-Wdr"/>
+                                                        <constraint firstItem="Iut-C2-WVg" firstAttribute="centerX" secondItem="nGN-wN-OXf" secondAttribute="centerX" id="Wog-4X-qk4"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </tableViewCell>
                                         </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="K2E-Xe-pAr" id="NT3-sT-m61"/>

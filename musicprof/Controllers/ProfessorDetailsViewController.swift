@@ -52,7 +52,9 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
         
         guard sections.count == 0 else { return }
         
+        let alert = self.showSpinner(withMessage: "Buscando datos del profesor...")
         self.service.getProfessor(withId: professor.id) { [weak self] (result) in
+            alert.hideView()
             self?.handleResult(result) { value in
                 self?.reservation.professor = value
                 if let index = self?.professors.firstIndex(where: {value.id == $0.id}) {
@@ -96,7 +98,9 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
     }
     
     @IBAction func onConfirmReservationTapped(_ sender: UIButton) {
+        let alert = self.showSpinner(withMessage: "Reservando...")
         self.service.makeReservation(self.reservation) { [weak self] (result) in
+            alert.hideView()
             self?.handleResult(result) {
                 SCLAlertView().showSuccess("Reservado", subTitle: "La reservación se completó satisfactoriamente.")
                 self?.performSegue(withIdentifier: "backToStart", sender: sender)

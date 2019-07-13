@@ -33,7 +33,9 @@ class InstrumentListViewController: UIViewController, NestedController {
     }
     
     open func updateInstruments() {
+        let alert = self.showSpinner(withMessage: "Buscando instrumentos...")
         self.service.getInstruments { [weak self] (result) in
+            alert.hideView()
             self?.handleResult(result) {
                 self?.updateInstruments($0)
             }

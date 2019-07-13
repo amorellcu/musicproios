@@ -98,19 +98,21 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         client.name = self.studentNameTextField?.text ?? ""
         client.instruments = selection.map({instruments[$0.item]})
         
-        self.service.registerSubaccount(client) { (result) in
-            self.handleResult(result) {
+        let alert = self.showSpinner(withMessage: "Registrando estudiante...")
+        self.service.registerSubaccount(client) { [weak self] (result) in
+            alert.hideView()
+            self?.handleResult(result) {
                 let appearance = SCLAlertView.SCLAppearance(
                     showCloseButton: false
                 )
                 let alertView = SCLAlertView(appearance: appearance)
                 alertView.addButton("SI") {
-                    self.reset()
+                    self?.reset()
                 }
                 alertView.addButton("NO") {
-                    self.performSegue(withIdentifier: "subaccountCreated", sender: sender)
+                    self?.performSegue(withIdentifier: "subaccountCreated", sender: sender)
                 }
-                alertView.showSuccess("El estudiante \(self.studentNameTextField?.text ?? "") se ha agregado correctamente", subTitle: "¿Desea Agregar otro estudiante?")
+                alertView.showSuccess("El estudiante \(client.name) se ha agregado correctamente", subTitle: "¿Desea Agregar otro estudiante?")
             }
         }
     }
@@ -123,16 +125,18 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         client.name = self.studentNameTextField?.text ?? ""
         client.instruments = selection.map({instruments[$0.item]})
         
-        self.service.updateSubaccount(client) { (result) in
-            self.handleResult(result) {
+        let alert = self.showSpinner(withMessage: "Actualizando estudiante...")
+        self.service.updateSubaccount(client) { [weak self] (result) in
+            alert.hideView()
+            self?.handleResult(result) {
                 let appearance = SCLAlertView.SCLAppearance(
                     showCloseButton: false
                 )
                 let alertView = SCLAlertView(appearance: appearance)
                 alertView.addButton("Aceptar") {
-                    self.performSegue(withIdentifier: "subaccountUpdated", sender: sender)
+                    self?.performSegue(withIdentifier: "subaccountUpdated", sender: sender)
                 }
-                alertView.showSuccess("Estudiante actualizado", subTitle: "El estudiante \(self.studentNameTextField?.text ?? "") se actualizó correctamente")
+                alertView.showSuccess("Estudiante actualizado", subTitle: "El estudiante \(client.name) se actualizó correctamente")
             }
         }
     }
@@ -142,9 +146,11 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         let selection = self.collectionView.indexPathsForSelectedItems ?? []
         self.user.instruments = selection.map({instruments[$0.item]})
         
-        self.service.registerUser(self.user) { (result) in
-            self.handleResult(result) {
-                let message = self.client.facebookId == nil ?
+        let alert = self.showSpinner(withMessage: "Registrando...")
+        self.service.registerUser(self.user) { [weak self] (result) in
+            alert.hideView()
+            self?.handleResult(result) {
+                let message = self?.client.facebookId == nil ?
                     "Esperamos que disfrute la experiencia de nuestra aplicación" :
                 "Se le enviará un mail con los datos correspondientes para acceder a la aplicación"
                 let appearance = SCLAlertView.SCLAppearance(
@@ -152,7 +158,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
                 )
                 let alertView1 = SCLAlertView(appearance: appearance)
                 alertView1.addButton("OK") {
-                    self.performSegue(withIdentifier: "registered", sender: sender)
+                    self?.performSegue(withIdentifier: "registered", sender: sender)
                 }
                 alertView1.showSuccess("Gracias por Registrarte", subTitle: message)
             }
