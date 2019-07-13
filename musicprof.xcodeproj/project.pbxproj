@@ -37,6 +37,7 @@
 		53459CF722D4B3120007ECE6 /* MultiformEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53459CF622D4B3120007ECE6 /* MultiformEncodable.swift */; };
 		534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */; };
 		534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4D22BFC043009249FC /* StudentCell.swift */; };
+		5352020722D9EE1F0037D95C /* BaseNestedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5352020622D9EE1F0037D95C /* BaseNestedViewController.swift */; };
 		5357A5DC22D4928000936FA6 /* Professors.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5357A5DB22D4928000936FA6 /* Professors.storyboard */; };
 		5357A5DE22D494C000936FA6 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357A5DD22D494C000936FA6 /* LoginController.swift */; };
 		5357A5E022D49B4300936FA6 /* ClientUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357A5DF22D49B4300936FA6 /* ClientUpdateViewController.swift */; };
@@ -184,6 +185,7 @@
 		53459CF622D4B3120007ECE6 /* MultiformEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiformEncodable.swift; sourceTree = "<group>"; };
 		534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentsViewController.swift; sourceTree = "<group>"; };
 		534F1D4D22BFC043009249FC /* StudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCell.swift; sourceTree = "<group>"; };
+		5352020622D9EE1F0037D95C /* BaseNestedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNestedViewController.swift; sourceTree = "<group>"; };
 		5357A5DB22D4928000936FA6 /* Professors.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Professors.storyboard; sourceTree = "<group>"; };
 		5357A5DD22D494C000936FA6 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		5357A5DF22D49B4300936FA6 /* ClientUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUpdateViewController.swift; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 				53C5DA9622CA41340005AC14 /* ReservationCell.swift */,
 				5333E96C22C0FD4E00175995 /* ContainerViewController.swift */,
 				5393EB7422C7CD4600C47E77 /* MenuViewController.swift */,
+				5352020622D9EE1F0037D95C /* BaseNestedViewController.swift */,
 				5333E96A22C0F8FC00175995 /* BaseReservationViewController.swift */,
 				53FD596122BE4D7D002F5172 /* ProfileViewController.swift */,
 				536752C022C5E19B00DA1590 /* SubaccountSelectionViewController.swift */,
@@ -876,6 +879,7 @@
 				5393EB7922C7EEF700C47E77 /* PackageCell.swift in Sources */,
 				A5A77C3820407866000F1E3E /* ScheduleProfesorViewController.swift in Sources */,
 				5333E96422C0EAAB00175995 /* Professor.swift in Sources */,
+				5352020722D9EE1F0037D95C /* BaseNestedViewController.swift in Sources */,
 				5364C6C022CFB3140052E6FA /* SubaccountListViewController.swift in Sources */,
 				53FDE15122BE25C500EBC13F /* DataRequest.swift in Sources */,
 				53DB770722CA81CE0050F7CD /* InstrumentsUpdateViewController.swift in Sources */,

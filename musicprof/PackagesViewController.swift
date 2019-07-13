@@ -10,8 +10,7 @@ import UIKit
 import Braintree
 import SCLAlertView
 
-class PackagesViewController: UIViewController, NestedController {
-    weak var container: ContainerViewController?
+class PackagesViewController: BaseNestedViewController {
     
     var braintreeClient: BTAPIClient?
     
@@ -36,6 +35,7 @@ class PackagesViewController: UIViewController, NestedController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.container?.setDisplayMode(.picture, animated: animated)
         
         if let location = self.service.currentClient?.location {

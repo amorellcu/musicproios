@@ -10,7 +10,7 @@ import UIKit
 import ActionSheetPicker_3_0
 import SCLAlertView
 
-class ContactInfoViewController: UIViewController, RegistrationController, NestedController {
+class ContactInfoViewController: BaseNestedViewController, RegistrationController {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -18,8 +18,6 @@ class ContactInfoViewController: UIViewController, RegistrationController, Neste
     @IBOutlet weak var addressTextField: UITextField?
     @IBOutlet weak var locationButton: UIButton?
     @IBOutlet weak var scrollView: UIScrollView?
-    
-    weak var container: ContainerViewController?
     
     open var user: User! = Client()
     

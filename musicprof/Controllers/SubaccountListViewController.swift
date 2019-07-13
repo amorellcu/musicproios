@@ -8,10 +8,9 @@
 
 import UIKit
 
-class SubaccountListViewController: UIViewController, NestedController, ClientRegistrationController, ProfileSection {
+class SubaccountListViewController: BaseNestedViewController, ClientRegistrationController, ProfileSection {
     weak var updater: ProfileUpdateViewController?
     var client: Client!
-    weak var container: ContainerViewController?
     
     @IBOutlet weak var tableView: UITableView!
     

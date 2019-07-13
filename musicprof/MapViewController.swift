@@ -11,8 +11,7 @@ import MapKit
 import CoreLocation
 import SCLAlertView
 
-class MapViewController: UIViewController, NestedController {
-    weak var container: ContainerViewController?
+class MapViewController: BaseNestedViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var fixAddressButton: UIButton!
@@ -59,6 +58,7 @@ class MapViewController: UIViewController, NestedController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let navigationItem = self.container?.navigationItem ?? self.navigationItem
         navigationItem.titleView = searchController.searchBar
         self.container?.setDisplayMode(.collapsed, animated: animated)

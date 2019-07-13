@@ -8,9 +8,8 @@
 
 import UIKit
 
-class BaseReservationViewController: UIViewController, ReservationController, NestedController {
-    open var reservation: ReservationRequest!
-    weak var container: ContainerViewController?
+class BaseReservationViewController: BaseNestedViewController, ReservationController {
+    open var reservation: ReservationRequest!    
     
     var student: Student? {
         guard let clientId = self.reservation.studentId else { return nil }
@@ -32,11 +31,9 @@ class BaseReservationViewController: UIViewController, ReservationController, Ne
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if let controller = segue.destination as? ReservationController {
             controller.reservation = self.reservation
-        }
-        if let controller = segue.destination as? NestedController {
-            controller.container = self.container
         }
     }
 }

@@ -8,8 +8,7 @@
 
 import UIKit
 
-class PasswordUpdateViewController: UIViewController, RegistrationController, NestedController {
-    weak var container: ContainerViewController?
+class PasswordUpdateViewController: BaseNestedViewController, RegistrationController {
     var user: User!
     
     @IBOutlet weak var scrollView: UIScrollView!

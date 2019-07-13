@@ -128,6 +128,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
      // MARK: - Navigation    
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.instruments_items = []
         let data = self.user["data"] as? [String: Any]
         let client = data!["client"] as? [String: Any]

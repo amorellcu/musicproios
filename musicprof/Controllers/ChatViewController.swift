@@ -66,6 +66,7 @@ class ChatViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.updateMessages()
         
         let notificationCenter = NotificationCenter.default

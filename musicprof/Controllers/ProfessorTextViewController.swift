@@ -8,10 +8,9 @@
 
 import UIKit
 
-class ProfessorTextViewController: UIViewController, NestedController, ProfessorRegistrationController, ProfileSection {
+class ProfessorTextViewController: BaseNestedViewController, ProfessorRegistrationController, ProfileSection {
     weak var updater: ProfileUpdateViewController?
     var professor: Professor!
-    weak var container: ContainerViewController?
     
     open var text: String?
     
@@ -30,6 +29,7 @@ class ProfessorTextViewController: UIViewController, NestedController, Professor
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.refresh()
     }
     

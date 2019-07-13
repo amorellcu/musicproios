@@ -10,8 +10,7 @@ import UIKit
 import FacebookCore
 import SCLAlertView
 
-class ProfileUpdateViewController: CustomTabController, NestedController {
-    weak var container: ContainerViewController?
+class ProfileUpdateViewController: CustomTabController {
     var tapGestureRecognizer: UITapGestureRecognizer?
     var imageImporter: ImageImporter!
     
@@ -55,6 +54,9 @@ class ProfileUpdateViewController: CustomTabController, NestedController {
         for controller in self.sections {
             if let controller = controller as? RegistrationController {
                 controller.user = self.user
+            }
+            if let controller = controller as? NestedController {
+                controller.container = self.container
             }
             if let controller = controller as? ProfileSection {
                 controller.updater = self

@@ -34,6 +34,7 @@ class ProfessorListViewController: BaseReservationViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.container?.setDisplayMode(.full, animated: animated)
     }
     

@@ -9,8 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class ReservationListViewController: UIViewController, NestedController {
-    weak var container: ContainerViewController?
+class ReservationListViewController: BaseNestedViewController {
     
     let dateFormatter = DateFormatter()
     
@@ -31,6 +30,7 @@ class ReservationListViewController: UIViewController, NestedController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.updateReservations()
     }
     

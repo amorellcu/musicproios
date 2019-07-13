@@ -24,7 +24,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Profile View Controller-->
+        <!--Title-->
         <scene sceneID="lom-LP-AeK">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="3Gh-UA-qbH" customClass="ProfileViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
@@ -249,7 +249,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Kf6-gi-ayu"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0QD-Dh-q3V"/>
+                    <navigationItem key="navigationItem" title="Title" id="J4F-Mq-iEH"/>
                     <connections>
                         <outlet property="emailTextField" destination="Kss-P5-cbx" id="bZY-DH-wDn"/>
                         <outlet property="nameTextField" destination="AQa-rJ-tIs" id="vJ1-ZQ-sEL"/>
@@ -265,7 +265,7 @@
             </objects>
             <point key="canvasLocation" x="989.85507246376824" y="-1292.4107142857142"/>
         </scene>
-        <!--Instrument Selection View Controller-->
+        <!--Title-->
         <scene sceneID="vdS-wK-EiV">
             <objects>
                 <viewController id="Ef7-Kh-Cse" customClass="InstrumentSelectionViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
@@ -483,6 +483,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4H2-Mq-TuK"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="odp-GJ-K3B"/>
                     <connections>
                         <outlet property="addStudentsButton" destination="ky0-XW-gSX" id="ZP1-JL-hxU"/>
                         <outlet property="collectionView" destination="evF-xw-e0h" id="Lng-mU-91A"/>
@@ -1624,6 +1625,6 @@
         <image name="profedetails" width="848" height="446"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ewv-3i-HRL"/>
+        <segue reference="voP-ga-zAQ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,9 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class InstrumentListViewController: UIViewController, NestedController {
-    weak var container: ContainerViewController?
-    
+class InstrumentListViewController: BaseNestedViewController {    
     var instruments: [Instrument]? {
         didSet {
             self.collectionView.reloadData()
@@ -29,6 +27,7 @@ class InstrumentListViewController: UIViewController, NestedController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.container?.setDisplayMode(.full, animated: animated)
     }
     

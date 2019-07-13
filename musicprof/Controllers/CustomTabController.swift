@@ -10,7 +10,7 @@ import UIKit
 
 typealias Section = UIViewController
 
-@IBDesignable class CustomTabController: UIViewController {
+@IBDesignable class CustomTabController: BaseNestedViewController {
     
     let checkedColor = UIColor(red: 0/255 ,green: 255/255 ,blue: 180/255 ,alpha: 1)
     let normalColor = UIColor(red: 124/255, green: 124/255, blue: 124/255, alpha: 1)
@@ -77,6 +77,7 @@ extension CustomTabController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController === self.tabRootController {
             self.collapseSection()
+            self.updateBackButton()
         }
     }
 }
