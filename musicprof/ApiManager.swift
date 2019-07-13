@@ -421,18 +421,14 @@ class ApiManager {
         }
     }
     
-    func getMessages(from reservation: Reservation, handler: @escaping (ApiResult<[Message]>) -> Void) {
-        var dateStr : String? = nil
-        if let date = reservation.classes?.date {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/yyyy"
-            dateStr = formatter.string(from: date)
-        }
+    func getMessages(from reservation: Reservation, since: Date? = nil, handler: @escaping (ApiResult<[Message]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getLogHistory")
-        var parameters: Parameters = ["clientId": reservation.clientId,
-                                      "logFor": reservation.studentType.rawValue,
-                                      "profesorId": reservation.classes?.professorId,
-                                      "date": dateStr]
+        var parameters: Parameters = ["reservaId": reservation.id]
+        if let date = since {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+            parameters["since"] =  formatter.string(from: date)
+        }
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
@@ -445,21 +441,14 @@ class ApiManager {
     
     func sendMessage(_ message: String, for reservation: Reservation, handler: @escaping (ApiResult<Message>) -> Void) {
         let url = baseUrl.appendingPathComponent("insertLog")
-        let _ = self.session.upload(multipartFormData: { (form) in
-            form.encodeIfPresent(reservation.classes?.id, withName: "classId")
-            form.encode(reservation.clientId, withName: "clientId")
-            form.encode(reservation.studentType.rawValue, withName: "logFor")
-            form.encode(message, withName: "message")
-            form.encodeIfPresent(reservation.classes?.professorId, withName: "profesorId")
-        }, to: url) { (result) in
-            switch result {
-            case .success(let request, _, _):
-                let _ = request.responseDecodable { (result: ApiResult<MessageData2>) in
-                    handler(result.transform(with: {$0.log}))
-                }
-            case .failure(let error):
-                handler(.failure(error: error))
-            }
+        let parameters: Parameters = ["reservaId": reservation.id, "logFor": reservation.studentType.rawValue, "message": message]
+        let _ = self.session
+            .request(url, method: .post,
+                     parameters: parameters,
+                     encoding: URLEncoding.httpBody,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<MessageData2>) in
+                handler(result.transform(with: {$0.log}))
         }
     }
     
