@@ -68,7 +68,7 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
         self.address = try container.decodeIfPresent(String.self, forKey: .address)
         self.locationId = try container.decodeIfPresent(Int.self, forKey: .locationId)
         self.location = try container.decodeIfPresent(Location.self, forKey: .location)
-        if let credits = try container.decodeIfPresent(String.self, forKey: .credits) {
+        if let credits = try container.decodeIfPresent(Int.self, forKey: .credits) {
             self.credits = Int(credits)
         }
         let avatar = try user?.decodeIfPresent(String.self, forKey: .avatar)
