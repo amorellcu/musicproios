@@ -147,28 +147,26 @@ class ProfessorClassListViewController: ReservationListViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return indexPath.row == 0
     }
     
-    /*
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         super.tableView(tableView, commit: editingStyle, forRowAt: indexPath)
-        guard editingStyle == .delete else {
+        guard editingStyle == .delete, let reservation = self.classes?[indexPath.section] else {
             return
         }
-        let reservation = self.reservations[indexPath.item]
-        self.ask(question: "¿Está seguro de que quiere cancelar la reservación?",
+        self.ask(question: "¿Está seguro de que quiere cancelar la clase?",
                  title: "Cancelando", yesButton: "Sí", noButton: "No") { (shouldCancel) in
                     guard shouldCancel else { return }
                     let alert = self.showSpinner(withMessage: "Cancelando la reservación...")
-                    self.service.cancelReservation(reservation, handler: { [weak self] (result) in
+                    self.service.cancelClass(reservation, handler: { [weak self] (result) in
                         alert.hideView()
                         self?.handleResult(result) {
-                            self?.reservations.remove(at: indexPath.item)
+                            self?.classes?.remove(at: indexPath.section)
                         }
                     })
         }
     }
- */
 
 }

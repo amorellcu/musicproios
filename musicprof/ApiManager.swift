@@ -755,6 +755,25 @@ class ApiManager {
             }
         }
     }
+    
+    func cancelClass(_ reservation: Class, handler: @escaping (ApiResult<Class>) -> Void) {
+        guard let professorId = self.currentProfessor?.id else {
+            return handler(.failure(error: AppError.invalidOperation))
+        }
+        let url = baseUrl.appendingPathComponent("cancelClass")
+        let parameters: Parameters = ["id": professorId, "classId": reservation.id]
+        let _ = self.session
+            .request(url, method: .post,
+                     parameters: parameters,
+                     encoding: URLEncoding.httpBody,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<ClassData2>) in
+                handler(result.transform(with: { data in
+                    self.currentProfessor?.classes?.removeAll(where: {$0.id == data.classes.id})
+                    return data.classes
+                }))
+        }
+    }
 }
 
 private struct LoginData: Decodable {
@@ -849,6 +868,14 @@ private struct ReservationData2: Decodable {
 
 private struct ClassData: Decodable {
     var classes: [Class]
+}
+
+private struct ClassData2: Decodable {
+    var classes: Class
+    
+    enum CodingKeys: String, CodingKey {
+        case classes = "classes"
+    }
 }
 
 private struct DateWrapper: Decodable {
