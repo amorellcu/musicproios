@@ -147,7 +147,9 @@ class ApiManager {
             .request(url, method: .get,
                      encoding: URLEncoding.default,
                      headers: self.headers)
-            .responseDecodable(completionHandler: handler)
+            .responseDecodable { (result: ApiResult<CreditData>) in
+                handler(result.transform(with: {Int($0.credit) ?? -1}))
+        }
     }
     
     func getPaypalToken(handler: @escaping (ApiResult<String>) -> Void) {
@@ -797,6 +799,10 @@ private struct SubaccountData: Decodable {
 
 private struct SubaccountData2: Decodable {
     var subaccount: Subaccount
+}
+
+private struct CreditData: Decodable {
+    var credit: String
 }
 
 private struct InstrumentData: Decodable {

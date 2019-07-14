@@ -174,12 +174,14 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         var identifier: String
         var avatarUrl: URL?
         switch message.source {
-        case .local:
+        case .client:
             identifier = "clientCell"
             avatarUrl = self.clientAvatar
-        default:
+        case .professor:
             identifier = "professorCell"
             avatarUrl = self.professorAvatar
+        default:
+            return UITableViewCell()
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier)!
         cell.textLabel?.text = message.text

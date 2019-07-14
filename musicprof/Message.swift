@@ -16,8 +16,15 @@ struct Message: Decodable {
     var professorId: Int?
     var text: String
     var date: Date?
+    
     var source: MessageSource {
-        return .local
+        if (clientId != nil || subaccountId != nil) && professorId == nil {
+            return .client
+        }
+        if clientId == nil && subaccountId == nil && professorId != nil {
+            return .professor
+        }
+        return .unknown
     }
     
     enum CodingKeys: String, CodingKey {
@@ -32,6 +39,7 @@ struct Message: Decodable {
 }
 
 enum MessageSource: String, Decodable {
-    case local
-    case remote
+    case client
+    case professor
+    case unknown
 }
