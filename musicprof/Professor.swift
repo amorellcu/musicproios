@@ -124,6 +124,7 @@ class Professor: NSObject, Decodable, NSCoding, User {
         case locations = "colonias"
         case instruments
         case classes = "classes"
+        case nextClasses = "next_classes"
     }
     
     fileprivate enum UserKeys: String, CodingKey {

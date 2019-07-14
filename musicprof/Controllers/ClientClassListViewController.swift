@@ -69,6 +69,8 @@ class ClientClassListViewController: ReservationListViewController {
         
         guard let controller = segue.destination as? ChatViewController else { return }
         controller.reservation = theClass
+        controller.client = self.service.currentClient
+        controller.professor = theClass.classes?.professor
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

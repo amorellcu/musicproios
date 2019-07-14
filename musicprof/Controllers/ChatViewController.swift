@@ -16,7 +16,8 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var instrumentImageView: UIImageView!
-    @IBOutlet weak var professorLabel: UILabel!
+    @IBOutlet weak var professorLabel: UILabel?
+    @IBOutlet weak var studentLabel: UILabel?
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
@@ -24,8 +25,23 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var textInputConstraint: NSLayoutConstraint!
     
     var reservation: Reservation?
-    var clientAvatar: URL?
-    var professorAvatar: URL?
+    var client: Client?
+    var student: Student? {
+        guard let reservation = self.reservation, let client = self.client else { return nil }
+        switch reservation.studentType {
+        case .account:
+            return client
+        default:
+            return client.subaccounts?.first(where: {$0.id == reservation.subaccountId})
+        }
+    }
+    var professor: Professor?
+    var clientAvatar: URL? {
+        return client?.avatarUrl
+    }
+    var professorAvatar: URL? {
+        return professor?.avatarUrl
+    }
     var timer: Timer?
     
     var messages = [Message]() {
@@ -40,29 +56,28 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
 
         self.navigationController?.setTransparentBar()
-        self.titleLabel.text = ""
-        if let date = self.reservation?.classes?.date {
-            let formatter = DateFormatter()
-            formatter.locale = Locale(identifier: "es-ES")
-            formatter.dateStyle = .long
-            formatter.timeStyle = .none
-            self.titleLabel.text = "Clase \(formatter.string(from: date))"
-        }
-        self.professorLabel.text = self.reservation?.classes?.professor?.name
-        self.clientAvatar = self.service.user?.avatarUrl
-        self.setAvatar(clientAvatar, for: self.avatarImageView)
-        self.professorAvatar = self.reservation?.classes?.professor?.avatarUrl
-        self.setAvatar(professorAvatar, for: self.professorImageView)
+        self.client = self.client ?? self.service.currentClient ?? self.reservation?.client
+        self.professor = self.professor ?? self.service.currentProfessor ?? self.reservation?.classes?.professor
+        self.refresh()
         
-        //self.setAvatar(reservation?.classes?.instrument?.iconUrl, for: self.instrumentImageView, defaultName: "no_instrument")
-        let filter = TemplateFilter()
-        if let iconURL = reservation?.classes?.instrument?.iconUrl {
-            self.instrumentImageView.af_setImage(withURL: iconURL, filter: filter)
-        } else {
-            self.instrumentImageView.image = filter.filter(UIImage(named: "no_instrument")!)
+        if let reservation = self.reservation {
+            if self.client == nil {
+                self.service.getClient(withId: reservation.clientId) { [weak self] (result) in
+                    self?.handleResult(result) {
+                        self?.client = $0
+                        self?.refresh()
+                    }
+                }
+            }
+            if self.professor == nil, let professorId = reservation.classes?.professorId {
+                self.service.getProfessor(withId: professorId) { [weak self] (result) in
+                    self?.handleResult(result) {
+                        self?.professor = $0
+                        self?.refresh()
+                    }
+                }
+            }
         }
-        
-        self.cancelButton.isEnabled = self.reservation?.status == .normal
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +108,31 @@ class ChatViewController: UIViewController {
                 self.messages = $0
             }
         }
+    }
+    
+    func refresh() {
+        self.titleLabel.text = ""
+        if let date = self.reservation?.classes?.date {
+            let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "es-ES")
+            formatter.dateStyle = .long
+            formatter.timeStyle = .none
+            self.titleLabel.text = "Clase \(formatter.string(from: date))"
+        }
+        self.professorLabel?.text = self.professor?.name
+        self.studentLabel?.text = self.student?.name
+        self.setAvatar(clientAvatar, for: self.avatarImageView)
+        self.setAvatar(professorAvatar, for: self.professorImageView)
+        
+        //self.setAvatar(reservation?.classes?.instrument?.iconUrl, for: self.instrumentImageView, defaultName: "no_instrument")
+        let filter = TemplateFilter()
+        if let iconURL = reservation?.classes?.instrument?.iconUrl {
+            self.instrumentImageView.af_setImage(withURL: iconURL, filter: filter)
+        } else {
+            self.instrumentImageView.image = filter.filter(UIImage(named: "no_instrument")!)
+        }
+        
+        self.cancelButton.isEnabled = self.reservation?.status == .normal
     }
     
     private func setAvatar(_ url: URL?, for imageView: UIImageView, defaultName: String? = nil) {

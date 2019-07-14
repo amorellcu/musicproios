@@ -16,6 +16,7 @@ struct Class: Decodable {
     var instrument: Instrument?
     var instrumentId: Int?
     var status: Int?
+    var reservations: [Reservation]?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -25,5 +26,6 @@ struct Class: Decodable {
         case instrumentId = "instrument_id"
         case instrument
         case status = "class_status"
+        case reservations
     }
 }

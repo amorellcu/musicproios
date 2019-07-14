@@ -1340,10 +1340,10 @@
             </objects>
             <point key="canvasLocation" x="2580" y="1123"/>
         </scene>
-        <!--Classes-->
+        <!--ClientClasses-->
         <scene sceneID="SuC-Sm-BTE">
             <objects>
-                <viewControllerPlaceholder storyboardName="Classes" id="oQF-FF-nzv" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="ClientClasses" id="oQF-FF-nzv" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Aht-Pd-tfG"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pax-Dq-bzh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1465,10 +1465,10 @@
             </objects>
             <point key="canvasLocation" x="257.97101449275362" y="326.78571428571428"/>
         </scene>
-        <!--Profile-->
+        <!--ClientProfile-->
         <scene sceneID="u0H-kc-eNZ">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="7fJ-7E-EXU" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="ClientProfile" id="7fJ-7E-EXU" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="tWc-cM-Q34"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ghe-Xf-gL8" userLabel="First Responder" sceneMemberID="firstResponder"/>

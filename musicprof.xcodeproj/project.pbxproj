@@ -14,6 +14,10 @@
 		18F3B0C6C9FD26CAF18EF54A /* libPods-musicprofUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75154C0B7B893B2085E3E130 /* libPods-musicprofUITests.a */; };
 		530591E522CCF07E00905D71 /* ImageImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530591E422CCF07E00905D71 /* ImageImporter.swift */; };
 		5305F99622C4E950002284EF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5305F99522C4E950002284EF /* UIView.swift */; };
+		530B852722DB16680021C70E /* ProfessorProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530B852622DB16680021C70E /* ProfessorProfile.storyboard */; };
+		530B852922DB18BB0021C70E /* ProfessorClasses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530B852822DB18BB0021C70E /* ProfessorClasses.storyboard */; };
+		530B852B22DB1B5B0021C70E /* ProfessorClassListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530B852A22DB1B5B0021C70E /* ProfessorClassListViewController.swift */; };
+		530B852D22DB3B9E0021C70E /* ClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530B852C22DB3B9E0021C70E /* ClientCell.swift */; };
 		530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A77229A1656000AFC86 /* RootViewController.swift */; };
 		530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A79229B773A000AFC86 /* UIViewController.swift */; };
 		53130DC822D06DF3008B06B2 /* ProfileSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53130DC722D06DF3008B06B2 /* ProfileSection.swift */; };
@@ -33,7 +37,7 @@
 		5336832022D3A98800C702D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5336831F22D3A98800C702D6 /* User.swift */; };
 		533E63F822C8BE0B007EE029 /* ToggleButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533E63F722C8BE0B007EE029 /* ToggleButton.xib */; };
 		533E63FA22C8BE43007EE029 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533E63F922C8BE43007EE029 /* ToggleButton.swift */; };
-		533E63FC22C8CA76007EE029 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 533E63FB22C8CA76007EE029 /* Profile.storyboard */; };
+		533E63FC22C8CA76007EE029 /* ClientProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 533E63FB22C8CA76007EE029 /* ClientProfile.storyboard */; };
 		53459CF722D4B3120007ECE6 /* MultiformEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53459CF622D4B3120007ECE6 /* MultiformEncodable.swift */; };
 		534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */; };
 		534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534F1D4D22BFC043009249FC /* StudentCell.swift */; };
@@ -51,7 +55,7 @@
 		537D421122D60CD50011A504 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537D421022D60CD50011A504 /* ChatViewController.swift */; };
 		537D421322D60FE00011A504 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537D421222D60FE00011A504 /* MessageCell.swift */; };
 		5380312C22CE42570016175E /* ClientClassListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5380312B22CE42570016175E /* ClientClassListViewController.swift */; };
-		5380312E22CE44ED0016175E /* Classes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5380312D22CE44ED0016175E /* Classes.storyboard */; };
+		5380312E22CE44ED0016175E /* ClientClasses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5380312D22CE44ED0016175E /* ClientClasses.storyboard */; };
 		53907E0B22B1983300314EC8 /* InstrumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0A22B1983300314EC8 /* InstrumentCell.swift */; };
 		53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53907E0C22B19EC700314EC8 /* Instrument.swift */; };
 		5393EB7322C7CC5C00C47E77 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5393EB7222C7CC5C00C47E77 /* Payment.storyboard */; };
@@ -162,6 +166,10 @@
 		4AF714FBEDDAEBE65E173A2A /* libPods-musicprofTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-musicprofTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		530591E422CCF07E00905D71 /* ImageImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageImporter.swift; sourceTree = "<group>"; };
 		5305F99522C4E950002284EF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		530B852622DB16680021C70E /* ProfessorProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfessorProfile.storyboard; sourceTree = "<group>"; };
+		530B852822DB18BB0021C70E /* ProfessorClasses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfessorClasses.storyboard; sourceTree = "<group>"; };
+		530B852A22DB1B5B0021C70E /* ProfessorClassListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorClassListViewController.swift; sourceTree = "<group>"; };
+		530B852C22DB3B9E0021C70E /* ClientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCell.swift; sourceTree = "<group>"; };
 		530F8A77229A1656000AFC86 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		530F8A79229B773A000AFC86 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		53130DC722D06DF3008B06B2 /* ProfileSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSection.swift; sourceTree = "<group>"; };
@@ -181,7 +189,7 @@
 		5336831F22D3A98800C702D6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		533E63F722C8BE0B007EE029 /* ToggleButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleButton.xib; sourceTree = "<group>"; };
 		533E63F922C8BE43007EE029 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
-		533E63FB22C8CA76007EE029 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		533E63FB22C8CA76007EE029 /* ClientProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClientProfile.storyboard; sourceTree = "<group>"; };
 		53459CF622D4B3120007ECE6 /* MultiformEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiformEncodable.swift; sourceTree = "<group>"; };
 		534F1D4B22BFBFFB009249FC /* AddStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentsViewController.swift; sourceTree = "<group>"; };
 		534F1D4D22BFC043009249FC /* StudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCell.swift; sourceTree = "<group>"; };
@@ -199,7 +207,7 @@
 		537D421022D60CD50011A504 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		537D421222D60FE00011A504 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		5380312B22CE42570016175E /* ClientClassListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientClassListViewController.swift; sourceTree = "<group>"; };
-		5380312D22CE44ED0016175E /* Classes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Classes.storyboard; sourceTree = "<group>"; };
+		5380312D22CE44ED0016175E /* ClientClasses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClientClasses.storyboard; sourceTree = "<group>"; };
 		53907E0A22B1983300314EC8 /* InstrumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentCell.swift; sourceTree = "<group>"; };
 		53907E0C22B19EC700314EC8 /* Instrument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instrument.swift; sourceTree = "<group>"; };
 		5393EB7222C7CC5C00C47E77 /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
@@ -381,10 +389,12 @@
 				5393EB7222C7CC5C00C47E77 /* Payment.storyboard */,
 				533E63F722C8BE0B007EE029 /* ToggleButton.xib */,
 				533E63F922C8BE43007EE029 /* ToggleButton.swift */,
-				533E63FB22C8CA76007EE029 /* Profile.storyboard */,
-				5380312D22CE44ED0016175E /* Classes.storyboard */,
+				533E63FB22C8CA76007EE029 /* ClientProfile.storyboard */,
+				5380312D22CE44ED0016175E /* ClientClasses.storyboard */,
 				5327962122CCBE2C0085FAFD /* Maps.storyboard */,
 				5357A5DB22D4928000936FA6 /* Professors.storyboard */,
+				530B852622DB16680021C70E /* ProfessorProfile.storyboard */,
+				530B852822DB18BB0021C70E /* ProfessorClasses.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -469,6 +479,8 @@
 				5364C6BF22CFB3140052E6FA /* SubaccountListViewController.swift */,
 				53F8C4F522D50439001B0301 /* ProfessorTextViewController.swift */,
 				5380312B22CE42570016175E /* ClientClassListViewController.swift */,
+				530B852A22DB1B5B0021C70E /* ProfessorClassListViewController.swift */,
+				530B852C22DB3B9E0021C70E /* ClientCell.swift */,
 				537D421022D60CD50011A504 /* ChatViewController.swift */,
 				537D421222D60FE00011A504 /* MessageCell.swift */,
 			);
@@ -659,13 +671,15 @@
 				539C80BD22C4C621009D8469 /* FilsonProHeavy-Heavy.otf in Resources */,
 				539C80C022C4C621009D8469 /* FilsonProLightItalic-Italic.otf in Resources */,
 				539C80BA22C4C621009D8469 /* FilsonProBoldItalic-Italic.otf in Resources */,
+				530B852722DB16680021C70E /* ProfessorProfile.storyboard in Resources */,
 				5327962222CCBE2C0085FAFD /* Maps.storyboard in Resources */,
-				533E63FC22C8CA76007EE029 /* Profile.storyboard in Resources */,
+				533E63FC22C8CA76007EE029 /* ClientProfile.storyboard in Resources */,
 				539C80C422C4C621009D8469 /* FilsonProRegularItalic-Italic.otf in Resources */,
 				539C80BF22C4C621009D8469 /* FilsonProLight-Light.otf in Resources */,
 				539C80C522C4C621009D8469 /* FilsonProThin-Thin.otf in Resources */,
 				539C80B922C4C621009D8469 /* FilsonProBold-Bold.otf in Resources */,
 				533E63F822C8BE0B007EE029 /* ToggleButton.xib in Resources */,
+				530B852922DB18BB0021C70E /* ProfessorClasses.storyboard in Resources */,
 				539C80B722C4C621009D8469 /* FilsonProBlack-Black.otf in Resources */,
 				539C80C222C4C621009D8469 /* FilsonProMediumItalic-Italic.otf in Resources */,
 				539C80C622C4C621009D8469 /* FilsonProThinItalic-Italic.otf in Resources */,
@@ -676,7 +690,7 @@
 				539C80C122C4C621009D8469 /* FilsonProMedium-Medium.otf in Resources */,
 				A5598C1D201F8C3B000C64F6 /* Main.storyboard in Resources */,
 				539C80C322C4C621009D8469 /* FilsonProRegular-Regular.otf in Resources */,
-				5380312E22CE44ED0016175E /* Classes.storyboard in Resources */,
+				5380312E22CE44ED0016175E /* ClientClasses.storyboard in Resources */,
 				53D98FBE22BD35D10027FDCD /* Reservation.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -822,6 +836,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5AA588D202A57B100F4370A /* UsersTableViewCell.swift in Sources */,
+				530B852B22DB1B5B0021C70E /* ProfessorClassListViewController.swift in Sources */,
 				537D421322D60FE00011A504 /* MessageCell.swift in Sources */,
 				A5E1FB202044CE6600B15DD9 /* TextTableViewCell.swift in Sources */,
 				5333E96622C0EF9600175995 /* ReservationRequest.swift in Sources */,
@@ -852,6 +867,7 @@
 				A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */,
 				53616E6C22CBAF6800B36549 /* PasswordUpdateViewController.swift in Sources */,
 				534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */,
+				530B852D22DB3B9E0021C70E /* ClientCell.swift in Sources */,
 				A5E1FB1E2044BC2200B15DD9 /* ProfessorDetailsViewController.swift in Sources */,
 				5332FBB822C91645000BF4B0 /* ProfileUpdateViewController.swift in Sources */,
 				15588081209BB753003DC16A /* PackagesViewController.swift in Sources */,

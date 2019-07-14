@@ -75,7 +75,11 @@ class ReservationListViewController: BaseNestedViewController {
 }
 
 extension ReservationListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.classes?.count ?? 1
     }
     

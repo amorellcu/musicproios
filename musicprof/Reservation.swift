@@ -12,6 +12,7 @@ struct Reservation: Decodable {
     var id: Int
     var classId: Int
     var clientId: Int
+    var client: Client?
     var status: ReservationState
     var subaccountId: Int?
     var creditId: Int?
@@ -22,6 +23,7 @@ struct Reservation: Decodable {
         case id
         case classId = "class_id"
         case clientId = "client_id"
+        case client
         case status = "reservation_status"
         case subaccountId = "subcuenta_id"
         case creditId = "credit_id"
