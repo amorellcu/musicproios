@@ -1,9 +1,9 @@
 //
-//  CalendarViewController.swift
+//  ClassCalendarViewController.swift
 //  musicprof
 //
-//  Created by Alexis Morell Blanco on 13/02/18.
-//  Copyright © 2018 Alexis Morell Blanco. All rights reserved.
+//  Created by John Doe on 7/15/19.
+//  Copyright © 2019 Alexis Morell Blanco. All rights reserved.
 //
 
 import UIKit
@@ -17,8 +17,9 @@ private protocol MonthViewDelegate {
     func didChangeMonth(monthIndex: Int)
 }
 
-class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
-
+class ClassCalendarViewController: BaseNestedViewController, ClassController {
+    var reservation: ClassRequest!
+    
     @IBOutlet weak var daysView: UIView!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
@@ -36,11 +37,6 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
         didSet {
             self.reservation.date = self.selectedDate
             self.proceedButton.isEnabled = self.selectedDate != nil
-        }
-    }
-    var validDates = [Int: [Date]]() {
-        didSet {
-            self.calendarView.reloadData()
         }
     }
     
@@ -68,24 +64,11 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    private func updateValidDates(forMonth month: Int) {
-        let alert = self.showSpinner(withMessage: "Buscando días disponibles...")
-        self.service.getAvailableDays(for: self.reservation, inMonth: month) { [weak self] (result) in
-            alert.hideView()
-            self?.handleResult(result) {
-                guard let stronSelf = self else { return }
-                stronSelf.validDates[month] = $0.map { stronSelf.calendar.startOfDay(for: $0) }
-            }
-        }
-    }
-    
     private func isDateValid(_ date: Date) -> Bool {
         guard (self.startDate...self.endDate).contains(date) else { return false }
-        let month = self.calendar.component(.month, from: date)
-        return self.validDates[month]?.contains(date) ?? false
-        //return true
+        return true
     }
-
+    
     func setupCalendarView() {
         calendarView.minimumLineSpacing = 0
         calendarView.minimumInteritemSpacing = 0
@@ -106,13 +89,9 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
         
         self.previousMonthButton.isEnabled = !visibleDates.monthDates.contains(where: {$0.date == self.startDate})
         self.nextMonthButton.isEnabled = !visibleDates.monthDates.contains(where: {$0.date == self.endDate})
-        
-        if self.validDates[month] == nil {
-            self.updateValidDates(forMonth: month)
-        }
     }
     
-   
+    
     @IBAction func onPreviousMonthTapped(_ sender: Any) {
         self.calendarView.scrollToSegment(.previous)
     }
@@ -121,12 +100,15 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
         self.calendarView.scrollToSegment(.next)
     }
     
-    @IBAction func onProceedTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "selectTime", sender: calendar)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let controller = segue.destination as? ClassController {
+            controller.reservation = self.reservation
+        }
     }
 }
 
-extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
+extension ClassCalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
     private func configureCell(_ cell: JTAppleCell, forDate date: Date, cellState: CellState) {
         guard let cell = cell as? CalendarCell else { return }
         cell.dateLabel.text = cellState.text
@@ -181,4 +163,3 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         self.updateMonthLabel(from: visibleDates)
     }
 }
-

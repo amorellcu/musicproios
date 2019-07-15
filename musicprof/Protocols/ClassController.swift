@@ -11,3 +11,9 @@ import Foundation
 protocol ClassController: class {
     var reservation: ClassRequest! { get set }
 }
+
+extension ClassController {
+    var calendar: Calendar {
+        return reservation.calendar ?? Calendar.current
+    }
+}

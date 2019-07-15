@@ -24,6 +24,8 @@
 		530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A79229B773A000AFC86 /* UIViewController.swift */; };
 		53130DC822D06DF3008B06B2 /* ProfileSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53130DC722D06DF3008B06B2 /* ProfileSection.swift */; };
 		531FC38422D627B700BDDFCF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531FC38322D627B700BDDFCF /* Message.swift */; };
+		531FDF9422DD007E00DD1439 /* ClassInstrumentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531FDF9322DD007E00DD1439 /* ClassInstrumentSelectionViewController.swift */; };
+		531FDF9622DD01D200DD1439 /* ClassCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531FDF9522DD01D200DD1439 /* ClassCalendarViewController.swift */; };
 		5327962222CCBE2C0085FAFD /* Maps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5327962122CCBE2C0085FAFD /* Maps.storyboard */; };
 		532CC89C22C50D3F00FB1822 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532CC89B22C50D3F00FB1822 /* TransparentButton.swift */; };
 		5332FBB822C91645000BF4B0 /* ProfileUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */; };
@@ -178,6 +180,8 @@
 		530F8A79229B773A000AFC86 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		53130DC722D06DF3008B06B2 /* ProfileSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSection.swift; sourceTree = "<group>"; };
 		531FC38322D627B700BDDFCF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		531FDF9322DD007E00DD1439 /* ClassInstrumentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassInstrumentSelectionViewController.swift; sourceTree = "<group>"; };
+		531FDF9522DD01D200DD1439 /* ClassCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCalendarViewController.swift; sourceTree = "<group>"; };
 		5327962122CCBE2C0085FAFD /* Maps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Maps.storyboard; sourceTree = "<group>"; };
 		532CC89B22C50D3F00FB1822 /* TransparentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
 		5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateViewController.swift; sourceTree = "<group>"; };
@@ -489,6 +493,8 @@
 				530B852C22DB3B9E0021C70E /* ClientCell.swift */,
 				537D421022D60CD50011A504 /* ChatViewController.swift */,
 				537D421222D60FE00011A504 /* MessageCell.swift */,
+				531FDF9322DD007E00DD1439 /* ClassInstrumentSelectionViewController.swift */,
+				531FDF9522DD01D200DD1439 /* ClassCalendarViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -856,6 +862,7 @@
 				533E63FA22C8BE43007EE029 /* ToggleButton.swift in Sources */,
 				5333E96922C0F78900175995 /* ReservationController.swift in Sources */,
 				536752C122C5E19B00DA1590 /* SubaccountSelectionViewController.swift in Sources */,
+				531FDF9622DD01D200DD1439 /* ClassCalendarViewController.swift in Sources */,
 				53D8E20222C3D5FB00E3FABB /* DateCell.swift in Sources */,
 				5333E96D22C0FD4E00175995 /* ContainerViewController.swift in Sources */,
 				53130DC822D06DF3008B06B2 /* ProfileSection.swift in Sources */,
@@ -870,6 +877,7 @@
 				53E7D64422C54A35006DA7B4 /* Student.swift in Sources */,
 				5333E96B22C0F8FC00175995 /* BaseReservationViewController.swift in Sources */,
 				A5598C71201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift in Sources */,
+				531FDF9422DD007E00DD1439 /* ClassInstrumentSelectionViewController.swift in Sources */,
 				537D421122D60CD50011A504 /* ChatViewController.swift in Sources */,
 				530DB8CD22DCEB5000D82378 /* ClassController.swift in Sources */,
 				5332FBBA22C917F9000BF4B0 /* CustomTabController.swift in Sources */,

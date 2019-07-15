@@ -64,6 +64,15 @@ class ClientClassListViewController: ReservationListViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        
+        if let controller = segue.destination as? ReservationController {
+            var reservation = ReservationRequest()
+            var calendar = Calendar.current
+            calendar.locale = Locale(identifier: "es-Es")
+            reservation.calendar = calendar
+            controller.reservation = reservation
+        }
+        
         guard let selection = self.tableView.indexPathForSelectedRow else { return }
         let theClass = reservations[selection.item]
         

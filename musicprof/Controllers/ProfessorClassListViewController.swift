@@ -144,6 +144,15 @@ class ProfessorClassListViewController: ReservationListViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        
+        if let controller = segue.destination as? ClassController {
+            var reservation = ClassRequest()
+            var calendar = Calendar.current
+            calendar.locale = Locale(identifier: "es-Es")
+            reservation.calendar = calendar
+            controller.reservation = reservation
+        }
+        
         guard let selection = self.tableView.indexPathForSelectedRow else { return }
         guard let theClass = self.classes?[selection.section], var reservation = theClass.reservations?[selection.row - 1] else { return }
         reservation.classes = theClass

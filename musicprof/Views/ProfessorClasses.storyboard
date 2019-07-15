@@ -795,10 +795,10 @@
             </objects>
             <point key="canvasLocation" x="2644.9275362318845" y="770.75892857142856"/>
         </scene>
-        <!--Professor Instrument Selection View Controller-->
+        <!--Class Instrument Selection View Controller-->
         <scene sceneID="6WU-Cx-WQi">
             <objects>
-                <viewController id="KzB-Dd-DTD" customClass="ProfessorInstrumentSelectionViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KzB-Dd-DTD" customClass="ClassInstrumentSelectionViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rzk-qa-RpI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -930,7 +930,6 @@
                                             <color key="titleColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="onProceedTapped:" destination="5BR-ei-5nt" eventType="touchUpInside" id="ite-wH-qTc"/>
                                             <segue destination="5BR-ei-5nt" kind="show" identifier="continue" id="avH-wP-i2r"/>
                                         </connections>
                                     </button>
@@ -959,6 +958,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JtN-q4-trB"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="YbM-m1-2OU" id="TKS-Zh-JQb"/>
+                        <outlet property="continueButton" destination="d1Y-pS-KUq" id="Mjn-Hg-sdY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sVA-xR-DZn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -967,7 +970,7 @@
         <!--Ib Calendar Data Source-->
         <scene sceneID="bMW-fl-APP">
             <objects>
-                <viewController storyboardIdentifier="UserCalendar" id="5BR-ei-5nt" customClass="CalendarViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserCalendar" id="5BR-ei-5nt" customClass="ClassCalendarViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oqQ-oW-15N">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1250,8 +1253,7 @@
                                             <color key="titleColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="onProceedTapped:" destination="5BR-ei-5nt" eventType="touchUpInside" id="e1a-ya-U8I"/>
-                                            <segue destination="atq-H1-DjK" kind="show" identifier="continue" id="9gg-a1-q8d"/>
+                                            <segue destination="atq-H1-DjK" kind="show" identifier="selectTime" id="9gg-a1-q8d"/>
                                         </connections>
                                     </button>
                                 </subviews>
