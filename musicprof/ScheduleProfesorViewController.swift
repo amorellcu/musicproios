@@ -10,7 +10,7 @@ import UIKit
 import SCLAlertView
 import AlamofireImage
 
-class ScheduleProfesorViewController: BaseReservationViewController {
+class ScheduleProfesorViewController: BaseReservationViewController<ReservationRequest> {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var dateLabel: UIButton!

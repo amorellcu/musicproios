@@ -18,6 +18,8 @@
 		530B852922DB18BB0021C70E /* ProfessorClasses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530B852822DB18BB0021C70E /* ProfessorClasses.storyboard */; };
 		530B852B22DB1B5B0021C70E /* ProfessorClassListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530B852A22DB1B5B0021C70E /* ProfessorClassListViewController.swift */; };
 		530B852D22DB3B9E0021C70E /* ClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530B852C22DB3B9E0021C70E /* ClientCell.swift */; };
+		530DB8C922DCDBB800D82378 /* ClassRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530DB8C822DCDBB800D82378 /* ClassRequest.swift */; };
+		530DB8CD22DCEB5000D82378 /* ClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530DB8CC22DCEB5000D82378 /* ClassController.swift */; };
 		530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A77229A1656000AFC86 /* RootViewController.swift */; };
 		530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A79229B773A000AFC86 /* UIViewController.swift */; };
 		53130DC822D06DF3008B06B2 /* ProfileSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53130DC722D06DF3008B06B2 /* ProfileSection.swift */; };
@@ -170,6 +172,8 @@
 		530B852822DB18BB0021C70E /* ProfessorClasses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfessorClasses.storyboard; sourceTree = "<group>"; };
 		530B852A22DB1B5B0021C70E /* ProfessorClassListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorClassListViewController.swift; sourceTree = "<group>"; };
 		530B852C22DB3B9E0021C70E /* ClientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCell.swift; sourceTree = "<group>"; };
+		530DB8C822DCDBB800D82378 /* ClassRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassRequest.swift; sourceTree = "<group>"; };
+		530DB8CC22DCEB5000D82378 /* ClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassController.swift; sourceTree = "<group>"; };
 		530F8A77229A1656000AFC86 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		530F8A79229B773A000AFC86 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		53130DC722D06DF3008B06B2 /* ProfileSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSection.swift; sourceTree = "<group>"; };
@@ -348,6 +352,7 @@
 			children = (
 				53D1C57222C5F8C6002BDAE4 /* RegistrationController.swift */,
 				5333E96822C0F78900175995 /* ReservationController.swift */,
+				530DB8CC22DCEB5000D82378 /* ClassController.swift */,
 				5333E96E22C0FDE500175995 /* NestedController.swift */,
 				53E7D64322C54A35006DA7B4 /* Student.swift */,
 				53130DC722D06DF3008B06B2 /* ProfileSection.swift */,
@@ -425,6 +430,7 @@
 				53DEFCE022C241AF0003852E /* Location.swift */,
 				5333E96322C0EAAB00175995 /* Professor.swift */,
 				53D8E1FF22C3AB2100E3FABB /* Class.swift */,
+				530DB8C822DCDBB800D82378 /* ClassRequest.swift */,
 				5366CFD822CC9B4400FFDEE2 /* Reservation.swift */,
 				5333E96522C0EF9600175995 /* ReservationRequest.swift */,
 				5393EB7622C7DC3200C47E77 /* Package.swift */,
@@ -853,6 +859,7 @@
 				53D8E20222C3D5FB00E3FABB /* DateCell.swift in Sources */,
 				5333E96D22C0FD4E00175995 /* ContainerViewController.swift in Sources */,
 				53130DC822D06DF3008B06B2 /* ProfileSection.swift in Sources */,
+				530DB8C922DCDBB800D82378 /* ClassRequest.swift in Sources */,
 				536C704122C1F30A00E217FF /* UINavigationController.swift in Sources */,
 				5357A5E222D49B5A00936FA6 /* ProfessorUpdateViewController.swift in Sources */,
 				530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */,
@@ -864,6 +871,7 @@
 				5333E96B22C0F8FC00175995 /* BaseReservationViewController.swift in Sources */,
 				A5598C71201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift in Sources */,
 				537D421122D60CD50011A504 /* ChatViewController.swift in Sources */,
+				530DB8CD22DCEB5000D82378 /* ClassController.swift in Sources */,
 				5332FBBA22C917F9000BF4B0 /* CustomTabController.swift in Sources */,
 				530591E522CCF07E00905D71 /* ImageImporter.swift in Sources */,
 				A5315B35203DF90A0043A0E2 /* LocationSearchTable.swift in Sources */,

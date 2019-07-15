@@ -756,6 +756,19 @@ class ApiManager {
         }
     }
     
+    func createClass(_ request: ClassRequest,
+                     handler: @escaping (ApiResult<Class>) -> Void) {
+        var request = request
+        request.professorId = request.professorId ?? self.currentProfessor?.id
+        let url = baseUrl.appendingPathComponent("createClass")
+        self.post(request, to: url) { (result: ApiResult<ClassData2>) in
+            handler(result.transform(with: {
+                self.currentProfessor?.classes?.append($0.classes)
+                return $0.classes
+            }))
+        }
+    }
+    
     func cancelClass(_ reservation: Class, handler: @escaping (ApiResult<Class>) -> Void) {
         guard let professorId = self.currentProfessor?.id else {
             return handler(.failure(error: AppError.invalidOperation))
