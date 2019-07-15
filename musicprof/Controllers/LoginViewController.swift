@@ -9,6 +9,7 @@
 import UIKit
 import SCLAlertView
 import Alamofire
+import M13Checkbox
 
 import FacebookCore
 import FacebookLogin
@@ -22,6 +23,7 @@ class LoginViewController: UIViewController, LoginController {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passText: UITextField!
     @IBOutlet weak var scrollview: UIScrollView!
+    @IBOutlet weak var rememberCheckBox: M13Checkbox!
     
     let configuration = Configuration()
     
@@ -29,7 +31,13 @@ class LoginViewController: UIViewController, LoginController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //if the user is already logged in
-        self.emailText.text = UserDefaults.standard.string(forKey: "user")
+        self.rememberCheckBox.boxType = .square
+        self.rememberCheckBox.markType = .checkmark
+        if let userName = UserDefaults.standard.string(forKey: "user"), !userName.isEmpty {
+            self.rememberCheckBox.setCheckState(.checked, animated: true)
+            self.emailText.text = userName
+        }
+        
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
@@ -68,6 +76,11 @@ class LoginViewController: UIViewController, LoginController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         passText.text = ""
+        if self.rememberCheckBox.checkState == .checked, let email = self.emailText.text, !email.isEmpty {
+            UserDefaults.standard.set(email, forKey: "user")
+        } else {
+            UserDefaults.standard.removeObject(forKey: "user")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -150,11 +163,14 @@ class LoginViewController: UIViewController, LoginController {
                 SCLAlertView().showError("Error Validación", subTitle: "Asegurese que el usuario o la clave no esten vacios") // Error
                 return
         }
+        self.passText.text = ""
         let alert = self.showSpinner(withMessage: "Comprobando credenciales...")
         self.service.signIn(withEmail: email, password: pass) { [weak self] (result) in
             alert.hideView()
             self?.handleResult(result) {
-                UserDefaults.standard.set(email, forKey: "user")
+                if self?.rememberCheckBox.checkState == .checked {
+                    UserDefaults.standard.set(email, forKey: "user")
+                }
                 self?.login(withAccount: $0)
             }
         }

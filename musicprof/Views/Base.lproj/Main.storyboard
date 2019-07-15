@@ -91,7 +91,7 @@
                                                                     <constraint firstAttribute="bottom" secondItem="AnZ-YO-H7e" secondAttribute="bottom" id="dm0-xL-udm"/>
                                                                 </constraints>
                                                             </view>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Correo Eléctronico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="shJ-lE-8z8">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Correo Eléctronico" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="shJ-lE-8z8">
                                                                 <rect key="frame" x="0.0" y="62" width="274" height="52"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -112,7 +112,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pya-MD-Eil">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Pya-MD-Eil">
                                                                 <rect key="frame" x="0.0" y="124" width="274" height="52"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -136,8 +136,46 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Swy-Wc-RTq">
                                                                 <rect key="frame" x="0.0" y="186" width="274" height="52"/>
                                                                 <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0k5-Su-PjD" customClass="M13Checkbox" customModule="M13Checkbox">
+                                                                        <rect key="frame" x="15" y="0.0" width="90.5" height="20"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recordar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEo-yE-S9N">
+                                                                                <rect key="frame" x="28" y="0.0" width="62.5" height="20"/>
+                                                                                <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="14"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="trailing" secondItem="CEo-yE-S9N" secondAttribute="trailing" id="MEd-BQ-9yO"/>
+                                                                            <constraint firstItem="CEo-yE-S9N" firstAttribute="leading" secondItem="0k5-Su-PjD" secondAttribute="leading" constant="28" id="U5e-yT-OZe"/>
+                                                                            <constraint firstAttribute="height" constant="20" id="aRf-UI-kZ0"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="CEo-yE-S9N" secondAttribute="bottom" id="vhE-re-mYK"/>
+                                                                            <constraint firstItem="CEo-yE-S9N" firstAttribute="top" secondItem="0k5-Su-PjD" secondAttribute="top" id="wVC-aC-OeS"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="checkmarkLineWidth">
+                                                                                <real key="value" value="2"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="boxLineWidth">
+                                                                                <real key="value" value="2"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="secondaryTintColor">
+                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="secondaryCheckmarkTintColor">
+                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="4"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hideBox" value="NO"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whF-no-pSP">
-                                                                        <rect key="frame" x="154" y="0.0" width="120" height="31"/>
+                                                                        <rect key="frame" x="139" y="0.0" width="120" height="20"/>
                                                                         <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="14"/>
                                                                         <state key="normal" title="¿Olvidé mi clave?">
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -150,8 +188,12 @@
                                                                 <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstItem="whF-no-pSP" firstAttribute="top" secondItem="Swy-Wc-RTq" secondAttribute="top" id="0rw-3p-Ddw"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="whF-no-pSP" secondAttribute="trailing" id="DIS-OB-rhy"/>
+                                                                    <constraint firstItem="0k5-Su-PjD" firstAttribute="top" secondItem="Swy-Wc-RTq" secondAttribute="top" id="4TR-4W-Qxa"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="whF-no-pSP" secondAttribute="trailing" constant="15" id="DIS-OB-rhy"/>
+                                                                    <constraint firstItem="whF-no-pSP" firstAttribute="height" secondItem="0k5-Su-PjD" secondAttribute="height" id="OUU-4w-Ynx"/>
                                                                     <constraint firstAttribute="height" constant="52" id="cl5-y3-6Kg"/>
+                                                                    <constraint firstItem="whF-no-pSP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0k5-Su-PjD" secondAttribute="trailing" constant="5" id="fwc-h4-YDX"/>
+                                                                    <constraint firstItem="0k5-Su-PjD" firstAttribute="leading" secondItem="Swy-Wc-RTq" secondAttribute="leading" constant="15" id="ng2-dy-RPg"/>
                                                                 </constraints>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMw-5g-T3j">
@@ -220,11 +262,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="opq-1u-ouY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="4GA-sA-Hzy"/>
+                    <navigationItem key="navigationItem" id="4GA-sA-Hzy">
+                        <barButtonItem key="backBarButtonItem" title=" " id="RtZ-ez-w4b"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="customFBLoginButton" destination="KER-kT-UBt" id="UKM-Ip-ywL"/>
                         <outlet property="emailText" destination="shJ-lE-8z8" id="Grj-bq-Y3c"/>
                         <outlet property="passText" destination="Pya-MD-Eil" id="T46-Su-InK"/>
+                        <outlet property="rememberCheckBox" destination="0k5-Su-PjD" id="s7I-Qc-SGJ"/>
                         <outlet property="scrollview" destination="HMQ-14-w6H" id="VqC-YK-3yL"/>
                         <segue destination="zjq-Bx-voE" kind="show" identifier="registerStudent" id="Wgr-tI-92I"/>
                         <segue destination="LKi-tB-jTg" kind="show" identifier="resetPassword" id="oth-1J-5dq"/>
@@ -235,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fAN-Rw-cyv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-806" y="-1335"/>
+            <point key="canvasLocation" x="-807.24637681159425" y="-1335.2678571428571"/>
         </scene>
         <!--Reservation-->
         <scene sceneID="7OV-VD-RwQ">
@@ -558,6 +603,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cBN-1x-mvF"/>
                     </view>
+                    <navigationItem key="navigationItem" id="1ns-Ya-IsL">
+                        <barButtonItem key="backBarButtonItem" title=" " id="R9A-sF-l9F"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressTextField" destination="Ix9-F0-rYh" id="9wr-RU-l8H"/>
                         <outlet property="avatarImageView" destination="enr-RZ-jZb" id="XsT-w2-jPm"/>
@@ -1691,7 +1739,7 @@
         <image name="userdefault" width="112.5" height="112.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oTV-zM-jVa"/>
+        <segue reference="Trh-nk-asF"/>
         <segue reference="F13-wH-lZA"/>
         <segue reference="fsI-iq-RmP"/>
         <segue reference="kMf-8X-xHA"/>
