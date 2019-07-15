@@ -12,6 +12,7 @@ import AlamofireImage
 class ProfessorClassListViewController: ReservationListViewController {
     
     var selectedClass: Class?
+    var clientCache: [Int:Client] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +97,13 @@ class ProfessorClassListViewController: ReservationListViewController {
         guard let reservations = self.selectedClass?.reservations, let classId = self.selectedClass?.id else { return }
         for (i, reservation) in reservations.enumerated() {
             guard reservation.client == nil else { continue }
+            if let client = self.clientCache[reservation.clientId] {
+                if classId == self.selectedClass?.id {
+                    self.selectedClass?.reservations?[i].client = client
+                }
+                self.classes?[section].reservations?[i].client = client
+                continue
+            }
             self.service.getClient(withId: reservation.clientId) { [weak self] (result) in
                 switch result {
                 case .success(let client):
