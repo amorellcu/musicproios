@@ -48,7 +48,7 @@ class ChatViewController: UIViewController {
         didSet {
             self.tableView.reloadData()
             guard messages.count > 0, messages.count != oldValue.count else { return }
-            //self.tableView.scrollToRow(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
+            self.tableView.scrollToRow(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
         }
     }
     
@@ -101,11 +101,17 @@ class ChatViewController: UIViewController {
         self.timer = nil
     }
     
-    private func updateMessages() {
+    private func updateMessages(notify: Bool = false) {
         guard let reservation = self.reservation else { return }
-        self.service.getMessages(from: reservation) { (result) in
-            self.handleResult(result) {
-                self.messages = $0
+        self.service.getMessages(from: reservation) { [weak self] (result) in
+            switch result {
+            case .success(let data):
+                self?.messages = data
+            case .failure(let error) where notify:
+                self?.messageTextField.resignFirstResponder()
+                self?.notify(error: error)
+            default:
+                break
             }
         }
     }
@@ -173,7 +179,7 @@ class ChatViewController: UIViewController {
         guard !text.isEmpty, let reservation = self.reservation else { return }
         textField.text = ""
         self.service.sendMessage(text, for: reservation) { (result) in
-            self.handleResult(result) {
+            self.handleResult(result, onError: {_ in textField.resignFirstResponder() }) {
                 self.messages.append($0)
             }
         }
