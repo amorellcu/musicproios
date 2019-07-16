@@ -12,18 +12,18 @@ import UIKit
     let checkedColor = UIColor(red: 0/255 ,green: 255/255 ,blue: 180/255 ,alpha: 1)
     let normalColor = UIColor(red: 124/255, green: 124/255, blue: 124/255, alpha: 1)
     
-    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var titleButton: UIButton!
     @IBOutlet weak var leftImageView: UIImageView!
     @IBOutlet weak var rightImageView: UIImageView!
     @IBOutlet var contentView: UIView!
     
     @IBInspectable var text: String? {
         didSet {
-            self.textLabel.text = self.text
+            self.titleButton.setTitle(self.text, for: .normal)
         }
     }
     
-    @IBInspectable var isChecked = true {
+    @IBInspectable var isChecked = false {
         didSet {
             self.updateState()
         }
@@ -53,15 +53,44 @@ import UIKit
         self.updateState()
     }
     
-    private func updateState() {
+    open func updateState() {
         if !isChecked {
-            textLabel.textColor = normalColor
+            titleButton.setTitleColor(normalColor, for: .normal)
             leftImageView?.image = UIImage(named: "fleizqoff")
             rightImageView?.image = UIImage(named: "flederoff")
         } else {
-            textLabel.textColor = checkedColor
+            titleButton.setTitleColor(checkedColor, for: .normal)
             leftImageView?.image = UIImage(named: "flechaizq")
             rightImageView?.image = UIImage(named: "flechader")
+        }        
+    }
+    
+    @IBAction open func onClicked(_ sender: Any) {
+        self.isChecked = !self.isChecked        
+    }
+}
+
+class SectionHeader: ToggleButton {
+    @IBOutlet weak var container: UIStackView?
+    @IBOutlet weak var contentConstraint: NSLayoutConstraint?
+    
+    override func updateState() {
+        super.updateState()
+        guard let constraint = self.contentConstraint else { return }
+        constraint.priority = self.isChecked ? .defaultLow : .defaultHigh
+    }
+    
+    override func onClicked(_ sender: Any) {
+        super.onClicked(sender)
+        
+        guard let container = self.container ?? self.superview as? UIStackView else { return }
+        for view in container.subviews {
+            guard let section = view as? SectionHeader, section !== self else { continue }
+            section.isChecked = false
+        }
+        
+        UIView.animate(withDuration: 1) {
+            (container.superview ?? container).layoutIfNeeded()
         }
     }
 }

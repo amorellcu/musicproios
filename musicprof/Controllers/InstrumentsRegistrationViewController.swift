@@ -9,15 +9,20 @@
 import UIKit
 import AlamofireImage
 import SCLAlertView
+import ActionSheetPicker_3_0
 
 class InstrumentsRegistrationViewController: InstrumentListViewController, ClientRegistrationController {
     
     var client: Client!
     var subaccount: Subaccount?
+    var locations: [Location]?
     
     @IBOutlet weak var avatarImageView: UIImageView?
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var studentNameTextField: UITextField?
+    @IBOutlet weak var addressTextField: UITextField?
+    @IBOutlet weak var locationButton: UIButton?
+    @IBOutlet weak var scrollView: UIScrollView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +42,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         }
         self.studentNameTextField?.text = self.subaccount?.name ?? ""
         self.studentNameTextField?.delegate = self
+        self.addressTextField?.text = self.subaccount?.address ?? self.client.address ?? ""
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -45,6 +51,38 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIViewController.resignFirstResponder))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 30))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let mapButton = UIBarButtonItem(title: "Abrir Mapa", style: .plain, target: self, action: #selector(openMap))
+        //let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self.view, action: #selector(UIView.endEditing(_:)))
+        //toolbar.items = [flexSpace, item]
+        toolbar.items = [mapButton, flexSpace]
+        toolbar.sizeToFit()
+        
+        self.addressTextField?.inputAccessoryView = toolbar
+        
+        guard self.locationButton != nil else { return }
+        if let location = self.subaccount?.location {
+            self.setLocation(location)
+        } else if let locationId = self.subaccount?.locationId {
+            self.service.getLocation(withId: locationId) { [weak self] (result) in
+                self?.handleResult(result) {
+                    self?.setLocation($0)
+                }
+            }
+        } else if let location = self.client?.location {
+            self.setLocation(location)
+        } else if let locationId = self.client?.locationId {
+            self.service.getLocation(withId: locationId) { [weak self] (result) in
+                self?.handleResult(result) {
+                    self?.setLocation($0)
+                }
+            }
+        } else {
+            let text = "Seleccionar Ubicación"
+            self.locationButton?.setTitle(text, for: .normal)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -87,18 +125,16 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
     
     
     @objc func adjustForKeyboard(notification: Notification) {
-        /*
         let userInfo = notification.userInfo!
         
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
         
         if notification.name == Notification.Name.UIKeyboardWillHide {
-            scrollview.contentInset = UIEdgeInsets.zero
+            scrollView?.contentInset = UIEdgeInsets.zero
         } else {
-            scrollview.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+            scrollView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
         }
-         */
     }
     
     func reset() {
@@ -201,5 +237,63 @@ extension InstrumentsRegistrationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension InstrumentsRegistrationViewController {
+    @objc func openMap() {
+        self.performSegue(withIdentifier: "openMap", sender: nil)
+    }
+    
+    private func setLocation(_ location: Location) {
+        self.client?.locationId = location.id
+        self.locationButton?.setTitle(location.description, for: .normal)
+    }
+    
+    private func showMapSelectionMenu(withOptions locations: [Location]) {
+        let selection = locations.firstIndex(where: {$0.id == self.client?.locationId}) ?? 0
+        ActionSheetStringPicker.show(withTitle: "Selecciona tu Ubicación", rows: locations, initialSelection: selection, doneBlock: { (_, index, location) in
+            self.setLocation(locations[index])
+        }, cancel: { (_) in
+            
+        }, origin: self.container ?? self)
+    }
+    
+    private func updateLocations(completion: (([Location]) -> ())? = nil) {
+        guard self.locationButton != nil else { return }
+        guard let address = self.user.address, !address.isEmpty else { return }
+        let alert = self.showSpinner(withMessage: "Buscando ubicaciones...")
+        self.service.getLocations(at: address) { [weak self] (result) in
+            alert.hideView()
+            self?.handleResult(result) { locations in
+                self?.locations = locations
+                completion?(locations)
+            }
+        }
+    }
+    
+    @IBAction func onSelectLocation(_ sender: Any) {
+        guard let address = self.client.address, !address.isEmpty else {
+            SCLAlertView().showNotice("Acción inválida", subTitle: "Introduzca su dirección antes de seleccionar su ubicación.")
+            return
+        }
+        if let locations = self.locations {
+            switch locations.count {
+            case 0:
+                SCLAlertView().showNotice("Sin opciones", subTitle: "No se detectaron ubicaciones para su dirección")
+            case 1:
+                SCLAlertView().showNotice("Sin opciones", subTitle: "Se encontró solo una ubicación para su dirección")
+            default:
+                self.showMapSelectionMenu(withOptions: locations)
+            }
+        } else {
+            self.updateLocations { [weak self] (locations) in
+                if locations.count == 1 {
+                    self?.setLocation(locations[0])
+                } else if locations.count > 0 {
+                    self?.showMapSelectionMenu(withOptions: locations)
+                }
+            }
+        }
     }
 }

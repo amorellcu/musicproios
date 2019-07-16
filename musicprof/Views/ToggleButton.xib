@@ -20,7 +20,7 @@
                 <outlet property="contentView" destination="iN0-l3-epB" id="Fq3-jd-W2A"/>
                 <outlet property="leftImageView" destination="bWf-48-J03" id="ZI6-wW-L99"/>
                 <outlet property="rightImageView" destination="Oku-hh-jOh" id="0BL-YB-xTf"/>
-                <outlet property="textLabel" destination="v6r-SD-swG" id="67T-6U-8Zu"/>
+                <outlet property="titleButton" destination="DL7-6M-pcI" id="lQG-FX-ksO"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -43,24 +43,28 @@
                                 <constraint firstAttribute="width" secondItem="Oku-hh-jOh" secondAttribute="height" multiplier="11:26" id="7hi-k1-4uO"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="v6r-SD-swG">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DL7-6M-pcI">
                             <rect key="frame" x="40" y="0.0" width="320" height="52"/>
                             <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
-                            <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <state key="normal" title="TITLE">
+                                <color key="titleColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="onClicked:" destination="-1" eventType="touchUpInside" id="Pl5-n9-U8e"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="v6r-SD-swG" secondAttribute="bottom" id="1ed-dn-REN"/>
-                        <constraint firstItem="v6r-SD-swG" firstAttribute="top" secondItem="y2d-Te-6kv" secondAttribute="top" id="3WV-kt-eX6"/>
+                        <constraint firstAttribute="bottom" secondItem="DL7-6M-pcI" secondAttribute="bottom" id="1wS-cX-8cS"/>
                         <constraint firstItem="Oku-hh-jOh" firstAttribute="top" secondItem="y2d-Te-6kv" secondAttribute="top" id="7S0-Ct-V25"/>
-                        <constraint firstItem="Oku-hh-jOh" firstAttribute="leading" secondItem="v6r-SD-swG" secondAttribute="trailing" constant="18" id="9dH-0D-1uJ"/>
                         <constraint firstItem="bWf-48-J03" firstAttribute="leading" secondItem="y2d-Te-6kv" secondAttribute="leading" id="BEB-4X-G0v"/>
                         <constraint firstAttribute="bottom" secondItem="bWf-48-J03" secondAttribute="bottom" id="Diz-pR-fGx"/>
-                        <constraint firstItem="v6r-SD-swG" firstAttribute="leading" secondItem="bWf-48-J03" secondAttribute="trailing" constant="18" id="KSo-UK-1eW"/>
+                        <constraint firstItem="DL7-6M-pcI" firstAttribute="leading" secondItem="bWf-48-J03" secondAttribute="trailing" constant="18" id="UsY-X0-gir"/>
                         <constraint firstItem="bWf-48-J03" firstAttribute="top" secondItem="y2d-Te-6kv" secondAttribute="top" id="adx-13-RuM"/>
+                        <constraint firstItem="DL7-6M-pcI" firstAttribute="top" secondItem="y2d-Te-6kv" secondAttribute="top" id="bhr-8F-29p"/>
                         <constraint firstAttribute="trailing" secondItem="Oku-hh-jOh" secondAttribute="trailing" id="jxO-iN-3gO"/>
+                        <constraint firstItem="Oku-hh-jOh" firstAttribute="leading" secondItem="DL7-6M-pcI" secondAttribute="trailing" constant="18" id="mSF-CH-D98"/>
                         <constraint firstAttribute="bottom" secondItem="Oku-hh-jOh" secondAttribute="bottom" id="nu9-DF-s7x"/>
                     </constraints>
                 </view>
@@ -76,11 +80,6 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <connections>
-                <outlet property="leftImageView" destination="bWf-48-J03" id="SPF-Lg-qwL"/>
-                <outlet property="rightImageView" destination="Oku-hh-jOh" id="Qgf-zk-P4F"/>
-                <outlet property="textLabel" destination="v6r-SD-swG" id="d3x-58-Nc0"/>
-            </connections>
             <point key="canvasLocation" x="-49.275362318840585" y="39.508928571428569"/>
         </view>
     </objects>
