@@ -104,7 +104,9 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
             alert.hideView()
             self?.handleResult(result) {
                 SCLAlertView().showSuccess("Reservado", subTitle: "La reservación se completó satisfactoriamente.")
-                self?.performSegue(withIdentifier: "backToStart", sender: sender)
+                self?.container?.refresh()
+                //self?.performSegue(withIdentifier: "backToStart", sender: sender)
+                self?.performSegue(withIdentifier: "backToClasses", sender: sender)
             }
         }
     }

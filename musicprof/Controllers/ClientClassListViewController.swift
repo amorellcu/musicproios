@@ -41,8 +41,8 @@ class ClientClassListViewController: ReservationListViewController {
     }
     
     @IBAction func onMakeReservation(_ sender: Any) {
-        self.tabBarController?.selectedIndex = 0
-        //self.performSegue(withIdentifier: "makeReservation", sender: sender)
+        //self.tabBarController?.selectedIndex = 0
+        self.performSegue(withIdentifier: "makeReservation", sender: sender)
     }
     
     @IBAction func unwindToClientClasses(_ segue: UIStoryboardSegue) {

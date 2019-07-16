@@ -222,14 +222,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kta-os-Pb8" userLabel="Header">
                                 <rect key="frame" x="0.0" y="800" width="414" height="52"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechaizq" translatesAutoresizingMaskIntoConstraints="NO" id="YE4-yS-JoD">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fleizqoff" translatesAutoresizingMaskIntoConstraints="NO" id="YE4-yS-JoD">
                                         <rect key="frame" x="0.0" y="0.0" width="22" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="2hL-ZE-wuh"/>
                                             <constraint firstAttribute="width" constant="22" id="Bwh-2Y-hbo"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechader" translatesAutoresizingMaskIntoConstraints="NO" id="r4P-92-X07">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flederoff" translatesAutoresizingMaskIntoConstraints="NO" id="r4P-92-X07">
                                         <rect key="frame" x="392" y="0.0" width="22" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="06U-62-nhx"/>
@@ -240,7 +240,7 @@
                                         <rect key="frame" x="37" y="10" width="340" height="32"/>
                                         <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                         <state key="normal" title="RESERVAR NUEVA CLASE">
-                                            <color key="titleColor" red="0.0" green="0.99607843139999996" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="onMakeReservation:" destination="kMA-fo-t5e" eventType="touchUpInside" id="ILZ-zy-zSM"/>
@@ -730,6 +730,8 @@
         <image name="chat-arrow" width="512" height="512"/>
         <image name="flechader" width="70" height="156"/>
         <image name="flechaizq" width="70" height="156"/>
+        <image name="flederoff" width="70" height="156"/>
+        <image name="fleizqoff" width="70" height="155"/>
         <image name="no_instrument" width="191" height="191"/>
         <image name="userdefault" width="112.5" height="112.5"/>
     </resources>

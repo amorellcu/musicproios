@@ -8,12 +8,12 @@
 
 import UIKit
 
-class InstrumentsUpdateViewController: InstrumentListViewController, ClientRegistrationController {
-    var client: Client!
+class InstrumentsUpdateViewController: InstrumentListViewController, RegistrationController {
+    var user: User!
     
     override var instruments: [Instrument]? {
         didSet {
-            guard let clientInstruments = self.client.instruments, let instruments = self.instruments else { return }
+            guard let clientInstruments = self.user.instruments, let instruments = self.instruments else { return }
             self.collectionView?.selectItem(at: nil, animated: false, scrollPosition: [])
             for index in 0..<instruments.count {
                 if clientInstruments.contains(instruments[index]) {
@@ -26,11 +26,11 @@ class InstrumentsUpdateViewController: InstrumentListViewController, ClientRegis
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let instrument = self.instruments?[indexPath.item] else { return }
-        self.client.instruments?.append(instrument)
+        self.user.instruments?.append(instrument)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let instrument = self.instruments?[indexPath.item] else { return }
-        self.client.instruments?.removeAll(where: {$0 == instrument})
+        self.user.instruments?.removeAll(where: {$0 == instrument})
     }
 }

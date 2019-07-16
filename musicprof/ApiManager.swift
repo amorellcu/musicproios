@@ -736,6 +736,9 @@ class ApiManager {
         self.post(request, to: url) { (result: ApiResult<ReservationData2>) in
             handler(result.transform(with: {
                 self.currentClient?.nextReservations?.append($0.reservation)
+                if let credits = self.currentClient?.credits {
+                    self.currentClient?.credits = credits - 1
+                }
                 return $0.reservation
             }))
         }

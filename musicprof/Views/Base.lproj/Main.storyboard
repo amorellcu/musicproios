@@ -303,7 +303,6 @@
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="iBc-q6-mQv" kind="relationship" relationship="viewControllers" id="Fid-Kb-Fut"/>
                         <segue destination="1zt-06-jvK" kind="relationship" relationship="viewControllers" id="SHZ-HN-Rak"/>
                         <segue destination="qbz-po-6fb" kind="relationship" relationship="viewControllers" id="UcW-6u-d0h"/>
                         <segue destination="PpK-PB-SRd" kind="relationship" relationship="viewControllers" id="ASG-V1-Umz"/>

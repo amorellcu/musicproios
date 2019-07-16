@@ -1301,6 +1301,7 @@
                         <outlet property="nextProfessorButton" destination="FoO-Ct-X6r" id="KWW-70-2H8"/>
                         <outlet property="tableView" destination="45K-D8-0Vu" id="bZi-0h-Qce"/>
                         <segue destination="sY9-yj-Fz1" kind="unwind" identifier="backToStart" unwindAction="unwindToReservation:" id="jOd-uS-5nK"/>
+                        <segue destination="sY9-yj-Fz1" kind="unwind" identifier="backToClasses" unwindAction="unwindToClientClasses:" id="5j3-Js-iVF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QW0-5B-7d7" userLabel="First Responder" sceneMemberID="firstResponder"/>
