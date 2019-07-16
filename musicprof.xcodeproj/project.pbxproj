@@ -22,6 +22,8 @@
 		530DB8CD22DCEB5000D82378 /* ClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530DB8CC22DCEB5000D82378 /* ClassController.swift */; };
 		530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A77229A1656000AFC86 /* RootViewController.swift */; };
 		530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A79229B773A000AFC86 /* UIViewController.swift */; };
+		530FC53522DDFF4B000BD490 /* TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 530FC53422DDFF4B000BD490 /* TitleView.xib */; };
+		530FC53722DE0093000BD490 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530FC53622DE0093000BD490 /* TitleView.swift */; };
 		53108F6022DDA7D90030C155 /* ClassSchedulingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53108F5F22DDA7D90030C155 /* ClassSchedulingViewController.swift */; };
 		53130DC822D06DF3008B06B2 /* ProfileSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53130DC722D06DF3008B06B2 /* ProfileSection.swift */; };
 		531FC38422D627B700BDDFCF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531FC38322D627B700BDDFCF /* Message.swift */; };
@@ -181,6 +183,8 @@
 		530DB8CC22DCEB5000D82378 /* ClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassController.swift; sourceTree = "<group>"; };
 		530F8A77229A1656000AFC86 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		530F8A79229B773A000AFC86 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		530FC53422DDFF4B000BD490 /* TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleView.xib; sourceTree = "<group>"; };
+		530FC53622DE0093000BD490 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		53108F5F22DDA7D90030C155 /* ClassSchedulingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassSchedulingViewController.swift; sourceTree = "<group>"; };
 		53130DC722D06DF3008B06B2 /* ProfileSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSection.swift; sourceTree = "<group>"; };
 		531FC38322D627B700BDDFCF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -410,6 +414,8 @@
 				5357A5DB22D4928000936FA6 /* Professors.storyboard */,
 				530B852622DB16680021C70E /* ProfessorProfile.storyboard */,
 				530B852822DB18BB0021C70E /* ProfessorClasses.storyboard */,
+				530FC53422DDFF4B000BD490 /* TitleView.xib */,
+				530FC53622DE0093000BD490 /* TitleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -694,6 +700,7 @@
 				539C80BA22C4C621009D8469 /* FilsonProBoldItalic-Italic.otf in Resources */,
 				530B852722DB16680021C70E /* ProfessorProfile.storyboard in Resources */,
 				5327962222CCBE2C0085FAFD /* Maps.storyboard in Resources */,
+				530FC53522DDFF4B000BD490 /* TitleView.xib in Resources */,
 				533E63FC22C8CA76007EE029 /* ClientProfile.storyboard in Resources */,
 				539C80C422C4C621009D8469 /* FilsonProRegularItalic-Italic.otf in Resources */,
 				539C80BF22C4C621009D8469 /* FilsonProLight-Light.otf in Resources */,
@@ -863,6 +870,7 @@
 				537D421322D60FE00011A504 /* MessageCell.swift in Sources */,
 				A5E1FB202044CE6600B15DD9 /* TextTableViewCell.swift in Sources */,
 				5333E96622C0EF9600175995 /* ReservationRequest.swift in Sources */,
+				530FC53722DE0093000BD490 /* TitleView.swift in Sources */,
 				53C5DA9522CA38030005AC14 /* ReservationListViewController.swift in Sources */,
 				A5CA35D6202BA922002FFFD0 /* peopleTableViewCell.swift in Sources */,
 				A5598C1A201F8C3B000C64F6 /* LoginViewController.swift in Sources */,

@@ -12,7 +12,7 @@ import AlamofireImage
 class ContainerViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
-    @IBOutlet weak var creditsLabel: UILabel!
+    var customTitleView: TitleView?
     
     @IBOutlet weak var fullDisplayConstraint: NSLayoutConstraint!
     @IBOutlet weak var pictureDisplayConstraint: NSLayoutConstraint!
@@ -26,6 +26,12 @@ class ContainerViewController: UIViewController {
 
         self.navigationController?.setTransparentBar()
         self.avatarImageView.clipsToBounds = true
+        
+        if let _ = self.service.currentClient {
+            self.customTitleView = TitleView()
+            self.navigationItem.titleView = self.customTitleView
+            self.customTitleView?.sizeToFit()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,13 +48,13 @@ class ContainerViewController: UIViewController {
         self.profileNameLabel.text = self.service.user?.name
         if let client = self.service.user as? Client {
             if let credits = client.credits {
-                self.creditsLabel.text = credits.description
+                self.customTitleView?.credits = credits.description
             } else {
-                self.creditsLabel.text = "?"
+                self.customTitleView?.credits = "?"
                 self.service.getClientCredits { [weak self] (result) in
                     self?.handleResult(result) {
                         client.credits = $0
-                        self?.creditsLabel.text = $0.description
+                        self?.customTitleView?.credits = $0.description
                     }
                 }
             }

@@ -1436,26 +1436,6 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="g1V-aN-xRG" userLabel="Credits">
-                                        <rect key="frame" x="31" y="15" width="59" height="22"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coins" translatesAutoresizingMaskIntoConstraints="NO" id="jsf-Rr-ERC">
-                                                <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="jsf-Rr-ERC" secondAttribute="height" multiplier="1:1" id="XLo-9g-7XV"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HZZ-Zx-UUJ">
-                                                <rect key="frame" x="30" y="0.0" width="29" height="22"/>
-                                                <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
-                                                <color key="textColor" red="0.99830895659999996" green="0.87435346839999994" blue="0.40442866090000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="iMr-Or-WG2"/>
-                                        </constraints>
-                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1464,12 +1444,9 @@
                                     <constraint firstAttribute="bottom" secondItem="Df4-CK-Xfh" secondAttribute="bottom" priority="750" constant="13" id="J8H-B7-3cM"/>
                                     <constraint firstItem="mqt-53-qwK" firstAttribute="top" secondItem="Df4-CK-Xfh" secondAttribute="bottom" constant="10" id="JAH-Ry-lQc"/>
                                     <constraint firstAttribute="bottom" secondItem="mqt-53-qwK" secondAttribute="bottom" priority="999" constant="13" id="Nfn-dJ-iIw"/>
-                                    <constraint firstItem="Df4-CK-Xfh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="g1V-aN-xRG" secondAttribute="trailing" constant="5" id="UNZ-Si-WSp"/>
-                                    <constraint firstItem="g1V-aN-xRG" firstAttribute="top" secondItem="fHr-xa-ujc" secondAttribute="top" constant="15" id="XKM-wX-66c"/>
                                     <constraint firstAttribute="trailing" secondItem="mqt-53-qwK" secondAttribute="trailing" constant="31" id="hQG-kY-ycr"/>
                                     <constraint firstAttribute="height" priority="500" id="sSe-Q9-6Pr"/>
                                     <constraint firstItem="Df4-CK-Xfh" firstAttribute="top" secondItem="fHr-xa-ujc" secondAttribute="top" constant="15" id="vMi-Go-xQ8"/>
-                                    <constraint firstItem="g1V-aN-xRG" firstAttribute="leading" secondItem="fHr-xa-ujc" secondAttribute="leading" constant="31" id="wP3-Pv-0h8"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ko4-hZ-9Oc">
@@ -1501,7 +1478,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="avatarImageView" destination="Df4-CK-Xfh" id="or9-nJ-0vm"/>
-                        <outlet property="creditsLabel" destination="HZZ-Zx-UUJ" id="TuH-cH-3Ef"/>
                         <outlet property="fullDisplayConstraint" destination="Nfn-dJ-iIw" id="T4e-j0-4ew"/>
                         <outlet property="pictureDisplayConstraint" destination="J8H-B7-3cM" id="2pB-dQ-cNm"/>
                         <outlet property="profileNameLabel" destination="mqt-53-qwK" id="Mym-WU-V2Y"/>
@@ -1726,7 +1702,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="coins" width="64" height="64"/>
         <image name="fb" width="31" height="61"/>
         <image name="flechader" width="70" height="156"/>
         <image name="flechaizq" width="70" height="156"/>

@@ -15,35 +15,36 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToggleButton" customModule="musicprof" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="Fq3-jd-W2A"/>
+                <outlet property="leftImageView" destination="bWf-48-J03" id="ZI6-wW-L99"/>
+                <outlet property="rightImageView" destination="Oku-hh-jOh" id="0BL-YB-xTf"/>
+                <outlet property="textLabel" destination="v6r-SD-swG" id="67T-6U-8Zu"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ToggleButton" customModule="musicprof" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="1548" height="896"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="52"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2d-Te-6kv" userLabel="Content">
-                    <rect key="frame" x="0.0" y="0.0" width="1548" height="52"/>
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="52"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechaizq" translatesAutoresizingMaskIntoConstraints="NO" id="bWf-48-J03">
                             <rect key="frame" x="0.0" y="0.0" width="22" height="52"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="52" id="bkx-S2-puZ"/>
-                                <constraint firstAttribute="width" constant="22" id="gfs-j6-U3x"/>
+                                <constraint firstAttribute="width" secondItem="bWf-48-J03" secondAttribute="height" multiplier="11:26" id="qDW-Qg-tRm"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechader" translatesAutoresizingMaskIntoConstraints="NO" id="Oku-hh-jOh">
-                            <rect key="frame" x="1526" y="0.0" width="22" height="52"/>
+                            <rect key="frame" x="378" y="0.0" width="22" height="52"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="52" id="P4h-LX-ZCZ"/>
-                                <constraint firstAttribute="width" constant="22" id="x4c-pm-CBx"/>
+                                <constraint firstAttribute="width" secondItem="Oku-hh-jOh" secondAttribute="height" multiplier="11:26" id="7hi-k1-4uO"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="v6r-SD-swG">
-                            <rect key="frame" x="40" y="0.0" width="1468" height="23"/>
-                            <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="7B6-Xs-I7i"/>
-                                <constraint firstAttribute="height" constant="23" id="jgU-8k-XrW"/>
-                            </constraints>
+                            <rect key="frame" x="40" y="0.0" width="320" height="52"/>
                             <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                             <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -51,14 +52,16 @@
                     </subviews>
                     <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="v6r-SD-swG" secondAttribute="bottom" id="1ed-dn-REN"/>
                         <constraint firstItem="v6r-SD-swG" firstAttribute="top" secondItem="y2d-Te-6kv" secondAttribute="top" id="3WV-kt-eX6"/>
-                        <constraint firstAttribute="trailing" secondItem="v6r-SD-swG" secondAttribute="trailing" constant="40" id="4qD-Fd-3cE"/>
                         <constraint firstItem="Oku-hh-jOh" firstAttribute="top" secondItem="y2d-Te-6kv" secondAttribute="top" id="7S0-Ct-V25"/>
+                        <constraint firstItem="Oku-hh-jOh" firstAttribute="leading" secondItem="v6r-SD-swG" secondAttribute="trailing" constant="18" id="9dH-0D-1uJ"/>
                         <constraint firstItem="bWf-48-J03" firstAttribute="leading" secondItem="y2d-Te-6kv" secondAttribute="leading" id="BEB-4X-G0v"/>
+                        <constraint firstAttribute="bottom" secondItem="bWf-48-J03" secondAttribute="bottom" id="Diz-pR-fGx"/>
+                        <constraint firstItem="v6r-SD-swG" firstAttribute="leading" secondItem="bWf-48-J03" secondAttribute="trailing" constant="18" id="KSo-UK-1eW"/>
                         <constraint firstItem="bWf-48-J03" firstAttribute="top" secondItem="y2d-Te-6kv" secondAttribute="top" id="adx-13-RuM"/>
                         <constraint firstAttribute="trailing" secondItem="Oku-hh-jOh" secondAttribute="trailing" id="jxO-iN-3gO"/>
-                        <constraint firstItem="v6r-SD-swG" firstAttribute="leading" secondItem="y2d-Te-6kv" secondAttribute="leading" constant="40" id="nPT-si-dFI"/>
-                        <constraint firstAttribute="height" constant="52" id="rB5-tX-b7x"/>
+                        <constraint firstAttribute="bottom" secondItem="Oku-hh-jOh" secondAttribute="bottom" id="nu9-DF-s7x"/>
                     </constraints>
                 </view>
             </subviews>
