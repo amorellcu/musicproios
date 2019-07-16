@@ -17,7 +17,7 @@ class Professor: NSObject, Decodable, NSCoding, User {
     var address: String?
     var price: Float? = nil
     var levelId: Int? = 1
-    var municipalityId: Int? = 121
+    var municipalityId: Int? = 986
     var avatarUrl: URL?
     var facebookId: String?
     
@@ -77,7 +77,7 @@ class Professor: NSObject, Decodable, NSCoding, User {
         self.avatarUrl = avatar == nil ? nil : URL(string: avatar!)
         self.facebookId = try user?.decodeIfPresent(String.self, forKey: .facebookId)
         self.levelId = try container.decodeIfPresent(Int.self, forKey: .levelId)
-        self.municipalityId = try container.decodeIfPresent(Int.self, forKey: .municipalityId)
+        //self.municipalityId = try container.decodeIfPresent(Int.self, forKey: .municipalityId)
         
         self.personalReview = try container.decodeIfPresent(String.self, forKey: .personalReview)
         self.workExperience = try container.decodeIfPresent(String.self, forKey: .workExperience)
@@ -148,7 +148,8 @@ extension Professor {
             lhs.workExperience == rhs.workExperience &&
             lhs.academicTraining == rhs.academicTraining &&
             lhs.personalReview == rhs.personalReview &&
-            Set(lhs.instruments ?? []) == Set(rhs.instruments ?? [])
+            Set(lhs.instruments ?? []) == Set(rhs.instruments ?? []) &&
+            Set(lhs.locations ?? []) == Set(rhs.locations ?? [])
     }
 }
 

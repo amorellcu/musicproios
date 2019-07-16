@@ -10,7 +10,8 @@ import Foundation
 
 struct Location: Decodable {
     var id: Int
-    var zone: String
+    var name: String
+    var zone: String?
     var state: String?
     var stateId: Int?
     var municipality: String?
@@ -19,7 +20,8 @@ struct Location: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: .id)
-        self.zone = try container.decode(String.self, forKey: .zone)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.zone = try container.decodeIfPresent(String.self, forKey: .zone)
         self.stateId = try container.decodeIfPresent(Int.self, forKey: .stateId)
         self.municipality = try container.decodeIfPresent(String.self, forKey: .municipality)
         self.city = try container.decodeIfPresent(String.self, forKey: .city)
@@ -35,7 +37,8 @@ struct Location: Decodable {
     fileprivate enum CodingKeys: String, CodingKey {
         case id
         case stateId = "idEstado"
-        case zone = "asentamiento"
+        case zone = "zona"
+        case name = "asentamiento"
         case state = "estado"
         case municipality = "municipio"
         case city = "ciudad"
@@ -50,7 +53,21 @@ struct Location: Decodable {
 
 extension Location: CustomStringConvertible {
     var description: String {
-        let components = [self.state, self.city]
-        return components.compactMap({$0}).joined(separator: ", ")
+        return self.name
     }
 }
+
+extension Location: Equatable, Hashable {
+    static func == (lhs: Location, rhs: Location) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    var hashValue: Int {
+        return self.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
+}
+

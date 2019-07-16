@@ -20,6 +20,7 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
     private lazy var viewControllers: [UIViewController] = {
         let controllers = [self.storyboard!.instantiateViewController(withIdentifier: "ContactInfoViewController"),
                            self.storyboard!.instantiateViewController(withIdentifier: "InstrumentListViewController"),
+                           self.storyboard!.instantiateViewController(withIdentifier: "LocationListViewController"),
                            self.storyboard!.instantiateViewController(withIdentifier: "PersonalReviewViewController"),
                            self.storyboard!.instantiateViewController(withIdentifier: "AcademicTrainingViewController"),
                            self.storyboard!.instantiateViewController(withIdentifier: "WorkExperienceViewController"),

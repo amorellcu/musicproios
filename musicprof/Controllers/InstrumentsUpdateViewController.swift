@@ -14,13 +14,13 @@ class InstrumentsUpdateViewController: InstrumentListViewController, ClientRegis
     override var instruments: [Instrument]? {
         didSet {
             guard let clientInstruments = self.client.instruments, let instruments = self.instruments else { return }
+            self.collectionView?.selectItem(at: nil, animated: false, scrollPosition: [])
             for index in 0..<instruments.count {
                 if clientInstruments.contains(instruments[index]) {
                     let indexPath = IndexPath(item: index, section: 0)
                     self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: [])
                 }
-            }
-            
+            }            
         }
     }
     

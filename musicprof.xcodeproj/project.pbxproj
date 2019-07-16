@@ -90,6 +90,8 @@
 		53C5DA9522CA38030005AC14 /* ReservationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */; };
 		53C5DA9722CA41340005AC14 /* ReservationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9622CA41340005AC14 /* ReservationCell.swift */; };
 		53C680AB22CB7CD200993110 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C680AA22CB7CD200993110 /* PaymentViewController.swift */; };
+		53CC2DA222DDC91200E32D3F /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CC2DA122DDC91200E32D3F /* LocationListViewController.swift */; };
+		53CC2DA422DDCD9100E32D3F /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CC2DA322DDCD9100E32D3F /* LocationCell.swift */; };
 		53D1C57322C5F8C6002BDAE4 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1C57222C5F8C6002BDAE4 /* RegistrationController.swift */; };
 		53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */; };
 		53D8E20022C3AB2100E3FABB /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D8E1FF22C3AB2100E3FABB /* Class.swift */; };
@@ -247,6 +249,8 @@
 		53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationListViewController.swift; sourceTree = "<group>"; };
 		53C5DA9622CA41340005AC14 /* ReservationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationCell.swift; sourceTree = "<group>"; };
 		53C680AA22CB7CD200993110 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		53CC2DA122DDC91200E32D3F /* LocationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
+		53CC2DA322DDCD9100E32D3F /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		53D1C57222C5F8C6002BDAE4 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		53D1E4BE22BE6009001A0F50 /* InstrumentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentSelectionViewController.swift; sourceTree = "<group>"; };
 		53D8E1FF22C3AB2100E3FABB /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
@@ -490,6 +494,8 @@
 				53616E6B22CBAF6800B36549 /* PasswordUpdateViewController.swift */,
 				5364C6BF22CFB3140052E6FA /* SubaccountListViewController.swift */,
 				53F8C4F522D50439001B0301 /* ProfessorTextViewController.swift */,
+				53CC2DA122DDC91200E32D3F /* LocationListViewController.swift */,
+				53CC2DA322DDCD9100E32D3F /* LocationCell.swift */,
 				5380312B22CE42570016175E /* ClientClassListViewController.swift */,
 				530B852A22DB1B5B0021C70E /* ProfessorClassListViewController.swift */,
 				530B852C22DB3B9E0021C70E /* ClientCell.swift */,
@@ -911,6 +917,7 @@
 				5333E96222C0E46500175995 /* ProfessorListViewController.swift in Sources */,
 				53459CF722D4B3120007ECE6 /* MultiformEncodable.swift in Sources */,
 				53D98FCE22BD45F50027FDCD /* AppError.swift in Sources */,
+				53CC2DA222DDC91200E32D3F /* LocationListViewController.swift in Sources */,
 				53ACA34D22D744BC00A7CF04 /* Subaccount.swift in Sources */,
 				5333E96F22C0FDE500175995 /* NestedController.swift in Sources */,
 				53D98FCA22BD44A40027FDCD /* ApiResult.swift in Sources */,
@@ -933,6 +940,7 @@
 				A5315B33203CF27C0043A0E2 /* MapViewController.swift in Sources */,
 				534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */,
 				A5E1FB242044DD4600B15DD9 /* HeaderCell.swift in Sources */,
+				53CC2DA422DDCD9100E32D3F /* LocationCell.swift in Sources */,
 				15DFDFBE208E4E7500B28338 /* ApiStudent.swift in Sources */,
 				53C5DA9322CA2CE00005AC14 /* InstrumentListViewController.swift in Sources */,
 				53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */,
