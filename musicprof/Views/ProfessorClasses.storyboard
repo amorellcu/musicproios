@@ -320,7 +320,6 @@
                                             <color key="titleColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="onMakeReservation:" destination="p2e-WL-oaB" eventType="touchUpInside" id="j51-Le-dmq"/>
                                             <segue destination="KzB-Dd-DTD" kind="show" identifier="createClass" id="fF7-CU-IfH"/>
                                         </connections>
                                     </button>
@@ -1299,10 +1298,10 @@
             </objects>
             <point key="canvasLocation" x="2645" y="1588"/>
         </scene>
-        <!--View Controller-->
+        <!--Class Scheduling View Controller-->
         <scene sceneID="eJ5-lg-KAF">
             <objects>
-                <viewController id="atq-H1-DjK" sceneMemberID="viewController">
+                <viewController id="atq-H1-DjK" customClass="ClassSchedulingViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hY0-XI-XbF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1380,6 +1379,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="FilsonProHeavyItalic-Italic" family="FilsonProHeavy-Italic" pointSize="20"/>
                                 <state key="normal" title="AGENDAR" backgroundImage="backbuttonreserva"/>
+                                <connections>
+                                    <action selector="onConfirmTapped:" destination="atq-H1-DjK" eventType="touchUpInside" id="pTI-Bb-wzl"/>
+                                </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="xdY-Vm-QLY">
                                 <rect key="frame" x="0.0" y="178" width="414" height="622"/>
@@ -1390,7 +1392,7 @@
                                 <locale key="locale" localeIdentifier="es"/>
                             </datePicker>
                         </subviews>
-                        <color key="backgroundColor" red="0.23135176299999999" green="0.23138415809999999" blue="0.231340766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Iu5-3S-T8Z" firstAttribute="bottom" secondItem="qgi-Yd-SSp" secondAttribute="bottom" id="E46-JE-lAH"/>
                             <constraint firstItem="Iu5-3S-T8Z" firstAttribute="trailing" secondItem="qgi-Yd-SSp" secondAttribute="trailing" id="Ndn-Cr-SkA"/>
@@ -1409,6 +1411,9 @@
                         <viewLayoutGuide key="safeArea" id="Iu5-3S-T8Z"/>
                     </view>
                     <connections>
+                        <outlet property="confirmButton" destination="qgi-Yd-SSp" id="H25-ed-k3f"/>
+                        <outlet property="dateLabel" destination="TZ2-Rm-9gz" id="vdP-ev-TtN"/>
+                        <outlet property="timePicker" destination="xdY-Vm-QLY" id="XPW-Vs-kJR"/>
                         <segue destination="ZHX-Oz-7KQ" kind="unwind" identifier="classCreated" unwindAction="unwindToProfessorClasses:" id="e4Q-5m-3s6"/>
                     </connections>
                 </viewController>

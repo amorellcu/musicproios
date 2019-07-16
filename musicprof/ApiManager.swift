@@ -687,6 +687,9 @@ class ApiManager {
         var data: Data
         do {
             let encoder = JSONEncoder()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            encoder.dateEncodingStrategy = .formatted(formatter)
             data = try encoder.encode(encodable)
         } catch {
             handler(.failure(error: error))
@@ -706,6 +709,9 @@ class ApiManager {
         var data: Data
         do {
             let encoder = JSONEncoder()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            encoder.dateEncodingStrategy = .formatted(formatter)
             data = try encoder.encode(encodable)
         } catch {
             handler(.failure(error: error))
@@ -761,10 +767,10 @@ class ApiManager {
         var request = request
         request.professorId = request.professorId ?? self.currentProfessor?.id
         let url = baseUrl.appendingPathComponent("createClass")
-        self.post(request, to: url) { (result: ApiResult<ClassData2>) in
+        self.post(request, to: url) { (result: ApiResult<Class>) in
             handler(result.transform(with: {
-                self.currentProfessor?.classes?.append($0.classes)
-                return $0.classes
+                self.currentProfessor?.classes?.append($0)
+                return $0
             }))
         }
     }

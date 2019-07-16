@@ -31,8 +31,8 @@ class ProfessorClassListViewController: ReservationListViewController {
     override func updateReservations() {
         guard let professor = self.service.currentProfessor else { return }
         self.service.getNextClasses(of: professor) { [weak self] (result) in
-            self?.handleResult(result) {
-                self?.classes = $0
+            self?.handleResult(result) { values in
+                self?.classes = values.sorted(by: {$0.date < $1.date})
             }
         }
     }
@@ -70,11 +70,13 @@ class ProfessorClassListViewController: ReservationListViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         guard let selectedClass = self.selectedClass, let reservations = selectedClass.reservations, self.classes?[section].id == selectedClass.id else {
-            return super.tableView(tableView, cellForRowAt: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "reservationCell") as! ReservationCell
+            self.configureCell(cell, forRowAt: IndexPath(row: indexPath.section, section: 0))
+            return cell
         }
         guard indexPath.row > 0 else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "selectedCell") as! ReservationCell
-            self.configureCell(cell, forRowAt: indexPath)
+            self.configureCell(cell, forRowAt: IndexPath(row: indexPath.section, section: 0))
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "clientCell")!

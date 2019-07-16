@@ -34,8 +34,8 @@ class ClientClassListViewController: ReservationListViewController {
         guard let client = self.service.currentClient else { return }
         self.reservations = client.nextReservations ?? []
         self.service.getNextReservations(of: client) { [weak self] (result) in
-            self?.handleResult(result) {
-                self?.reservations = $0
+            self?.handleResult(result) { (values: [Reservation]) in
+                self?.reservations = values.sorted(by: {$0.classes?.date ?? Date() < $1.classes?.date ?? Date()})
             }
         }
     }

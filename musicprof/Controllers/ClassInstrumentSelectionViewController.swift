@@ -17,12 +17,7 @@ class ClassInstrumentSelectionViewController: BaseNestedViewController, ClassCon
     
     var reservation: ClassRequest!
     
-    var userInstruments: [Instrument] = [] {
-        didSet {
-            self.collectionView.reloadData()
-        }
-    }
-    var instruments: [Instrument]? = nil {
+    var instruments: [Instrument]? {
         didSet {
             self.collectionView.reloadData()
         }
@@ -39,29 +34,17 @@ class ClassInstrumentSelectionViewController: BaseNestedViewController, ClassCon
         super.viewWillAppear(animated)
         self.container?.setDisplayMode(.full, animated: animated)
         
-        if let instruments = self.service.currentProfessor?.instruments {
-            self.userInstruments = instruments
-            self.updateInstruments()
-        } else {
-            self.updateInstruments()
+        self.instruments = self.service.currentProfessor?.instruments
+        if self.instruments?.count ?? 0 == 1 {
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+            self.collectionView(self.collectionView, didSelectItemAt: indexPath)
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    private func updateInstruments() {
-        let alert = self.showSpinner(withMessage: "Buscando instrumentos...")
-        self.service.getInstruments { [weak self] (result: ApiResult<[Instrument]>) in
-            alert.hideView()
-            self?.handleResult(result) {
-                guard let strongSelf = self else { return }
-                let otherInstruments = Array(Set($0).subtracting(strongSelf.userInstruments))
-                strongSelf.instruments = strongSelf.userInstruments + otherInstruments.sorted(by: {$0.id <= $1.id})
-            }
-        }
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -105,5 +88,6 @@ extension ClassInstrumentSelectionViewController: UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.continueButton.isEnabled = true
         self.reservation.instrument = self.instruments(fromSection: indexPath.section)?[indexPath.row]
+        self.reservation.instrumentId = self.reservation.instrument?.id
     }
 }
