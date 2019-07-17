@@ -78,6 +78,10 @@ class ChatViewController: UIViewController {
                 }
             }
         }
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.messageTextField, action: #selector(UIView.resignFirstResponder))
+        tap.cancelsTouchesInView = false
+        self.tableView.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,11 +89,15 @@ class ChatViewController: UIViewController {
         self.updateMessages()
         
         let notificationCenter = NotificationCenter.default
-        //notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { [weak self] (_) in
-            self?.updateMessages()
+        self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { [weak self] (timer) in
+            guard let strongSelf = self else {
+                timer.invalidate()
+                return
+            }
+            strongSelf.updateMessages()
         })
     }
     
@@ -157,7 +165,9 @@ class ChatViewController: UIViewController {
         if notification.name == Notification.Name.UIKeyboardWillHide {
             self.textInputConstraint.constant = 0
             self.fullProfileConstriant.priority = .defaultHigh
-            guard let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
+            guard let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval else {
+                return self.view.layoutIfNeeded()
+            }
             UIView.animate(withDuration: duration) {
                 self.view.layoutIfNeeded()
             }
@@ -167,7 +177,9 @@ class ChatViewController: UIViewController {
             
             self.textInputConstraint.constant = -keyboardViewEndFrame.height
             self.fullProfileConstriant.priority = keyboardViewEndFrame.height == 0 ? .defaultHigh : .defaultLow
-            guard let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
+            guard let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval else {
+                return self.view.layoutIfNeeded()
+            }
             UIView.animate(withDuration: duration) {
                 self.view.layoutIfNeeded()
             }
@@ -204,6 +216,7 @@ class ChatViewController: UIViewController {
                         self?.handleResult(result) {
                             self?.reservation?.status = .cancelled
                             self?.cancelButton.isEnabled = false
+                            self?.performSegue(withIdentifier: "cancel", sender: sender)
                         }
                     })
         }

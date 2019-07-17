@@ -508,7 +508,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="352" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fn9-Gq-4uf" id="qbh-OM-g88">
-                                                    <rect key="frame" x="0.0" y="0.0" width="352" height="49.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="352" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubi-gZ-GxT">
@@ -1114,21 +1114,21 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechaizq" translatesAutoresizingMaskIntoConstraints="NO" id="1n9-26-Xj1">
-                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="52.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="52"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="8jk-WU-8nf"/>
                                                                 <constraint firstAttribute="height" constant="52" id="EpR-z2-dL7"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechader" translatesAutoresizingMaskIntoConstraints="NO" id="Aa7-n6-52k">
-                                                            <rect key="frame" x="392" y="0.0" width="22" height="52.333333333333336"/>
+                                                            <rect key="frame" x="392" y="0.0" width="22" height="52"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="52" id="4fn-pW-bqA"/>
                                                                 <constraint firstAttribute="width" constant="22" id="n4f-re-2hB"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECCIONA TU INSTRUMENTO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xSD-wY-ZSh">
-                                                            <rect key="frame" x="41" y="0.0" width="332" height="52.333333333333336"/>
+                                                            <rect key="frame" x="41" y="0.0" width="332" height="52"/>
                                                             <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                                             <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1196,7 +1196,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yzh-ss-tGI" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="766" width="414.00000000000023" height="52"/>
+                                        <rect key="frame" x="0.0" y="766" width="414" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="GaT-qr-chc"/>
                                         </constraints>

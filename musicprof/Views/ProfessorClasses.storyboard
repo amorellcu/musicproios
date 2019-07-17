@@ -787,6 +787,7 @@
                         <outlet property="tableView" destination="KgI-aS-egR" id="uGM-6O-HJa"/>
                         <outlet property="textInputConstraint" destination="KQ7-Su-emA" id="laH-I1-3wb"/>
                         <outlet property="titleLabel" destination="OHL-G1-8w0" id="Hl1-73-jkj"/>
+                        <segue destination="NW4-lr-2gn" kind="unwind" identifier="cancel" unwindAction="unwindToProfessorClasses:" id="Sab-ss-ry8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aB-9Q-h46" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1317,7 +1318,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECCIONA EL HORARIO DE TU CLASE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OPZ-s6-1II">
-                                        <rect key="frame" x="30" y="16" width="354" height="20"/>
+                                        <rect key="frame" x="30" y="16" width="354" height="22.5"/>
                                         <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                         <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
