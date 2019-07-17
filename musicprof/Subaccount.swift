@@ -37,7 +37,7 @@ class Subaccount: Decodable, Student {
         case id
         case name
         case userId = "idCuenta"
-        case locationId = "idColonia"
+        case locationId = "coloniaId"
         case address
         case instruments
     }

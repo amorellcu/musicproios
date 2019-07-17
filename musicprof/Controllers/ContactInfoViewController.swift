@@ -165,7 +165,11 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
         }
     }
     
-    @IBAction func unwindToContactDetails(_ segue: UIStoryboardSegue) {        
+    @IBAction func unwindToContactDetails(_ segue: UIStoryboardSegue) {
+        
+    }
+    
+    override func unwindBack(_ segue: UIStoryboardSegue) {
         if segue.identifier == "updateAddress", let controller = segue.source as? MapViewController {
             self.addressTextField?.text = controller.selectedAddress
             self.updateClient()

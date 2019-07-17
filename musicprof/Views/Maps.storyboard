@@ -104,7 +104,7 @@
                     <navigationItem key="navigationItem" id="WsG-hi-Ghk">
                         <barButtonItem key="leftBarButtonItem" title="Cerrar" id="UCc-HU-lgX">
                             <connections>
-                                <segue destination="urF-oi-08E" kind="unwind" identifier="cancel" unwindAction="unwindToContactDetails:" id="mtp-8j-NiX"/>
+                                <segue destination="urF-oi-08E" kind="unwind" identifier="cancel" unwindAction="unwindBack:" id="Zv7-b6-H7a"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -112,7 +112,7 @@
                         <outlet property="fixAddressButton" destination="JZh-AW-SsK" id="A7G-d3-tck"/>
                         <outlet property="mapView" destination="EGZ-QO-OC4" id="EAU-fi-tbF"/>
                         <outlet property="searchDisplayController" destination="E8Z-Ws-ekE" id="34Q-D1-5Bv"/>
-                        <segue destination="urF-oi-08E" kind="unwind" identifier="updateAddress" unwindAction="unwindToContactDetails:" id="vKc-6p-hlz"/>
+                        <segue destination="urF-oi-08E" kind="unwind" identifier="updateAddress" unwindAction="unwindBack:" id="vKc-6p-hlz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIy-JC-VB4" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -237,6 +237,23 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
             controller.email = self.client.email
         }
     }
+    
+    override func unwindBack(_ segue: UIStoryboardSegue) {
+        if segue.identifier == "updateAddress", let controller = segue.source as? MapViewController {
+            self.addressTextField?.text = controller.selectedAddress
+            guard self.locationButton != nil else { return }
+            if let address = controller.selectedAddress, !address.isEmpty {
+                self.updateLocations { [weak self] locations in
+                    self?.locations = locations
+                    if locations.count == 1 {
+                        self?.setLocation(locations[0])
+                    } else if locations.count > 0 {
+                        self?.showMapSelectionMenu(withOptions: locations)
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension InstrumentsRegistrationViewController: UITextFieldDelegate {

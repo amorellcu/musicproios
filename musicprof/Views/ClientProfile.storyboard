@@ -1105,7 +1105,7 @@
                         <outlet property="scrollView" destination="Txz-Zi-bcQ" id="3dF-BW-Vfa"/>
                         <outlet property="studentNameTextField" destination="Opb-pi-Z7H" id="bcP-FQ-9WS"/>
                         <segue destination="S1q-fo-JWM" kind="unwind" identifier="subaccountCreated" unwindAction="unwindToProfile:" id="7RK-va-75f"/>
-                        <segue destination="Yug-4X-QDR" kind="presentation" identifier="openMaps" id="Ean-e6-Ehv"/>
+                        <segue destination="Yug-4X-QDR" kind="presentation" identifier="openMap" id="Ean-e6-Ehv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gdm-Zv-rmZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1405,7 +1405,7 @@
                         <outlet property="scrollView" destination="oox-cE-HZM" id="mcA-Ef-5ow"/>
                         <outlet property="studentNameTextField" destination="jKA-Z5-LJi" id="YdW-77-w7S"/>
                         <segue destination="gok-eP-hNF" kind="unwind" identifier="subaccountUpdated" unwindAction="unwindToProfile:" id="czc-Ub-Jig"/>
-                        <segue destination="Yug-4X-QDR" kind="presentation" identifier="openMaps" id="M94-bE-S8U"/>
+                        <segue destination="Yug-4X-QDR" kind="presentation" identifier="openMap" id="M94-bE-S8U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJd-D6-T2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1419,6 +1419,6 @@
         <image name="fleizqoff" width="70" height="155"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ean-e6-Ehv"/>
+        <segue reference="M94-bE-S8U"/>
     </inferredMetricsTieBreakers>
 </document>
