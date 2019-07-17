@@ -466,7 +466,7 @@
         <!--MIS CLASES RECIBIDAS-->
         <scene sceneID="qKL-eo-WBe">
             <objects>
-                <viewController storyboardIdentifier="ReservationListViewController" title="MIS CLASES RECIBIDAS" id="IuM-Ts-f9D" customClass="ReservationListViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReservationListViewController" title="MIS CLASES RECIBIDAS" id="IuM-Ts-f9D" customClass="OldReservationsViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n4F-TJ-5EJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

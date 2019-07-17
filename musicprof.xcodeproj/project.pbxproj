@@ -12,6 +12,7 @@
 		18F3B0C6C9FD26CAF18EF54A /* libPods-musicprofUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75154C0B7B893B2085E3E130 /* libPods-musicprofUITests.a */; };
 		530591E522CCF07E00905D71 /* ImageImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530591E422CCF07E00905D71 /* ImageImporter.swift */; };
 		5305F99622C4E950002284EF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5305F99522C4E950002284EF /* UIView.swift */; };
+		530A63E222DF7C5D00E8B98D /* OldReservationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530A63E122DF7C5D00E8B98D /* OldReservationsViewController.swift */; };
 		530B852722DB16680021C70E /* ProfessorProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530B852622DB16680021C70E /* ProfessorProfile.storyboard */; };
 		530B852922DB18BB0021C70E /* ProfessorClasses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530B852822DB18BB0021C70E /* ProfessorClasses.storyboard */; };
 		530B852B22DB1B5B0021C70E /* ProfessorClassListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530B852A22DB1B5B0021C70E /* ProfessorClassListViewController.swift */; };
@@ -164,6 +165,7 @@
 		4AF714FBEDDAEBE65E173A2A /* libPods-musicprofTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-musicprofTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		530591E422CCF07E00905D71 /* ImageImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageImporter.swift; sourceTree = "<group>"; };
 		5305F99522C4E950002284EF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		530A63E122DF7C5D00E8B98D /* OldReservationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldReservationsViewController.swift; sourceTree = "<group>"; };
 		530B852622DB16680021C70E /* ProfessorProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfessorProfile.storyboard; sourceTree = "<group>"; };
 		530B852822DB18BB0021C70E /* ProfessorClasses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfessorClasses.storyboard; sourceTree = "<group>"; };
 		530B852A22DB1B5B0021C70E /* ProfessorClassListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorClassListViewController.swift; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 				53C680AA22CB7CD200993110 /* PaymentViewController.swift */,
 				5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */,
 				5357A5DF22D49B4300936FA6 /* ClientUpdateViewController.swift */,
+				530A63E122DF7C5D00E8B98D /* OldReservationsViewController.swift */,
 				5357A5E122D49B5A00936FA6 /* ProfessorUpdateViewController.swift */,
 				53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */,
 				53616E6B22CBAF6800B36549 /* PasswordUpdateViewController.swift */,
@@ -846,6 +849,7 @@
 				53C5DA9522CA38030005AC14 /* ReservationListViewController.swift in Sources */,
 				A5598C1A201F8C3B000C64F6 /* LoginViewController.swift in Sources */,
 				53C680AB22CB7CD200993110 /* PaymentViewController.swift in Sources */,
+				530A63E222DF7C5D00E8B98D /* OldReservationsViewController.swift in Sources */,
 				53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */,
 				533E63FA22C8BE43007EE029 /* ToggleButton.swift in Sources */,
 				5333E96922C0F78900175995 /* ReservationController.swift in Sources */,
