@@ -69,4 +69,31 @@ extension SubaccountListViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.updater?.performSegue(withIdentifier: "editSubaccount", sender: self.elements[indexPath.row])
     }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Eliminar"
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else {
+            return
+        }
+        let subaccount = self.elements[indexPath.item]
+        self.ask(question: "¿Está seguro de que quiere eliminar el estudiante?",
+                 title: "Borrando", yesButton: "Sí", noButton: "No") { (shouldCancel) in
+                    guard shouldCancel else { return }
+                    let alert = self.showSpinner(withMessage: "Eliminando el estudiante...")
+                    self.service.deleteSubaccount(subaccount) { [weak self] (result) in
+                        alert.hideView()
+                        self?.handleResult(result) {
+                            self?.elements.remove(at: indexPath.item)
+                            self?.tableView.reloadData()
+                        }
+                    }
+        }
+    }
 }

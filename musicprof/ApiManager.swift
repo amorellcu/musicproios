@@ -656,6 +656,21 @@ class ApiManager {
         }
     }
     
+    func deleteSubaccount(_ client: Subaccount, handler: @escaping (ApiResult<Void>) -> Void) {
+        let url = baseUrl.appendingPathComponent("removeSubcuenta")
+        let parameters = ["subcuentaId": client.id]
+        let _ = self.session
+            .request(url, method: .post, parameters: parameters,
+                     encoding: URLEncoding.httpBody, headers: headers)
+            .responseError { (result) in
+                handler(result.transform(with: {
+                    if let client = self.user as? Client {
+                        client.subaccounts?.removeAll(where: {$0.id == client.id})
+                    }
+                }))
+        }
+    }
+    
     func sendResetCode(toEmail email: String, handler: @escaping (ApiResult<Void>) -> Void) {
         let url = baseUrl.appendingPathComponent("password/email")
         let parameters = ["email": email]

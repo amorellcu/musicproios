@@ -51,7 +51,7 @@ extension UIViewController {
         let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(showCloseButton: false))
         alert.addButton(yesButton, action: {handler?(true)})
         alert.addButton(noButton, action: {handler?(false)})
-        alert.showInfo(title, subTitle: question)
+        alert.showWarning(title, subTitle: question)
     }
     
     func handleResult<T>(_ result: ApiResult<[T]>, onError: ((Error) -> Void)? = nil, onSuccess: (([T]) throws -> Void)? = nil) {
