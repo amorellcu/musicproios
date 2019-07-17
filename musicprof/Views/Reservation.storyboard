@@ -276,48 +276,23 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24v-eu-VFn">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8mD-mY-aaz" userLabel="Fields">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8mD-mY-aaz" userLabel="Sections">
                                         <rect key="frame" x="0.0" y="10" width="414" height="372"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2db-YK-OSZ" userLabel="Instruments">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2db-YK-OSZ" userLabel="Instruments" customClass="SectionHeader" customModule="musicprof" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fleizqoff" translatesAutoresizingMaskIntoConstraints="NO" id="T44-Aw-4yW">
-                                                        <rect key="frame" x="0.0" y="0.0" width="22" height="52"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="22" id="hc0-B8-5Nr"/>
-                                                            <constraint firstAttribute="height" constant="52" id="sd4-Cw-iNI"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flederoff" translatesAutoresizingMaskIntoConstraints="NO" id="dbi-WZ-pZu">
-                                                        <rect key="frame" x="392" y="0.0" width="22" height="52"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="52" id="BBl-ad-dRg"/>
-                                                            <constraint firstAttribute="width" constant="22" id="Ok9-ma-hrX"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T6m-qU-wrF">
-                                                        <rect key="frame" x="52" y="10" width="310" height="32"/>
-                                                        <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
-                                                        <state key="normal" title="SELECCIONA TU INSTRUMENTO">
-                                                            <color key="titleColor" red="0.48627450980392156" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="onSelectInstrumentTapped:" destination="Ef7-Kh-Cse" eventType="touchUpInside" id="bs9-yV-wua"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
                                                 <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstItem="T6m-qU-wrF" firstAttribute="leading" secondItem="T44-Aw-4yW" secondAttribute="trailing" constant="30" id="EPO-ot-wZ4"/>
-                                                    <constraint firstItem="T44-Aw-4yW" firstAttribute="leading" secondItem="2db-YK-OSZ" secondAttribute="leading" id="FaN-m5-zNJ"/>
-                                                    <constraint firstItem="T6m-qU-wrF" firstAttribute="centerY" secondItem="2db-YK-OSZ" secondAttribute="centerY" id="GOx-qs-a8n"/>
-                                                    <constraint firstItem="dbi-WZ-pZu" firstAttribute="top" secondItem="2db-YK-OSZ" secondAttribute="top" id="K42-Fg-Lnh"/>
-                                                    <constraint firstItem="dbi-WZ-pZu" firstAttribute="leading" secondItem="T6m-qU-wrF" secondAttribute="trailing" constant="30" id="P1E-hL-8cV"/>
-                                                    <constraint firstAttribute="trailing" secondItem="dbi-WZ-pZu" secondAttribute="trailing" id="Xg2-ht-Dyy"/>
-                                                    <constraint firstItem="T44-Aw-4yW" firstAttribute="top" secondItem="2db-YK-OSZ" secondAttribute="top" id="coj-Qd-pl0"/>
                                                     <constraint firstAttribute="height" constant="52" id="ptv-sE-CNE"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="SELECCIONA TU INSTRUMENTO"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="container" destination="8mD-mY-aaz" id="Xoy-CG-kuS"/>
+                                                    <outlet property="contentConstraint" destination="qza-7K-QeB" id="LaN-fB-CCI"/>
+                                                </connections>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="evF-xw-e0h">
                                                 <rect key="frame" x="0.0" y="52" width="414" height="50"/>
@@ -394,47 +369,20 @@
                                                     <outlet property="delegate" destination="Ef7-Kh-Cse" id="GVZ-Xf-3Jf"/>
                                                 </connections>
                                             </collectionView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEm-hP-dD2" userLabel="Students">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEm-hP-dD2" userLabel="Students" customClass="SectionHeader" customModule="musicprof" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="102" width="414" height="52"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fleizqoff" translatesAutoresizingMaskIntoConstraints="NO" id="hTi-6f-9G2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="22" height="52"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="52" id="ZxH-Eh-9TJ"/>
-                                                            <constraint firstAttribute="width" constant="22" id="nMt-5B-ARy"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flederoff" translatesAutoresizingMaskIntoConstraints="NO" id="wkc-Y8-aVy">
-                                                        <rect key="frame" x="392" y="0.0" width="22" height="52"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="22" id="sSm-pG-F9b"/>
-                                                            <constraint firstAttribute="height" constant="52" id="ynW-xn-ZjL"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ky0-XW-gSX">
-                                                        <rect key="frame" x="52" y="10" width="310" height="32"/>
-                                                        <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
-                                                        <state key="normal" title="AGREGAR OTRO ESTUDIANTE">
-                                                            <color key="titleColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="onAddStudentsTapped:" destination="Ef7-Kh-Cse" eventType="touchUpInside" id="Hga-WZ-pb2"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
                                                 <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstItem="hTi-6f-9G2" firstAttribute="top" secondItem="dEm-hP-dD2" secondAttribute="top" id="71c-MC-Pl6"/>
-                                                    <constraint firstItem="ky0-XW-gSX" firstAttribute="centerY" secondItem="dEm-hP-dD2" secondAttribute="centerY" id="EVK-HE-cn7"/>
-                                                    <constraint firstItem="hTi-6f-9G2" firstAttribute="leading" secondItem="dEm-hP-dD2" secondAttribute="leading" id="M3M-Ci-tSj"/>
-                                                    <constraint firstItem="hTi-6f-9G2" firstAttribute="top" secondItem="dEm-hP-dD2" secondAttribute="top" id="dzH-TY-DOE"/>
-                                                    <constraint firstItem="hTi-6f-9G2" firstAttribute="leading" secondItem="dEm-hP-dD2" secondAttribute="leading" id="eLo-sJ-EjK"/>
-                                                    <constraint firstItem="wkc-Y8-aVy" firstAttribute="top" secondItem="dEm-hP-dD2" secondAttribute="top" id="g4E-gt-Nb1"/>
                                                     <constraint firstAttribute="height" constant="52" id="iU9-E8-xz0"/>
-                                                    <constraint firstItem="wkc-Y8-aVy" firstAttribute="leading" secondItem="ky0-XW-gSX" secondAttribute="trailing" constant="30" id="m19-oY-R9G"/>
-                                                    <constraint firstItem="ky0-XW-gSX" firstAttribute="leading" secondItem="hTi-6f-9G2" secondAttribute="trailing" constant="30" id="oWn-o3-yCd"/>
-                                                    <constraint firstAttribute="trailing" secondItem="wkc-Y8-aVy" secondAttribute="trailing" id="pNd-FT-U57"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="AGREGAR OTRO INSTRUMENTO"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="container" destination="8mD-mY-aaz" id="E8L-rh-pUl"/>
+                                                    <outlet property="contentConstraint" destination="m09-06-PL1" id="PeF-u8-e3a"/>
+                                                </connections>
                                             </view>
                                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Bb-VW-QS9">
                                                 <rect key="frame" x="0.0" y="154" width="414" height="218"/>
@@ -485,13 +433,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="odp-GJ-K3B"/>
                     <connections>
-                        <outlet property="addStudentsButton" destination="ky0-XW-gSX" id="ZP1-JL-hxU"/>
                         <outlet property="collectionView" destination="evF-xw-e0h" id="Lng-mU-91A"/>
-                        <outlet property="collectionViewCollapseConstraint" destination="qza-7K-QeB" id="4ZE-2T-VYZ"/>
                         <outlet property="continueButton" destination="ZYr-qu-71H" id="R5o-rJ-d7v"/>
-                        <outlet property="selectInstrumentsButton" destination="T6m-qU-wrF" id="csC-Ru-BeF"/>
                         <outlet property="studentsView" destination="5Bb-VW-QS9" id="9Wc-jy-wZP"/>
-                        <outlet property="studentsViewCollapseConstraint" destination="m09-06-PL1" id="Xrq-Qw-XBv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVH-wv-cRO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1252,7 +1196,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yzh-ss-tGI" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="766" width="414" height="52"/>
+                                        <rect key="frame" x="0.0" y="766" width="414.00000000000023" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="GaT-qr-chc"/>
                                         </constraints>
@@ -1683,7 +1627,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pFs-2C-zmg">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="0.0"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1692,10 +1636,10 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vOr-fb-6Xf">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="0.0"/>
                                                                 </imageView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pO2-3h-jyj" userLabel="Border">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="0.0"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -1793,11 +1737,9 @@
         <image name="calendarizq" width="45" height="45"/>
         <image name="flechader" width="70" height="156"/>
         <image name="flechaizq" width="70" height="156"/>
-        <image name="flederoff" width="70" height="156"/>
-        <image name="fleizqoff" width="70" height="155"/>
         <image name="profedetails" width="848" height="446"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SXE-QX-pwV"/>
+        <segue reference="kKG-3u-9h8"/>
     </inferredMetricsTieBreakers>
 </document>

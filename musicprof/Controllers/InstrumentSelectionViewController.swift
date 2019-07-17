@@ -26,14 +26,9 @@ class InstrumentSelectionViewController: BaseReservationViewController {
         }
     }
     
-    @IBOutlet weak var selectInstrumentsButton: UIButton!
-    @IBOutlet weak var addStudentsButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var studentsView: UIView!
-    
-    @IBOutlet weak var collectionViewCollapseConstraint: NSLayoutConstraint?
-    @IBOutlet weak var studentsViewCollapseConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,42 +72,7 @@ class InstrumentSelectionViewController: BaseReservationViewController {
         }
     }
     
-    private func setButtonState(_ button: UIButton, isCollapsed: Bool) {
-        let leftArrow = button.superview?.viewWithTag(1) as? UIImageView
-        let rightArrow = button.superview?.viewWithTag(2) as? UIImageView
-        
-        if isCollapsed {
-            button.setTitleColor(collapsedColor, for: .normal)
-            leftArrow?.image = UIImage(named: "fleizqoff")
-            rightArrow?.image = UIImage(named: "flederoff")
-        } else {
-            button.setTitleColor(expandedColor, for: .normal)
-            leftArrow?.image = UIImage(named: "flechaizq")
-            rightArrow?.image = UIImage(named: "flechader")
-        }
-    }
     
-    @IBAction func onAddStudentsTapped(_ sender: UIButton) {
-        self.studentsViewCollapseConstraint?.priority = .defaultLow
-        self.setButtonState(self.selectInstrumentsButton, isCollapsed: true)
-        self.collectionViewCollapseConstraint?.priority = .defaultHigh
-        self.setButtonState(self.addStudentsButton, isCollapsed: false)
-        UIView.animate(withDuration: 0.5) {
-            self.collectionView.superview?.layoutIfNeeded()
-        }
-    }
-    
-    @IBAction func onSelectInstrumentTapped(_ sender: UIButton) {
-        self.collectionViewCollapseConstraint?.priority = .defaultLow
-        self.setButtonState(self.selectInstrumentsButton, isCollapsed: false)
-        self.studentsViewCollapseConstraint?.priority = .defaultHigh
-        self.setButtonState(self.addStudentsButton, isCollapsed: true)
-        UIView.animate(withDuration: 0.5) {
-            self.collectionView.superview?.layoutIfNeeded()
-        }
-    }
-    
-     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nestedController = segue.destination as? AddStudentsViewController {
