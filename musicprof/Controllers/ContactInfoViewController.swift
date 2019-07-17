@@ -205,7 +205,7 @@ extension ContactInfoViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard textField.text != self.user.address else { return }
+        guard textField === self.addressTextField && textField.text != self.user.address else { return }
         self.updateClient()
         self.updateLocations { [weak self] locations in
             self?.locations = locations

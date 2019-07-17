@@ -23,7 +23,7 @@ import UIKit
         }
     }
     
-    @IBInspectable var isChecked = false {
+    @IBInspectable var isChecked: Bool = false {
         didSet {
             self.updateState()
         }

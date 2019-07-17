@@ -37,6 +37,7 @@ class Subaccount: Decodable, Student {
         case id
         case name
         case userId = "idCuenta"
+        case locationId = "idColonia"
         case address
         case instruments
     }
@@ -53,6 +54,7 @@ extension Subaccount: Encodable {
         try container.encode(self.name, forKey: .name)
         try container.encodeIfPresent(self.address, forKey: .address)
         try container.encodeIfPresent(self.instruments?.map {$0.id}, forKey: .instruments)
+        try container.encodeIfPresent(self.locationId, forKey: .locationId)
     }
 }
 

@@ -15,6 +15,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
     
     var client: Client!
     var subaccount: Subaccount?
+    var location: Location?
     var locations: [Location]?
     
     @IBOutlet weak var avatarImageView: UIImageView?
@@ -43,6 +44,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         self.studentNameTextField?.text = self.subaccount?.name ?? ""
         self.studentNameTextField?.delegate = self
         self.addressTextField?.text = self.subaccount?.address ?? self.client.address ?? ""
+        self.addressTextField?.delegate = self
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
@@ -65,7 +67,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         guard self.locationButton != nil else { return }
         if let location = self.subaccount?.location {
             self.setLocation(location)
-        } else if let locationId = self.subaccount?.locationId {
+        } else if let locationId = self.subaccount?.locationId, locationId > 0 {
             self.service.getLocation(withId: locationId) { [weak self] (result) in
                 self?.handleResult(result) {
                     self?.setLocation($0)
@@ -73,7 +75,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
             }
         } else if let location = self.client?.location {
             self.setLocation(location)
-        } else if let locationId = self.client?.locationId {
+        } else if let locationId = self.client?.locationId, locationId > 0 {
             self.service.getLocation(withId: locationId) { [weak self] (result) in
                 self?.handleResult(result) {
                     self?.setLocation($0)
@@ -149,8 +151,9 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         let client = Subaccount()
         client.userId = self.client.id
         client.name = self.studentNameTextField?.text ?? ""
-        client.address = self.client.address
-        client.locationId = self.client.locationId
+        client.address = self.addressTextField?.text
+        client.location = self.location ?? self.client.location
+        client.locationId = client.location?.id ?? self.client.locationId
         client.instruments = selection.map({instruments[$0.item]})
         
         let alert = self.showSpinner(withMessage: "Registrando estudiante...")
@@ -178,6 +181,9 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         
         let client = self.subaccount!
         client.name = self.studentNameTextField?.text ?? ""
+        client.address = self.addressTextField?.text
+        client.location = self.location ?? client.location
+        client.locationId = client.location?.id ?? client.locationId
         client.instruments = selection.map({instruments[$0.item]})
         
         let alert = self.showSpinner(withMessage: "Actualizando estudiante...")
@@ -238,6 +244,18 @@ extension InstrumentsRegistrationViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard textField === self.addressTextField else { return }
+        self.updateLocations { [weak self] locations in
+            self?.locations = locations
+            if locations.count == 1 {
+                self?.setLocation(locations[0])
+            } else if locations.count > 0 {
+                self?.showMapSelectionMenu(withOptions: locations)
+            }
+        }
+    }
 }
 
 extension InstrumentsRegistrationViewController {
@@ -246,12 +264,12 @@ extension InstrumentsRegistrationViewController {
     }
     
     private func setLocation(_ location: Location) {
-        self.client?.locationId = location.id
+        self.location = location
         self.locationButton?.setTitle(location.description, for: .normal)
     }
     
     private func showMapSelectionMenu(withOptions locations: [Location]) {
-        let selection = locations.firstIndex(where: {$0.id == self.client?.locationId}) ?? 0
+        let selection = locations.firstIndex(where: {$0.id == self.location?.id}) ?? 0
         ActionSheetStringPicker.show(withTitle: "Selecciona tu Ubicación", rows: locations, initialSelection: selection, doneBlock: { (_, index, location) in
             self.setLocation(locations[index])
         }, cancel: { (_) in
@@ -261,7 +279,7 @@ extension InstrumentsRegistrationViewController {
     
     private func updateLocations(completion: (([Location]) -> ())? = nil) {
         guard self.locationButton != nil else { return }
-        guard let address = self.user.address, !address.isEmpty else { return }
+        guard let address = self.addressTextField?.text, !address.isEmpty else { return }
         let alert = self.showSpinner(withMessage: "Buscando ubicaciones...")
         self.service.getLocations(at: address) { [weak self] (result) in
             alert.hideView()
@@ -273,7 +291,7 @@ extension InstrumentsRegistrationViewController {
     }
     
     @IBAction func onSelectLocation(_ sender: Any) {
-        guard let address = self.client.address, !address.isEmpty else {
+        guard let address = self.addressTextField?.text, !address.isEmpty else {
             SCLAlertView().showNotice("Acción inválida", subTitle: "Introduzca su dirección antes de seleccionar su ubicación.")
             return
         }
