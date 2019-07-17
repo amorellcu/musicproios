@@ -485,10 +485,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿PARA QUIÉN PEDIRÁS LAS CLASES?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="fPj-Nc-p3c">
-                                                        <rect key="frame" x="41" y="16" width="332" height="23"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="23" id="24o-Yx-Svd"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="41" y="0.0" width="332" height="56"/>
                                                         <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                                         <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -496,7 +493,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstItem="fPj-Nc-p3c" firstAttribute="top" secondItem="jg4-Dn-8I4" secondAttribute="top" constant="16" id="42v-MU-rbP"/>
+                                                    <constraint firstItem="fPj-Nc-p3c" firstAttribute="top" secondItem="jg4-Dn-8I4" secondAttribute="top" id="42v-MU-rbP"/>
                                                     <constraint firstItem="RuI-QS-QEH" firstAttribute="leading" secondItem="jg4-Dn-8I4" secondAttribute="leading" id="6gR-RF-uJC"/>
                                                     <constraint firstItem="zwC-Tn-PlO" firstAttribute="leading" secondItem="fPj-Nc-p3c" secondAttribute="trailing" constant="14" id="IGq-QF-gpe"/>
                                                     <constraint firstItem="RuI-QS-QEH" firstAttribute="top" secondItem="jg4-Dn-8I4" secondAttribute="top" id="OZR-ct-52n"/>
@@ -508,6 +505,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="zwC-Tn-PlO" secondAttribute="bottom" id="gwO-d4-n6O"/>
                                                     <constraint firstAttribute="bottom" secondItem="RuI-QS-QEH" secondAttribute="bottom" id="jqZ-R3-DvQ"/>
                                                     <constraint firstAttribute="trailing" secondItem="zwC-Tn-PlO" secondAttribute="trailing" id="rif-NN-ahr"/>
+                                                    <constraint firstAttribute="bottom" secondItem="fPj-Nc-p3c" secondAttribute="bottom" id="zQs-Oi-UgN"/>
                                                     <constraint firstAttribute="bottom" secondItem="RuI-QS-QEH" secondAttribute="bottom" id="zgg-kP-TdD"/>
                                                 </constraints>
                                             </view>
@@ -679,10 +677,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECCIONA TUS INSTRUMENTOS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="j6N-6J-zWf">
-                                                <rect key="frame" x="52" y="16" width="310" height="23"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="23" id="tw6-gl-1Xd"/>
-                                                </constraints>
+                                                <rect key="frame" x="52" y="0.0" width="310" height="52"/>
                                                 <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                                 <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -701,9 +696,10 @@
                                             <constraint firstItem="SdL-9e-JVf" firstAttribute="leading" secondItem="j6N-6J-zWf" secondAttribute="trailing" constant="30" id="5gj-ML-fDj"/>
                                             <constraint firstItem="fxG-CV-Ou3" firstAttribute="top" secondItem="L2m-n1-8N7" secondAttribute="top" id="Jb4-Qv-6Lt"/>
                                             <constraint firstItem="fxG-CV-Ou3" firstAttribute="leading" secondItem="L2m-n1-8N7" secondAttribute="leading" id="PAi-1a-mtP"/>
+                                            <constraint firstAttribute="bottom" secondItem="j6N-6J-zWf" secondAttribute="bottom" id="VXl-6a-mT6"/>
                                             <constraint firstAttribute="height" constant="52" id="cYF-7B-GLB"/>
-                                            <constraint firstItem="j6N-6J-zWf" firstAttribute="top" secondItem="L2m-n1-8N7" secondAttribute="top" constant="16" id="feP-JL-OJt"/>
                                             <constraint firstAttribute="bottom" secondItem="SdL-9e-JVf" secondAttribute="bottom" id="jI4-dB-nOZ"/>
+                                            <constraint firstItem="j6N-6J-zWf" firstAttribute="top" secondItem="L2m-n1-8N7" secondAttribute="top" id="qKt-xF-JL3"/>
                                             <constraint firstAttribute="bottom" secondItem="fxG-CV-Ou3" secondAttribute="bottom" id="r3M-sl-Otd"/>
                                             <constraint firstItem="j6N-6J-zWf" firstAttribute="leading" secondItem="fxG-CV-Ou3" secondAttribute="trailing" constant="30" id="rHJ-bu-7YJ"/>
                                             <constraint firstAttribute="trailing" secondItem="SdL-9e-JVf" secondAttribute="trailing" id="xdJ-8U-apc"/>
@@ -1198,7 +1194,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INTRODUZCA LA CONTRASENA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="epj-vM-sJE">
-                                                        <rect key="frame" x="52" y="16" width="310" height="20"/>
+                                                        <rect key="frame" x="52" y="16" width="310" height="22.5"/>
                                                         <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                                         <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1804,7 +1800,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="DtK-N4-rWl"/>
-        <segue reference="F13-wH-lZA"/>
+        <segue reference="MuA-jP-iFB"/>
         <segue reference="fsI-iq-RmP"/>
         <segue reference="kMf-8X-xHA"/>
     </inferredMetricsTieBreakers>

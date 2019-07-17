@@ -508,7 +508,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="352" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fn9-Gq-4uf" id="qbh-OM-g88">
-                                                    <rect key="frame" x="0.0" y="0.0" width="352" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="352" height="49.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubi-gZ-GxT">
@@ -1110,25 +1110,25 @@
                                                 <rect key="frame" x="0.0" y="28" width="414" height="52"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1mz-Sh-hrb" id="u1U-4X-2Ml">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="51.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechaizq" translatesAutoresizingMaskIntoConstraints="NO" id="1n9-26-Xj1">
-                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="52"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="52.333333333333336"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="8jk-WU-8nf"/>
                                                                 <constraint firstAttribute="height" constant="52" id="EpR-z2-dL7"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flechader" translatesAutoresizingMaskIntoConstraints="NO" id="Aa7-n6-52k">
-                                                            <rect key="frame" x="392" y="0.0" width="22" height="52"/>
+                                                            <rect key="frame" x="392" y="0.0" width="22" height="52.333333333333336"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="52" id="4fn-pW-bqA"/>
                                                                 <constraint firstAttribute="width" constant="22" id="n4f-re-2hB"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECCIONA TU INSTRUMENTO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xSD-wY-ZSh">
-                                                            <rect key="frame" x="41" y="16" width="332" height="21"/>
+                                                            <rect key="frame" x="41" y="0.0" width="332" height="52.333333333333336"/>
                                                             <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                                             <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1137,15 +1137,15 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="xSD-wY-ZSh" firstAttribute="top" secondItem="u1U-4X-2Ml" secondAttribute="topMargin" constant="5" id="0Zy-4k-dRo"/>
                                                         <constraint firstAttribute="bottom" secondItem="Aa7-n6-52k" secondAttribute="bottom" id="9m9-u2-vkc"/>
                                                         <constraint firstItem="1n9-26-Xj1" firstAttribute="top" secondItem="u1U-4X-2Ml" secondAttribute="top" id="JLk-0Q-S3W"/>
                                                         <constraint firstAttribute="trailing" secondItem="Aa7-n6-52k" secondAttribute="trailing" id="PGu-Fs-Q2M"/>
                                                         <constraint firstItem="1n9-26-Xj1" firstAttribute="leading" secondItem="u1U-4X-2Ml" secondAttribute="leading" id="azM-53-Hp2"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="xSD-wY-ZSh" secondAttribute="bottom" constant="4" id="pkd-X6-Kyb"/>
                                                         <constraint firstItem="Aa7-n6-52k" firstAttribute="leading" secondItem="xSD-wY-ZSh" secondAttribute="trailing" constant="19" id="rJF-dC-Ep1"/>
+                                                        <constraint firstAttribute="bottom" secondItem="xSD-wY-ZSh" secondAttribute="bottom" id="tFF-1q-ODd"/>
                                                         <constraint firstItem="Aa7-n6-52k" firstAttribute="top" secondItem="u1U-4X-2Ml" secondAttribute="top" id="wIb-m9-P1v"/>
                                                         <constraint firstItem="xSD-wY-ZSh" firstAttribute="leading" secondItem="1n9-26-Xj1" secondAttribute="trailing" constant="17" id="wQA-qn-WDW"/>
+                                                        <constraint firstItem="xSD-wY-ZSh" firstAttribute="top" secondItem="u1U-4X-2Ml" secondAttribute="top" id="x7E-KD-jyP"/>
                                                         <constraint firstAttribute="bottom" secondItem="1n9-26-Xj1" secondAttribute="bottom" id="z1f-tq-1dI"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -1159,11 +1159,11 @@
                                                 <rect key="frame" x="0.0" y="80" width="414" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zSv-UM-CFh" id="LRA-iL-VMM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wjF-il-pUi">
-                                                            <rect key="frame" x="20" y="0.0" width="374" height="44"/>
+                                                            <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1278,7 +1278,6 @@
                                                 <rect key="frame" x="52" y="16" width="310" height="23"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="7rc-OK-MWf"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="dgN-0P-l6P"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                                 <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1469,7 +1468,6 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿PARA QUIÉN ES LA CLASE?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Yes-Ih-9hM">
                                                 <rect key="frame" x="52" y="16" width="310" height="23"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="GCM-O4-ZIH"/>
                                                     <constraint firstAttribute="height" constant="23" id="TR4-Mb-mRL"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
@@ -1723,7 +1721,6 @@
                     <connections>
                         <outlet property="collectionView" destination="HKp-uR-uai" id="cCa-Eb-IR5"/>
                         <outlet property="continueButton" destination="Aza-fn-L8E" id="bXc-Fs-cz8"/>
-                        <outlet property="selectInstrumentsButton" destination="fNT-i2-OrH" id="pma-e8-Vs2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xg5-gU-ccg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1740,6 +1737,6 @@
         <image name="profedetails" width="848" height="446"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kKG-3u-9h8"/>
+        <segue reference="SXE-QX-pwV"/>
     </inferredMetricsTieBreakers>
 </document>
