@@ -19,7 +19,7 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
     let expandedColor = UIColor(red: 0/255 ,green: 255/255 ,blue: 180/255 ,alpha: 1)
     let collapsedColor = UIColor(red: 124/255, green: 124/255, blue: 124/255, alpha: 1)
     
-    var professors = [Professor]()
+    var classes = [Class]()
     var sections = [Section]() {
         didSet {
             self.tableView.reloadData()
@@ -31,7 +31,7 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
 
         // Do any additional setup after loading the view.
         //self.perfil.image = photoPerfil
-        self.nextProfessorButton.isEnabled = self.professors.count > 1
+        self.nextProfessorButton.isEnabled = self.classes.count > 1
         self.updateProfessor()
     }
     
@@ -58,8 +58,8 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
             alert.hideView()
             self?.handleResult(result) { value in
                 self?.reservation.professor = value
-                if let index = self?.professors.firstIndex(where: {value.id == $0.id}) {
-                    self?.professors[index] = value
+                if let index = self?.classes.firstIndex(where: {value.id == $0.id}) {
+                    self?.classes[index].professor = value
                 }
                 self?.updateProfessor(value)
             }
@@ -80,21 +80,22 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
             Section(name: "FORMACIÓN ACADEMICA", items: professor.academicTraining == nil || professor.academicTraining!.isEmpty ? [] : [professor.academicTraining!],collapsed: true),
             ].filter({$0.items.count > 0})
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @IBAction func onNextProfessorTapped(_ sender: UIButton) {
-        guard professors.count > 0 else { return }
-        var index = professors.firstIndex(where: {self.reservation.professor === $0}) ?? 0
+        guard classes.count > 0 else { return }
+        var index = classes.firstIndex(where: {self.reservation.classes?.id == $0.id}) ?? 0
         index += 1
-        if index == professors.count {
+        if index == classes.count {
             index = 0
         }
-        let selection = professors[index]
-        self.reservation.professor = selection
+        let selection = classes[index]
+        self.reservation.professor = selection.professor
+        self.reservation.classes = selection
         self.updateProfessor()
     }
     

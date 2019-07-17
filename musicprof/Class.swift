@@ -15,7 +15,7 @@ struct Class: Decodable {
     var professorId: Int?
     var instrument: Instrument?
     var instrumentId: Int?
-    var status: Int?
+    var status: ClassState?
     var reservations: [Reservation]?
     
     enum CodingKeys: String, CodingKey {
@@ -28,4 +28,9 @@ struct Class: Decodable {
         case status = "class_status"
         case reservations
     }
+}
+
+enum ClassState: Int, Decodable {
+    case normal = 0
+    case cancelled = 1
 }

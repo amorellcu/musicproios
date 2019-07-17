@@ -747,7 +747,7 @@ class ApiManager {
         var request = request
         request.locationId = request.locationId ?? self.getStudent(for: request)?.locationId
         request.address = request.address ?? self.getStudent(for: request)?.address
-        let url = baseUrl.appendingPathComponent("classReservation")
+        let url = baseUrl.appendingPathComponent("classReservation1")
         self.post(request, to: url) { (result: ApiResult<ReservationData2>) in
             handler(result.transform(with: {
                 self.currentClient?.nextReservations?.append($0.reservation)

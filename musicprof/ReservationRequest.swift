@@ -23,6 +23,7 @@ struct ReservationRequest {
     fileprivate enum CodingKeys: String, CodingKey {
         case studentId = "id"
         case date = "classDate"
+        case classId = "classId"
         case proffessor = "profesorId"
         case instrument = "instrumentId"
         case studentType = "reservationFor"
@@ -33,7 +34,7 @@ struct ReservationRequest {
 extension ReservationRequest: Encodable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+        /*
         if let date = self.date {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -43,6 +44,8 @@ extension ReservationRequest: Encodable {
         }
         try container.encodeIfPresent(self.professor?.id, forKey: .proffessor)
         try container.encodeIfPresent(self.instrument?.id, forKey: .instrument)
+ */
+        try container.encodeIfPresent(self.classes?.id, forKey: .classId)
         try container.encodeIfPresent(self.studentId, forKey: .studentId)
         try container.encodeIfPresent(self.studentType?.rawValue, forKey: .studentType)
         try container.encodeIfPresent(self.address, forKey: .address)

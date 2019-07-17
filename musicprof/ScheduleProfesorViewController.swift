@@ -35,12 +35,13 @@ class ScheduleProfesorViewController: BaseReservationViewController {
         }
     }
     
-    var selectedProfessor: Professor? {
+    var selectedClass: Class? {
         didSet {
             if let sections = sections, let selectedSection = selectedSection {
                 self.reservation.date = sections[selectedSection].date
             }
-            self.reservation.professor = self.selectedProfessor
+            self.reservation.classes = self.selectedClass
+            self.reservation.professor = self.selectedClass?.professor
         }
     }
     
@@ -75,26 +76,6 @@ class ScheduleProfesorViewController: BaseReservationViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setDefaultSections() {
-        guard let date = self.date else { return }
-        
-        let formatter = DateFormatter()
-        formatter.calendar = self.calendar
-        formatter.locale = self.calendar.locale
-        formatter.dateStyle = .none
-        formatter.timeStyle = .short
-        
-        let professors = (0...10).map({_ in Professor.standard})
-        var sections = [Section]()
-        for i in 8...17 {
-            let date = self.calendar.date(byAdding: .hour, value: i, to: date)!
-            let name = formatter.string(from: date)
-            let section = Section(name: name, date: date, items: professors)
-            sections.append(section)
-        }
-        self.sections = sections
-    }
-    
     func updateSections(){
         guard var date = self.date else { return }
         
@@ -106,19 +87,23 @@ class ScheduleProfesorViewController: BaseReservationViewController {
         
         date = self.calendar.startOfDay(for: date)
         let alert = self.showSpinner(withMessage: "Buscando clases disponibles...")
+        let range = self.date..<self.calendar.date(byAdding: .day, value: 1, to: self.date)!
         self.service.getAvailableProfessors(for: self.reservation, inDay: date) { [weak self] (result) in
             alert.hideView()
             self?.handleResult(result) {
-                var professors = [Date:[Professor]]()
+                var classes = [Date:[Class]]()
                 for professor in $0 {
-                    for reservation in professor.classes ?? [] {
-                        var items = professors[reservation.date] ?? []
-                        items.append(professor)
-                        professors[reservation.date] = items
+                    for item in professor.classes ?? [] {
+                        guard range.contains(item.date), item.status != .cancelled else { continue }
+                        var reservation = item
+                        reservation.professor = professor
+                        var items = classes[reservation.date] ?? []
+                        items.append(reservation)
+                        classes[reservation.date] = items
                     }
                 }
                 
-                self?.sections = professors.sorted(by: {$0.key <= $1.key}).map {
+                self?.sections = classes.sorted(by: {$0.key <= $1.key}).map {
                     let date = $0.key
                     let name = formatter.string(from: date)
                     return Section(name: name, date: date, items: $0.value)
@@ -131,13 +116,13 @@ class ScheduleProfesorViewController: BaseReservationViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if let controller = segue.destination as? ProfessorDetailsViewController, let sections = self.sections, let selection = self.selectedSection {
-            controller.professors = sections[selection].items
+            controller.classes = sections[selection].items
         }
     }
     
     struct Section: Equatable {var name: String
         var date: Date
-        var items: [Professor]
+        var items: [Class]
         
         static func == (lhs: ScheduleProfesorViewController.Section, rhs: ScheduleProfesorViewController.Section) -> Bool {
             return lhs.date == rhs.date
@@ -160,9 +145,9 @@ extension ScheduleProfesorViewController: UICollectionViewDelegate, UICollection
         if indexPath.row > 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "professorCell", for: indexPath) as! ProfessorCell
             guard let index = self.selectedSection else { return cell }
-            let professor = sections[index].items[indexPath.row - 1]
+            let classes = sections[index].items[indexPath.row - 1]
             let placeholder = UIImage(named: "profesor")?.af_imageRoundedIntoCircle()
-            if let iconURL = professor.avatarUrl {
+            if let iconURL = classes.professor?.avatarUrl {
                 let filter: ImageFilter = ScaledToSizeCircleFilter(size: cell.avatarImageView.frame.size)
                 cell.avatarImageView.af_setImage(withURL: iconURL, placeholderImage: placeholder, filter: filter)
             } else {
@@ -180,11 +165,11 @@ extension ScheduleProfesorViewController: UICollectionViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let sections = self.sections else { return }
         if indexPath.row > 0 {
-            self.selectedProfessor = sections[indexPath.section].items[indexPath.row - 1]
+            self.selectedClass = sections[indexPath.section].items[indexPath.row - 1]
             self.performSegue(withIdentifier: "selectProfessor", sender: collectionView)
         } else {
             self.selectedSection = indexPath.section
-            self.selectedProfessor = nil
+            self.selectedClass = nil
             UIView.animate(withDuration: 0.5, animations: {
                 collectionView.layoutIfNeeded()
             })
