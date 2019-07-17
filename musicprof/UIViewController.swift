@@ -108,12 +108,7 @@ extension UIViewController {
     }
 }
 
-var vSpinner : UIView?
-
 extension UIViewController {
-    var api: ApiStudent {
-        return ApiStudent.sharedInstance
-    }
     
     func onLogoutAction(activityIndicator ai: UIActivityIndicatorView, closeIcon icon: UIImageView) {
         ai.startAnimating()
@@ -124,7 +119,7 @@ extension UIViewController {
     }
     
     //Spinner dialog
-    func showSpinner(onView : UIView) {
+    func showSpinner(onView : UIView) -> UIView {
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
@@ -135,7 +130,7 @@ extension UIViewController {
         onView.addSubview(spinnerView)
 
         
-        vSpinner = spinnerView
+        return spinnerView
     }
     
     func showSpinner(withMessage message: String? = nil) -> SCLAlertView {
@@ -143,10 +138,5 @@ extension UIViewController {
         let alert = SCLAlertView(appearance: appearance)
         alert.showWait("Espere, por favor", subTitle: message ?? "")
         return alert
-    }
-    
-    func removeSpinner() {
-        vSpinner?.removeFromSuperview()
-        vSpinner = nil
     }
 }

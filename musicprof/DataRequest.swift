@@ -48,7 +48,7 @@ extension DataRequest {
     }
     
     func responseDecodable<T: Decodable>(completionHandler: @escaping (ApiResult<T>) -> Void) -> DataRequest {
-        return self.responseData { responseData in
+        return self.validate().responseData { responseData in
             
             self.logRequest(from: responseData)
             self.logResponse(responseData)
@@ -81,7 +81,7 @@ extension DataRequest {
     }
     
     func responseError(completionHandler: @escaping (ApiResult<Void>) -> Void) -> DataRequest {
-        return self.responseData { responseData in
+        return self.validate().responseData { responseData in
             self.logRequest(from: responseData)
             self.logResponse(responseData)
             var serviceError: Error? = nil
@@ -94,7 +94,7 @@ extension DataRequest {
                     serviceError = error
                 }
             }
-            completionHandler(.failure(error: serviceError ?? AppError.unsupportedData))
+            completionHandler(.failure(error: serviceError ?? responseData.error ?? AppError.unsupportedData))
         }
     }
 }

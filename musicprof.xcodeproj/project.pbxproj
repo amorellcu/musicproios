@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		11F91453F3412F761A8CBD19 /* libPods-musicprofTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF714FBEDDAEBE65E173A2A /* libPods-musicprofTests.a */; };
 		15588081209BB753003DC16A /* PackagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15588080209BB753003DC16A /* PackagesViewController.swift */; };
-		15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DE7EF020894273006672C1 /* ConfigurationsClass.swift */; };
-		15DFDFBE208E4E7500B28338 /* ApiStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDFBD208E4E7500B28338 /* ApiStudent.swift */; };
 		18F3B0C6C9FD26CAF18EF54A /* libPods-musicprofUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75154C0B7B893B2085E3E130 /* libPods-musicprofUITests.a */; };
 		530591E522CCF07E00905D71 /* ImageImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530591E422CCF07E00905D71 /* ImageImporter.swift */; };
 		5305F99622C4E950002284EF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5305F99522C4E950002284EF /* UIView.swift */; };
@@ -86,7 +84,6 @@
 		539C80C522C4C621009D8469 /* FilsonProThin-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80B122C4C5B5009D8469 /* FilsonProThin-Thin.otf */; };
 		539C80C622C4C621009D8469 /* FilsonProThinItalic-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80AA22C4C5AE009D8469 /* FilsonProThinItalic-Italic.otf */; };
 		53ACA34D22D744BC00A7CF04 /* Subaccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ACA34C22D744BC00A7CF04 /* Subaccount.swift */; };
-		53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2527B22B6E360007C8BB1 /* Profile.swift */; };
 		53C5DA9122CA29CF0005AC14 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9022CA29CF0005AC14 /* ContactInfoViewController.swift */; };
 		53C5DA9322CA2CE00005AC14 /* InstrumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */; };
 		53C5DA9522CA38030005AC14 /* ReservationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */; };
@@ -121,19 +118,13 @@
 		A5598C2D201F8C3B000C64F6 /* musicprofTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5598C2C201F8C3B000C64F6 /* musicprofTests.swift */; };
 		A5598C38201F8C3C000C64F6 /* musicprofUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5598C37201F8C3C000C64F6 /* musicprofUITests.swift */; };
 		A5598C71201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5598C70201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift */; };
-		A56E0FF5203B810D002D2F28 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E0FF4203B810D002D2F28 /* ScheduleViewController.swift */; };
 		A5A77C3820407866000F1E3E /* ScheduleProfesorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A77C3720407866000F1E3E /* ScheduleProfesorViewController.swift */; };
-		A5A99ADA2025345D0050D8D8 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A99AD92025345D0050D8D8 /* ItemTableViewCell.swift */; };
-		A5AA588D202A57B100F4370A /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AA588C202A57B100F4370A /* UsersTableViewCell.swift */; };
 		A5AD1EB520334EA400A38F85 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD1EB420334EA400A38F85 /* CalendarViewController.swift */; };
 		A5AD1EC020338A6F00A38F85 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD1EBF20338A6F00A38F85 /* CalendarCell.swift */; };
-		A5CA35D6202BA922002FFFD0 /* peopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA35D5202BA922002FFFD0 /* peopleTableViewCell.swift */; };
 		A5CA35D8202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA35D7202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift */; };
-		A5E1FB1C2042514000B15DD9 /* ProfesorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB1B2042514000B15DD9 /* ProfesorTableViewCell.swift */; };
 		A5E1FB1E2044BC2200B15DD9 /* ProfessorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB1D2044BC2200B15DD9 /* ProfessorDetailsViewController.swift */; };
 		A5E1FB202044CE6600B15DD9 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */; };
 		A5E1FB242044DD4600B15DD9 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E1FB232044DD4600B15DD9 /* HeaderCell.swift */; };
-		A5FF65842024FE34003778B3 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FF65832024FE34003778B3 /* HeaderTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,8 +159,6 @@
 
 /* Begin PBXFileReference section */
 		15588080209BB753003DC16A /* PackagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PackagesViewController.swift; path = ../PackagesViewController.swift; sourceTree = "<group>"; };
-		15DE7EF020894273006672C1 /* ConfigurationsClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationsClass.swift; sourceTree = "<group>"; };
-		15DFDFBD208E4E7500B28338 /* ApiStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiStudent.swift; sourceTree = "<group>"; };
 		15DFDFC0208EA59F00B28338 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = ../Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
 		2470988358F77C3194BB7B7D /* Pods-musicprof.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprof.debug.xcconfig"; path = "Target Support Files/Pods-musicprof/Pods-musicprof.debug.xcconfig"; sourceTree = "<group>"; };
 		4AF714FBEDDAEBE65E173A2A /* libPods-musicprofTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-musicprofTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,7 +236,6 @@
 		539C80B522C4C5B8009D8469 /* FilsonProBookItalic-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProBookItalic-Italic.otf"; sourceTree = "<group>"; };
 		539C80B622C4C5B9009D8469 /* FilsonProBold-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProBold-Bold.otf"; sourceTree = "<group>"; };
 		53ACA34C22D744BC00A7CF04 /* Subaccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subaccount.swift; sourceTree = "<group>"; };
-		53C2527B22B6E360007C8BB1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		53C5DA9022CA29CF0005AC14 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentListViewController.swift; sourceTree = "<group>"; };
 		53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationListViewController.swift; sourceTree = "<group>"; };
@@ -293,19 +281,13 @@
 		A5598C37201F8C3C000C64F6 /* musicprofUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = musicprofUITests.swift; sourceTree = "<group>"; };
 		A5598C39201F8C3C000C64F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5598C70201FCB37000C64F6 /* ContactInfoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoRegistrationViewController.swift; sourceTree = "<group>"; };
-		A56E0FF4203B810D002D2F28 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		A5A77C3720407866000F1E3E /* ScheduleProfesorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleProfesorViewController.swift; path = ../ScheduleProfesorViewController.swift; sourceTree = "<group>"; };
-		A5A99AD92025345D0050D8D8 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
-		A5AA588C202A57B100F4370A /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		A5AD1EB420334EA400A38F85 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		A5AD1EBF20338A6F00A38F85 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
-		A5CA35D5202BA922002FFFD0 /* peopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = peopleTableViewCell.swift; sourceTree = "<group>"; };
 		A5CA35D7202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentsRegistrationViewController.swift; sourceTree = "<group>"; };
-		A5E1FB1B2042514000B15DD9 /* ProfesorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfesorTableViewCell.swift; sourceTree = "<group>"; };
 		A5E1FB1D2044BC2200B15DD9 /* ProfessorDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorDetailsViewController.swift; sourceTree = "<group>"; };
 		A5E1FB1F2044CE6600B15DD9 /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		A5E1FB232044DD4600B15DD9 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
-		A5FF65832024FE34003778B3 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		D86ACBF90E826131BAF27404 /* Pods-musicprofTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicprofTests.debug.xcconfig"; path = "Target Support Files/Pods-musicprofTests/Pods-musicprofTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -434,7 +416,6 @@
 		53D98FC522BD3E560027FDCD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				15DFDFBD208E4E7500B28338 /* ApiStudent.swift */,
 				53D98FC722BD3FC30027FDCD /* ApiManager.swift */,
 				53D98FC922BD44A40027FDCD /* ApiResult.swift */,
 				53D98FCB22BD459E0027FDCD /* ApiError.swift */,
@@ -546,17 +527,9 @@
 				53D98FC622BD3F970027FDCD /* Controllers */,
 				53D98FBC22BD35290027FDCD /* Views */,
 				A5598C17201F8C3B000C64F6 /* AppDelegate.swift */,
-				A5FF65832024FE34003778B3 /* HeaderTableViewCell.swift */,
-				A5AA588C202A57B100F4370A /* UsersTableViewCell.swift */,
-				A5E1FB1B2042514000B15DD9 /* ProfesorTableViewCell.swift */,
-				A5CA35D5202BA922002FFFD0 /* peopleTableViewCell.swift */,
-				15DE7EF020894273006672C1 /* ConfigurationsClass.swift */,
-				A56E0FF4203B810D002D2F28 /* ScheduleViewController.swift */,
-				A5A99AD92025345D0050D8D8 /* ItemTableViewCell.swift */,
 				A5598C1E201F8C3B000C64F6 /* Assets.xcassets */,
 				A5598C20201F8C3B000C64F6 /* LaunchScreen.storyboard */,
 				A5598C23201F8C3B000C64F6 /* Info.plist */,
-				53C2527B22B6E360007C8BB1 /* Profile.swift */,
 			);
 			path = musicprof;
 			sourceTree = "<group>";
@@ -865,14 +838,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5AA588D202A57B100F4370A /* UsersTableViewCell.swift in Sources */,
 				530B852B22DB1B5B0021C70E /* ProfessorClassListViewController.swift in Sources */,
 				537D421322D60FE00011A504 /* MessageCell.swift in Sources */,
 				A5E1FB202044CE6600B15DD9 /* TextTableViewCell.swift in Sources */,
 				5333E96622C0EF9600175995 /* ReservationRequest.swift in Sources */,
 				530FC53722DE0093000BD490 /* TitleView.swift in Sources */,
 				53C5DA9522CA38030005AC14 /* ReservationListViewController.swift in Sources */,
-				A5CA35D6202BA922002FFFD0 /* peopleTableViewCell.swift in Sources */,
 				A5598C1A201F8C3B000C64F6 /* LoginViewController.swift in Sources */,
 				53C680AB22CB7CD200993110 /* PaymentViewController.swift in Sources */,
 				53D1E4BF22BE6009001A0F50 /* InstrumentSelectionViewController.swift in Sources */,
@@ -888,7 +859,6 @@
 				5357A5E222D49B5A00936FA6 /* ProfessorUpdateViewController.swift in Sources */,
 				530F8A7A229B773A000AFC86 /* UIViewController.swift in Sources */,
 				A5AD1EB520334EA400A38F85 /* CalendarViewController.swift in Sources */,
-				A5E1FB1C2042514000B15DD9 /* ProfesorTableViewCell.swift in Sources */,
 				53F8C4F622D50439001B0301 /* ProfessorTextViewController.swift in Sources */,
 				5357A5E022D49B4300936FA6 /* ClientUpdateViewController.swift in Sources */,
 				53108F6022DDA7D90030C155 /* ClassSchedulingViewController.swift in Sources */,
@@ -915,12 +885,9 @@
 				530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */,
 				53D1C57322C5F8C6002BDAE4 /* RegistrationController.swift in Sources */,
 				5380312C22CE42570016175E /* ClientClassListViewController.swift in Sources */,
-				15DE7EF120894273006672C1 /* ConfigurationsClass.swift in Sources */,
-				53C2527C22B6E360007C8BB1 /* Profile.swift in Sources */,
 				5393EB7522C7CD4600C47E77 /* MenuViewController.swift in Sources */,
 				5366CFD922CC9B4400FFDEE2 /* Reservation.swift in Sources */,
 				536F8A5A22C6510D0061CF17 /* PasswordResetViewController.swift in Sources */,
-				A5FF65842024FE34003778B3 /* HeaderTableViewCell.swift in Sources */,
 				531FC38422D627B700BDDFCF /* Message.swift in Sources */,
 				5333E96222C0E46500175995 /* ProfessorListViewController.swift in Sources */,
 				53459CF722D4B3120007ECE6 /* MultiformEncodable.swift in Sources */,
@@ -941,7 +908,6 @@
 				5393EB7722C7DC3200C47E77 /* Package.swift in Sources */,
 				53907E0B22B1983300314EC8 /* InstrumentCell.swift in Sources */,
 				53D98FCC22BD459E0027FDCD /* ApiError.swift in Sources */,
-				A5A99ADA2025345D0050D8D8 /* ItemTableViewCell.swift in Sources */,
 				A5CA35D8202CA10C002FFFD0 /* InstrumentsRegistrationViewController.swift in Sources */,
 				532CC89C22C50D3F00FB1822 /* TransparentButton.swift in Sources */,
 				5336832022D3A98800C702D6 /* User.swift in Sources */,
@@ -949,11 +915,9 @@
 				534F1D4E22BFC043009249FC /* StudentCell.swift in Sources */,
 				A5E1FB242044DD4600B15DD9 /* HeaderCell.swift in Sources */,
 				53CC2DA422DDCD9100E32D3F /* LocationCell.swift in Sources */,
-				15DFDFBE208E4E7500B28338 /* ApiStudent.swift in Sources */,
 				53C5DA9322CA2CE00005AC14 /* InstrumentListViewController.swift in Sources */,
 				53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */,
 				53FD596222BE4D7D002F5172 /* ProfileViewController.swift in Sources */,
-				A56E0FF5203B810D002D2F28 /* ScheduleViewController.swift in Sources */,
 				5333E96022C0E3FD00175995 /* ProfessorCell.swift in Sources */,
 				5357A5DE22D494C000936FA6 /* LoginController.swift in Sources */,
 				53FDE14F22BE257D00EBC13F /* Client.swift in Sources */,

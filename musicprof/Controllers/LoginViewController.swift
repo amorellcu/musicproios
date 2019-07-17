@@ -25,8 +25,6 @@ class LoginViewController: UIViewController, LoginController {
     @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var rememberCheckBox: M13Checkbox!
     
-    let configuration = Configuration()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
