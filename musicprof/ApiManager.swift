@@ -538,6 +538,8 @@ class ApiManager {
                     case .success(let data):
                         self.createAdapter(accessToken: data.token, refreshToken: "")
                         if let client = data.client {
+                            client.subaccounts = client.subaccounts ?? []
+                            client.nextReservations = client.nextReservations ?? []
                             self.user = client
                             handler(.success(data: client))
                         } else {
@@ -590,6 +592,8 @@ class ApiManager {
                     switch result {
                     case .success(let data):
                         if let professor = data.professor {
+                            professor.locations = professor.locations ?? []
+                            professor.classes = professor.classes ?? []
                             self.user = professor
                             handler(.success(data: professor))
                         } else {

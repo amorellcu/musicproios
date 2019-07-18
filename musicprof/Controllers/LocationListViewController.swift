@@ -77,6 +77,7 @@ extension LocationListViewController: UITableViewDelegate, UITableViewDataSource
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "locationCell")!
         cell.textLabel?.text = location.description
+        cell.selectionStyle = .none
         return cell
     }
     

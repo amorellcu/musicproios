@@ -16,8 +16,11 @@ protocol LocationSearchDelegate: class {
 
 extension CLPlacemark {
     var address: String {
-        let components: [String?] = [self.subThoroughfare, self.thoroughfare, self.locality, self.administrativeArea, self.country]
-        let addressLine = components.compactMap({$0}).joined(separator: ", ")
+        let components: [String?] = [self.subThoroughfare, self.thoroughfare, self.subLocality, self.locality, self.subAdministrativeArea, self.administrativeArea, self.country]
+        let addressLine = components.compactMap({$0}).reduce(into: [], { (array, value) in
+            guard !array.contains(value) else { return }
+            array.append(value)
+        }).joined(separator: ", ")
         return addressLine
     }
 }
