@@ -69,7 +69,7 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
                 self?.originalProfessor = Professor(copy: $0)
                 self?.updateControllers()
                 self?.container?.refresh()
-                SCLAlertView().showSuccess("Cuenta Actualizada", subTitle: "La configuración de su cuenta se actualizó correctamente.")
+                SCLAlertView().showSuccess("Cuenta Actualizada", subTitle: "La configuración de su cuenta se actualizó correctamente.", closeButtonTitle: "Aceptar")
             }
         }
     }

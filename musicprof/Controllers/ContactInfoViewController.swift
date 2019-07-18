@@ -142,15 +142,15 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
     
     @IBAction func onSelectLocation(_ sender: Any) {
         guard let address = self.client.address, !address.isEmpty else {
-            SCLAlertView().showNotice("Acción inválida", subTitle: "Introduzca su dirección antes de seleccionar su ubicación.")
+            SCLAlertView().showNotice("Acción inválida", subTitle: "Introduzca su dirección antes de seleccionar su ubicación.", closeButtonTitle: "Aceptar")
             return
         }
         if let locations = self.locations {
             switch locations.count {
             case 0:
-                SCLAlertView().showNotice("Sin opciones", subTitle: "No se detectaron ubicaciones para su dirección")
+                SCLAlertView().showNotice("Sin opciones", subTitle: "No se detectaron ubicaciones para su dirección", closeButtonTitle: "Aceptar")
             case 1:
-                SCLAlertView().showNotice("Sin opciones", subTitle: "Se encontró solo una ubicación para su dirección")
+                SCLAlertView().showNotice("Sin opciones", subTitle: "Se encontró solo una ubicación para su dirección", closeButtonTitle: "Aceptar")
             default:
                 self.showMapSelectionMenu(withOptions: locations)
             }

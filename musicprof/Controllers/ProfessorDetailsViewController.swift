@@ -104,7 +104,7 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
         self.service.makeReservation(self.reservation) { [weak self] (result) in
             alert.hideView()
             self?.handleResult(result) {
-                SCLAlertView().showSuccess("Reservado", subTitle: "La reservación se completó satisfactoriamente.")
+                SCLAlertView().showSuccess("Reservado", subTitle: "La reservación se completó satisfactoriamente.", closeButtonTitle: "Aceptar")
                 self?.container?.refresh()
                 //self?.performSegue(withIdentifier: "backToStart", sender: sender)
                 self?.performSegue(withIdentifier: "backToClasses", sender: sender)

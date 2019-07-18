@@ -158,7 +158,7 @@ class LoginViewController: UIViewController, LoginController {
         guard let email = self.emailText.text,  //"testing113540900@gmail.com"
             let pass = self.passText.text,      //"123456"
             !email.isEmpty && !pass.isEmpty else {
-                SCLAlertView().showError("Error Validación", subTitle: "Asegurese que el usuario o la clave no esten vacios") // Error
+                SCLAlertView().showError("Error Validación", subTitle: "Asegúrese que el usuario o la clave no esten vacios", closeButtonTitle: "Aceptar") // Error
                 return
         }
         self.passText.text = ""

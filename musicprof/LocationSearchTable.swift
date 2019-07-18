@@ -26,7 +26,6 @@ class LocationSearchTable : UITableViewController {
     weak var delegate: LocationSearchDelegate?
     var locations: [MKMapItem] = []
     var mapView: MKMapView? = nil
-    let alertView = SCLAlertView()
 }
 
 extension LocationSearchTable : UISearchResultsUpdating {

@@ -100,8 +100,10 @@ class PackagesViewController: BaseNestedViewController {
                     client.credits = credits + package.quantity
                 }
                 self.container?.refresh()
-                SCLAlertView().showSuccess("Paquete Adquirido",
-                                           subTitle: package.quantity == 1 ? "Ahora puede reservar 1 clase más." : "Ahora puede reservar \(package.quantity) clases más.")
+                SCLAlertView().showSuccess(
+                    "Paquete Adquirido",
+                    subTitle: package.quantity == 1 ? "Ahora puede reservar 1 clase más." : "Ahora puede reservar \(package.quantity) clases más.",
+                    closeButtonTitle: "Aceptar")
             }
         })
     }

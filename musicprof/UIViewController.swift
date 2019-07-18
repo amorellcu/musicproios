@@ -35,23 +35,24 @@ extension UIViewController {
         print("ERROR: \(msg)")
         
         let controller = SCLAlertView()
-        let responder = controller.showError(title, subTitle: msg)
+        let responder = controller.showError(title, subTitle: msg, closeButtonTitle: "Aceptar")
         if let completion = completion {
             responder.setDismissBlock(completion)
         }
     }
     
     func notify(message: String, title: String, button: String = "Aceptar", completion: (() -> Void)? = nil) {
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(title: button, style: .default, handler: {action in completion?() }))
-        self.present(controller, animated: true)
+        let controller = SCLAlertView()
+        controller.showInfo(title, subTitle: message, closeButtonTitle: button).setDismissBlock {
+            completion?()
+        }
     }
     
     func ask(question: String, title: String, yesButton: String = "Aceptar", noButton: String = "Cancelar", completion handler: ((Bool) -> Void)? = nil) {
         let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(showCloseButton: false))
         alert.addButton(yesButton, action: {handler?(true)})
         alert.addButton(noButton, action: {handler?(false)})
-        alert.showWarning(title, subTitle: question)
+        alert.showWarning(title, subTitle: question, colorStyle: SCLAlertViewStyle.question.defaultColorInt)
     }
     
     func handleResult<T>(_ result: ApiResult<[T]>, onError: ((Error) -> Void)? = nil, onSuccess: (([T]) throws -> Void)? = nil) {
@@ -136,7 +137,7 @@ extension UIViewController {
     func showSpinner(withMessage message: String? = nil) -> SCLAlertView {
         let appearance = SCLAlertView.SCLAppearance(showCloseButton: false, shouldAutoDismiss: false)
         let alert = SCLAlertView(appearance: appearance)
-        alert.showWait("Espere, por favor", subTitle: message ?? "")
+        alert.showWait("Espere, por favor", subTitle: message ?? "", colorStyle: SCLAlertViewStyle.notice.defaultColorInt)
         return alert
     }
 }

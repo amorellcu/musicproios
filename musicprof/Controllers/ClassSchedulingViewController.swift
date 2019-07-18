@@ -66,7 +66,7 @@ class ClassSchedulingViewController: BaseNestedViewController, ClassController {
         self.service.createClass(reservation) { [weak self] (result) in
             alert.hideView()
             self?.handleResult(result) {
-                SCLAlertView().showSuccess("Reservado", subTitle: "La clase se creó satisfactoriamente.")
+                SCLAlertView().showSuccess("Reservado", subTitle: "La clase se creó satisfactoriamente.", closeButtonTitle: "Aceptar")
                 self?.performSegue(withIdentifier: "classCreated", sender: sender)
             }
         }
