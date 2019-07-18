@@ -911,7 +911,7 @@ private struct ClassData2: Decodable {
     var classes: Class
     
     enum CodingKeys: String, CodingKey {
-        case classes = "classes"
+        case classes = "class"
     }
 }
 
