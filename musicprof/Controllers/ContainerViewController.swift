@@ -163,7 +163,7 @@ class ContainerViewController: UIViewController {
             self.updateVisibility()
         }
         self.updateConstraints()
-        guard animated else { return }
+        guard animated else { return self.view.layoutIfNeeded() }
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
         }, completion: {_ in

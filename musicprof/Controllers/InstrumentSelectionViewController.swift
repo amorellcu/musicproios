@@ -36,7 +36,6 @@ class InstrumentSelectionViewController: BaseReservationViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.container?.setDisplayMode(.full, animated: animated)
         
         if let instruments = self.student?.instruments {
             self.userInstruments = instruments

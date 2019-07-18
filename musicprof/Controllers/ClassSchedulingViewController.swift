@@ -50,7 +50,6 @@ class ClassSchedulingViewController: BaseNestedViewController, ClassController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.container?.setDisplayMode(.full, animated: animated)
     }    
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

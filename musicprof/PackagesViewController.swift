@@ -36,7 +36,6 @@ class PackagesViewController: BaseNestedViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.container?.setDisplayMode(.full, animated: animated)
         
         if let location = self.service.currentClient?.location {
             self.updatePackages(from: location)

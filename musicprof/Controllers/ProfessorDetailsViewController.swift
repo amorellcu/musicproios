@@ -36,8 +36,8 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.preferredDisplayMode = .collapsed
         super.viewWillAppear(animated)
-        self.container?.setDisplayMode(.collapsed, animated: animated)
     }
     
     private func updateProfessor() {

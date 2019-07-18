@@ -36,8 +36,8 @@ class ProfileUpdateViewController: CustomTabController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.preferredDisplayMode = .picture
         super.viewWillAppear(animated)
-        self.container?.setDisplayMode(.full, animated: animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,6 +57,9 @@ class ProfileUpdateViewController: CustomTabController {
             }
             if let controller = controller as? NestedController {
                 controller.container = self.container
+            }
+            if let controller = controller as? BaseNestedViewController {
+                controller.preferredDisplayMode = .picture
             }
             if let controller = controller as? ProfileSection {
                 controller.updater = self

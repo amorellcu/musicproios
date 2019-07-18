@@ -40,7 +40,6 @@ class AddStudentsViewController: BaseReservationViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.container?.setDisplayMode(.full, animated: animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,7 +70,6 @@ extension AddStudentsViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.addStudentButton.isEnabled = !(textField.text ?? "").isEmpty
-        self.container?.setDisplayMode(.full, animated: true)
     }
 }
 

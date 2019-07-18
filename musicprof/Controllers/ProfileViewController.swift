@@ -49,8 +49,8 @@ class ProfileViewController: BaseReservationViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.preferredDisplayMode = .picture
         super.viewWillAppear(animated)
-        self.container?.setDisplayMode(.picture, animated: animated)
     }
     
     override func didReceiveMemoryWarning() {

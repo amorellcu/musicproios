@@ -72,8 +72,8 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
     
     
     override func viewWillAppear(_ animated: Bool) {
+        self.preferredDisplayMode = .picture
         super.viewWillAppear(animated)
-        self.container?.setDisplayMode(.picture, animated: true)
         self.updateFields()
         //self.updateLocations()
     }

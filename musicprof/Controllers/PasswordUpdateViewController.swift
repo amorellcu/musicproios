@@ -35,8 +35,8 @@ class PasswordUpdateViewController: BaseNestedViewController, RegistrationContro
     
     
     override func viewWillAppear(_ animated: Bool) {
+        self.preferredDisplayMode = .picture
         super.viewWillAppear(animated)
-        self.container?.setDisplayMode(.picture, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

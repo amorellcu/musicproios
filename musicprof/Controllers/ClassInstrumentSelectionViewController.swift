@@ -32,7 +32,6 @@ class ClassInstrumentSelectionViewController: BaseNestedViewController, ClassCon
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.container?.setDisplayMode(.full, animated: animated)
         
         self.instruments = self.service.currentProfessor?.instruments
         if self.instruments?.count ?? 0 == 1 {

@@ -58,10 +58,10 @@ class MapViewController: BaseNestedViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.preferredDisplayMode = .collapsed
         super.viewWillAppear(animated)
         let navigationItem = self.container?.navigationItem ?? self.navigationItem
         navigationItem.titleView = searchController.searchBar
-        self.container?.setDisplayMode(.collapsed, animated: animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

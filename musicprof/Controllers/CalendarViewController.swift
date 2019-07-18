@@ -60,7 +60,6 @@ class CalendarViewController: BaseReservationViewController, UITabBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.container?.setDisplayMode(.full, animated: animated)
     }
     
     override func didReceiveMemoryWarning() {
