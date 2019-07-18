@@ -24,9 +24,18 @@ class BaseNestedViewController: UIViewController, NestedController {
     
     func updateBackButton() {
         if self.navigationController?.viewControllers.count ?? 0 > 1 {
-            let image = UIImage(named: "left")
-            self.container?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(goBack))
+            let image = UIImage(named: "left")?.withRenderingMode(.alwaysTemplate)
+            //self.container?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(goBack))
+            
+            let button = UIButton(type: .custom)
+            button.setImage(image, for: .normal)
+            button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+            button.frame = CGRect.init(x: 0, y: 0, width: 80, height: 30)
+            button.setTitle("Atrás", for: UIControlState.normal)
+            self.container?.navigationItem.hidesBackButton = true
+            self.container?.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
         } else {
+            self.container?.navigationItem.hidesBackButton = true
             self.container?.navigationItem.leftBarButtonItem = nil
         }
     }

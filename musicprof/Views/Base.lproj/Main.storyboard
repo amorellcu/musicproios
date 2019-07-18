@@ -263,7 +263,7 @@
                         <viewLayoutGuide key="safeArea" id="opq-1u-ouY"/>
                     </view>
                     <navigationItem key="navigationItem" id="4GA-sA-Hzy">
-                        <barButtonItem key="backBarButtonItem" title=" " id="RtZ-ez-w4b"/>
+                        <barButtonItem key="backBarButtonItem" title="Atrás" id="RtZ-ez-w4b"/>
                     </navigationItem>
                     <connections>
                         <outlet property="customFBLoginButton" destination="KER-kT-UBt" id="UKM-Ip-ywL"/>
@@ -601,7 +601,7 @@
                         <viewLayoutGuide key="safeArea" id="cBN-1x-mvF"/>
                     </view>
                     <navigationItem key="navigationItem" id="1ns-Ya-IsL">
-                        <barButtonItem key="backBarButtonItem" title=" " id="R9A-sF-l9F"/>
+                        <barButtonItem key="backBarButtonItem" title="Atrás" id="R9A-sF-l9F"/>
                     </navigationItem>
                     <connections>
                         <outlet property="addressTextField" destination="Ix9-F0-rYh" id="9wr-RU-l8H"/>
@@ -1194,7 +1194,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INTRODUZCA LA CONTRASENA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="epj-vM-sJE">
-                                                        <rect key="frame" x="52" y="16" width="310" height="22.5"/>
+                                                        <rect key="frame" x="52" y="16" width="310" height="20"/>
                                                         <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                                         <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1555,7 +1555,7 @@
                         <viewLayoutGuide key="safeArea" id="85K-x3-2OA"/>
                     </view>
                     <navigationItem key="navigationItem" id="YgR-8I-2db">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="menu" id="obW-7K-uvJ">
+                        <barButtonItem key="rightBarButtonItem" title="Menú" image="menu" id="obW-7K-uvJ">
                             <connections>
                                 <action selector="onMenuTapped:" destination="g0i-i6-gZc" id="Qm9-gf-Aga"/>
                             </connections>
@@ -1799,8 +1799,8 @@
         <image name="userdefault" width="112.5" height="112.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DtK-N4-rWl"/>
-        <segue reference="MuA-jP-iFB"/>
+        <segue reference="Trh-nk-asF"/>
+        <segue reference="F13-wH-lZA"/>
         <segue reference="fsI-iq-RmP"/>
         <segue reference="kMf-8X-xHA"/>
     </inferredMetricsTieBreakers>
