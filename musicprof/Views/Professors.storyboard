@@ -70,14 +70,32 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Son-A4-XA7">
+                                        <rect key="frame" x="122.5" y="122" width="169" height="32"/>
+                                        <subviews>
+                                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="j9R-hO-eYk">
+                                                <rect key="frame" x="0.0" y="0.0" width="169" height="32"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <items/>
+                                                <color key="tintColor" red="1" green="0.82352941180000006" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </toolbar>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="pFp-95-80C"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Son-A4-XA7" firstAttribute="leading" secondItem="LPA-Ah-RAd" secondAttribute="leading" constant="-20" id="3f4-c1-8za"/>
                                     <constraint firstAttribute="height" priority="500" id="BED-jW-B5C"/>
                                     <constraint firstAttribute="bottom" secondItem="lLC-55-CUT" secondAttribute="bottom" priority="999" constant="13" id="CPg-kr-rbF"/>
                                     <constraint firstAttribute="trailing" secondItem="lLC-55-CUT" secondAttribute="trailing" constant="31" id="EOe-VT-Oin"/>
                                     <constraint firstItem="lLC-55-CUT" firstAttribute="leading" secondItem="VPi-Ca-fvY" secondAttribute="leading" constant="31" id="F0R-Pa-ut2"/>
                                     <constraint firstAttribute="bottom" secondItem="LPA-Ah-RAd" secondAttribute="bottom" priority="750" constant="13" id="OnP-jv-5sR"/>
+                                    <constraint firstItem="Son-A4-XA7" firstAttribute="trailing" secondItem="LPA-Ah-RAd" secondAttribute="trailing" constant="20" id="OqO-uR-h1S"/>
+                                    <constraint firstItem="Son-A4-XA7" firstAttribute="bottom" secondItem="LPA-Ah-RAd" secondAttribute="bottom" constant="10" id="XHU-G4-o9z"/>
                                     <constraint firstItem="LPA-Ah-RAd" firstAttribute="top" secondItem="VPi-Ca-fvY" secondAttribute="top" constant="15" id="fQP-Lv-HgM"/>
                                     <constraint firstItem="lLC-55-CUT" firstAttribute="top" secondItem="LPA-Ah-RAd" secondAttribute="bottom" constant="10" id="hma-Ee-t9X"/>
                                     <constraint firstItem="LPA-Ah-RAd" firstAttribute="centerX" secondItem="VPi-Ca-fvY" secondAttribute="centerX" id="wth-58-Cc6"/>
@@ -112,6 +130,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="avatarImageView" destination="LPA-Ah-RAd" id="Rbg-Ws-Zyh"/>
+                        <outlet property="avatarToolbar" destination="j9R-hO-eYk" id="5ab-kl-xhc"/>
+                        <outlet property="buttonsView" destination="Son-A4-XA7" id="tQr-sx-q0h"/>
                         <outlet property="fullDisplayConstraint" destination="CPg-kr-rbF" id="NuV-jy-nwt"/>
                         <outlet property="pictureDisplayConstraint" destination="OnP-jv-5sR" id="ncw-3c-pjh"/>
                         <outlet property="profileNameLabel" destination="lLC-55-CUT" id="gg6-q7-UHo"/>

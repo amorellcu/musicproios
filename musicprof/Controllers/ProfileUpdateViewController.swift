@@ -28,7 +28,7 @@ class ProfileUpdateViewController: CustomTabController {
         super.viewDidLoad()
 
         if let avatarImageView = self.container?.avatarImageView {
-            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileUpdateViewController.onChangeAvatar))
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onChangeAvatar))
             avatarImageView.addGestureRecognizer(gestureRecognizer)
             self.tapGestureRecognizer = gestureRecognizer
             self.tapGestureRecognizer?.isEnabled = false
@@ -43,11 +43,16 @@ class ProfileUpdateViewController: CustomTabController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tapGestureRecognizer?.isEnabled = true
+        
+        let image = UIImage(named: "change-avatar")
+        let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(onChangeAvatar))
+        self.container?.avatarToolbar.setItems([buttonItem], animated: animated)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.tapGestureRecognizer?.isEnabled = false
+        self.container?.avatarToolbar.setItems([], animated: animated)
     }
     
     func updateControllers() {

@@ -16,7 +16,8 @@ class ContactInfoRegistrationViewController: ContactInfoViewController {
     
     var imageImporter: ImageImporter!
     var tapGestureRecognizer: UITapGestureRecognizer!
-
+    
+    @IBOutlet weak var avatarToolbar: UIToolbar!    
     @IBOutlet weak var avatarImageView: UIImageView!
     
     override func loadView() {
@@ -33,13 +34,18 @@ class ContactInfoRegistrationViewController: ContactInfoViewController {
             avatarImageView.addGestureRecognizer(gestureRecognizer)
             self.tapGestureRecognizer = gestureRecognizer
         }
+        
+        self.avatarToolbar.setTransparent()
+        
+        let image = UIImage(named: "change-avatar")
+        let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(onChangeAvatar))
+        self.avatarToolbar.setItems([buttonItem], animated: false)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

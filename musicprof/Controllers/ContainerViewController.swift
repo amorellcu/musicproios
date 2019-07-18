@@ -12,6 +12,9 @@ import AlamofireImage
 class ContainerViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
+    @IBOutlet weak var buttonsView: UIStackView!
+    @IBOutlet weak var avatarToolbar: UIToolbar!
+    
     var customTitleView: TitleView?
     
     @IBOutlet weak var fullDisplayConstraint: NSLayoutConstraint!
@@ -32,6 +35,8 @@ class ContainerViewController: UIViewController {
             self.navigationItem.titleView = self.customTitleView
             self.customTitleView?.sizeToFit()
         }
+        
+        self.avatarToolbar.setTransparent()
     }
     
     override func viewWillAppear(_ animated: Bool) {

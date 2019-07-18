@@ -17,6 +17,7 @@
 		530B852922DB18BB0021C70E /* ProfessorClasses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530B852822DB18BB0021C70E /* ProfessorClasses.storyboard */; };
 		530B852B22DB1B5B0021C70E /* ProfessorClassListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530B852A22DB1B5B0021C70E /* ProfessorClassListViewController.swift */; };
 		530B852D22DB3B9E0021C70E /* ClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530B852C22DB3B9E0021C70E /* ClientCell.swift */; };
+		530D035A22E0B615000D07A9 /* UIToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530D035922E0B614000D07A9 /* UIToolbar.swift */; };
 		530DB8C922DCDBB800D82378 /* ClassRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530DB8C822DCDBB800D82378 /* ClassRequest.swift */; };
 		530DB8CD22DCEB5000D82378 /* ClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530DB8CC22DCEB5000D82378 /* ClassController.swift */; };
 		530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F8A77229A1656000AFC86 /* RootViewController.swift */; };
@@ -170,6 +171,7 @@
 		530B852822DB18BB0021C70E /* ProfessorClasses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfessorClasses.storyboard; sourceTree = "<group>"; };
 		530B852A22DB1B5B0021C70E /* ProfessorClassListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorClassListViewController.swift; sourceTree = "<group>"; };
 		530B852C22DB3B9E0021C70E /* ClientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCell.swift; sourceTree = "<group>"; };
+		530D035922E0B614000D07A9 /* UIToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIToolbar.swift; sourceTree = "<group>"; };
 		530DB8C822DCDBB800D82378 /* ClassRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassRequest.swift; sourceTree = "<group>"; };
 		530DB8CC22DCEB5000D82378 /* ClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassController.swift; sourceTree = "<group>"; };
 		530F8A77229A1656000AFC86 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 				536C704022C1F30A00E217FF /* UINavigationController.swift */,
 				5305F99522C4E950002284EF /* UIView.swift */,
 				53FDE15022BE25C500EBC13F /* DataRequest.swift */,
+				530D035922E0B614000D07A9 /* UIToolbar.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -878,6 +881,7 @@
 				53616E6C22CBAF6800B36549 /* PasswordUpdateViewController.swift in Sources */,
 				534F1D4C22BFBFFB009249FC /* AddStudentsViewController.swift in Sources */,
 				530B852D22DB3B9E0021C70E /* ClientCell.swift in Sources */,
+				530D035A22E0B615000D07A9 /* UIToolbar.swift in Sources */,
 				A5E1FB1E2044BC2200B15DD9 /* ProfessorDetailsViewController.swift in Sources */,
 				5332FBB822C91645000BF4B0 /* ProfileUpdateViewController.swift in Sources */,
 				15588081209BB753003DC16A /* PackagesViewController.swift in Sources */,

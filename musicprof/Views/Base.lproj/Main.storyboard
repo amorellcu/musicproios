@@ -332,6 +332,21 @@
                                                     <constraint firstAttribute="width" secondItem="enr-RZ-jZb" secondAttribute="height" multiplier="1:1" id="laO-lW-OLf"/>
                                                 </constraints>
                                             </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gG1-f8-Paa">
+                                                <rect key="frame" x="109.5" y="146" width="195" height="32"/>
+                                                <subviews>
+                                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="bKM-UC-Sgz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="195" height="32"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <items/>
+                                                        <color key="tintColor" red="1" green="0.82352941180000006" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </toolbar>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="aIp-JQ-xx4"/>
+                                                </constraints>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8qF-rK-Hoj">
                                                 <rect key="frame" x="30" y="193" width="354" height="340"/>
                                                 <subviews>
@@ -569,14 +584,17 @@
                                             <constraint firstItem="wMR-Ja-xNX" firstAttribute="leading" secondItem="Xgg-n9-B56" secondAttribute="leading" constant="30" id="LqZ-I8-aqp"/>
                                             <constraint firstItem="jg4-Dn-8I4" firstAttribute="top" secondItem="8qF-rK-Hoj" secondAttribute="bottom" constant="24" id="NPH-Oe-Gzy"/>
                                             <constraint firstAttribute="trailing" secondItem="wMR-Ja-xNX" secondAttribute="trailing" constant="31" id="NQT-Vw-FIZ"/>
+                                            <constraint firstItem="gG1-f8-Paa" firstAttribute="trailing" secondItem="enr-RZ-jZb" secondAttribute="trailing" constant="20" id="Qev-du-neg"/>
                                             <constraint firstAttribute="trailing" secondItem="8qF-rK-Hoj" secondAttribute="trailing" constant="30" id="Rqh-jN-IR4"/>
                                             <constraint firstItem="8qF-rK-Hoj" firstAttribute="leading" secondItem="Xgg-n9-B56" secondAttribute="leading" constant="30" id="Sxk-nF-YL7"/>
+                                            <constraint firstItem="gG1-f8-Paa" firstAttribute="bottom" secondItem="enr-RZ-jZb" secondAttribute="bottom" constant="8" id="Vne-X3-Xkd"/>
                                             <constraint firstItem="O05-3U-ZLX" firstAttribute="leading" secondItem="Xgg-n9-B56" secondAttribute="leading" constant="30" id="Xdj-8t-NHy"/>
                                             <constraint firstAttribute="trailing" secondItem="jg4-Dn-8I4" secondAttribute="trailing" id="axX-zJ-dAn"/>
                                             <constraint firstItem="wMR-Ja-xNX" firstAttribute="top" secondItem="O05-3U-ZLX" secondAttribute="bottom" constant="24" id="c0f-Ed-Ykw"/>
                                             <constraint firstItem="8qF-rK-Hoj" firstAttribute="top" secondItem="enr-RZ-jZb" secondAttribute="bottom" constant="23" id="dIh-dn-oqE"/>
                                             <constraint firstItem="enr-RZ-jZb" firstAttribute="centerX" secondItem="Xgg-n9-B56" secondAttribute="centerX" id="gR2-8c-BNu"/>
                                             <constraint firstItem="O05-3U-ZLX" firstAttribute="top" secondItem="jg4-Dn-8I4" secondAttribute="bottom" constant="24" id="rI7-Lc-bha"/>
+                                            <constraint firstItem="gG1-f8-Paa" firstAttribute="leading" secondItem="enr-RZ-jZb" secondAttribute="leading" constant="-20" id="z4K-W0-5AP"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -606,6 +624,7 @@
                     <connections>
                         <outlet property="addressTextField" destination="Ix9-F0-rYh" id="9wr-RU-l8H"/>
                         <outlet property="avatarImageView" destination="enr-RZ-jZb" id="XsT-w2-jPm"/>
+                        <outlet property="avatarToolbar" destination="bKM-UC-Sgz" id="WNu-XQ-mfm"/>
                         <outlet property="emailTextField" destination="hqT-Yd-TNn" id="zEd-n2-TzU"/>
                         <outlet property="locationButton" destination="iCV-I0-0ek" id="h6I-BQ-HCy"/>
                         <outlet property="nameTextField" destination="8Ti-mF-cNz" id="IEb-Si-oka"/>
@@ -871,8 +890,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pIt-AD-Kfz" userLabel="Sections">
-                                        <rect key="frame" x="0.0" y="300" width="414" height="134"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pIt-AD-Kfz" userLabel="Sections">
+                                        <rect key="frame" x="0.0" y="300" width="414" height="234"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tp-zb-VFt" customClass="SectionHeader" customModule="musicprof" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
@@ -890,10 +909,10 @@
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdG-EF-l1C" userLabel="Account">
-                                                <rect key="frame" x="0.0" y="62" width="414" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="62" width="414" height="50"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q8o-b7-IcF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qNb-JV-hkf">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
@@ -1004,7 +1023,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o61-Hj-lBe" customClass="SectionHeader" customModule="musicprof" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="72" width="414" height="52"/>
+                                                <rect key="frame" x="0.0" y="122" width="414" height="52"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="52" id="bMu-5Z-v2e"/>
@@ -1019,7 +1038,7 @@
                                                 </connections>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hyi-rW-8ai">
-                                                <rect key="frame" x="0.0" y="134" width="414" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="184" width="414" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" priority="750" id="ihx-XU-ufl"/>
@@ -1521,6 +1540,21 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcF-lF-3tw">
+                                        <rect key="frame" x="122.5" y="122" width="169" height="32"/>
+                                        <subviews>
+                                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="0M6-ps-AQx">
+                                                <rect key="frame" x="0.0" y="0.0" width="169" height="32"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <items/>
+                                                <color key="tintColor" red="1" green="0.82352941180000006" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </toolbar>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="qg3-ih-xrd"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1528,9 +1562,12 @@
                                     <constraint firstItem="mqt-53-qwK" firstAttribute="leading" secondItem="fHr-xa-ujc" secondAttribute="leading" constant="31" id="EMB-AT-wNE"/>
                                     <constraint firstAttribute="bottom" secondItem="Df4-CK-Xfh" secondAttribute="bottom" priority="750" constant="13" id="J8H-B7-3cM"/>
                                     <constraint firstItem="mqt-53-qwK" firstAttribute="top" secondItem="Df4-CK-Xfh" secondAttribute="bottom" constant="10" id="JAH-Ry-lQc"/>
+                                    <constraint firstItem="Df4-CK-Xfh" firstAttribute="leading" secondItem="vcF-lF-3tw" secondAttribute="leading" constant="20" id="MGE-wV-PZa"/>
+                                    <constraint firstItem="Df4-CK-Xfh" firstAttribute="bottom" secondItem="vcF-lF-3tw" secondAttribute="bottom" constant="-10" id="NRL-v6-V91"/>
                                     <constraint firstAttribute="bottom" secondItem="mqt-53-qwK" secondAttribute="bottom" priority="999" constant="13" id="Nfn-dJ-iIw"/>
                                     <constraint firstAttribute="trailing" secondItem="mqt-53-qwK" secondAttribute="trailing" constant="31" id="hQG-kY-ycr"/>
                                     <constraint firstAttribute="height" priority="500" id="sSe-Q9-6Pr"/>
+                                    <constraint firstItem="Df4-CK-Xfh" firstAttribute="trailing" secondItem="vcF-lF-3tw" secondAttribute="trailing" constant="-20" id="sam-H4-ibJ"/>
                                     <constraint firstItem="Df4-CK-Xfh" firstAttribute="top" secondItem="fHr-xa-ujc" secondAttribute="top" constant="15" id="vMi-Go-xQ8"/>
                                 </constraints>
                             </view>
@@ -1563,6 +1600,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="avatarImageView" destination="Df4-CK-Xfh" id="or9-nJ-0vm"/>
+                        <outlet property="avatarToolbar" destination="0M6-ps-AQx" id="T9g-Hp-K4Z"/>
+                        <outlet property="buttonsView" destination="vcF-lF-3tw" id="7eL-99-QSb"/>
                         <outlet property="fullDisplayConstraint" destination="Nfn-dJ-iIw" id="T4e-j0-4ew"/>
                         <outlet property="pictureDisplayConstraint" destination="J8H-B7-3cM" id="2pB-dQ-cNm"/>
                         <outlet property="profileNameLabel" destination="mqt-53-qwK" id="Mym-WU-V2Y"/>
@@ -1604,6 +1643,21 @@
                                                     <constraint firstAttribute="width" secondItem="b2b-Oq-zwl" secondAttribute="height" multiplier="1:1" id="pai-gM-lYT"/>
                                                 </constraints>
                                             </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VQD-6Y-ZXk">
+                                                <rect key="frame" x="109.5" y="148" width="195" height="32"/>
+                                                <subviews>
+                                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="98x-fN-Ifw">
+                                                        <rect key="frame" x="0.0" y="0.0" width="195" height="32"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <items/>
+                                                        <color key="tintColor" red="1" green="0.82352941180000006" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </toolbar>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="hLz-AT-VNa"/>
+                                                </constraints>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JiV-3f-sHk">
                                                 <rect key="frame" x="30" y="193" width="354" height="268"/>
                                                 <subviews>
@@ -1720,9 +1774,12 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="VQD-6Y-ZXk" firstAttribute="trailing" secondItem="b2b-Oq-zwl" secondAttribute="trailing" constant="20" id="Ekn-M6-Qva"/>
                                             <constraint firstAttribute="bottom" secondItem="JiV-3f-sHk" secondAttribute="bottom" constant="10" id="H4L-Nn-H07"/>
+                                            <constraint firstItem="VQD-6Y-ZXk" firstAttribute="leading" secondItem="b2b-Oq-zwl" secondAttribute="leading" constant="-20" id="dyz-wI-dxs"/>
                                             <constraint firstItem="b2b-Oq-zwl" firstAttribute="centerX" secondItem="voy-zA-DqK" secondAttribute="centerX" id="e8n-6R-pMJ"/>
                                             <constraint firstItem="b2b-Oq-zwl" firstAttribute="top" secondItem="voy-zA-DqK" secondAttribute="top" constant="15" id="fz3-xB-EgG"/>
+                                            <constraint firstItem="VQD-6Y-ZXk" firstAttribute="bottom" secondItem="b2b-Oq-zwl" secondAttribute="bottom" constant="10" id="kRF-0I-NWm"/>
                                             <constraint firstItem="JiV-3f-sHk" firstAttribute="leading" secondItem="voy-zA-DqK" secondAttribute="leading" constant="30" id="lgf-jg-ELw"/>
                                             <constraint firstItem="JiV-3f-sHk" firstAttribute="top" secondItem="b2b-Oq-zwl" secondAttribute="bottom" constant="23" id="pVl-eZ-I2H"/>
                                             <constraint firstAttribute="trailing" secondItem="JiV-3f-sHk" secondAttribute="trailing" constant="30" id="ubb-ao-Pxn"/>
@@ -1770,6 +1827,7 @@
                     <connections>
                         <outlet property="addressTextField" destination="hO2-y6-frb" id="TC3-19-Kf3"/>
                         <outlet property="avatarImageView" destination="b2b-Oq-zwl" id="yp2-cN-zEt"/>
+                        <outlet property="avatarToolbar" destination="98x-fN-Ifw" id="w9h-mC-j38"/>
                         <outlet property="emailTextField" destination="MeK-i7-xqa" id="SPn-oG-plE"/>
                         <outlet property="nameTextField" destination="ZCj-p2-ewo" id="shq-Wv-jJL"/>
                         <outlet property="phoneTextField" destination="fiu-zy-Dki" id="ftn-NU-5za"/>
@@ -1799,10 +1857,10 @@
         <image name="userdefault" width="112.5" height="112.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Trh-nk-asF"/>
+        <segue reference="oTV-zM-jVa"/>
         <segue reference="F13-wH-lZA"/>
-        <segue reference="fsI-iq-RmP"/>
-        <segue reference="kMf-8X-xHA"/>
+        <segue reference="h0D-nF-ovM"/>
+        <segue reference="vP7-KT-91K"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
