@@ -148,7 +148,7 @@ class ApiManager {
                      encoding: URLEncoding.default,
                      headers: self.headers)
             .responseDecodable { (result: ApiResult<CreditData>) in
-                handler(result.transform(with: {$0.credit}))
+                handler(result.transform(with: {Int($0.credit) ?? -1}))
         }
     }
     
@@ -868,7 +868,7 @@ private struct SubaccountData2: Decodable {
 }
 
 private struct CreditData: Decodable {
-    var credit: Int
+    var credit: String
 }
 
 private struct InstrumentData: Decodable {
