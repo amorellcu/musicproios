@@ -439,33 +439,8 @@
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NiD-Xm-pbi" userLabel="Buttons">
                                         <rect key="frame" x="31" y="230" width="352" height="52"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4C-kJ-0gu" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="171" height="52"/>
-                                                <color key="backgroundColor" red="0.94901960780000005" green="0.29411764709999999" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="52" id="jIF-np-OaC"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
-                                                <state key="normal" title="Cancelar">
-                                                    <color key="titleColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="26"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="onCancelTapped:" destination="WIY-cM-PpV" eventType="touchUpInside" id="zy6-lG-CDz"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="12C-Xb-iD5" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
-                                                <rect key="frame" x="181" y="0.0" width="171" height="52"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="171" height="52"/>
                                                 <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="52" id="snC-IP-HR1"/>
@@ -487,6 +462,31 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <segue destination="NW4-lr-2gn" kind="unwind" identifier="goBack" unwindAction="unwindToProfessorClasses:" id="xob-0v-mwM"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4C-kJ-0gu" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
+                                                <rect key="frame" x="181" y="0.0" width="171" height="52"/>
+                                                <color key="backgroundColor" red="0.94901960780000005" green="0.29411764709999999" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="52" id="jIF-np-OaC"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
+                                                <state key="normal" title="Cancelar">
+                                                    <color key="titleColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="26"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.25490196079999999" green="0.25098039220000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onCancelTapped:" destination="WIY-cM-PpV" eventType="touchUpInside" id="zy6-lG-CDz"/>
                                                 </connections>
                                             </button>
                                         </subviews>
