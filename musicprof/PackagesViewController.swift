@@ -36,7 +36,7 @@ class PackagesViewController: BaseNestedViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.container?.setDisplayMode(.picture, animated: animated)
+        self.container?.setDisplayMode(.full, animated: animated)
         
         if let location = self.service.currentClient?.location {
             self.updatePackages(from: location)
@@ -73,12 +73,14 @@ class PackagesViewController: BaseNestedViewController {
         
         let request = BTPayPalRequest(amount: String(describing: amount))
         request.currencyCode = "MXN"
-        request.localeCode = "es-MX"
+        request.localeCode = "es"
         request.lineItems = [BTPayPalLineItem(quantity: "1", unitAmount: package.priceStr,
                                               name: package.quantity == 1 ? "Paquete de 1 clase." : "Paquete de \(package.quantity) clases.",
                                               kind: .debit)]
         
+        let spinner = self.showSpinner(onView: self.container?.view ?? self.view)
         driver.requestOneTimePayment(request) { (account, error) in
+            spinner.removeFromSuperview()
             if let account = account {
                 self.pay(forPackage: package, withToken: account)
             } else if let error = error {
