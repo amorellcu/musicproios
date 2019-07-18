@@ -15,7 +15,9 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
         get { return self.user as? Professor }
         set { self.user = newValue }
     }
-    var originalProfessor: Professor?
+    var originalProfessor: Professor? {
+        return self.service.currentProfessor
+    }
     
     private lazy var viewControllers: [UIViewController] = {
         let controllers = [self.storyboard!.instantiateViewController(withIdentifier: "ContactInfoViewController"),
@@ -38,8 +40,9 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.professor = self.service.currentProfessor!
-        self.originalProfessor = self.originalProfessor ?? Professor(copy: self.professor)
+        if let professor = self.originalProfessor {
+            self.professor = Professor(copy: professor)
+        }
         self.updateControllers()
     }
     
@@ -65,8 +68,7 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
         self.service.updateProfile(self.professor, password: newPassword) { [weak self] (result) in
             alert.hideView()
             self?.handleResult(result) {
-                self?.professor = $0
-                self?.originalProfessor = Professor(copy: $0)
+                self?.professor = Professor(copy: $0)
                 self?.updateControllers()
                 self?.container?.refresh()
                 SCLAlertView().showSuccess("Cuenta Actualizada", subTitle: "La configuración de su cuenta se actualizó correctamente.", closeButtonTitle: "Aceptar")

@@ -90,7 +90,8 @@ extension SubaccountListViewController: UITableViewDelegate, UITableViewDataSour
                     self.service.deleteSubaccount(subaccount) { [weak self] (result) in
                         alert.hideView()
                         self?.handleResult(result) {
-                            self?.elements.remove(at: indexPath.item)
+                            self?.client.subaccounts?.remove(at: indexPath.item)
+                            self?.elements = self?.client.subaccounts ?? []
                             self?.tableView.reloadData()
                         }
                     }

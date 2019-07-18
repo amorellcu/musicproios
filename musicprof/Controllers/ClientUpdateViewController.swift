@@ -15,7 +15,9 @@ class ClientUpdateViewController: ProfileUpdateViewController, ClientRegistratio
         get { return self.user as? Client }
         set { self.user = newValue }
     }
-    var originalClient: Client?
+    var originalClient: Client? {
+        return self.service.currentClient
+    }
     
     private lazy var viewControllers: [UIViewController] = {
         let controllers = [self.storyboard!.instantiateViewController(withIdentifier: "ContactInfoViewController"),
@@ -36,8 +38,9 @@ class ClientUpdateViewController: ProfileUpdateViewController, ClientRegistratio
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.client = self.service.currentClient!
-        self.originalClient = self.originalClient ?? Client(copy: self.client)
+        if let client = self.originalClient {
+            self.client = Client(copy: client)
+        }
         self.updateControllers()
     }
     
@@ -49,8 +52,7 @@ class ClientUpdateViewController: ProfileUpdateViewController, ClientRegistratio
         self.service.updateProfile(self.client) { [weak self] (result) in
             alert.hideView()
             self?.handleResult(result) {
-                self?.client = $0
-                self?.originalClient = Client(copy: $0)
+                self?.client = Client(copy: $0)
                 self?.updateControllers()
                 self?.container?.refresh()
                 SCLAlertView().showSuccess("Cuenta Actualizada", subTitle: "La configuración de su cuenta se actualizó correctamente.", closeButtonTitle: "Aceptar")
@@ -73,7 +75,7 @@ class ClientUpdateViewController: ProfileUpdateViewController, ClientRegistratio
     }
     
     @IBAction func unwindToProfile(_ segue: UIStoryboardSegue) {
-        self.client = self.service.currentClient!
+        self.client.subaccounts = self.service.currentClient?.subaccounts
         self.updateControllers()
     }
 }

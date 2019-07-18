@@ -636,9 +636,9 @@ class ApiManager {
         }
     }
     
-    func registerSubaccount(_ client: Subaccount, handler: @escaping (ApiResult<Subaccount>) -> Void) {
+    func registerSubaccount(_ subaccount: Subaccount, handler: @escaping (ApiResult<Subaccount>) -> Void) {
         let url = baseUrl.appendingPathComponent("registerSubcuenta")
-        self.post(client, to: url) { (result: ApiResult<SubaccountData>) in
+        self.post(subaccount, to: url) { (result: ApiResult<SubaccountData>) in
             handler(result.transform(with: { data in
                 if let client = self.user as? Client {
                     client.subaccounts?.append(data.subaccount)
@@ -648,9 +648,9 @@ class ApiManager {
         }
     }
     
-    func updateSubaccount(_ client: Subaccount, handler: @escaping (ApiResult<Subaccount>) -> Void) {
+    func updateSubaccount(_ subaccount: Subaccount, handler: @escaping (ApiResult<Subaccount>) -> Void) {
         let url = baseUrl.appendingPathComponent("updateSubcuenta")
-        self.post(client, to: url) { (result: ApiResult<SubaccountData2>) in
+        self.post(subaccount, to: url) { (result: ApiResult<SubaccountData2>) in
             handler(result.transform(with: { data in
                 if let client = self.user as? Client, let index = client.subaccounts?.firstIndex(where: {$0.id == data.subaccount.id}) {
                     client.subaccounts?[index] = data.subaccount
@@ -660,16 +660,16 @@ class ApiManager {
         }
     }
     
-    func deleteSubaccount(_ client: Subaccount, handler: @escaping (ApiResult<Void>) -> Void) {
+    func deleteSubaccount(_ subaccount: Subaccount, handler: @escaping (ApiResult<Void>) -> Void) {
         let url = baseUrl.appendingPathComponent("removeSubcuenta")
-        let parameters = ["subcuentaId": client.id]
+        let parameters = ["subcuentaId": subaccount.id]
         let _ = self.session
             .request(url, method: .post, parameters: parameters,
                      encoding: URLEncoding.httpBody, headers: headers)
             .responseError { (result) in
                 handler(result.transform(with: {
                     if let client = self.user as? Client {
-                        client.subaccounts?.removeAll(where: {$0.id == client.id})
+                        client.subaccounts?.removeAll(where: {$0.id == subaccount.id})
                     }
                 }))
         }
