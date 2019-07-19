@@ -22,6 +22,8 @@ target 'musicprof' do
   pod 'Braintree'
   pod 'ActionSheetPicker-3.0', '~> 2.3.0'
   pod 'M13Checkbox'
+  pod 'PusherSwift', '~> 7.0'
+  pod 'PushNotifications', '~> 2.0.2'
 
 end
 

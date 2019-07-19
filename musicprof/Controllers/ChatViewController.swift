@@ -9,6 +9,7 @@
 import UIKit
 import AlamofireImage
 import SCLAlertView
+import PusherSwift
 
 class ChatViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -24,6 +25,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var fullProfileConstriant: NSLayoutConstraint!
     @IBOutlet weak var textInputConstraint: NSLayoutConstraint!
     
+    var pusher: Pusher?
     var reservation: Reservation?
     var client: Client?
     var student: Student? {
@@ -79,9 +81,38 @@ class ChatViewController: UIViewController {
             }
         }
         
+        self.initSocket()
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.messageTextField, action: #selector(UIView.resignFirstResponder))
         tap.cancelsTouchesInView = false
         self.tableView.addGestureRecognizer(tap)
+    }
+    
+    func initSocket() {
+        guard let reservation = self.reservation else { return }
+        let options = PusherClientOptions(
+            host: .cluster("us2")
+        )
+        
+        let pusher = Pusher(
+            key: "e27e7bc4b2d829641166",
+            options: options
+        )
+        
+        // subscribe to channel and bind to event
+        let channel = pusher.subscribe(channelName: "chat-\(reservation.id)")
+        
+        let _ = channel.bind(eventName: "chat", callback: { (data: Any?) -> Void in
+            if let data = data as? [String : AnyObject] {
+                if let message = data["message"] as? [String: Any], let item = Message(fromJSON: message) {
+                    DispatchQueue.main.async {
+                        self.messages.append(item)
+                    }
+                }
+            }
+        })
+        
+        self.pusher = pusher
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,18 +123,22 @@ class ChatViewController: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { [weak self] (timer) in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { [weak self] (timer) in
             guard let strongSelf = self else {
                 timer.invalidate()
                 return
             }
             strongSelf.updateMessages()
         })
+        
+        pusher?.connect()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
+        
+        pusher?.disconnect()
         
         self.timer?.invalidate()
         self.timer = nil
