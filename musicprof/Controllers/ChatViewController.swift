@@ -99,6 +99,8 @@ class ChatViewController: UIViewController {
             options: options
         )
         
+        pusher.delegate = self
+        
         // subscribe to channel and bind to event
         let channel = pusher.subscribe(channelName: "chat-\(reservation.id)")
         
@@ -288,5 +290,22 @@ extension ChatViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.submitMessage(from: textField)
         return true
+    }
+}
+
+extension ChatViewController: PusherDelegate {
+    func changedConnectionState(from old: ConnectionState, to new: ConnectionState) {
+    }
+    
+    func debugLog(message: String) {
+        print(message)
+    }
+    
+    func subscribedToChannel(name: String) {
+        print("[PUSHER] Subscribed to channel \(name).")
+    }
+    
+    func failedToSubscribeToChannel(name: String, response: URLResponse?, data: String?, error: NSError?) {
+        print("[PUSHER] Could not subscribe to channel \(name).")
     }
 }
