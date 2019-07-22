@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class LocationListViewController: BaseNestedViewController, ProfessorRegistrationController, ProfileSection {
     weak var updater: ProfileUpdateViewController?
@@ -56,6 +57,22 @@ class LocationListViewController: BaseNestedViewController, ProfessorRegistratio
                 guard professorLocations.contains(location) else { continue }
                 let indexPath = IndexPath(row: row, section: section)
                 self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            }
+        }
+    }
+    
+    @IBAction func onSaveChanges(_ sender: Any) {
+        let alert = self.showSpinner(withMessage: "Actualizando cambios...")
+        let user = self.user!
+        self.service.updateUser(user) { (result) in
+            alert.hideView()
+            self.handleResult(result) {
+                self.user = $0
+                let alert = SCLAlertView()
+                alert.showSuccess(
+                    "Cuenta Actualizada",
+                    subTitle: "La configuración de su cuenta se actualizó correctamente.",
+                    closeButtonTitle: "Aceptar")
             }
         }
     }

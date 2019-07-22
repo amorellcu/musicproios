@@ -100,7 +100,7 @@ extension CustomTabController: UITableViewDelegate, UITableViewDataSource {
         guard self.selectedSection == nil else { return nil }
         let section = self.sections[indexPath.row]
         //self.tabController?.navigate(to: section.id)
-        self.navigationController?.pushViewController(section, animated: false)
+        self.navigationController?.pushViewController(section, animated: true)
         self.willShow(section: section)
         self.selectedSection = section
         UIView.animate(withDuration: 0.5, animations: {

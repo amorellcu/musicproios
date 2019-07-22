@@ -11,14 +11,6 @@ import SCLAlertView
 
 class ProfessorUpdateViewController: ProfileUpdateViewController {
     
-    var professor: Professor! {
-        get { return self.user as? Professor }
-        set { self.user = newValue }
-    }
-    var originalProfessor: Professor? {
-        return self.service.currentProfessor
-    }
-    
     private lazy var viewControllers: [UIViewController] = {
         let controllers = [self.storyboard!.instantiateViewController(withIdentifier: "ContactInfoViewController"),
                            self.storyboard!.instantiateViewController(withIdentifier: "InstrumentListViewController"),
@@ -27,9 +19,6 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
                            self.storyboard!.instantiateViewController(withIdentifier: "AcademicTrainingViewController"),
                            self.storyboard!.instantiateViewController(withIdentifier: "WorkExperienceViewController"),
                            self.storyboard!.instantiateViewController(withIdentifier: "PasswordUpdateViewController")]
-        for controller in controllers.lazy.compactMap({$0 as? RegistrationController}) {
-            controller.user = self.user
-        }
         return controllers
     }()
     
@@ -39,31 +28,12 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let professor = self.originalProfessor {
-            self.professor = Professor(copy: professor)
-        }
     }
     
-    override func onUpdateAccount(_ sender: Any) {
-        
-        var newPassword: String? = nil
-        if let controller = self.sections.compactMap({$0 as? PasswordUpdateViewController}).first, controller.isViewLoaded {
-            let password = controller.passwordTextField.text ?? ""
-            let passwordConfirmation = controller.passwordConfirmationTextField.text ?? ""
-            if !password.isEmpty && !passwordConfirmation.isEmpty && password == passwordConfirmation {
-                newPassword = password
-            }
+    override func willShow(section controller: Section) {
+        if let controller = controller as? RegistrationController, let originalUser = self.service.currentProfessor {
+            controller.user = Professor(copy: originalUser)
         }
-        
-        let alert = self.showSpinner(withMessage: "Actualizando datos...")
-        self.service.updateProfile(self.professor, password: newPassword) { [weak self] (result) in
-            alert.hideView()
-            self?.handleResult(result) {
-                self?.professor = Professor(copy: $0)
-                self?.container?.refresh()
-                
-            }
-        }
+        super.willShow(section: controller)
     }
 }

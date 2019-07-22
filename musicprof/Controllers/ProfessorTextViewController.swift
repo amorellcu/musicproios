@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class ProfessorTextViewController: BaseNestedViewController, ProfessorRegistrationController, ProfileSection {
     weak var updater: ProfileUpdateViewController?
@@ -40,6 +41,22 @@ class ProfessorTextViewController: BaseNestedViewController, ProfessorRegistrati
     
     func updateProfessor() {
         self.text = self.textView.text
+    }
+    
+    @IBAction func onSaveChanges(_ sender: Any) {
+        let alert = self.showSpinner(withMessage: "Actualizando cambios...")
+        let user = self.user!
+        self.service.updateUser(user) { (result) in
+            alert.hideView()
+            self.handleResult(result) {
+                self.user = $0
+                let alert = SCLAlertView()
+                alert.showSuccess(
+                    "Cuenta Actualizada",
+                    subTitle: "La configuración de su cuenta se actualizó correctamente.",
+                    closeButtonTitle: "Aceptar")
+            }
+        }
     }
 }
 

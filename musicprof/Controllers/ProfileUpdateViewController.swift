@@ -10,9 +10,7 @@ import UIKit
 import FacebookCore
 import SCLAlertView
 
-class ProfileUpdateViewController: CustomTabController {
-    open var user: User!
-    
+class ProfileUpdateViewController: CustomTabController {    
     @IBOutlet weak var updateButton: UIButton?    
     
     override func viewDidLoad() {
@@ -24,10 +22,6 @@ class ProfileUpdateViewController: CustomTabController {
     }
     
     override func willShow(section controller: Section) {
-        super.willShow(section: controller)
-        if let controller = controller as? RegistrationController {
-            controller.user = self.user
-        }
         if let controller = controller as? NestedController {
             controller.container = self.container
         }
@@ -38,13 +32,7 @@ class ProfileUpdateViewController: CustomTabController {
             controller.updater = self
             controller.refresh()
         }
-    }
-    
-    @IBAction open func onUpdateAccount(_ sender: Any) {
-        self.updateAccount()
-    }
-    
-    open func updateAccount() {
+        super.willShow(section: controller)
     }
 }
 
