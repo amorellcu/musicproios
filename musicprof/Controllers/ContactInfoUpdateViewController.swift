@@ -52,11 +52,23 @@ class ContactInfoUpdateViewController: ContactInfoViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func validateFields() -> String? {
+        switch self.user {
+        case let client as Client where client == self.service.currentClient:
+            return "No hay cambios que guardar"
+        case let professor as Professor where professor == self.service.currentProfessor:
+            return "No hay cambios que guardar"
+        default:
+            break
+        }
+        return super.validateFields()
+    }
+    
     @IBAction func onSaveChanges(_ sender: Any) {
         self.updateClient()
         
         if let error = self.validateFields() {
-            return self.notify(message: error, title: "Información incompleta")
+            return self.notify(message: error, title: "Información inválida")
         }
         
         let alert = self.showSpinner(withMessage: "Actualizando cambios...")

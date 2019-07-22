@@ -47,9 +47,6 @@ class PasswordUpdateViewController: BaseNestedViewController, RegistrationContro
     open func validateFields() -> String? {
         let password = self.passwordTextField.text ?? ""
         let passwordConfirmation = self.passwordConfirmationTextField.text ?? ""
-        if password.isEmpty && passwordConfirmation.isEmpty {
-            return nil
-        }
         guard !password.isEmpty else {
             return "Por favor, introduce la contraseña."
         }

@@ -36,6 +36,10 @@ class InstrumentsUpdateViewController: InstrumentListViewController, Registratio
     }
     
     @IBAction func onSaveChanges(_ sender: Any) {
+        guard self.user.instruments != self.service.user?.instruments else {
+            return notify(message: "No hay cambios que guardar.", title: "Error")
+        }
+        
         let alert = self.showSpinner(withMessage: "Actualizando cambios...")
         let user = self.user!
         self.service.updateUser(user) { (result) in
