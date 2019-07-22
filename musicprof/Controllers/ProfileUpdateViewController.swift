@@ -74,7 +74,7 @@ class ProfileUpdateViewController: CustomTabController {
     }
     
     @IBAction open func onUpdateAccount(_ sender: Any) {
-        for controller in self.sections.compactMap({$0 as? InputController}) {
+        for controller in self.sections.filter({$0.isViewLoaded}).compactMap({$0 as? InputController}) {
             if let error = controller.validateFields() {
                 return self.notify(message: error, title: "Información incompleta.")
             }

@@ -44,10 +44,15 @@ class PasswordUpdateViewController: BaseNestedViewController, RegistrationContro
     }
     
     open func validateFields() -> String? {
-        guard let password = self.passwordTextField.text, !password.isEmpty else {
+        let password = self.passwordTextField.text ?? ""
+        let passwordConfirmation = self.passwordConfirmationTextField.text ?? ""
+        if password.isEmpty && passwordConfirmation.isEmpty {
+            return nil
+        }
+        guard !password.isEmpty else {
             return "Por favor, introduce la contraseña."
         }
-        guard let passwordConfirmation = self.passwordTextField.text, !passwordConfirmation.isEmpty else {
+        guard !passwordConfirmation.isEmpty else {
             return "Por favor, repite la contraseña."
         }
         guard passwordConfirmation == password else {
