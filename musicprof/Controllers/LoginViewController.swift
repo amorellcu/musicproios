@@ -10,6 +10,7 @@ import UIKit
 import SCLAlertView
 import Alamofire
 import M13Checkbox
+import PushNotifications
 
 import FacebookCore
 import FacebookLogin
@@ -221,6 +222,7 @@ class LoginViewController: UIViewController, LoginController {
     
     @IBAction func unwindToLogin(_ segue: UIStoryboardSegue) {
         self.service.signOut()
+        try? PushNotifications.shared.clearDeviceInterests()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

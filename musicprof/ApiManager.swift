@@ -124,7 +124,14 @@ class ApiManager {
     func signOut() {
         if AccessToken.current != nil {
             LoginManager().logOut()
-        }        
+        }
+        if self.session.adapter != nil {
+            let url = baseUrl.appendingPathComponent("logout")
+            let _ = self.session
+                .request(url, method: .get,
+                         encoding: URLEncoding.default,
+                         headers: self.headers)
+        }
         self.session.adapter = nil
         self.session.retrier = nil
         self.user = nil
