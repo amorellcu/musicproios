@@ -8,9 +8,11 @@
 
 import UIKit
 
-class SubaccountListViewController: BaseNestedViewController, ClientRegistrationController, ProfileSection {
+class SubaccountListViewController: BaseNestedViewController, ProfileSection {
     weak var updater: ProfileUpdateViewController?
-    var client: Client!
+    var client: Client! {
+        return self.service.currentClient
+    }
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,12 +20,12 @@ class SubaccountListViewController: BaseNestedViewController, ClientRegistration
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.elements = self.client.subaccounts ?? []
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.elements = self.client.subaccounts ?? []
+        self.tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,7 +94,6 @@ extension SubaccountListViewController: UITableViewDelegate, UITableViewDataSour
                     self.service.deleteSubaccount(subaccount) { [weak self] (result) in
                         alert.hideView()
                         self?.handleResult(result) {
-                            self?.client.subaccounts?.remove(at: indexPath.item)
                             self?.elements = self?.client.subaccounts ?? []
                             self?.tableView.reloadData()
                         }
