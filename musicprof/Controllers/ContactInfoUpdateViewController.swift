@@ -59,11 +59,13 @@ class ContactInfoUpdateViewController: ContactInfoViewController {
             alert.hideView()
             self.handleResult(result) {
                 self.user = $0
-                let alert = SCLAlertView()
-                alert.showSuccess(
-                    "Cuenta Actualizada",
+                SCLAlertView()
+                    .showSuccess("Cuenta Actualizada",
                     subTitle: "La configuración de su cuenta se actualizó correctamente.",
                     closeButtonTitle: "Aceptar")
+                    .setDismissBlock { [weak self] in
+                        self?.goBack()
+                }
             }
         }
     }

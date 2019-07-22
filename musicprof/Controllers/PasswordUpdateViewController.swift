@@ -89,8 +89,8 @@ class PasswordUpdateViewController: BaseNestedViewController, RegistrationContro
                 let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
                     showCloseButton: false
                 ))
-                alert.addButton("Aceptar") {
-                    // TODO: Go back
+                alert.addButton("Aceptar") { [weak self] in
+                    self?.goBack()
                 }
                 alert.showSuccess("Contraseña Actualizada", subTitle: "La contraseña se actualizó correctamente.")
             }

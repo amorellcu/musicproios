@@ -26,7 +26,7 @@ class ProfileUpdateViewController: CustomTabController {
             controller.container = self.container
         }
         if let controller = controller as? BaseNestedViewController {
-            controller.preferredDisplayMode = .picture
+            //controller.preferredDisplayMode = .picture
         }
         if let controller = controller as? ProfileSection {
             controller.updater = self
