@@ -25,18 +25,6 @@ typealias Section = UIViewController
         }
     }
     
-    var isExpanded: Bool {
-        return self.selectedSection != nil
-    }
-    
-    weak var tabNavigationController: UINavigationController? {
-        didSet {
-            self.tabNavigationController?.delegate = self
-        }
-    }
-    
-    weak var tabRootController: UIViewController?
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableCollapseConstraint: NSLayoutConstraint!
 
@@ -47,18 +35,10 @@ typealias Section = UIViewController
         self.tableCollapseConstraint.priority = .defaultLow
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        if let controller = segue.destination as? UINavigationController {
-            self.tabNavigationController = controller
-            if controller.viewControllers.count == 0 {
-                let child = UIViewController()
-                controller.pushViewController(child, animated: false)
-                self.tabRootController = child
-            } else {
-                self.tabRootController = controller.viewControllers.first
-            }
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.collapseSection()
+        self.updateBackButton()
     }
     
     func updateLayout() {
@@ -72,11 +52,14 @@ typealias Section = UIViewController
         self.selectedSection = nil
         self.updateLayout()
     }
+    
+    open func willShow(section controller: Section) {
+    }
 }
 
 extension CustomTabController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        if viewController === self.tabRootController {
+        if viewController === self {
             self.collapseSection()
             self.updateBackButton()
         }
@@ -117,10 +100,11 @@ extension CustomTabController: UITableViewDelegate, UITableViewDataSource {
         guard self.selectedSection == nil else { return nil }
         let section = self.sections[indexPath.row]
         //self.tabController?.navigate(to: section.id)
-        self.tabNavigationController?.pushViewController(section, animated: false)
+        self.navigationController?.pushViewController(section, animated: false)
+        self.willShow(section: section)
         self.selectedSection = section
         UIView.animate(withDuration: 0.5, animations: {
-            tableView.layoutIfNeeded()
+            self.view.layoutIfNeeded()
         }, completion: { _ in
             self.updateLayout()
         })

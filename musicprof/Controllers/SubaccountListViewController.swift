@@ -38,6 +38,7 @@ class SubaccountListViewController: BaseNestedViewController, ClientRegistration
     }
     
     @IBAction func unwindToSubaccountList(_ segue: UIStoryboardSegue) {
+        self.client.subaccounts = self.service.currentClient?.subaccounts
         self.tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
     }
     
@@ -64,10 +65,6 @@ extension SubaccountListViewController: UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "studentCell")!
         cell.textLabel?.text = self.elements[indexPath.item].name
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.updater?.performSegue(withIdentifier: "editSubaccount", sender: self.elements[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {

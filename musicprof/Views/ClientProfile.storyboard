@@ -46,7 +46,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="414" height="62"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CE7-4e-7gi" id="IKu-8J-QkC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="61.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="62"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="als-Cd-3Zg" userLabel="Profile">
@@ -107,41 +107,12 @@
                                             <outlet property="delegate" destination="yoO-MX-DLs" id="7i0-gi-ODF"/>
                                         </connections>
                                     </tableView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqG-yG-hwl">
-                                        <rect key="frame" x="0.0" y="72" width="414" height="674"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" priority="500" id="oZU-nF-0FV"/>
-                                        </constraints>
-                                        <connections>
-                                            <segue destination="0EP-oI-BD9" kind="embed" id="dzH-Ex-JnW"/>
-                                        </connections>
-                                    </containerView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DzJ-vk-zPQ" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="766" width="414" height="52"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="52" id="Ri2-JH-Ap2"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="FilsonProHeavyItalic-Italic" family="FilsonProHeavy-Italic" pointSize="20"/>
-                                        <state key="normal" title="GUARDAR">
-                                            <color key="titleColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onUpdateAccount:" destination="yoO-MX-DLs" eventType="touchUpInside" id="4Vf-RF-hep"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="DzJ-vk-zPQ" secondAttribute="bottom" id="6Ro-5b-mF1"/>
                                     <constraint firstAttribute="trailing" secondItem="yj8-2o-5ym" secondAttribute="trailing" id="Doe-1X-SxD"/>
-                                    <constraint firstItem="gqG-yG-hwl" firstAttribute="leading" secondItem="IK5-7s-Oo2" secondAttribute="leading" id="F0N-P8-e1H"/>
-                                    <constraint firstItem="DzJ-vk-zPQ" firstAttribute="top" secondItem="gqG-yG-hwl" secondAttribute="bottom" constant="20" id="N3k-Ek-JGT"/>
+                                    <constraint firstAttribute="bottom" secondItem="yj8-2o-5ym" secondAttribute="bottom" priority="500" constant="10" id="H0j-Xi-7ZR"/>
                                     <constraint firstItem="yj8-2o-5ym" firstAttribute="top" secondItem="IK5-7s-Oo2" secondAttribute="top" id="V65-kC-hNo"/>
-                                    <constraint firstAttribute="trailing" secondItem="DzJ-vk-zPQ" secondAttribute="trailing" id="WJ9-qC-4Nl"/>
-                                    <constraint firstItem="DzJ-vk-zPQ" firstAttribute="leading" secondItem="IK5-7s-Oo2" secondAttribute="leading" id="fGA-7P-glD"/>
-                                    <constraint firstItem="gqG-yG-hwl" firstAttribute="top" secondItem="yj8-2o-5ym" secondAttribute="bottom" id="h6c-xC-fch"/>
-                                    <constraint firstAttribute="trailing" secondItem="gqG-yG-hwl" secondAttribute="trailing" id="sD8-p8-64d"/>
                                     <constraint firstItem="yj8-2o-5ym" firstAttribute="leading" secondItem="IK5-7s-Oo2" secondAttribute="leading" id="w4h-UU-OCi"/>
                                 </constraints>
                             </view>
@@ -158,9 +129,6 @@
                     <connections>
                         <outlet property="tableCollapseConstraint" destination="8hm-DT-DkK" id="UW6-XD-dLi"/>
                         <outlet property="tableView" destination="yj8-2o-5ym" id="gIy-Ci-mNn"/>
-                        <outlet property="updateButton" destination="DzJ-vk-zPQ" id="AxA-AW-hWt"/>
-                        <segue destination="0Ud-Z4-dLo" kind="show" identifier="addSubaccount" id="I2M-N1-vYH"/>
-                        <segue destination="vW2-a8-bXN" kind="show" identifier="editSubaccount" id="mNt-xw-oJo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2NQ-38-QtD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,7 +138,7 @@
         <!--MI CUENTA-->
         <scene sceneID="y58-4G-SZZ">
             <objects>
-                <viewController storyboardIdentifier="ContactInfoViewController" title="MI CUENTA" id="Rwj-Fy-iqD" customClass="ContactInfoViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactInfoViewController" title="MI CUENTA" id="Rwj-Fy-iqD" customClass="ContactInfoUpdateViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jb4-qU-pRN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -598,21 +566,6 @@
             </objects>
             <point key="canvasLocation" x="3567" y="27"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="43W-Ug-OHv">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="0EP-oI-BD9" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EtW-YN-DiQ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kYX-yP-LlL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="602.89855072463774" y="27.455357142857142"/>
-        </scene>
         <!--CAMBIAR CONTRASENA-->
         <scene sceneID="15f-bF-lbG">
             <objects>
@@ -757,6 +710,9 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <segue destination="vW2-a8-bXN" kind="show" identifier="editSubaccount" id="9NF-LT-TF0"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
@@ -785,7 +741,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="onAddSubaccount:" destination="2lc-ZQ-6IU" eventType="touchUpInside" id="Sw1-7a-OhU"/>
+                                            <segue destination="0Ud-Z4-dLo" kind="show" identifier="addSubaccount" id="lEq-MX-ij8"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1101,14 +1057,14 @@
                         <outlet property="locationButton" destination="gXE-XQ-0OC" id="CfZ-sM-Lw7"/>
                         <outlet property="scrollView" destination="Txz-Zi-bcQ" id="3dF-BW-Vfa"/>
                         <outlet property="studentNameTextField" destination="Opb-pi-Z7H" id="bcP-FQ-9WS"/>
-                        <segue destination="S1q-fo-JWM" kind="unwind" identifier="subaccountCreated" unwindAction="unwindToProfile:" id="7RK-va-75f"/>
+                        <segue destination="S1q-fo-JWM" kind="unwind" identifier="subaccountCreated" unwindAction="unwindToSubaccountList:" id="7RK-va-75f"/>
                         <segue destination="Yug-4X-QDR" kind="presentation" identifier="openMap" id="Ean-e6-Ehv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gdm-Zv-rmZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="S1q-fo-JWM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-381" y="907"/>
+            <point key="canvasLocation" x="5554" y="896"/>
         </scene>
         <!--Maps-->
         <scene sceneID="k5y-fS-GaM">
@@ -1116,7 +1072,7 @@
                 <viewControllerPlaceholder storyboardName="Maps" id="Yug-4X-QDR" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Si1-2m-2OI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="64" y="1405"/>
+            <point key="canvasLocation" x="5998" y="1394"/>
         </scene>
         <!--Instruments Registration View Controller-->
         <scene sceneID="y9v-U7-5R4">
@@ -1401,14 +1357,14 @@
                         <outlet property="locationButton" destination="8tl-uE-eCt" id="3sc-Ba-lvp"/>
                         <outlet property="scrollView" destination="oox-cE-HZM" id="mcA-Ef-5ow"/>
                         <outlet property="studentNameTextField" destination="jKA-Z5-LJi" id="YdW-77-w7S"/>
-                        <segue destination="gok-eP-hNF" kind="unwind" identifier="subaccountUpdated" unwindAction="unwindToProfile:" id="czc-Ub-Jig"/>
+                        <segue destination="gok-eP-hNF" kind="unwind" identifier="subaccountUpdated" unwindAction="unwindToSubaccountList:" id="czc-Ub-Jig"/>
                         <segue destination="Yug-4X-QDR" kind="presentation" identifier="openMap" id="M94-bE-S8U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJd-D6-T2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gok-eP-hNF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="604" y="907"/>
+            <point key="canvasLocation" x="6538" y="896"/>
         </scene>
     </scenes>
     <resources>

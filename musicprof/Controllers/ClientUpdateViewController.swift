@@ -41,7 +41,6 @@ class ClientUpdateViewController: ProfileUpdateViewController, ClientRegistratio
         if let client = self.originalClient {
             self.client = Client(copy: client)
         }
-        self.updateControllers()
     }
     
     override func updateAccount() {
@@ -53,29 +52,9 @@ class ClientUpdateViewController: ProfileUpdateViewController, ClientRegistratio
             alert.hideView()
             self?.handleResult(result) {
                 self?.client = Client(copy: $0)
-                self?.updateControllers()
                 self?.container?.refresh()
                 SCLAlertView().showSuccess("Cuenta Actualizada", subTitle: "La configuración de su cuenta se actualizó correctamente.", closeButtonTitle: "Aceptar")
             }
         }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        guard let controller = segue.destination as? InstrumentsRegistrationViewController else { return }
-        switch segue.identifier {
-        case "addSubaccount":
-            controller.client = self.client
-        case "editSubaccount":
-            controller.client = self.client
-            controller.subaccount = sender as? Subaccount
-        default:
-            break
-        }
-    }
-    
-    @IBAction func unwindToProfile(_ segue: UIStoryboardSegue) {
-        self.client.subaccounts = self.service.currentClient?.subaccounts
-        self.updateControllers()
     }
 }

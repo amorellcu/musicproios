@@ -26,6 +26,7 @@
 		530FC53722DE0093000BD490 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530FC53622DE0093000BD490 /* TitleView.swift */; };
 		53108F6022DDA7D90030C155 /* ClassSchedulingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53108F5F22DDA7D90030C155 /* ClassSchedulingViewController.swift */; };
 		53130DC822D06DF3008B06B2 /* ProfileSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53130DC722D06DF3008B06B2 /* ProfileSection.swift */; };
+		531EA0F022E5ABB600FE9E77 /* ContactInfoUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531EA0EF22E5ABB600FE9E77 /* ContactInfoUpdateViewController.swift */; };
 		531FC38422D627B700BDDFCF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531FC38322D627B700BDDFCF /* Message.swift */; };
 		531FDF9422DD007E00DD1439 /* ClassInstrumentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531FDF9322DD007E00DD1439 /* ClassInstrumentSelectionViewController.swift */; };
 		531FDF9622DD01D200DD1439 /* ClassCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531FDF9522DD01D200DD1439 /* ClassCalendarViewController.swift */; };
@@ -180,6 +181,7 @@
 		530FC53622DE0093000BD490 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		53108F5F22DDA7D90030C155 /* ClassSchedulingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassSchedulingViewController.swift; sourceTree = "<group>"; };
 		53130DC722D06DF3008B06B2 /* ProfileSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSection.swift; sourceTree = "<group>"; };
+		531EA0EF22E5ABB600FE9E77 /* ContactInfoUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoUpdateViewController.swift; sourceTree = "<group>"; };
 		531FC38322D627B700BDDFCF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		531FDF9322DD007E00DD1439 /* ClassInstrumentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassInstrumentSelectionViewController.swift; sourceTree = "<group>"; };
 		531FDF9522DD01D200DD1439 /* ClassCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCalendarViewController.swift; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 				5332FBB722C91645000BF4B0 /* ProfileUpdateViewController.swift */,
 				5357A5DF22D49B4300936FA6 /* ClientUpdateViewController.swift */,
 				5357A5E122D49B5A00936FA6 /* ProfessorUpdateViewController.swift */,
+				531EA0EF22E5ABB600FE9E77 /* ContactInfoUpdateViewController.swift */,
 				53DB770622CA81CE0050F7CD /* InstrumentsUpdateViewController.swift */,
 				53616E6B22CBAF6800B36549 /* PasswordUpdateViewController.swift */,
 				5364C6BF22CFB3140052E6FA /* SubaccountListViewController.swift */,
@@ -902,6 +905,7 @@
 				5305F99622C4E950002284EF /* UIView.swift in Sources */,
 				530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */,
 				53D1C57322C5F8C6002BDAE4 /* RegistrationController.swift in Sources */,
+				531EA0F022E5ABB600FE9E77 /* ContactInfoUpdateViewController.swift in Sources */,
 				5380312C22CE42570016175E /* ClientClassListViewController.swift in Sources */,
 				5393EB7522C7CD4600C47E77 /* MenuViewController.swift in Sources */,
 				5366CFD922CC9B4400FFDEE2 /* Reservation.swift in Sources */,

@@ -43,7 +43,6 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
         if let professor = self.originalProfessor {
             self.professor = Professor(copy: professor)
         }
-        self.updateControllers()
     }
     
     override func onUpdateAccount(_ sender: Any) {
@@ -69,7 +68,6 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
             alert.hideView()
             self?.handleResult(result) {
                 self?.professor = Professor(copy: $0)
-                self?.updateControllers()
                 self?.container?.refresh()
                 SCLAlertView().showSuccess("Cuenta Actualizada", subTitle: "La configuración de su cuenta se actualizó correctamente.", closeButtonTitle: "Aceptar")
             }
