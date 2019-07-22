@@ -10,7 +10,7 @@ import UIKit
 import ActionSheetPicker_3_0
 import SCLAlertView
 
-class ContactInfoViewController: BaseNestedViewController, RegistrationController {
+class ContactInfoViewController: BaseNestedViewController, RegistrationController, InputController {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -87,6 +87,26 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
         self.emailTextField.text = self.user.email
         self.phoneTextField.text = self.user.phone
         self.addressTextField?.text = self.user.address
+        self.locationButton?.setTitle(self.client?.location?.description, for: .normal)
+    }
+    
+    open func validateFields() -> String? {
+        guard let name = self.nameTextField.text, !name.isEmpty else {
+            return "Por favor, introduce tu nombre."
+        }
+        guard let email = self.emailTextField.text, !email.isEmpty else {
+            return "Por favor, introduce tu correo."
+        }
+        guard let phone = self.phoneTextField.text, !phone.isEmpty else {
+            return "Por favor, introduce tu número telefónico."
+        }
+        if let textField = self.addressTextField, (textField.text ?? "").isEmpty {
+            return "Por favor, introduce tu dirección."
+        }
+        if self.locationButton != nil && self.client?.location == nil {
+            return "Por favor, selecciona tu ubicación."
+        }
+        return nil
     }
     
     @objc func adjustForKeyboard(notification: Notification) {

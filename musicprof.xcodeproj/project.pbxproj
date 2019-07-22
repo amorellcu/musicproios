@@ -86,6 +86,7 @@
 		539C80C522C4C621009D8469 /* FilsonProThin-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80B122C4C5B5009D8469 /* FilsonProThin-Thin.otf */; };
 		539C80C622C4C621009D8469 /* FilsonProThinItalic-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80AA22C4C5AE009D8469 /* FilsonProThinItalic-Italic.otf */; };
 		53ACA34D22D744BC00A7CF04 /* Subaccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ACA34C22D744BC00A7CF04 /* Subaccount.swift */; };
+		53AE1A8222E5EFF900C3ADC9 /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AE1A8122E5EFF900C3ADC9 /* InputController.swift */; };
 		53C5DA9122CA29CF0005AC14 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9022CA29CF0005AC14 /* ContactInfoViewController.swift */; };
 		53C5DA9322CA2CE00005AC14 /* InstrumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */; };
 		53C5DA9522CA38030005AC14 /* ReservationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */; };
@@ -240,6 +241,7 @@
 		539C80B522C4C5B8009D8469 /* FilsonProBookItalic-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProBookItalic-Italic.otf"; sourceTree = "<group>"; };
 		539C80B622C4C5B9009D8469 /* FilsonProBold-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProBold-Bold.otf"; sourceTree = "<group>"; };
 		53ACA34C22D744BC00A7CF04 /* Subaccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subaccount.swift; sourceTree = "<group>"; };
+		53AE1A8122E5EFF900C3ADC9 /* InputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
 		53C5DA9022CA29CF0005AC14 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentListViewController.swift; sourceTree = "<group>"; };
 		53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationListViewController.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				53130DC722D06DF3008B06B2 /* ProfileSection.swift */,
 				5357A5DD22D494C000936FA6 /* LoginController.swift */,
 				53459CF622D4B3120007ECE6 /* MultiformEncodable.swift */,
+				53AE1A8122E5EFF900C3ADC9 /* InputController.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -899,6 +902,7 @@
 				A5AD1EC020338A6F00A38F85 /* CalendarCell.swift in Sources */,
 				53D8E20022C3AB2100E3FABB /* Class.swift in Sources */,
 				A5598C18201F8C3B000C64F6 /* AppDelegate.swift in Sources */,
+				53AE1A8222E5EFF900C3ADC9 /* InputController.swift in Sources */,
 				5305F99622C4E950002284EF /* UIView.swift in Sources */,
 				530F8A78229A1656000AFC86 /* RootViewController.swift in Sources */,
 				53D1C57322C5F8C6002BDAE4 /* RegistrationController.swift in Sources */,

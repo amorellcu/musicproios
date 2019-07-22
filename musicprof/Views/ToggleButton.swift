@@ -43,7 +43,8 @@ import UIKit
     
     func xibSetup() {
         backgroundColor = UIColor.clear
-        Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
+        let bundle = Bundle(for: ToggleButton.self)
+        bundle.loadNibNamed(nibName, owner: self, options: nil)
         // use bounds not frame or it'll be offset
         contentView.frame = bounds
         // Adding custom subview on top of our view
@@ -62,7 +63,8 @@ import UIKit
             titleButton.setTitleColor(checkedColor, for: .normal)
             leftImageView?.image = UIImage(named: "flechaizq")
             rightImageView?.image = UIImage(named: "flechader")
-        }        
+        }
+        self.titleButton.setTitle(self.text, for: .normal)
     }
     
     @IBAction open func onClicked(_ sender: Any) {

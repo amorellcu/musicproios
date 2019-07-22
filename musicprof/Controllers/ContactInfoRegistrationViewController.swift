@@ -105,6 +105,11 @@ class ClientContactInfoRegistrationViewController: ContactInfoRegistrationViewCo
     
     @IBAction func onRegisterSubaccounts(_ sender: Any) {
         self.updateClient()
+        
+        if let error = self.validateFields() {
+            return self.notify(message: error, title: "Información incompleta")
+        }
+        
         self.client.instruments = []
         let alert = self.showSpinner(withMessage: "Creando la cuenta...")
         self.service.registerClient(self.client) { (result) in

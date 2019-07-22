@@ -11,7 +11,7 @@ import AlamofireImage
 import SCLAlertView
 import ActionSheetPicker_3_0
 
-class InstrumentsRegistrationViewController: InstrumentListViewController, ClientRegistrationController {
+class InstrumentsRegistrationViewController: InstrumentListViewController, ClientRegistrationController, InputController {
     
     var client: Client!
     var subaccount: Subaccount?
@@ -121,6 +121,19 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         }
     }
     
+    open func validateFields() -> String? {
+        if let textField = self.studentNameTextField, (textField.text ?? "").isEmpty {
+            return "Por favor, introduce el nombre del estudiante."
+        }
+        if let textField = self.addressTextField, (textField.text ?? "").isEmpty {
+            return "Por favor, introduce la dirección del estudiante."
+        }
+        if self.locationButton != nil && self.client?.location == nil {
+            return "Por favor, selecciona la ubicación del estudiante."
+        }
+        return nil
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
@@ -145,6 +158,10 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
     }
     
     @IBAction func onRegisterSubbacount(_ sender: Any) {
+        if let error = self.validateFields() {
+            return self.notify(message: error, title: "Información incompleta")
+        }
+        
         let instruments = self.instruments ?? []
         let selection = self.collectionView.indexPathsForSelectedItems ?? []
         
@@ -176,6 +193,10 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
     }
     
     @IBAction func onUpdateSubbacount(_ sender: Any) {
+        if let error = self.validateFields() {
+            return self.notify(message: error, title: "Información incompleta")
+        }
+        
         let instruments = self.instruments ?? []
         let selection = self.collectionView.indexPathsForSelectedItems ?? []
         
@@ -203,6 +224,10 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
     }
     
     @IBAction func onRegister(_ sender: Any) {
+        if let error = self.validateFields() {
+            return self.notify(message: error, title: "Información incompleta")
+        }
+        
         let instruments = self.instruments ?? []
         let selection = self.collectionView.indexPathsForSelectedItems ?? []
         self.user.instruments = selection.map({instruments[$0.item]})

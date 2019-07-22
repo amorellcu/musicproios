@@ -56,11 +56,11 @@ class ContainerViewController: UIViewController {
                 self.customTitleView?.credits = credits.description
             } else {
                 self.customTitleView?.credits = "?"
-                self.service.getClientCredits { [weak self] (result) in
-                    self?.handleResult(result) {
-                        client.credits = $0
-                        self?.customTitleView?.credits = $0.description
-                    }
+            }
+            self.service.getClientCredits { [weak self] (result) in
+                self?.handleResult(result) {
+                    client.credits = $0
+                    self?.customTitleView?.credits = $0.description
                 }
             }
         }

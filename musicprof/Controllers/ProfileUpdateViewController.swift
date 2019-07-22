@@ -74,6 +74,12 @@ class ProfileUpdateViewController: CustomTabController {
     }
     
     @IBAction open func onUpdateAccount(_ sender: Any) {
+        for controller in self.sections.compactMap({$0 as? InputController}) {
+            if let error = controller.validateFields() {
+                return self.notify(message: error, title: "Información incompleta.")
+            }
+        }
+        
         if let passwordController = self.sections.compactMap({$0 as? PasswordUpdateViewController}).first {
             self.changePassword(with: passwordController) {
                 self.updateAccount()
