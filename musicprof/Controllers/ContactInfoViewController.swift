@@ -103,7 +103,7 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
         if let textField = self.addressTextField, (textField.text ?? "").isEmpty {
             return "Por favor, introduce tu dirección."
         }
-        if self.locationButton != nil && self.client?.location == nil {
+        if self.locationButton != nil && self.client?.location == nil && self.client.locationId == nil {
             return "Por favor, selecciona tu ubicación."
         }
         return nil
