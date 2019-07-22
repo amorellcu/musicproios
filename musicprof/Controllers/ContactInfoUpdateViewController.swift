@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import SCLAlertView
 
 class ContactInfoUpdateViewController: ContactInfoViewController {
     
@@ -54,10 +55,15 @@ class ContactInfoUpdateViewController: ContactInfoViewController {
     @IBAction func onSaveChanges(_ sender: Any) {
         self.updateClient()
         let alert = self.showSpinner(withMessage: "Actualizando cambios...")
-        self.service.updateProfile(self.client) { (result) in
+        self.service.updateUser(self.user) { (result) in
             alert.hideView()
             self.handleResult(result) {
-                self.client = $0
+                self.user = $0
+                let alert = SCLAlertView()
+                alert.showSuccess(
+                    "Cuenta Actualizada",
+                    subTitle: "La configuración de su cuenta se actualizó correctamente.",
+                    closeButtonTitle: "Aceptar")
             }
         }
     }

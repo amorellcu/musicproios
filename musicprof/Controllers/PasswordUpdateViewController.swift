@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class PasswordUpdateViewController: BaseNestedViewController, RegistrationController {
     var user: User!
@@ -67,6 +68,32 @@ class PasswordUpdateViewController: BaseNestedViewController, RegistrationContro
         }
         if let controller = segue.destination as? NestedController {
             controller.container = self.container
+        }
+    }
+    
+    @IBAction func onSaveChanges(_ sender: Any) {
+        let password = self.passwordTextField.text ?? ""
+        let passwordConfirmation = self.passwordConfirmationTextField.text ?? ""
+        if password.isEmpty && passwordConfirmation.isEmpty {
+            return
+        }
+        if password != passwordConfirmation {
+            self.notify(message: "Las contraseñas no coinciden", title: "Error")
+        }
+        self.passwordTextField.text = nil
+        self.passwordConfirmationTextField.text = nil
+        let alert = self.showSpinner(withMessage: "Cambiando contraseña...")
+        self.service.changePassword(to: password) { [weak self] (result) in
+            alert.hideView()
+            self?.handleResult(result) {
+                let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
+                    showCloseButton: false
+                ))
+                alert.addButton("Aceptar") {
+                    // TODO: Go back
+                }
+                alert.showSuccess("Contraseña Actualizada", subTitle: "La contraseña se actualizó correctamente.")
+            }
         }
     }
 }

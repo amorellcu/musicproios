@@ -23,11 +23,11 @@ class InstrumentListViewController: BaseNestedViewController {
 
         // Do any additional setup after loading the view.
         self.collectionView.allowsMultipleSelection = true
-        self.updateInstruments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.updateInstruments()
     }
     
     open func updateInstruments() {

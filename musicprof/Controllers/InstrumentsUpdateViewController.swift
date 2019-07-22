@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class InstrumentsUpdateViewController: InstrumentListViewController, RegistrationController {
     var user: User!
@@ -32,5 +33,21 @@ class InstrumentsUpdateViewController: InstrumentListViewController, Registratio
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let instrument = self.instruments?[indexPath.item] else { return }
         self.user.instruments?.removeAll(where: {$0 == instrument})
+    }
+    
+    @IBAction func onSaveChanges(_ sender: Any) {
+        let alert = self.showSpinner(withMessage: "Actualizando cambios...")
+        let user = self.user!
+        self.service.updateUser(user) { (result) in
+            alert.hideView()
+            self.handleResult(result) {
+                self.user = $0
+                let alert = SCLAlertView()
+                alert.showSuccess(
+                    "Cuenta Actualizada",
+                    subTitle: "La configuración de su cuenta se actualizó correctamente.",
+                    closeButtonTitle: "Aceptar")
+            }
+        }
     }
 }

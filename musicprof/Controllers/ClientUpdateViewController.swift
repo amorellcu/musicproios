@@ -9,15 +9,7 @@
 import UIKit
 import SCLAlertView
 
-class ClientUpdateViewController: ProfileUpdateViewController, ClientRegistrationController {
-
-    var client: Client! {
-        get { return self.user as? Client }
-        set { self.user = newValue }
-    }
-    var originalClient: Client? {
-        return self.service.currentClient
-    }
+class ClientUpdateViewController: ProfileUpdateViewController {
     
     private lazy var viewControllers: [UIViewController] = {
         let controllers = [self.storyboard!.instantiateViewController(withIdentifier: "ContactInfoViewController"),
@@ -37,24 +29,12 @@ class ClientUpdateViewController: ProfileUpdateViewController, ClientRegistratio
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let client = self.originalClient {
-            self.client = Client(copy: client)
-        }
     }
     
-    override func updateAccount() {
-        guard self.client != self.originalClient else {
-            return
-        }
-        let alert = self.showSpinner(withMessage: "Actualizando datos...")
-        self.service.updateProfile(self.client) { [weak self] (result) in
-            alert.hideView()
-            self?.handleResult(result) {
-                self?.client = Client(copy: $0)
-                self?.container?.refresh()
-                SCLAlertView().showSuccess("Cuenta Actualizada", subTitle: "La configuración de su cuenta se actualizó correctamente.", closeButtonTitle: "Aceptar")
-            }
+    override func willShow(section controller: Section) {
+        super.willShow(section: controller)
+        if let controller = controller as? RegistrationController, let originalClient = self.service.currentClient {
+            controller.user = Client(copy: originalClient)
         }
     }
 }

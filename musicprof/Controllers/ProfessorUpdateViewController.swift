@@ -46,13 +46,6 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
     }
     
     override func onUpdateAccount(_ sender: Any) {
-        guard self.professor != self.originalProfessor else {
-            if let controller = self.sections.compactMap({$0 as? PasswordUpdateViewController}).first {
-                return super.changePassword(with: controller) { }
-            } else {
-                return
-            }
-        }
         
         var newPassword: String? = nil
         if let controller = self.sections.compactMap({$0 as? PasswordUpdateViewController}).first, controller.isViewLoaded {
@@ -69,7 +62,7 @@ class ProfessorUpdateViewController: ProfileUpdateViewController {
             self?.handleResult(result) {
                 self?.professor = Professor(copy: $0)
                 self?.container?.refresh()
-                SCLAlertView().showSuccess("Cuenta Actualizada", subTitle: "La configuración de su cuenta se actualizó correctamente.", closeButtonTitle: "Aceptar")
+                
             }
         }
     }

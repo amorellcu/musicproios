@@ -526,6 +526,21 @@ class ApiManager {
         }
     }
     
+    func updateUser(_ user: User, handler: @escaping (ApiResult<User>) -> Void) {
+        switch user {
+        case let client as Client:
+            self.updateProfile(client) { result in
+                handler(result.transform(with: {$0 as User}))
+            }
+        case let professor as Professor:
+            self.updateProfile(professor) { result in
+                handler(result.transform(with: {$0 as User}))
+            }
+        default:
+            handler(.failure(error: AppError.invalidOperation))
+        }
+    }
+    
     func registerClient(_ client: Client, handler: @escaping (ApiResult<Client>) -> Void) {
         let url = baseUrl.appendingPathComponent("registerClient")
         let _ = self.session.upload(multipartFormData: { (form) in

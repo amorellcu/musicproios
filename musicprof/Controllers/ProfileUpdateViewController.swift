@@ -41,44 +41,10 @@ class ProfileUpdateViewController: CustomTabController {
     }
     
     @IBAction open func onUpdateAccount(_ sender: Any) {
-        if let passwordController = self.sections.compactMap({$0 as? PasswordUpdateViewController}).first {
-            self.changePassword(with: passwordController) {
-                self.updateAccount()
-            }
-        } else {
-            self.updateAccount()
-        }
-        
+        self.updateAccount()
     }
     
     open func updateAccount() {
-    }
-    
-    func changePassword(with controller: PasswordUpdateViewController, continueWith handler: @escaping () -> Void) {
-        guard controller.isViewLoaded else {
-            return handler()
-        }
-        let password = controller.passwordTextField.text ?? ""
-        let passwordConfirmation = controller.passwordConfirmationTextField.text ?? ""
-        if password.isEmpty && passwordConfirmation.isEmpty {
-            return handler()
-        }
-        if password != passwordConfirmation {
-            self.notify(message: "Las contraseñas no coinciden", title: "Error")
-        }
-        controller.passwordTextField.text = nil
-        controller.passwordConfirmationTextField.text = nil
-        let alert = self.showSpinner(withMessage: "Cambiando contraseña...")
-        self.service.changePassword(to: password) { [weak self] (result) in
-            alert.hideView()
-            self?.handleResult(result) {
-                let alert = SCLAlertView(appearance: SCLAlertView.SCLAppearance(
-                    showCloseButton: false
-                ))
-                alert.addButton("Aceptar", action: handler)
-                alert.showSuccess("Contraseña Actualizada", subTitle: "La contraseña se actualizó correctamente.")
-            }
-        }
     }
 }
 
