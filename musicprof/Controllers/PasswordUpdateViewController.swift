@@ -9,7 +9,7 @@
 import UIKit
 import SCLAlertView
 
-class PasswordUpdateViewController: BaseNestedViewController, RegistrationController {
+class PasswordUpdateViewController: BaseNestedViewController, RegistrationController, InputController {
     var user: User!
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -42,6 +42,19 @@ class PasswordUpdateViewController: BaseNestedViewController, RegistrationContro
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    open func validateFields() -> String? {
+        guard let password = self.passwordTextField.text, !password.isEmpty else {
+            return "Por favor, introduce la contraseña."
+        }
+        guard let passwordConfirmation = self.passwordTextField.text, !passwordConfirmation.isEmpty else {
+            return "Por favor, repite la contraseña."
+        }
+        guard passwordConfirmation == password else {
+            return "Las contraseñas no coinciden."
+        }
+        return nil
     }
     
     @objc func adjustForKeyboard(notification: Notification) {
