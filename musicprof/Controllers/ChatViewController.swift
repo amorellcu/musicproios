@@ -102,13 +102,21 @@ class ChatViewController: UIViewController {
         pusher.delegate = self
         
         // subscribe to channel and bind to event
-        let channel = pusher.subscribe(channelName: "chat-\(reservation.id)")
+        let channel = pusher.subscribe(channelName: "musicprof-chat-R\(reservation.id)")
         
-        let _ = channel.bind(eventName: "chat", callback: { (data: Any?) -> Void in
+        let _ = channel.bind(eventName: "event-chat-R\(reservation.id)", callback: { (data: Any?) -> Void in
             if let data = data as? [String : AnyObject] {
-                if let message = data["message"] as? [String: Any], let item = Message(fromJSON: message) {
+                if let msg = Message(fromJSON: data) {
                     DispatchQueue.main.async {
-                        self.messages.append(item)
+                        switch msg.source {
+                        case .client where self.service.user is Client:
+                            return
+                        case .professor where self.service.user is Professor:
+                            return
+                        default:
+                            break
+                        }
+                        self.messages.append(msg)
                     }
                 }
             }
@@ -125,7 +133,7 @@ class ChatViewController: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { [weak self] (timer) in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 300, repeats: true, block: { [weak self] (timer) in
             guard let strongSelf = self else {
                 timer.invalidate()
                 return
