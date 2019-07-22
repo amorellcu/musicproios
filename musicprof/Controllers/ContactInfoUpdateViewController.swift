@@ -54,6 +54,11 @@ class ContactInfoUpdateViewController: ContactInfoViewController {
     
     @IBAction func onSaveChanges(_ sender: Any) {
         self.updateClient()
+        
+        if let error = self.validateFields() {
+            return self.notify(message: error, title: "Información incompleta")
+        }
+        
         let alert = self.showSpinner(withMessage: "Actualizando cambios...")
         self.service.updateUser(self.user) { (result) in
             alert.hideView()

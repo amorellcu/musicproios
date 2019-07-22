@@ -85,14 +85,12 @@ class PasswordUpdateViewController: BaseNestedViewController, RegistrationContro
     }
     
     @IBAction func onSaveChanges(_ sender: Any) {
+        if let error = self.validateFields() {
+            return self.notify(message: error, title: "Información incompleta")
+        }
+        
         let password = self.passwordTextField.text ?? ""
-        let passwordConfirmation = self.passwordConfirmationTextField.text ?? ""
-        if password.isEmpty && passwordConfirmation.isEmpty {
-            return
-        }
-        if password != passwordConfirmation {
-            self.notify(message: "Las contraseñas no coinciden", title: "Error")
-        }
+        
         self.passwordTextField.text = nil
         self.passwordConfirmationTextField.text = nil
         let alert = self.showSpinner(withMessage: "Cambiando contraseña...")
