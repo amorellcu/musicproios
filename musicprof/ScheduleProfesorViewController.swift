@@ -62,6 +62,10 @@ class ScheduleProfesorViewController: BaseReservationViewController {
         }
         self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
+        self.collectionView.refreshControl = UIRefreshControl()
+        self.collectionView.refreshControl?.tintColor = .white
+        self.collectionView.refreshControl?.addTarget(self, action: #selector(updateSections), for: .valueChanged)
+        
         self.updateSections()
         //self.setDefaultSections()
     }
@@ -75,6 +79,7 @@ class ScheduleProfesorViewController: BaseReservationViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @objc
     func updateSections(){
         guard var date = self.date else { return }
         
@@ -85,10 +90,12 @@ class ScheduleProfesorViewController: BaseReservationViewController {
         formatter.timeStyle = .short
         
         date = self.calendar.startOfDay(for: date)
-        let alert = self.showSpinner(withMessage: "Buscando clases disponibles...")
+        //let alert = self.showSpinner(withMessage: "Buscando clases disponibles...")
+        self.collectionView.refreshControl?.beginRefreshing()
         let range = self.date..<self.calendar.date(byAdding: .day, value: 1, to: self.date)!
         self.service.getAvailableProfessors(for: self.reservation, inDay: date) { [weak self] (result) in
-            alert.hideView()
+            //alert.hideView()
+            self?.collectionView.refreshControl?.endRefreshing()
             self?.handleResult(result) {
                 var classes = [Date:[Class]]()
                 for professor in $0 {

@@ -34,6 +34,7 @@ class ReservationListViewController: BaseNestedViewController {
         self.updateReservations()
     }
     
+    @objc
     open func updateReservations() {
         guard let user = self.service.user else { return }
         self.service.getReservations(of: user) { [weak self] (result) in

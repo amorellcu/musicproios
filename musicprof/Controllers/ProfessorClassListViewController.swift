@@ -18,6 +18,10 @@ class ProfessorClassListViewController: ReservationListViewController {
         super.viewDidLoad()
         self.classes = self.service.currentProfessor?.classes
         
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.tintColor = .white
+        self.tableView.refreshControl?.addTarget(self, action: #selector(ReservationListViewController.updateReservations), for: .valueChanged)
+        
         self.dateFormatter.timeStyle = .none
         self.dateFormatter.dateStyle = .long
     }
@@ -31,7 +35,13 @@ class ProfessorClassListViewController: ReservationListViewController {
     override func updateReservations() {
         guard let professor = self.service.currentProfessor else { return }
         self.service.getNextClasses(of: professor) { [weak self] (result) in
+            self?.tableView.refreshControl?.endRefreshing()
             self?.handleResult(result) { values in
+                if let oldClass = self?.selectedClass, let newClass = values.first(where: {$0.id == oldClass.id}) {
+                    self?.selectedClass = newClass
+                } else {
+                    self?.selectedClass = nil
+                }
                 self?.classes = values.sorted(by: {$0.date < $1.date})
             }
         }
