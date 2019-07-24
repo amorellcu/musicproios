@@ -20,6 +20,10 @@ class ClientClassListViewController: ReservationListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.tintColor = .white
+        self.tableView.refreshControl?.addTarget(self, action: #selector(updateReservations), for: .valueChanged)
+        
         self.dateFormatter.timeStyle = .none
         self.dateFormatter.dateStyle = .long
     }
@@ -34,6 +38,7 @@ class ClientClassListViewController: ReservationListViewController {
         guard let client = self.service.currentClient else { return }
         self.reservations = client.nextReservations ?? []
         self.service.getNextReservations(of: client) { [weak self] (result) in
+            self?.tableView.refreshControl?.endRefreshing()
             self?.handleResult(result) { (values: [Reservation]) in
                 self?.reservations = values.sorted(by: {$0.classes?.date ?? Date() < $1.classes?.date ?? Date()})
             }
