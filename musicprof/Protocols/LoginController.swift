@@ -18,10 +18,10 @@ extension LoginController where Self: UIViewController {
         switch user {
         case let client as Client:
             self.performSegue(withIdentifier: "login", sender: client)
-            try? PushNotifications.shared.setDeviceInterests(interests: ["musicprof-C\(client.id)"])
+            try? PushNotifications.shared.setDeviceInterests(interests: ["musicprof-C\(client.id)", "musicprof-clients"])
         case let professor as Professor:
             self.performSegue(withIdentifier: "loginProfessor", sender: professor)
-            try? PushNotifications.shared.setDeviceInterests(interests: ["musicprof-P\(professor.id)"])
+            try? PushNotifications.shared.setDeviceInterests(interests: ["musicprof-P\(professor.id)", "musicprof-profesors"])
         default:
             break
         }
