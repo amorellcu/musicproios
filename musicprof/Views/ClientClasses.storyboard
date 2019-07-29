@@ -238,7 +238,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHo-5G-RVG">
                                         <rect key="frame" x="37" y="10" width="340" height="32"/>
                                         <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
-                                        <state key="normal" title="RESERVAR NUEVA CLASE">
+                                        <state key="normal" title="AGENDAR NUEVA CLASE">
                                             <color key="titleColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
