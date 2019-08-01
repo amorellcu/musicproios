@@ -22,7 +22,7 @@ class ProfessorClassListViewController: ReservationListViewController {
         self.tableView.refreshControl?.tintColor = .white
         self.tableView.refreshControl?.addTarget(self, action: #selector(ReservationListViewController.updateReservations), for: .valueChanged)
         
-        self.dateFormatter.timeStyle = .none
+        self.dateFormatter.timeStyle = .short
         self.dateFormatter.dateStyle = .long
     }
     
