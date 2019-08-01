@@ -288,7 +288,7 @@ class ApiManager {
         }
     }
     
-    func getLocations(at address: String, handler: @escaping (ApiResult<[Location]>) -> Void) {
+    func getLocations(at address: String, handler: @escaping (ApiResult<Location>) -> Void) {
         let url = baseUrl.appendingPathComponent("getSublocality")
         let parameters: Parameters = ["address": address]
         let _ = self.session
@@ -297,7 +297,7 @@ class ApiManager {
                      encoding: URLEncoding.default,
                      headers: self.headers)
             .responseDecodable { (result: ApiResult<LocationData2>) in
-                handler(result.transform(with: {$0.locations}))
+                handler(result.transform(with: {$0.location}))
         }
     }
     
@@ -895,10 +895,10 @@ private struct LocationData: Decodable {
 }
 
 private struct LocationData2: Decodable {
-    var locations: [Location]
+    var location: Location
     
     private enum CodingKeys: String, CodingKey {
-        case locations = "colonia"
+        case location = "colonia"
     }
 }
 

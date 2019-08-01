@@ -153,9 +153,9 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
         let alert = self.showSpinner(withMessage: "Buscando ubicaciones...")
         self.service.getLocations(at: address) { [weak self] (result) in
             alert.hideView()
-            self?.handleResult(result) { locations in
-                self?.locations = locations
-                completion?(locations)
+            self?.handleResult(result, onError: { _ in self?.locations = [Location]() }) { location in
+                self?.locations = [location]
+                completion?([location])
             }
         }
     }
