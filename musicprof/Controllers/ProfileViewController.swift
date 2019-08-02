@@ -23,6 +23,10 @@ class ProfileViewController: BaseReservationViewController {
     
     @IBOutlet weak var selectForMeButton: UIButton!
     
+    override var preferredDisplayMode: ContainerViewController.DisplayMode {
+        return .full
+    }
+    
     override func loadView() {
         self.reservation = ReservationRequest()
         var calendar = Calendar.current
@@ -46,11 +50,6 @@ class ProfileViewController: BaseReservationViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.preferredDisplayMode = .picture
-        super.viewWillAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {

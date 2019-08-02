@@ -11,7 +11,9 @@ import UIKit
 class BaseNestedViewController: UIViewController, NestedController {
     weak var container: ContainerViewController?
     
-    var preferredDisplayMode: ContainerViewController.DisplayMode = .full
+    open var preferredDisplayMode: ContainerViewController.DisplayMode {
+        return .full
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +24,7 @@ class BaseNestedViewController: UIViewController, NestedController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateBackButton()
-        self.container?.setDisplayMode(self.preferredDisplayMode, animated: animated)
+        self.container?.setDisplayMode(self.preferredDisplayMode, animated: true)
     }
     
     func updateBackButton() {

@@ -36,7 +36,6 @@ class PasswordUpdateViewController: BaseNestedViewController, RegistrationContro
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.preferredDisplayMode = .picture
         super.viewWillAppear(animated)
     }
     

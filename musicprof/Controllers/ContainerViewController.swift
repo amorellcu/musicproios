@@ -168,13 +168,17 @@ class ContainerViewController: UIViewController {
             self.updateVisibility()
         }
         self.updateConstraints()
-        guard animated else { return self.view.layoutIfNeeded() }
+        guard animated else {
+            self.view.layoutIfNeeded()
+            return
+        }
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
         }, completion: {_ in
             if isGrowing {
                 self.updateVisibility()
             }
+            self.view.layoutSubviews()
         })
     }
     

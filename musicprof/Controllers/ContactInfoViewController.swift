@@ -21,6 +21,10 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
     
     open var user: User! = Client()
     
+    override var preferredDisplayMode: ContainerViewController.DisplayMode {
+        return .picture
+    }
+    
     var client: Client! {
         get { return self.user as? Client }
         set { self.user = newValue }
@@ -49,6 +53,17 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
         toolbar.sizeToFit()
         
         self.addressTextField?.inputAccessoryView = toolbar
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateFields()
         
         guard self.locationButton != nil else { return }
         if let location = self.client?.location {
@@ -63,18 +78,7 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
             let text = "Seleccionar Ubicación"
             self.locationButton?.setTitle(text, for: .normal)
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.preferredDisplayMode = .picture
-        super.viewWillAppear(animated)
-        self.updateFields()
+        
         //self.updateLocations()
     }
     
@@ -135,6 +139,7 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
     
     private func setLocation(_ location: Location) {
         self.client?.locationId = location.id
+        self.client.location = location
         self.locationButton?.setTitle(location.description, for: .normal)
     }
     

@@ -16,6 +16,10 @@ class MapViewController: BaseNestedViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var fixAddressButton: UIButton!
     
+    override var preferredDisplayMode: ContainerViewController.DisplayMode {
+        return .picture
+    }
+    
     let locationManager = CLLocationManager()
     let geocoder = CLGeocoder()
     var searchController: UISearchController!
@@ -58,7 +62,6 @@ class MapViewController: BaseNestedViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.preferredDisplayMode = .collapsed
         super.viewWillAppear(animated)
         let navigationItem = self.container?.navigationItem ?? self.navigationItem
         navigationItem.titleView = searchController.searchBar

@@ -19,6 +19,10 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
     let expandedColor = UIColor(red: 0/255 ,green: 255/255 ,blue: 180/255 ,alpha: 1)
     let collapsedColor = UIColor(red: 124/255, green: 124/255, blue: 124/255, alpha: 1)
     
+    override var preferredDisplayMode: ContainerViewController.DisplayMode {
+        return .picture
+    }
+    
     var classes = [Class]()
     var sections = [Section]() {
         didSet {
@@ -36,7 +40,6 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.preferredDisplayMode = .collapsed
         super.viewWillAppear(animated)
     }
     
