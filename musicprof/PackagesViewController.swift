@@ -39,12 +39,15 @@ class PackagesViewController: BaseNestedViewController {
         
         if let location = self.service.currentClient?.location {
             self.updatePackages(from: location)
-        } else if let locationId = self.service.currentClient?.locationId {
+        } else if let locationId = self.service.currentClient?.locationId, locationId != 0 {
             self.service.getLocation(withId: locationId) { (result) in
                 self.handleResult(result) {
                     self.updatePackages(from: $0)
                 }
             }
+        } else {
+            SCLAlertView().showWarning("Ubicación desconocida", subTitle: "Por favor, introduzca su dirección en Perfil antes de continuar.", closeButtonTitle: "Aceptar")
+            self.packages = []
         }
     }
     

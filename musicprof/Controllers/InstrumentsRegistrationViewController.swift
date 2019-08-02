@@ -125,12 +125,6 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         if let textField = self.studentNameTextField, (textField.text ?? "").isEmpty {
             return "Por favor, introduce el nombre del estudiante."
         }
-        if let textField = self.addressTextField, (textField.text ?? "").isEmpty {
-            return "Por favor, introduce la dirección del estudiante."
-        }
-        if self.locationButton != nil && self.client?.location == nil {
-            return "Por favor, selecciona la ubicación del estudiante."
-        }
         return nil
     }
     

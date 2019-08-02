@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import SCLAlertView
 
 class ProfileViewController: BaseReservationViewController {
     
@@ -50,6 +51,23 @@ class ProfileViewController: BaseReservationViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        
+        guard let locationId = self.student?.locationId, locationId != 0 else  {
+            return
+        }
+        SCLAlertView().showWarning("Ubicación desconocida", subTitle: "Por favor, introduzca su dirección en Perfil antes de continuar.", closeButtonTitle: "Aceptar")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let locationId = self.student?.locationId, locationId != 0 {
+            self.selectForMeButton.isEnabled = true
+            self.selectForOtherButton.isEnabled = true
+        } else {
+            self.selectForMeButton.isEnabled = false
+            self.selectForOtherButton.isEnabled = false
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,6 +114,7 @@ class ProfileViewController: BaseReservationViewController {
         if self.selectForMeButton === sender as? UIButton {
             self.reservation.studentId = self.service.user!.id
             self.reservation.studentType = .account
+            self.reservation.locationId = self.student?.locationId
         }
         super.prepare(for: segue, sender: sender)
     }

@@ -75,7 +75,7 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
                 }
             }
         } else {
-            let text = "Seleccionar Ubicación"
+            let text = "Ubicación desconocida"
             self.locationButton?.setTitle(text, for: .normal)
         }
         
@@ -103,12 +103,6 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
         }
         guard let phone = self.phoneTextField.text, !phone.isEmpty else {
             return "Por favor, introduce tu número telefónico."
-        }
-        if let textField = self.addressTextField, (textField.text ?? "").isEmpty {
-            return "Por favor, introduce tu dirección."
-        }
-        if self.locationButton != nil && self.client?.location == nil && self.client.locationId == nil {
-            return "Por favor, selecciona tu ubicación."
         }
         return nil
     }
