@@ -29,6 +29,30 @@ class MenuViewController: UITabBarController, NestedController {
         super.viewWillAppear(animated)
     }
     
+    func lockCurrentSection() {
+        guard let sections = self.tabBar.items else { return }
+        for (index, item) in sections.enumerated() {
+            item.isEnabled = self.selectedIndex == index
+        }
+    }
+    
+    func unlockAllSections() {
+        guard let sections = self.tabBar.items else { return }
+        for item in sections {
+            item.isEnabled = true
+        }
+    }
+    
+    func gotoAccount() {
+        guard let controller = self.viewControllers?.first else { return }
+        self.selectedIndex = 0
+        if let profile = controller as? ProfileUpdateViewController {
+            profile.select(sectionAtIndex: 0, animated: true)
+        } else if let navController = controller as? UINavigationController, let profile = navController.viewControllers.first as? ProfileUpdateViewController {
+            profile.select(sectionAtIndex: 0, animated: true)
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

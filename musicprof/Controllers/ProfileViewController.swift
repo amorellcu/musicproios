@@ -52,16 +52,22 @@ class ProfileViewController: BaseReservationViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
-        guard let locationId = self.student?.locationId, locationId != 0 else  {
-            return
+        guard let locationId = self.service.currentClient?.locationId, locationId != 0 else  {
+            return SCLAlertView().showWarning("Ubicación desconocida", subTitle: "Por favor, introduzca su dirección antes de continuar.", closeButtonTitle: "Aceptar").setDismissBlock {
+                self.menu?.gotoAccount()
+                self.menu?.lockCurrentSection()
+            }
         }
-        SCLAlertView().showWarning("Ubicación desconocida", subTitle: "Por favor, introduzca su dirección en Perfil antes de continuar.", closeButtonTitle: "Aceptar")
+        
+        if let credits = self.service.currentClient?.credits, credits == 0 {
+            SCLAlertView().showWarning("Compre un paquete", subTitle: "Por favor, compre un paquete de clases antes de continuar.", closeButtonTitle: "Aceptar")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let locationId = self.student?.locationId, locationId != 0 {
+        if let locationId = self.service.currentClient?.locationId, locationId != 0 {
             self.selectForMeButton.isEnabled = true
             self.selectForOtherButton.isEnabled = true
         } else {

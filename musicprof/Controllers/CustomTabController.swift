@@ -53,6 +53,23 @@ typealias Section = UIViewController
         self.updateLayout()
     }
     
+    func select(sectionAtIndex index: Int, animated: Bool) {
+        let section = self.sections[index]
+        self.navigationController?.popToRootViewController(animated: false)
+        self.navigationController?.pushViewController(section, animated: animated)
+        self.willShow(section: section)
+        self.selectedSection = section
+        guard animated else {
+            self.view.layoutIfNeeded()
+            return self.updateLayout()
+        }
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: { _ in
+            self.updateLayout()
+        })
+    }
+    
     open func willShow(section controller: Section) {
     }
 }
@@ -98,16 +115,7 @@ extension CustomTabController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         guard self.selectedSection == nil else { return nil }
-        let section = self.sections[indexPath.row]
-        //self.tabController?.navigate(to: section.id)
-        self.navigationController?.pushViewController(section, animated: true)
-        self.willShow(section: section)
-        self.selectedSection = section
-        UIView.animate(withDuration: 0.5, animations: {
-            self.view.layoutIfNeeded()
-        }, completion: { _ in
-            self.updateLayout()
-        })
+        self.select(sectionAtIndex: indexPath.row, animated: true)
         return nil
     }
 }

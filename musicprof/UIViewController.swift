@@ -15,6 +15,10 @@ extension UIViewController {
         return ApiManager.shared
     }
     
+    var menu: MenuViewController? {
+        return self.tabBarController as? MenuViewController
+    }
+    
     func notify(error: Error, completion: (() -> Void)? = nil) {
         var completion = completion
         let title = "Error"

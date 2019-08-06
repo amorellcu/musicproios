@@ -78,6 +78,9 @@ class ContactInfoUpdateViewController: ContactInfoViewController {
             alert.hideView()
             self.handleResult(result) {
                 self.user = $0
+                if let client = $0 as? Client, client.locationId != nil && client.locationId != 0 {
+                    self.menu?.unlockAllSections()
+                }
                 SCLAlertView()
                     .showSuccess("Cuenta Actualizada",
                     subTitle: "La configuración de su cuenta se actualizó correctamente.",

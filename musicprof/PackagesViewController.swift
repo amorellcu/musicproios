@@ -46,8 +46,11 @@ class PackagesViewController: BaseNestedViewController {
                 }
             }
         } else {
-            SCLAlertView().showWarning("Ubicación desconocida", subTitle: "Por favor, introduzca su dirección en Perfil antes de continuar.", closeButtonTitle: "Aceptar")
-            self.packages = []
+            SCLAlertView().showWarning("Ubicación desconocida", subTitle: "Por favor, introduzca su dirección antes de continuar.", closeButtonTitle: "Aceptar").setDismissBlock {
+                self.packages = []
+                self.menu?.gotoAccount()
+                self.menu?.lockCurrentSection()
+            }
         }
     }
     
