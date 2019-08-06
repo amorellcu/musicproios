@@ -104,9 +104,9 @@ class ImageImporter {
         }
         
         static func updatePicture(of user: User, with image: UIImage) -> Bool {
-            guard let data = UIImagePNGRepresentation(image) else { return false }
+            guard let data = UIImageJPEGRepresentation(image, 0.85) else { return false }
             let documentsPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-            let destinationURL = documentsPath.appendingPathComponent("\(UUID()).png")
+            let destinationURL = documentsPath.appendingPathComponent("\(UUID()).jpg")
             if !FileManager.default.createFile(atPath: destinationURL.path, contents: data, attributes: nil) {
                 return false
             }
