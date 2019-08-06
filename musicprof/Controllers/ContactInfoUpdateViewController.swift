@@ -39,12 +39,14 @@ class ContactInfoUpdateViewController: ContactInfoViewController {
         let image = UIImage(named: "change-avatar")
         let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(onChangeAvatar))
         self.container?.avatarToolbar.setItems([buttonItem], animated: animated)
+        self.container?.setAvatar(self.user.avatarUrl)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.tapGestureRecognizer?.isEnabled = false
         self.container?.avatarToolbar.setItems([], animated: animated)
+        self.container?.refresh()
     }
     
     override func didReceiveMemoryWarning() {
@@ -90,7 +92,7 @@ class ContactInfoUpdateViewController: ContactInfoViewController {
     @objc func onChangeAvatar() {
         imageImporter.getPicture(for: self.user) { [weak self] in
             guard let url = self?.user?.avatarUrl, url.isFileURL else { return }
-            self?.container?.avatarImageView.image = UIImage(contentsOfFile: url.path)?.af_imageRoundedIntoCircle()
+            //self?.container?.avatarImageView.image = UIImage(contentsOfFile: url.path)?.af_imageRoundedIntoCircle()
         }
     }
 }

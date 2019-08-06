@@ -71,7 +71,7 @@ class ContainerViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    private func setAvatar(_ url: URL?) {
+    func setAvatar(_ url: URL?) {
         let placeholderAvatar = UIImage(named:"userdefault")?.af_imageAspectScaled(toFit: self.avatarImageView.frame.size).af_imageRoundedIntoCircle()
         if let avatarUrl = url {
             let filter = ScaledToSizeCircleFilter(size: self.avatarImageView.frame.size)
