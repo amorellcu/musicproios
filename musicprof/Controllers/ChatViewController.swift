@@ -63,8 +63,8 @@ class ChatViewController: UIViewController {
         self.refresh()
         
         if let reservation = self.reservation {
-            if self.client == nil {
-                self.service.getClient(withId: reservation.clientId) { [weak self] (result) in
+            if self.client == nil, let clientId = reservation.clientId {
+                self.service.getClient(withId: clientId) { [weak self] (result) in
                     self?.handleResult(result) {
                         self?.client = $0
                         self?.refresh()

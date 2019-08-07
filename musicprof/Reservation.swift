@@ -11,13 +11,14 @@ import Foundation
 struct Reservation: Decodable {
     var id: Int
     var classId: Int
-    var clientId: Int
+    var clientId: Int?
     var client: Client?
     var status: ReservationState
     var subaccountId: Int?
     var creditId: Int?
     var address: String?
     var classes: Class?
+    var guests: [String]?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -29,6 +30,7 @@ struct Reservation: Decodable {
         case creditId = "credit_id"
         case address
         case classes
+        case guests = "invitados"
     }
 }
 

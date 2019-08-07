@@ -94,7 +94,8 @@ class ProfessorClassListViewController: ReservationListViewController {
         cell.textLabel?.text = ""
         
         let reservation = reservations[indexPath.row - 1]
-        self.service.getClient(withId: reservation.clientId) { [weak self] (result) in
+        guard let clientId = reservation.clientId else { return cell }
+        self.service.getClient(withId: clientId) { [weak self] (result) in
             switch result {
             case .success(let client):
                 self?.configureCell(cell, forClient: client, forReservation: reservation)
@@ -108,15 +109,15 @@ class ProfessorClassListViewController: ReservationListViewController {
     func updateReservations(ofClass selectedClass: Class, in section: Int) {
         guard let reservations = self.selectedClass?.reservations, let classId = self.selectedClass?.id else { return }
         for (i, reservation) in reservations.enumerated() {
-            guard reservation.client == nil else { continue }
-            if let client = self.clientCache[reservation.clientId] {
+            guard reservation.client == nil, let clientId = reservation.clientId else { continue }
+            if let client = self.clientCache[clientId] {
                 if classId == self.selectedClass?.id {
                     self.selectedClass?.reservations?[i].client = client
                 }
                 self.classes?[section].reservations?[i].client = client
                 continue
             }
-            self.service.getClient(withId: reservation.clientId) { [weak self] (result) in
+            self.service.getClient(withId: clientId) { [weak self] (result) in
                 switch result {
                 case .success(let client):
                     if classId == self?.selectedClass?.id {

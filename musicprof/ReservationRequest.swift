@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 struct ReservationRequest {
     var date: Date?
@@ -28,6 +29,7 @@ struct ReservationRequest {
         case instrument = "instrumentId"
         case studentType = "reservationFor"
         case address
+        case studentNames = "invitados"
     }
 }
 
@@ -49,5 +51,16 @@ extension ReservationRequest: Encodable {
         try container.encodeIfPresent(self.studentId, forKey: .studentId)
         try container.encodeIfPresent(self.studentType?.rawValue, forKey: .studentType)
         try container.encodeIfPresent(self.address, forKey: .address)
+        try container.encodeIfPresent(self.studentNames, forKey: .studentNames)
+    }
+}
+
+extension ReservationRequest: MultiformEncodable {
+    func encode(to form: MultipartFormData) {
+        form.encodeIfPresent(self.classes?.id, withName: CodingKeys.classId.rawValue)
+        form.encodeIfPresent(self.studentId, withName: CodingKeys.studentId.rawValue)
+        form.encodeIfPresent(self.studentType?.rawValue, withName: CodingKeys.studentType.rawValue)
+        form.encodeIfPresent(self.address, withName: CodingKeys.address.rawValue)
+        form.encodeValues(self.studentNames ?? [], withName: CodingKeys.studentNames.rawValue)
     }
 }
