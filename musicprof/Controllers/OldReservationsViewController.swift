@@ -18,6 +18,7 @@ class OldReservationsViewController: ReservationListViewController {
     
     override func loadReservations(_ reservations: [Reservation]) {
         let date = Date()
-        self.classes = reservations.lazy.compactMap({$0.classes}).filter({$0.date < date})
+        self.sections = [Section(name: nil, classes:
+            reservations.lazy.compactMap({$0.classes}).filter({$0.date < date}))]
     }
 }

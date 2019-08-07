@@ -13,7 +13,7 @@ class ReservationListViewController: BaseNestedViewController {
     
     let dateFormatter = DateFormatter()
     
-    var classes: [Class]? {
+    var sections: [Section]? {
         didSet {
             self.tableView.reloadData()
         }
@@ -45,7 +45,8 @@ class ReservationListViewController: BaseNestedViewController {
     }
     
     open func loadReservations(_ reservations: [Reservation]) {
-        self.classes = reservations.compactMap({$0.classes})
+        let classes = reservations.compactMap({$0.classes})
+        self.sections = [Section(name: nil, classes: classes)]
     }
     
 
@@ -60,8 +61,12 @@ class ReservationListViewController: BaseNestedViewController {
         }
     }
     
+    func getItem(forRowAt indexPath: IndexPath) -> Class? {
+        return self.sections?[indexPath.section].classes?[indexPath.row]
+    }
+    
     open func configureCell(_ cell: ReservationCell, forRowAt indexPath: IndexPath) {
-        guard let reservation = self.classes?[indexPath.item] else { return }
+        guard let reservation = self.getItem(forRowAt: indexPath) else { return }
         if let iconURL = reservation.instrument?.iconUrl {
             var filter: ImageFilter = ScaledToSizeFilter(size: cell.instrumentImageView.frame.size)
             filter = TemplateFilter()
@@ -73,19 +78,29 @@ class ReservationListViewController: BaseNestedViewController {
         cell.dateLabel.text = self.dateFormatter.string(from: reservation.date)
         cell.professorLabel?.text = reservation.professor?.name
     }
+    
+    class Section {
+        let name: String?
+        let classes: [Class]?
+        
+        init(name: String?, classes: [Class]?) {
+            self.name = name
+            self.classes = classes
+        }
+    }
 }
 
 extension ReservationListViewController: UITableViewDelegate, UITableViewDataSource {
     open func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.sections?.count ?? 0
     }
     
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.classes?.count ?? 1
+        return self.sections?[section].classes?.count ?? 1
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard self.classes != nil else {
+        guard self.sections?[indexPath.section].classes != nil else {
             return tableView.dequeueReusableCell(withIdentifier: "loadingCell")!
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "reservationCell") as! ReservationCell
@@ -93,8 +108,26 @@ extension ReservationListViewController: UITableViewDelegate, UITableViewDataSou
         return cell
     }
     
+    open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sections?[section].name
+    }
+    
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = self.sections?[section].name?.uppercased()
+        label.backgroundColor = UIColor(red: 64/255, green: 65/255, blue: 66/255, alpha: 0.4)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont(name: "FilsonProRegular", size: 16)
+        return label
+    }
+    
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.sections?[section].name == nil ? 0 : 50
+    }
+    
     open func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return self.classes == nil ? nil : indexPath
+        return self.sections?[indexPath.section].classes == nil ? nil : indexPath
     }
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        

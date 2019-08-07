@@ -11,6 +11,11 @@ import AlamofireImage
 
 class ProfessorClassListViewController: ReservationListViewController {
     
+    var classes: [Class]? {
+        didSet {
+            self.sections = self.classes?.map { ReservationListViewController.Section(name: nil, classes: [$0]) }
+        }
+    }
     var selectedClass: Class?
     var clientCache: [Int:Client] = [:]
 
@@ -55,10 +60,6 @@ class ProfessorClassListViewController: ReservationListViewController {
     @IBAction func unwindToProfessorClasses(_ segue: UIStoryboardSegue) {
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.classes?.count ?? 0
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let selectedClass = self.selectedClass, let reservations = selectedClass.reservations, self.classes?[section].id == selectedClass.id else { return 1 }
         return reservations.count + 1
@@ -81,12 +82,12 @@ class ProfessorClassListViewController: ReservationListViewController {
         let section = indexPath.section
         guard let selectedClass = self.selectedClass, let reservations = selectedClass.reservations, self.classes?[section].id == selectedClass.id else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "reservationCell") as! ReservationCell
-            self.configureCell(cell, forRowAt: IndexPath(row: indexPath.section, section: 0))
+            self.configureCell(cell, forRowAt: IndexPath(row: 0, section: indexPath.section))
             return cell
         }
         guard indexPath.row > 0 else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "selectedCell") as! ReservationCell
-            self.configureCell(cell, forRowAt: IndexPath(row: indexPath.section, section: 0))
+            self.configureCell(cell, forRowAt: IndexPath(row: 0, section: indexPath.section))
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "clientCell")!

@@ -212,6 +212,25 @@
                                             <outlet property="instrumentImageView" destination="3IW-hU-qcb" id="bQ0-u6-KhC"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="loadingCell" id="m85-N2-7qz" customClass="ReservationCell" customModule="musicprof" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="158" width="414" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m85-N2-7qz" id="MjU-aC-7Ky">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="UkP-Nt-kMw">
+                                                    <rect key="frame" x="197" y="22.5" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="UkP-Nt-kMw" firstAttribute="centerX" secondItem="MjU-aC-7Ky" secondAttribute="centerX" id="Ft7-bX-a7a"/>
+                                                <constraint firstItem="UkP-Nt-kMw" firstAttribute="centerY" secondItem="MjU-aC-7Ky" secondAttribute="centerY" id="aI2-Mq-wyq"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="kMA-fo-t5e" id="uuY-Ks-Wr8"/>

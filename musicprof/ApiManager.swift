@@ -789,7 +789,7 @@ class ApiManager {
         let url = baseUrl.appendingPathComponent("cancelReservation")
         let _ = self.session.upload(multipartFormData: { (form) in
             form.encodeIfPresent(reservation.classes?.id, withName: "classId")
-            form.encodeIfPresent(reservation.clientId, withName: "id")
+            form.encodeIfPresent(reservation.subaccountId ?? reservation.clientId, withName: "id")
             form.encode(reservation.studentType.rawValue, withName: "reservationFor")
         }, to: url) { (result) in
             switch result {

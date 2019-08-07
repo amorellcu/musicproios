@@ -30,7 +30,7 @@ struct Reservation: Decodable {
         case creditId = "credit_id"
         case address
         case classes
-        case guests = "invitados"
+        //case guests = "invitados"
     }
 }
 
