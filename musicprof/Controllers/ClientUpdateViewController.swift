@@ -26,6 +26,13 @@ class ClientUpdateViewController: ProfileUpdateViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let locationId = self.service.currentClient?.locationId, locationId != 0 else {
+            return SCLAlertView().showWarning("Ubicación desconocida", subTitle: "Por favor, introduzca su dirección antes de continuar.", closeButtonTitle: "Aceptar").setDismissBlock {
+                self.menu?.gotoAccount()
+                self.menu?.lockCurrentSection()
+            }
+        }
     }
     
     override func willShow(section controller: Section) {
