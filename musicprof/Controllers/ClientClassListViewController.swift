@@ -54,11 +54,15 @@ class ClientClassListViewController: ReservationListViewController {
     }
     
     func section(atIndex index: Int) -> StudentSection? {
-        return self.sections?[index] as? StudentSection
+        guard let sections = self.sections, index >= 0 && index < sections.count else { return nil }
+        return sections[index] as? StudentSection
     }
     
     func reservation(forRowAt indexPath: IndexPath) -> Reservation? {
-        return section(atIndex: indexPath.section)?.reservations?[indexPath.row]
+        guard let reservations = section(atIndex: indexPath.section)?.reservations, indexPath.row >= 0 && indexPath.row < reservations.count else {
+            return nil
+        }
+        return reservations[indexPath.row]
     }
     
     @IBAction func onMakeReservation(_ sender: Any) {
