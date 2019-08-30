@@ -39,7 +39,15 @@ class ClientClassListViewController: ReservationListViewController {
         self.service.getNextReservations(of: client) { [weak self] (result) in
             self?.tableView.refreshControl?.endRefreshing()
             self?.handleResult(result) { (values: [Reservation]) in
-                let reservations = values.sorted(by: {$0.classes?.date ?? Date() < $1.classes?.date ?? Date()})
+                let reservations = values.sorted(by: {
+                    if $0.classes == nil && $1.classes == nil {
+                        return $0.id < $1.id
+                    }
+                    if let first = $0.classes, let second = $1.classes {
+                        return first.date < second.date
+                    }
+                    return $1.classes != nil
+                })
                 self?.sections?[0] = StudentSection(student: client, reservations: reservations)
             }
         }
