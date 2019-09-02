@@ -13,11 +13,7 @@ class ReservationListViewController: BaseNestedViewController {
     
     let dateFormatter = DateFormatter()
     
-    var sections: [Section]? {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
+    var sections: [Section]?
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -47,6 +43,7 @@ class ReservationListViewController: BaseNestedViewController {
     open func loadReservations(_ reservations: [Reservation]) {
         let classes = reservations.compactMap({$0.classes})
         self.sections = [Section(name: nil, classes: classes)]
+        self.tableView.reloadData()
     }
     
 
@@ -62,7 +59,10 @@ class ReservationListViewController: BaseNestedViewController {
     }
     
     func getItem(forRowAt indexPath: IndexPath) -> Class? {
-        return self.sections?[indexPath.section].classes?[indexPath.row]
+        guard let sections = self.sections, indexPath.section < sections.count else { return nil }
+        let section = sections[indexPath.section]
+        guard let classes = section.classes, indexPath.row < classes.count else { return nil }
+        return classes[indexPath.row]
     }
     
     open func configureCell(_ cell: ReservationCell, forRowAt indexPath: IndexPath) {
@@ -100,7 +100,7 @@ extension ReservationListViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard self.sections?[indexPath.section].classes != nil else {
+        guard let sections = self.sections, indexPath.section < sections.count && sections[indexPath.section].classes != nil else {
             return tableView.dequeueReusableCell(withIdentifier: "loadingCell")!
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "reservationCell") as! ReservationCell

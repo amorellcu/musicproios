@@ -23,6 +23,7 @@ class ClientClassListViewController: ReservationListViewController {
         
         self.sections = [ReservationListViewController.Section(name: nil, classes: nil)]
         self.tableView.tintColor = .white
+        self.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +37,8 @@ class ClientClassListViewController: ReservationListViewController {
         self.sections = [StudentSection(student: client, reservations: client.nextReservations)] + (client.subaccounts?.map {
             StudentSection(student: $0, reservations: nil)
             } ?? [])
+        self.tableView.reloadData()
+        self.tableView.refreshControl?.beginRefreshing()
         self.service.getNextReservations(of: client) { [weak self] (result) in
             self?.tableView.refreshControl?.endRefreshing()
             self?.handleResult(result) { (values: [Reservation]) in
@@ -49,6 +52,7 @@ class ClientClassListViewController: ReservationListViewController {
                     return $1.classes != nil
                 })
                 self?.sections?[0] = StudentSection(student: client, reservations: reservations)
+                self?.tableView.reloadSections(IndexSet([0]), with: .fade)
             }
         }
         for (index, subaccount) in (client.subaccounts ?? []).enumerated() {
@@ -56,6 +60,7 @@ class ClientClassListViewController: ReservationListViewController {
                 self?.handleResult(result) { (values: [Reservation]) in
                     let reservations = values.sorted(by: {$0.classes?.date ?? Date() < $1.classes?.date ?? Date()})
                     self?.sections?[index + 1] = StudentSection(student: subaccount, reservations: reservations)
+                    self?.tableView.reloadSections(IndexSet([index + 1]), with: .fade)
                 }
             }
         }
@@ -63,7 +68,8 @@ class ClientClassListViewController: ReservationListViewController {
     
     func section(atIndex index: Int) -> StudentSection? {
         guard let sections = self.sections, index >= 0 && index < sections.count else { return nil }
-        return sections[index] as? StudentSection
+        let section = sections[index]
+        return section as? StudentSection
     }
     
     func reservation(forRowAt indexPath: IndexPath) -> Reservation? {
@@ -82,6 +88,7 @@ class ClientClassListViewController: ReservationListViewController {
         guard let section = self.section(atIndex: indexPath.section), var reservations = section.reservations else { return }
         reservations.remove(at: indexPath.row)
         self.sections?[indexPath.section] = StudentSection(student: section.student, reservations: reservations)
+        self.tableView.reloadSections(IndexSet([indexPath.section]), with: .fade)
     }
     
     @IBAction func unwindToClientClasses(_ segue: UIStoryboardSegue) {

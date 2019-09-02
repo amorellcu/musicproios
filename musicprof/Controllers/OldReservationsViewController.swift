@@ -20,5 +20,6 @@ class OldReservationsViewController: ReservationListViewController {
         let date = Date()
         self.sections = [Section(name: nil, classes:
             reservations.lazy.compactMap({$0.classes}).filter({$0.date < date}))]
+        self.tableView.reloadData()
     }
 }

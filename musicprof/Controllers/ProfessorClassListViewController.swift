@@ -14,6 +14,7 @@ class ProfessorClassListViewController: ReservationListViewController {
     var classes: [Class]? {
         didSet {
             self.sections = self.classes?.map { ReservationListViewController.Section(name: nil, classes: [$0]) }
+            self.tableView.reloadData()
         }
     }
     var selectedClass: Class?
