@@ -123,6 +123,28 @@ extension UIViewController {
         self.performSegue(withIdentifier: "unwindToLogin", sender: self)
     }
     
+    func checkTermsAndConditions(rejectHandler: (()-> Void)? = nil, acceptHandler: (()-> Void)? = nil) {
+        let alert = self.showSpinner()
+        self.service.getTermsAndConditions { [weak self] (result) in
+            alert.hideView()
+            self?.handleResult(result) { terms in
+                self?.ask(question: terms, title: "Términos y Condiciones", yesButton: "Aceptar", noButton: "Rechazar", completion: { (accepted) in
+                    let alert = self?.showSpinner()
+                    self?.service.replyTermsAndConditions(accepted: accepted, handler: { (result) in
+                        self?.handleResult(result) {
+                            if accepted {
+                                acceptHandler?()
+                            } else {
+                                rejectHandler?()
+                            }
+                        }
+                    })
+                    
+                })
+            }
+        }
+    }
+    
     //Spinner dialog
     func showSpinner(onView : UIView) -> UIView {
         let spinnerView = UIView.init(frame: onView.bounds)

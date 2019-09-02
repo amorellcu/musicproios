@@ -149,7 +149,10 @@ extension PackagesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let packages = self.packages else { return }
         let package = packages[indexPath.item]
-        self.buyPackage(package)
+        
+        self.checkTermsAndConditions() { [weak self] in
+            self?.buyPackage(package)
+        }
     }
 }
 

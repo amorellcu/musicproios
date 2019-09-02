@@ -68,8 +68,12 @@ class ProfileViewController: BaseReservationViewController {
         super.viewWillAppear(animated)
         
         if let locationId = self.service.currentClient?.locationId, locationId != 0 {
-            self.selectForMeButton.isEnabled = true
-            self.selectForOtherButton.isEnabled = true
+            self.selectForMeButton.isEnabled = false
+            self.selectForOtherButton.isEnabled = false
+            self.checkTermsAndConditions() { [weak self] in
+                self?.selectForMeButton.isEnabled = true
+                self?.selectForOtherButton.isEnabled = true
+            }
         } else {
             self.selectForMeButton.isEnabled = false
             self.selectForOtherButton.isEnabled = false

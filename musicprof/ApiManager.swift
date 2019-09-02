@@ -148,6 +148,26 @@ class ApiManager {
         }
     }
     
+    func getTermsAndConditions(handler: @escaping (ApiResult<String>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getTermsAndConditions")
+        let _ = self.session
+            .request(url, method: .get,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable(completionHandler: handler)
+    }
+    
+    func replyTermsAndConditions(accepted: Bool, handler: @escaping (ApiResult<String>) -> Void) {
+        let url = baseUrl.appendingPathComponent("responseTermsAndConditions")
+        let parameters: Parameters = ["response": accepted]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable(completionHandler: handler)
+    }
+    
     func getClientCredits(handler: @escaping (ApiResult<Int>) -> Void) {
         let url = baseUrl.appendingPathComponent("getClientCredits")
         let _ = self.session

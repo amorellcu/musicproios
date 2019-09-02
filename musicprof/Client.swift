@@ -120,6 +120,7 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
         case instruments
         case subaccounts
         case nextReservations = "next_reservations"
+        case termsandconditions
     }
     
     fileprivate enum UserKeys: String, CodingKey {
