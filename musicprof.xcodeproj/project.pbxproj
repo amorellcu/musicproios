@@ -88,6 +88,8 @@
 		539C80C622C4C621009D8469 /* FilsonProThinItalic-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 539C80AA22C4C5AE009D8469 /* FilsonProThinItalic-Italic.otf */; };
 		53ACA34D22D744BC00A7CF04 /* Subaccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ACA34C22D744BC00A7CF04 /* Subaccount.swift */; };
 		53AE1A8222E5EFF900C3ADC9 /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AE1A8122E5EFF900C3ADC9 /* InputController.swift */; };
+		53BDB6B7231EB501002DA351 /* Terms.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53BDB6B6231EB501002DA351 /* Terms.storyboard */; };
+		53BDB6B9231EB73D002DA351 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BDB6B8231EB73D002DA351 /* TermsViewController.swift */; };
 		53C5DA9122CA29CF0005AC14 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9022CA29CF0005AC14 /* ContactInfoViewController.swift */; };
 		53C5DA9322CA2CE00005AC14 /* InstrumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */; };
 		53C5DA9522CA38030005AC14 /* ReservationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */; };
@@ -244,6 +246,8 @@
 		539C80B622C4C5B9009D8469 /* FilsonProBold-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonProBold-Bold.otf"; sourceTree = "<group>"; };
 		53ACA34C22D744BC00A7CF04 /* Subaccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subaccount.swift; sourceTree = "<group>"; };
 		53AE1A8122E5EFF900C3ADC9 /* InputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
+		53BDB6B6231EB501002DA351 /* Terms.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Terms.storyboard; sourceTree = "<group>"; };
+		53BDB6B8231EB73D002DA351 /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		53C5DA9022CA29CF0005AC14 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		53C5DA9222CA2CE00005AC14 /* InstrumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentListViewController.swift; sourceTree = "<group>"; };
 		53C5DA9422CA38030005AC14 /* ReservationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationListViewController.swift; sourceTree = "<group>"; };
@@ -407,6 +411,7 @@
 				530B852822DB18BB0021C70E /* ProfessorClasses.storyboard */,
 				530FC53422DDFF4B000BD490 /* TitleView.xib */,
 				530FC53622DE0093000BD490 /* TitleView.swift */,
+				53BDB6B6231EB501002DA351 /* Terms.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -503,6 +508,7 @@
 				531FDF9322DD007E00DD1439 /* ClassInstrumentSelectionViewController.swift */,
 				531FDF9522DD01D200DD1439 /* ClassCalendarViewController.swift */,
 				53108F5F22DDA7D90030C155 /* ClassSchedulingViewController.swift */,
+				53BDB6B8231EB73D002DA351 /* TermsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -702,6 +708,7 @@
 				5357A5DC22D4928000936FA6 /* Professors.storyboard in Resources */,
 				539C80C122C4C621009D8469 /* FilsonProMedium-Medium.otf in Resources */,
 				A5598C1D201F8C3B000C64F6 /* Main.storyboard in Resources */,
+				53BDB6B7231EB501002DA351 /* Terms.storyboard in Resources */,
 				539C80C322C4C621009D8469 /* FilsonProRegular-Regular.otf in Resources */,
 				5380312E22CE44ED0016175E /* ClientClasses.storyboard in Resources */,
 				53D98FBE22BD35D10027FDCD /* Reservation.storyboard in Resources */,
@@ -945,6 +952,7 @@
 				53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */,
 				53FD596222BE4D7D002F5172 /* ProfileViewController.swift in Sources */,
 				5333E96022C0E3FD00175995 /* ProfessorCell.swift in Sources */,
+				53BDB6B9231EB73D002DA351 /* TermsViewController.swift in Sources */,
 				5357A5DE22D494C000936FA6 /* LoginController.swift in Sources */,
 				53FDE14F22BE257D00EBC13F /* Client.swift in Sources */,
 				53C5DA9122CA29CF0005AC14 /* ContactInfoViewController.swift in Sources */,

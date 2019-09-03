@@ -20,6 +20,7 @@ class Professor: NSObject, Decodable, NSCoding, User {
     var municipalityId: Int? = 986
     var avatarUrl: URL?
     var facebookId: String?
+    var acceptedTermsAndConditions: Bool?
     
     var personalReview: String?
     var workExperience: String?
@@ -28,6 +29,7 @@ class Professor: NSObject, Decodable, NSCoding, User {
     var classes: [Class]?
     var locations: [Location]?
     var instruments: [Instrument]?
+    
     
     static let standard = Professor(id: 0, name: "Allan Buenfill Mejías")
     
@@ -86,6 +88,9 @@ class Professor: NSObject, Decodable, NSCoding, User {
         self.instruments = try container.decodeIfPresent([Instrument].self, forKey: .instruments)
         self.locations = try container.decodeIfPresent([Location].self, forKey: .locations)
         self.classes = try container.decodeIfPresent([Class].self, forKey: .classes)
+        if let acceptedTermsAndConditions = try user?.decodeIfPresent(Int.self, forKey: .acceptedTermsAndConditions) {
+            self.acceptedTermsAndConditions = acceptedTermsAndConditions != 0
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -133,6 +138,7 @@ class Professor: NSObject, Decodable, NSCoding, User {
         case email
         case avatar = "photo"
         case facebookId = "facebook_id"
+        case acceptedTermsAndConditions = "termsandconditions"
     }
 }
 

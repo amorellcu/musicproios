@@ -154,10 +154,12 @@ class ApiManager {
             .request(url, method: .get,
                      encoding: URLEncoding.default,
                      headers: self.headers)
-            .responseDecodable(completionHandler: handler)
+            .responseDecodable { (result: ApiResult<TermsData>) in
+                handler(result.transform(with: {$0.terms}))
+        }
     }
     
-    func replyTermsAndConditions(accepted: Bool, handler: @escaping (ApiResult<String>) -> Void) {
+    func replyTermsAndConditions(accepted: Bool, handler: @escaping (ApiResult<Void>) -> Void) {
         let url = baseUrl.appendingPathComponent("responseTermsAndConditions")
         let parameters: Parameters = ["response": accepted]
         let _ = self.session
@@ -165,7 +167,15 @@ class ApiManager {
                      parameters: parameters,
                      encoding: URLEncoding.default,
                      headers: self.headers)
-            .responseDecodable(completionHandler: handler)
+            .responseError { [weak self] result in
+                switch result {
+                case .success(_):
+                    self?.user?.acceptedTermsAndConditions = accepted
+                default:
+                    break
+                }
+                handler(result)
+        }
     }
     
     func getClientCredits(handler: @escaping (ApiResult<Int>) -> Void) {
@@ -911,6 +921,10 @@ private struct SubaccountData: Decodable {
 
 private struct SubaccountData2: Decodable {
     var subaccount: Subaccount
+}
+
+private struct TermsData: Decodable {
+    var terms: String
 }
 
 private struct CreditData: Decodable {

@@ -320,7 +320,7 @@
                                             <color key="titleColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="KzB-Dd-DTD" kind="show" identifier="createClass" id="fF7-CU-IfH"/>
+                                            <action selector="onMakeReservation:" destination="p2e-WL-oaB" eventType="touchUpInside" id="9Lu-0G-iTw"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -355,6 +355,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="ZBA-qv-LE6" id="9vP-lS-0of"/>
+                        <segue destination="KzB-Dd-DTD" kind="show" identifier="createClass" id="9pJ-qQ-JJ6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GBU-nK-Tlz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1318,7 +1319,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECCIONA EL HORARIO DE TU CLASE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OPZ-s6-1II">
-                                        <rect key="frame" x="30" y="16" width="354" height="20"/>
+                                        <rect key="frame" x="30" y="16" width="354" height="22.5"/>
                                         <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                         <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1374,7 +1375,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgi-Yd-SSp" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="810" width="414.00000000000023" height="52"/>
+                                <rect key="frame" x="0.0" y="810" width="414" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="vVD-B6-U9s"/>
                                 </constraints>

@@ -123,26 +123,24 @@ extension UIViewController {
         self.performSegue(withIdentifier: "unwindToLogin", sender: self)
     }
     
-    func checkTermsAndConditions(rejectHandler: (()-> Void)? = nil, acceptHandler: (()-> Void)? = nil) {
-        let alert = self.showSpinner()
-        self.service.getTermsAndConditions { [weak self] (result) in
-            alert.hideView()
-            self?.handleResult(result) { terms in
-                self?.ask(question: terms, title: "Términos y Condiciones", yesButton: "Aceptar", noButton: "Rechazar", completion: { (accepted) in
-                    let alert = self?.showSpinner()
-                    self?.service.replyTermsAndConditions(accepted: accepted, handler: { (result) in
-                        self?.handleResult(result) {
-                            if accepted {
-                                acceptHandler?()
-                            } else {
-                                rejectHandler?()
-                            }
-                        }
-                    })
-                    
-                })
-            }
+    func checkTermsAndConditions(rejectHandler: (()-> Void)? = nil, acceptHandler: (()-> Void)? = nil) -> Bool? {
+        if let accepted = self.service.user?.acceptedTermsAndConditions, accepted {
+            /*
+            if accepted {
+                acceptHandler?()
+            } else {
+                rejectHandler?()
+            }*/
+            acceptHandler?()
+            return accepted
         }
+        let storyboard = UIStoryboard(name: "Terms", bundle: Bundle.main)
+        guard let controller = storyboard.instantiateInitialViewController() else { return nil }
+        guard let termsController = controller as? TermsViewController ?? (controller as? UINavigationController)?.viewControllers.first as? TermsViewController else { return nil }
+        termsController.acceptHandler = acceptHandler
+        termsController.rejectHandler = rejectHandler
+        self.present(controller, animated: true)
+        return nil
     }
     
     //Spinner dialog
