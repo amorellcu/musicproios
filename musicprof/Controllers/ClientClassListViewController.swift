@@ -42,6 +42,7 @@ class ClientClassListViewController: ReservationListViewController {
         self.service.getNextReservations(of: client) { [weak self] (result) in
             self?.tableView.refreshControl?.endRefreshing()
             self?.handleResult(result) { (values: [Reservation]) in
+                guard let strongSelf = self else { return }
                 let reservations = values.sorted(by: {
                     if $0.classes == nil && $1.classes == nil {
                         return $0.id < $1.id
@@ -51,16 +52,17 @@ class ClientClassListViewController: ReservationListViewController {
                     }
                     return $1.classes != nil
                 })
-                self?.sections?[0] = StudentSection(student: client, reservations: reservations)
-                self?.tableView.reloadSections(IndexSet([0]), with: .fade)
+                strongSelf.sections?[0] = StudentSection(student: client, reservations: reservations)
+                strongSelf.tableView.reloadSections(IndexSet([0]), with: .fade)
             }
         }
         for (index, subaccount) in (client.subaccounts ?? []).enumerated() {
             self.service.getNextReservations(of: subaccount) { [weak self] (result) in
                 self?.handleResult(result) { (values: [Reservation]) in
+                    guard let strongSelf = self else { return }
                     let reservations = values.sorted(by: {$0.classes?.date ?? Date() < $1.classes?.date ?? Date()})
-                    self?.sections?[index + 1] = StudentSection(student: subaccount, reservations: reservations)
-                    self?.tableView.reloadSections(IndexSet([index + 1]), with: .fade)
+                    strongSelf.sections?[index + 1] = StudentSection(student: subaccount, reservations: reservations)
+                    strongSelf.tableView.reloadSections(IndexSet([index + 1]), with: .fade)
                 }
             }
         }
@@ -112,21 +114,6 @@ class ClientClassListViewController: ReservationListViewController {
             return super.tableView(tableView, heightForHeaderInSection: section)
         }
         return 0
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let section = self.section(atIndex: indexPath.section) else {
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        }
-        guard let reservations = section.reservations else {
-            return tableView.dequeueReusableCell(withIdentifier: "loadingCell")!
-        }
-        guard indexPath.row < reservations.count && reservations[indexPath.item].status == .cancelled else {
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cancelledCell") as! ReservationCell
-        self.configureCell(cell, forRowAt: indexPath)
-        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
