@@ -80,8 +80,9 @@ class ClientClassListViewController: ReservationListViewController {
     }
     
     @IBAction func onMakeReservation(_ sender: Any) {
-        //self.tabBarController?.selectedIndex = 0
-        self.performSegue(withIdentifier: "makeReservation", sender: sender)
+        self.checkTermsAndConditions() { [weak self] in
+            self?.performSegue(withIdentifier: "makeReservation", sender: sender)
+        }
     }
     
     func removeReservation(at indexPath: IndexPath) {

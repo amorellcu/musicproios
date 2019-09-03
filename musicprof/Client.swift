@@ -28,6 +28,7 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
     var instruments: [Instrument]?
     var subaccounts: [Subaccount]?
     var nextReservations: [Reservation]?
+    var acceptedTermsAndConditions: Bool?
     
     var type: StudentType {
         return .account 
@@ -80,6 +81,9 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
         self.instruments = try container.decodeIfPresent([Instrument].self, forKey: .instruments)
         self.subaccounts = try container.decodeIfPresent([Subaccount].self, forKey: .subaccounts)
         self.nextReservations = try container.decodeIfPresent([Reservation].self, forKey: .nextReservations)
+        if let acceptedTermsAndConditions = try user?.decodeIfPresent(Int.self, forKey: .acceptedTermsAndConditions) {
+            self.acceptedTermsAndConditions = acceptedTermsAndConditions != 0
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -128,6 +132,7 @@ class Client: NSObject, Decodable, NSCoding, Student, User {
         case email
         case avatar = "photo"
         case facebookId = "facebook_id"
+        case acceptedTermsAndConditions = "termsandconditions"
     }
 }
 

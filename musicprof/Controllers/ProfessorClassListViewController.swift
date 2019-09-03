@@ -54,8 +54,9 @@ class ProfessorClassListViewController: ReservationListViewController {
     }
     
     @IBAction func onMakeReservation(_ sender: Any) {
-        self.tabBarController?.selectedIndex = 0
-        //self.performSegue(withIdentifier: "makeReservation", sender: sender)
+        self.checkTermsAndConditions() { [weak self] in
+            self?.performSegue(withIdentifier: "createClass", sender: sender)
+        }
     }
     
     @IBAction func unwindToProfessorClasses(_ segue: UIStoryboardSegue) {
