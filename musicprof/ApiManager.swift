@@ -350,6 +350,7 @@ class ApiManager {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = Calendar.current
         dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.locale = Locale(identifier: "en-US")
         let dateStr = dateFormatter.string(from: date)
         
         let url = baseUrl.appendingPathComponent("getAvailableProfesorsOnDate")
@@ -372,6 +373,7 @@ class ApiManager {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = Calendar.current
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.locale = Locale(identifier: "en-US")
         let dateStr = dateFormatter.string(from: date)
         
         let url = baseUrl.appendingPathComponent("getAvailableProfesors")
@@ -505,6 +507,7 @@ class ApiManager {
         if let date = since {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+            formatter.locale = Locale(identifier: "en-US")
             parameters["since"] =  formatter.string(from: date)
         }
         let _ = self.session
@@ -760,6 +763,7 @@ class ApiManager {
             let encoder = JSONEncoder()
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            formatter.locale = Locale(identifier: "en-US")
             encoder.dateEncodingStrategy = .formatted(formatter)
             data = try encoder.encode(encodable)
         } catch {
@@ -782,6 +786,7 @@ class ApiManager {
             let encoder = JSONEncoder()
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            formatter.locale = Locale(identifier: "en-US")
             encoder.dateEncodingStrategy = .formatted(formatter)
             data = try encoder.encode(encodable)
         } catch {

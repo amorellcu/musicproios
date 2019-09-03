@@ -26,6 +26,7 @@ extension DataRequest {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.calendar = Calendar.current
+        dateFormatter.locale = Locale(identifier: "en-US")
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         let item = try decoder.decode(T.self, from: responseData)
         return item

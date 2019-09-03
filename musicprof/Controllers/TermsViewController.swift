@@ -23,7 +23,7 @@ class TermsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let alert = self.showSpinner()
+        let alert = self.showSpinner(withMessage: "Cargando contenido...")
         self.service.getTermsAndConditions { [weak self] (result) in
             alert.hideView()
             self?.handleResult(result) { text in
@@ -47,7 +47,7 @@ class TermsViewController: UIViewController {
     
     @IBAction func onAcceptTapped(_ sender: Any) {
         accepted = true;
-        let alert = self.showSpinner()
+        let alert = self.showSpinner(withMessage: "Enviando respuesta...")
         self.service.replyTermsAndConditions(accepted: true) { [weak self] (result) in
             alert.hideView()
             self?.handleResult(result) {
@@ -61,7 +61,7 @@ class TermsViewController: UIViewController {
     
     @IBAction func onRejectTapped(_ sender: Any) {
         accepted = false;
-        let alert = self.showSpinner()
+        let alert = self.showSpinner(withMessage: "Enviando respuesta...")
         self.service.replyTermsAndConditions(accepted: false) { [weak self] (result) in
             alert.hideView()
             self?.handleResult(result) {
