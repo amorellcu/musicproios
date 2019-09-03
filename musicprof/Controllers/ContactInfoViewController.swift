@@ -31,8 +31,12 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
     
     var location: Location? {
         didSet {
-            self.locationButton?.setTitle(self.location?.description ?? "Ubicación desconocida", for: .normal)
-            guard let location = self.location else { return }
+            guard let locationButton = self.locationButton else { return }
+            guard let location = self.location else {
+                return locationButton.isHidden = true
+            }
+            locationButton.isHidden = false;
+            locationButton.setTitle(location.description, for: .normal)
             self.client?.locationId = location.id
             self.client.location = location
         }
