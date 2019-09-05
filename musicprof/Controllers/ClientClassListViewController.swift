@@ -10,6 +10,7 @@ import UIKit
 import SCLAlertView
 
 class ClientClassListViewController: ReservationListViewController {
+    var students: [Student]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,52 +34,56 @@ class ClientClassListViewController: ReservationListViewController {
     }
     
     override func updateReservations() {
+        func cmpReservations(_ first: Reservation, _ second: Reservation) -> Bool {
+            if first.classes == nil && second.classes == nil {
+                return first.id < second.id
+            }
+            if let first = first.classes, let second = second.classes {
+                return first.date < second.date
+            }
+            return second.classes != nil
+        }
+        
         guard let client = self.service.currentClient else { return }
-        self.sections = [StudentSection(student: client, reservations: client.nextReservations)] + (client.subaccounts?.map {
-            StudentSection(student: $0, reservations: nil)
+        self.students = [client] + (client.subaccounts ?? [])
+        self.sections = [Section(student: client, reservations: client.nextReservations)] + (client.subaccounts?.map {
+            Section(student: $0, reservations: nil)
             } ?? [])
         self.tableView.reloadData()
         self.tableView.refreshControl?.beginRefreshing()
         self.service.getNextReservations(of: client) { [weak self] (result) in
             self?.tableView.refreshControl?.endRefreshing()
             self?.handleResult(result) { (values: [Reservation]) in
-                guard let strongSelf = self else { return }
-                let reservations = values.sorted(by: {
-                    if $0.classes == nil && $1.classes == nil {
-                        return $0.id < $1.id
-                    }
-                    if let first = $0.classes, let second = $1.classes {
-                        return first.date < second.date
-                    }
-                    return $1.classes != nil
-                })
-                strongSelf.sections?[0] = StudentSection(student: client, reservations: reservations)
-                strongSelf.tableView.reloadSections(IndexSet([0]), with: .fade)
+                guard self?.students?.first as? Client === client else { return }
+                let reservations = values.sorted(by: cmpReservations)
+                self?.sections?[0] = Section(student: client, reservations: reservations)
+                self?.tableView.reloadSections(IndexSet([0]), with: .fade)
             }
         }
         for (index, subaccount) in (client.subaccounts ?? []).enumerated() {
             self.service.getNextReservations(of: subaccount) { [weak self] (result) in
                 self?.handleResult(result) { (values: [Reservation]) in
-                    guard let strongSelf = self else { return }
-                    let reservations = values.sorted(by: {$0.classes?.date ?? Date() < $1.classes?.date ?? Date()})
-                    strongSelf.sections?[index + 1] = StudentSection(student: subaccount, reservations: reservations)
-                    strongSelf.tableView.reloadSections(IndexSet([index + 1]), with: .fade)
+                    guard let students = self?.students, index + 1 < students.count && students[index + 1] as? Subaccount === subaccount else { return }
+                    let reservations = values.sorted(by: cmpReservations)
+                    self?.sections?[index + 1] = Section(student: subaccount, reservations: reservations)
+                    self?.tableView.reloadSections(IndexSet([index + 1]), with: .fade)
                 }
             }
         }
     }
     
-    func section(atIndex index: Int) -> StudentSection? {
-        guard let sections = self.sections, index >= 0 && index < sections.count else { return nil }
-        let section = sections[index]
-        return section as? StudentSection
+    func createSection(forStudent student: Student, withReservations reservations: [Reservation]?) -> Section {
+        let name = (student as? Subaccount)?.name
+        let classes = reservations?.compactMap { (reservation: Reservation) -> Class? in
+            guard var theClass = reservation.classes else { return nil }
+            theClass.reservations = [reservation]
+            return theClass
+        }
+        return Section(name: name, classes: classes)
     }
     
     func reservation(forRowAt indexPath: IndexPath) -> Reservation? {
-        guard let reservations = section(atIndex: indexPath.section)?.reservations, indexPath.row >= 0 && indexPath.row < reservations.count else {
-            return nil
-        }
-        return reservations[indexPath.row]
+        return self.getItem(forRowAt: indexPath)?.reservations?.first
     }
     
     @IBAction func onMakeReservation(_ sender: Any) {
@@ -88,9 +93,7 @@ class ClientClassListViewController: ReservationListViewController {
     }
     
     func removeReservation(at indexPath: IndexPath) {
-        guard let section = self.section(atIndex: indexPath.section), var reservations = section.reservations else { return }
-        reservations.remove(at: indexPath.row)
-        self.sections?[indexPath.section] = StudentSection(student: section.student, reservations: reservations)
+        self.sections?[indexPath.section].classes?.remove(at: indexPath.row)
         self.tableView.reloadSections(IndexSet([indexPath.section]), with: .fade)
     }
     
@@ -103,14 +106,14 @@ class ClientClassListViewController: ReservationListViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard self.section(atIndex: section)?.reservations?.count == 0 else {
+        guard self.section(atIndex: section)?.classes?.count == 0 else {
             return super.tableView(tableView, titleForHeaderInSection: section)
         }
         return nil
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard self.section(atIndex: section)?.reservations?.count == 0 else {
+        guard self.section(atIndex: section)?.classes?.count == 0 else {
             return super.tableView(tableView, heightForHeaderInSection: section)
         }
         return 0
@@ -158,14 +161,17 @@ class ClientClassListViewController: ReservationListViewController {
         }
     }
     
-    class StudentSection: ReservationListViewController.Section {
-        let student: Student
-        let reservations: [Reservation]?
-        
-        init(student: Student, reservations: [Reservation]?) {
-            self.student = student
-            self.reservations = reservations?.filter({$0.classes != nil})
-            super.init(name: student is Client ? nil : student.name, classes: self.reservations?.compactMap({$0.classes}))
+    
+}
+
+fileprivate extension ReservationListViewController.Section {
+    init(student: Student, reservations: [Reservation]?) {
+        let name = (student as? Subaccount)?.name
+        let classes = reservations?.compactMap { (reservation: Reservation) -> Class? in
+            guard var theClass = reservation.classes else { return nil }
+            theClass.reservations = [reservation]
+            return theClass
         }
+        self.init(name: name, classes: classes)
     }
 }

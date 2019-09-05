@@ -58,6 +58,12 @@ class ReservationListViewController: BaseNestedViewController {
         }
     }
     
+    func section(atIndex index: Int) -> Section? {
+        guard let sections = self.sections, index >= 0 && index < sections.count else { return nil }
+        let section = sections[index]
+        return section
+    }
+    
     func getItem(forRowAt indexPath: IndexPath) -> Class? {
         guard let sections = self.sections, indexPath.section < sections.count else { return nil }
         let section = sections[indexPath.section]
@@ -79,9 +85,9 @@ class ReservationListViewController: BaseNestedViewController {
         cell.professorLabel?.text = reservation.professor?.name
     }
     
-    class Section {
+    struct Section {
         let name: String?
-        let classes: [Class]?
+        var classes: [Class]?
         
         init(name: String?, classes: [Class]?) {
             self.name = name
