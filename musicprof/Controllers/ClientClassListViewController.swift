@@ -54,19 +54,19 @@ class ClientClassListViewController: ReservationListViewController {
         self.service.getNextReservations(of: client) { [weak self] (result) in
             self?.tableView.refreshControl?.endRefreshing()
             self?.handleResult(result) { (values: [Reservation]) in
-                guard self?.students?.first as? Client === client else { return }
+                guard let strongSelf = self, strongSelf.students?.first as? Client === client else { return }
                 let reservations = values.sorted(by: cmpReservations)
-                self?.sections?[0] = Section(student: client, reservations: reservations)
-                self?.tableView.reloadSections(IndexSet([0]), with: .fade)
+                strongSelf.sections?[0] = Section(student: client, reservations: reservations)
+                strongSelf.tableView.reloadSections(IndexSet([0]), with: .fade)
             }
         }
         for (index, subaccount) in (client.subaccounts ?? []).enumerated() {
             self.service.getNextReservations(of: subaccount) { [weak self] (result) in
                 self?.handleResult(result) { (values: [Reservation]) in
-                    guard let students = self?.students, index + 1 < students.count && students[index + 1] as? Subaccount === subaccount else { return }
+                    guard let strongSelf = self, let students = strongSelf.students, index + 1 < students.count && students[index + 1] as? Subaccount === subaccount else { return }
                     let reservations = values.sorted(by: cmpReservations)
-                    self?.sections?[index + 1] = Section(student: subaccount, reservations: reservations)
-                    self?.tableView.reloadSections(IndexSet([index + 1]), with: .fade)
+                    strongSelf.sections?[index + 1] = Section(student: subaccount, reservations: reservations)
+                    strongSelf.tableView.reloadSections(IndexSet([index + 1]), with: .fade)
                 }
             }
         }
