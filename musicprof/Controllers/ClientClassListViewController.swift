@@ -20,7 +20,7 @@ class ClientClassListViewController: ReservationListViewController {
         self.tableView.refreshControl?.addTarget(self, action: #selector(updateReservations), for: .valueChanged)
         
         self.dateFormatter.timeStyle = .short
-        self.dateFormatter.dateStyle = .long
+        self.dateFormatter.dateStyle = .medium
         
         self.sections = [ReservationListViewController.Section(name: nil, classes: nil)]
         self.tableView.tintColor = .white

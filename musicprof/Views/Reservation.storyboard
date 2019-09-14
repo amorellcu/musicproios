@@ -162,7 +162,7 @@
                                                     <constraint firstAttribute="height" constant="52" id="bQ9-zr-DF9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
-                                                <state key="normal" title="Para mi">
+                                                <state key="normal" title="Para Mí">
                                                     <color key="titleColor" red="0.1176281944" green="0.63271003960000005" blue="0.4873902202" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -187,7 +187,7 @@
                                                     <constraint firstAttribute="height" constant="52" id="p9M-iB-c5s"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
-                                                <state key="normal" title="Para alguien más">
+                                                <state key="normal" title="Para Alguien Más">
                                                     <color key="titleColor" red="0.1176281944" green="0.63271003960000005" blue="0.4873902202" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>

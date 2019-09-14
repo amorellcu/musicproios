@@ -531,7 +531,7 @@
                                                     <constraint firstAttribute="height" constant="52" id="fuG-gF-846"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
-                                                <state key="normal" title="Para mi">
+                                                <state key="normal" title="Para Mí">
                                                     <color key="titleColor" red="0.1176281944" green="0.63271003960000005" blue="0.4873902202" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -556,7 +556,7 @@
                                                     <constraint firstAttribute="height" constant="52" id="ZoT-eX-DJ9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
-                                                <state key="normal" title="Para alguien más">
+                                                <state key="normal" title="Para Alguien Más">
                                                     <color key="titleColor" red="0.1176281944" green="0.63271003960000005" blue="0.4873902202" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -1058,7 +1058,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJb-Er-JwE">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="150"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1067,10 +1067,10 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ld2-IM-JPy">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="150"/>
                                                                 </imageView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0si-zQ-uJg" userLabel="Border">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="150"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -1859,8 +1859,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="oTV-zM-jVa"/>
         <segue reference="MuA-jP-iFB"/>
-        <segue reference="h0D-nF-ovM"/>
-        <segue reference="vP7-KT-91K"/>
+        <segue reference="fsI-iq-RmP"/>
+        <segue reference="kMf-8X-xHA"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
