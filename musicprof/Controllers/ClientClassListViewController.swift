@@ -95,6 +95,7 @@ class ClientClassListViewController: ReservationListViewController {
     func removeReservation(at indexPath: IndexPath) {
         self.sections?[indexPath.section].classes?.remove(at: indexPath.row)
         self.tableView.reloadSections(IndexSet([indexPath.section]), with: .fade)
+        self.container?.refresh()
     }
     
     @IBAction func unwindToClientClasses(_ segue: UIStoryboardSegue) {

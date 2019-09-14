@@ -832,6 +832,9 @@ class ApiManager {
                 let _ = request.responseDecodable(completionHandler: { (result: ApiResult<ReservationData2>) in
                     handler(result.transform(with: { data in
                         self.currentClient?.nextReservations?.removeAll(where: {$0.id == data.reservation.id})
+                        if let credits = self.currentClient?.credits {
+                            self.currentClient?.credits = credits + 1
+                        }
                         return data.reservation
                     }))
                 })
