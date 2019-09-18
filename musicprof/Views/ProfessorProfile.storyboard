@@ -339,10 +339,10 @@
             </objects>
             <point key="canvasLocation" x="3005" y="2685"/>
         </scene>
-        <!--CAMBIAR CONTRASENA-->
+        <!--Cambiar Clave-->
         <scene sceneID="v3J-Ap-GTR">
             <objects>
-                <viewController storyboardIdentifier="PasswordUpdateViewController" title="CAMBIAR CONTRASENA" id="eUD-w7-drd" customClass="PasswordUpdateViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasswordUpdateViewController" title="Cambiar Clave" id="eUD-w7-drd" customClass="PasswordUpdateViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="img-bX-qGQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -437,7 +437,7 @@
                                     <constraint firstAttribute="height" constant="52" id="bqm-yR-HWx"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="Cambiar Contraseña"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="Cambiar Clave"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isEnabled" value="NO"/>
                                 </userDefinedRuntimeAttributes>

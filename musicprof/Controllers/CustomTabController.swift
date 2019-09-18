@@ -98,7 +98,7 @@ extension CustomTabController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "defaultCell") as! HeaderCell
         let section = self.sections[indexPath.item]
-        cell.titleLabel.text = section.title
+        cell.titleLabel.text = section.title?.uppercased()
         
         if (self.selectedSection == nil){
             cell.titleLabel.textColor = normalColor

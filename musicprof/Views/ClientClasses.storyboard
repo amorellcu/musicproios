@@ -36,7 +36,7 @@
                                             <constraint firstAttribute="width" constant="22" id="rYG-IG-7af"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MIS PROXIMAS CLASES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Agh-Mr-DuW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MIS PRÓXIMAS CLASES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Agh-Mr-DuW">
                                         <rect key="frame" x="52" y="16" width="310" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="93U-dj-0PW"/>
