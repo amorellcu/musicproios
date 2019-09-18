@@ -284,6 +284,18 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         case .professor:
             identifier = "professorCell"
             avatarUrl = self.professorAvatar
+            if message.wasRead != true {
+                self.service.notifyMessageRead(message) { result in
+                    switch result {
+                    case .success(_):
+                        var message = message
+                        message.wasRead = true
+                        self.messages[indexPath.item] = message
+                    default:
+                        break
+                    }
+                }
+            }
         default:
             return UITableViewCell()
         }

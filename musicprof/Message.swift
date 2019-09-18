@@ -16,6 +16,7 @@ struct Message: Decodable {
     var professorId: Int?
     var text: String
     var date: Date?
+    var wasRead: Bool?
     
     var source: MessageSource {
         if (clientId != nil || subaccountId != nil) && professorId == nil {
@@ -58,6 +59,6 @@ extension Message {
             dateFormatter.calendar = Calendar.current
             date = dateFormatter.date(from: dateStr)
         }
-        self.init(id: id, classId: classId, clientId: clientId, subaccountId: subaccountId, professorId: professorId, text: text, date: date)
+        self.init(id: id, classId: classId, clientId: clientId, subaccountId: subaccountId, professorId: professorId, text: text, date: date, wasRead: false)
     }
 }

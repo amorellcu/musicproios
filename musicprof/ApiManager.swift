@@ -875,6 +875,10 @@ class ApiManager {
                 }))
         }
     }
+    
+    func notifyMessageRead(_ message: Message, handler: @escaping (ApiResult<Void>) -> Void) {
+        
+    }
 }
 
 private struct LoginData: Decodable {
