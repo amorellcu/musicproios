@@ -88,11 +88,11 @@
                                                                 <constraint firstAttribute="width" secondItem="1eU-oy-Wwu" secondAttribute="height" multiplier="1:1" id="znR-Lb-biG"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NxG-mO-gCQ">
-                                                            <rect key="frame" x="67" y="0.0" width="255" height="52"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NxG-mO-gCQ">
+                                                            <rect key="frame" x="67" y="0.0" width="273" height="52"/>
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tdS-60-xb3" userLabel="Name Label">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="255" height="52"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="233" height="52"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="52" id="gpt-Vx-asX"/>
@@ -101,6 +101,37 @@
                                                                     <color key="textColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBZ-f5-q4W" userLabel="Messages">
+                                                                    <rect key="frame" x="243" y="0.0" width="30" height="52"/>
+                                                                    <subviews>
+                                                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="glx-lc-Ikx">
+                                                                            <rect key="frame" x="0.0" y="11" width="30" height="30"/>
+                                                                            <color key="backgroundColor" red="0.85194617509841919" green="0.26323637366294861" blue="0.33552193641662598" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="30" id="Db4-eS-hvG"/>
+                                                                                <constraint firstAttribute="height" constant="30" id="qPx-yt-uCy"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                    <real key="value" value="0.0"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                    <real key="value" value="15"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="glx-lc-Ikx" firstAttribute="leading" secondItem="kBZ-f5-q4W" secondAttribute="leading" id="VPR-Wf-Csd"/>
+                                                                        <constraint firstItem="glx-lc-Ikx" firstAttribute="centerY" secondItem="kBZ-f5-q4W" secondAttribute="centerY" id="aq8-nY-RYa"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="glx-lc-Ikx" secondAttribute="trailing" id="fwR-na-m9i"/>
+                                                                        <constraint firstItem="glx-lc-Ikx" firstAttribute="centerY" secondItem="kBZ-f5-q4W" secondAttribute="centerY" id="mFJ-5B-zYY"/>
+                                                                    </constraints>
+                                                                </view>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
@@ -113,7 +144,7 @@
                                                         <constraint firstItem="NxG-mO-gCQ" firstAttribute="top" secondItem="jTX-MT-mmC" secondAttribute="top" id="ayl-Gv-3bP"/>
                                                         <constraint firstItem="NxG-mO-gCQ" firstAttribute="leading" secondItem="1eU-oy-Wwu" secondAttribute="trailing" constant="20" id="eBm-yN-KzC"/>
                                                         <constraint firstItem="1eU-oy-Wwu" firstAttribute="leading" secondItem="jTX-MT-mmC" secondAttribute="leading" constant="5" id="mEQ-dI-tZn"/>
-                                                        <constraint firstAttribute="trailing" secondItem="NxG-mO-gCQ" secondAttribute="trailing" constant="30" id="uLS-cS-oPC"/>
+                                                        <constraint firstAttribute="trailing" secondItem="NxG-mO-gCQ" secondAttribute="trailing" constant="12" id="uLS-cS-oPC"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -139,6 +170,7 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="tdS-60-xb3" id="Ahu-1l-8s9"/>
                                             <outlet property="instrumentImageView" destination="1eU-oy-Wwu" id="Wtp-0f-3MI"/>
+                                            <outlet property="messageCountLabel" destination="glx-lc-Ikx" id="f8b-p4-hbb"/>
                                             <segue destination="YiU-Cc-CyE" kind="presentation" identifier="showReservation" id="TaA-ae-nix"/>
                                         </connections>
                                     </tableViewCell>

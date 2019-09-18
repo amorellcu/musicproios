@@ -11,7 +11,8 @@ import UIKit
 class ClientCell: UITableViewCell {
     
     @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!    
+    @IBOutlet weak var messageCountLabel: UILabel?
     
     override var textLabel: UILabel? {
         return nameLabel

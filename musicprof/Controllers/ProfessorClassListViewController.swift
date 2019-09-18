@@ -67,6 +67,19 @@ class ProfessorClassListViewController: ReservationListViewController {
         return reservations.count + 1
     }
     
+    override func configureCell(_ cell: ReservationCell, forRowAt indexPath: IndexPath) {
+        super.configureCell(cell, forRowAt: indexPath)
+        guard let messageCountLabel = cell.messageCountLabel else { return }
+        var count = 0
+        if let reservations = self.getItem(forRowAt: indexPath)?.reservations {
+            for reservation in reservations {
+                count += reservation.unreadMessages ?? 0
+            }
+        }
+        messageCountLabel.isHidden = count == 0
+        messageCountLabel.text = String(describing: count)
+    }
+    
     func configureCell(_ cell: UITableViewCell, forClient client: Client, forReservation reservation: Reservation) {
         let student: Student = client.subaccounts?.first(where: {$0.id == reservation.subaccountId}) ?? client
         cell.textLabel?.text = student.name
@@ -77,6 +90,11 @@ class ProfessorClassListViewController: ReservationListViewController {
             imageView.af_setImage(withURL: avatarUrl, placeholderImage: placeholderAvatar, filter: filter)
         } else {
             imageView.image = placeholderAvatar
+        }
+        if let messageCountLabel = (cell as? ClientCell)?.messageCountLabel {
+            let count = reservation.unreadMessages ?? 0
+            messageCountLabel.isHidden = count == 0
+            messageCountLabel.text = String(describing: count)
         }
     }
     
