@@ -13,7 +13,7 @@ import PushNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    let PAYMENT_SCHEME = "com.musicprof.payments"
+    let PAYMENT_SCHEME = "com.mx.musicprof.payments"
 
     var window: UIWindow?
     

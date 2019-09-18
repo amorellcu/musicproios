@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.2</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -29,7 +29,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.musicprof.payments</string>
+				<string>com.mx.musicprof.payments</string>
 			</array>
 		</dict>
 		<dict>
@@ -42,7 +42,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.3.3.2</string>
 	<key>FacebookAppID</key>
 	<string>157403278247033</string>
 	<key>FacebookDisplayName</key>
@@ -62,12 +62,14 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Para tomar la foto de su Perfil de Usuario.</string>
+	<string>Para tomar la foto de su Perfil de Usuario</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Para detectar la dirección de su Perfil de Usuario.</string>
+	<key>NSLocationAlwaysUsageDescription </key>
+	<string>Para poder determinar que profesores tengo disponible en mi zona</string>
 	<key>NSLocationUsageDescription</key>
 	<string>Para detectar la dirección de su Perfil de Usuario.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Para detectar la dirección de su Perfil de Usuario.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Para detectar la dirección de su Perfil de Usuario.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Para escoger la foto de su Perfil de Usuario.</string>
