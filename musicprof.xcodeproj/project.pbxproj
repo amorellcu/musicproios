@@ -110,6 +110,7 @@
 		53DEFCE122C241AF0003852E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DEFCE022C241AF0003852E /* Location.swift */; };
 		53E7D64422C54A35006DA7B4 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E7D64322C54A35006DA7B4 /* Student.swift */; };
 		53F8C4F622D50439001B0301 /* ProfessorTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8C4F522D50439001B0301 /* ProfessorTextViewController.swift */; };
+		53FAD2792333B5E700816093 /* MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FAD2782333B5E700816093 /* MessageHandler.swift */; };
 		53FD596222BE4D7D002F5172 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FD596122BE4D7D002F5172 /* ProfileViewController.swift */; };
 		53FDE14F22BE257D00EBC13F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDE14E22BE257D00EBC13F /* Client.swift */; };
 		53FDE15122BE25C500EBC13F /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDE15022BE25C500EBC13F /* DataRequest.swift */; };
@@ -268,6 +269,7 @@
 		53DEFCE022C241AF0003852E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		53E7D64322C54A35006DA7B4 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		53F8C4F522D50439001B0301 /* ProfessorTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorTextViewController.swift; sourceTree = "<group>"; };
+		53FAD2782333B5E700816093 /* MessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHandler.swift; sourceTree = "<group>"; };
 		53FD596122BE4D7D002F5172 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		53FDE14E22BE257D00EBC13F /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		53FDE15022BE25C500EBC13F /* DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				5357A5DD22D494C000936FA6 /* LoginController.swift */,
 				53459CF622D4B3120007ECE6 /* MultiformEncodable.swift */,
 				53AE1A8122E5EFF900C3ADC9 /* InputController.swift */,
+				53FAD2782333B5E700816093 /* MessageHandler.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -956,6 +959,7 @@
 				A5E1FB242044DD4600B15DD9 /* HeaderCell.swift in Sources */,
 				53CC2DA422DDCD9100E32D3F /* LocationCell.swift in Sources */,
 				53C5DA9322CA2CE00005AC14 /* InstrumentListViewController.swift in Sources */,
+				53FAD2792333B5E700816093 /* MessageHandler.swift in Sources */,
 				53907E0D22B19EC700314EC8 /* Instrument.swift in Sources */,
 				53FD596222BE4D7D002F5172 /* ProfileViewController.swift in Sources */,
 				5333E96022C0E3FD00175995 /* ProfessorCell.swift in Sources */,

@@ -46,13 +46,7 @@ class ChatViewController: UIViewController {
     }
     var timer: Timer?
     
-    var messages = [Message]() {
-        didSet {
-            self.tableView.reloadData()
-            guard messages.count > 0, messages.count != oldValue.count else { return }
-            self.tableView.scrollToRow(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
-        }
-    }
+    var messages = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,21 +102,25 @@ class ChatViewController: UIViewController {
             if let data = data as? [String : AnyObject] {
                 if let msg = Message(fromJSON: data) {
                     DispatchQueue.main.async {
-                        switch msg.source {
-                        case .client where self.service.user is Client:
-                            return
-                        case .professor where self.service.user is Professor:
-                            return
-                        default:
-                            break
-                        }
-                        self.messages.append(msg)
+                        guard self.isRemoteMessage(msg) else { return }
+                        self.updateMessages(with: self.messages + [msg])
                     }
                 }
             }
         })
         
         self.pusher = pusher
+    }
+    
+    func isRemoteMessage(_ msg: Message) -> Bool {
+        switch msg.source {
+        case .client where self.service.user is Client:
+            return false
+        case .professor where self.service.user is Professor:
+            return false
+        default:
+            return true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,9 +140,17 @@ class ChatViewController: UIViewController {
         })
         
         pusher?.connect()
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.messageHandler = self
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.messageHandler = nil
+        }
+        
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
         
@@ -159,7 +165,7 @@ class ChatViewController: UIViewController {
         self.service.getMessages(from: reservation) { [weak self] (result) in
             switch result {
             case .success(let data):
-                self?.messages = data
+                self?.updateMessages(with: data)
             case .failure(let error) where notify:
                 self?.messageTextField.resignFirstResponder()
                 self?.notify(error: error)
@@ -167,6 +173,14 @@ class ChatViewController: UIViewController {
                 break
             }
         }
+    }
+    
+    func updateMessages(with newValue: [Message]) {
+        let oldValue = self.messages
+        self.messages = newValue
+        self.tableView.reloadData()
+        guard messages.count > 0, messages.count != oldValue.count else { return }
+        self.tableView.scrollToRow(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
     }
     
     func refresh() {
@@ -237,7 +251,7 @@ class ChatViewController: UIViewController {
         textField.text = ""
         self.service.sendMessage(text, for: reservation) { (result) in
             self.handleResult(result, onError: {_ in textField.resignFirstResponder() }) {
-                self.messages.append($0)
+                self.updateMessages(with: self.messages + [$0])
             }
         }
     }
@@ -287,6 +301,21 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             return UITableViewCell()
         }
+        
+        if message.wasRead != true && self.isRemoteMessage(message) {
+            self.service.notifyMessageRead(message) { result in
+                switch result {
+                case .success(_):
+                    var message = message
+                    message.wasRead = true
+                    self.messages[indexPath.item] = message
+                    self.tableView.reloadRows(at: [indexPath], with: .fade)
+                default:
+                    break
+                }
+            }
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier)!
         cell.textLabel?.text = message.text
         self.setAvatar(avatarUrl, for: cell.imageView!)
@@ -315,5 +344,20 @@ extension ChatViewController: PusherDelegate {
     
     func failedToSubscribeToChannel(name: String, response: URLResponse?, data: String?, error: NSError?) {
         print("[PUSHER] Could not subscribe to channel \(name).")
+    }
+}
+
+extension ChatViewController: MessageHandler {
+    func handleMessage(_ message: Message) -> Bool {
+        guard message.classId == self.reservation?.classId else { return false }
+        switch message.source {
+        case .client where self.service.user is Client || self.service.user?.id != message.professorId:
+            return false
+        case .professor where self.service.user is Professor || self.service.user?.id != message.clientId:
+            return false
+        default:
+            break
+        }
+        return true
     }
 }

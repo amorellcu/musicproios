@@ -140,6 +140,14 @@ class ClientClassListViewController: ReservationListViewController {
         controller.professor = theClass?.classes?.professor
     }
     
+    override func configureCell(_ cell: ReservationCell, forRowAt indexPath: IndexPath) {
+        super.configureCell(cell, forRowAt: indexPath)
+        guard let messageCountLabel = cell.messageCountLabel else { return }
+        let count = self.getItem(forRowAt: indexPath)?.reservations?.first?.unreadMessages ?? 0
+        messageCountLabel.isHidden = count == 0
+        messageCountLabel.text = String(describing: count)
+    }
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return self.reservation(forRowAt: indexPath)?.status == ReservationState.normal
     }
