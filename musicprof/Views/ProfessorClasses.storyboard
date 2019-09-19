@@ -201,10 +201,10 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1q4-T5-6kI">
-                                                            <rect key="frame" x="67" y="0.0" width="273" height="52"/>
+                                                            <rect key="frame" x="67" y="0.0" width="255" height="52"/>
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vRY-V9-yNB" userLabel="Name Label">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="233" height="52"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="255" height="52"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="52" id="tEM-zz-234"/>
@@ -213,37 +213,6 @@
                                                                     <color key="textColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUn-NL-eWa" userLabel="Messages">
-                                                                    <rect key="frame" x="243" y="0.0" width="30" height="52"/>
-                                                                    <subviews>
-                                                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jbc-0n-USc">
-                                                                            <rect key="frame" x="0.0" y="11" width="30" height="30"/>
-                                                                            <color key="backgroundColor" red="0.85194617510000004" green="0.26323637370000003" blue="0.3355219364" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="30" id="KQh-ZA-RZI"/>
-                                                                                <constraint firstAttribute="height" constant="30" id="k3G-f1-ewM"/>
-                                                                            </constraints>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                            <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                    <real key="value" value="0.0"/>
-                                                                                </userDefinedRuntimeAttribute>
-                                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                                    <real key="value" value="15"/>
-                                                                                </userDefinedRuntimeAttribute>
-                                                                            </userDefinedRuntimeAttributes>
-                                                                        </label>
-                                                                    </subviews>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <constraints>
-                                                                        <constraint firstItem="jbc-0n-USc" firstAttribute="centerY" secondItem="IUn-NL-eWa" secondAttribute="centerY" id="1NJ-OL-cPx"/>
-                                                                        <constraint firstItem="jbc-0n-USc" firstAttribute="centerY" secondItem="IUn-NL-eWa" secondAttribute="centerY" id="Fdk-Gm-pIn"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="jbc-0n-USc" secondAttribute="trailing" id="GfU-J2-umb"/>
-                                                                        <constraint firstItem="jbc-0n-USc" firstAttribute="leading" secondItem="IUn-NL-eWa" secondAttribute="leading" id="dp1-cB-qql"/>
-                                                                    </constraints>
-                                                                </view>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
@@ -251,7 +220,7 @@
                                                     <constraints>
                                                         <constraint firstItem="1q4-T5-6kI" firstAttribute="leading" secondItem="scc-bE-5Ve" secondAttribute="trailing" constant="20" id="31c-lG-ze2"/>
                                                         <constraint firstAttribute="height" constant="52" id="3l2-aS-G9t"/>
-                                                        <constraint firstAttribute="trailing" secondItem="1q4-T5-6kI" secondAttribute="trailing" constant="12" id="BTG-Pb-LEj"/>
+                                                        <constraint firstAttribute="trailing" secondItem="1q4-T5-6kI" secondAttribute="trailing" constant="30" id="BTG-Pb-LEj"/>
                                                         <constraint firstItem="scc-bE-5Ve" firstAttribute="top" secondItem="XwG-Oa-le3" secondAttribute="top" constant="5" id="Jbr-I5-xaV"/>
                                                         <constraint firstAttribute="bottom" secondItem="scc-bE-5Ve" secondAttribute="bottom" constant="5" id="Mxh-0k-S1z"/>
                                                         <constraint firstAttribute="bottom" secondItem="1q4-T5-6kI" secondAttribute="bottom" id="QhK-tJ-YVo"/>
@@ -282,7 +251,6 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="vRY-V9-yNB" id="u3w-tW-MGI"/>
                                             <outlet property="instrumentImageView" destination="scc-bE-5Ve" id="yJt-ip-6Pr"/>
-                                            <outlet property="messageCountLabel" destination="jbc-0n-USc" id="A56-0R-5Sv"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="clientCell" rowHeight="50" id="KPu-dR-ZOA" customClass="ClientCell" customModule="musicprof" customModuleProvider="target">
@@ -1418,7 +1386,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECCIONA EL HORARIO DE TU CLASE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OPZ-s6-1II">
-                                        <rect key="frame" x="30" y="16" width="354" height="22.5"/>
+                                        <rect key="frame" x="30" y="16" width="354" height="20"/>
                                         <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="19"/>
                                         <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1474,7 +1442,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgi-Yd-SSp" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="810" width="414" height="52"/>
+                                <rect key="frame" x="0.0" y="810" width="414.00000000000023" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="vVD-B6-U9s"/>
                                 </constraints>

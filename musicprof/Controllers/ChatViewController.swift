@@ -46,13 +46,7 @@ class ChatViewController: UIViewController {
     }
     var timer: Timer?
     
-    var messages = [Message]() {
-        didSet {
-            self.tableView.reloadData()
-            guard messages.count > 0, messages.count != oldValue.count else { return }
-            self.tableView.scrollToRow(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
-        }
-    }
+    var messages = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +110,7 @@ class ChatViewController: UIViewController {
                         default:
                             break
                         }
-                        self.messages.append(msg)
+                        self.updateMessages(with: self.messages + [msg])
                     }
                 }
             }
@@ -159,7 +153,7 @@ class ChatViewController: UIViewController {
         self.service.getMessages(from: reservation) { [weak self] (result) in
             switch result {
             case .success(let data):
-                self?.messages = data
+                self?.updateMessages(with: data)
             case .failure(let error) where notify:
                 self?.messageTextField.resignFirstResponder()
                 self?.notify(error: error)
@@ -167,6 +161,14 @@ class ChatViewController: UIViewController {
                 break
             }
         }
+    }
+    
+    func updateMessages(with newValue: [Message]) {
+        let oldValue = self.messages
+        self.messages = newValue
+        self.tableView.reloadData()
+        guard messages.count > 0, messages.count != oldValue.count else { return }
+        self.tableView.scrollToRow(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
     }
     
     func refresh() {
@@ -237,7 +239,7 @@ class ChatViewController: UIViewController {
         textField.text = ""
         self.service.sendMessage(text, for: reservation) { (result) in
             self.handleResult(result, onError: {_ in textField.resignFirstResponder() }) {
-                self.messages.append($0)
+                self.updateMessages(with: self.messages + [$0])
             }
         }
     }
@@ -291,6 +293,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
                         var message = message
                         message.wasRead = true
                         self.messages[indexPath.item] = message
+                        self.tableView.reloadRows(at: [indexPath], with: .fade)
                     default:
                         break
                     }

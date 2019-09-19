@@ -31,6 +31,7 @@ struct Reservation: Decodable {
         case creditId = "credit_id"
         case address
         case classes
+        case unreadMessages = "unreadedmessage"
         //case guests = "invitados"
     }
 }

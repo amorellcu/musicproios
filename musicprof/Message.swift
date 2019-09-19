@@ -16,7 +16,7 @@ struct Message: Decodable {
     var professorId: Int?
     var text: String
     var date: Date?
-    var wasRead: Bool?
+    fileprivate var readInt: Int?
     
     var source: MessageSource {
         if (clientId != nil || subaccountId != nil) && professorId == nil {
@@ -36,6 +36,7 @@ struct Message: Decodable {
         case professorId = "profesor_id"
         case text = "message"
         case date = "log_date_time"
+        case readInt = "readed"
     }
 }
 
@@ -46,6 +47,20 @@ enum MessageSource: String, Decodable {
 }
 
 extension Message {
+    var wasRead: Bool? {
+        get {
+            guard let readInt = self.readInt else { return nil }
+            return readInt != 0
+        }
+        set {
+            if let value = newValue {
+                self.readInt = value ? 1 : 0
+            } else {
+                self.readInt = nil
+            }
+        }
+    }
+    
     init?(fromJSON json: [String:Any]) {
         guard let id = json[CodingKeys.id.rawValue] as? Int, let text = json[CodingKeys.text.rawValue] as? String else { return nil }
         let classId = json[CodingKeys.classId.rawValue] as? Int
@@ -59,6 +74,6 @@ extension Message {
             dateFormatter.calendar = Calendar.current
             date = dateFormatter.date(from: dateStr)
         }
-        self.init(id: id, classId: classId, clientId: clientId, subaccountId: subaccountId, professorId: professorId, text: text, date: date, wasRead: false)
+        self.init(id: id, classId: classId, clientId: clientId, subaccountId: subaccountId, professorId: professorId, text: text, date: date, readInt: 0)
     }
 }
