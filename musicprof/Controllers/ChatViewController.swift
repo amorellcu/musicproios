@@ -102,14 +102,7 @@ class ChatViewController: UIViewController {
             if let data = data as? [String : AnyObject] {
                 if let msg = Message(fromJSON: data) {
                     DispatchQueue.main.async {
-                        switch msg.source {
-                        case .client where self.service.user is Client:
-                            return
-                        case .professor where self.service.user is Professor:
-                            return
-                        default:
-                            break
-                        }
+                        guard self.isRemoteMessage(msg) else { return }
                         self.updateMessages(with: self.messages + [msg])
                     }
                 }
@@ -117,6 +110,17 @@ class ChatViewController: UIViewController {
         })
         
         self.pusher = pusher
+    }
+    
+    func isRemoteMessage(_ msg: Message) -> Bool {
+        switch msg.source {
+        case .client where self.service.user is Client:
+            return false
+        case .professor where self.service.user is Professor:
+            return false
+        default:
+            return true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -136,9 +140,17 @@ class ChatViewController: UIViewController {
         })
         
         pusher?.connect()
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.messageHandler = self
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.messageHandler = nil
+        }
+        
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
         
@@ -286,22 +298,24 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         case .professor:
             identifier = "professorCell"
             avatarUrl = self.professorAvatar
-            if message.wasRead != true {
-                self.service.notifyMessageRead(message) { result in
-                    switch result {
-                    case .success(_):
-                        var message = message
-                        message.wasRead = true
-                        self.messages[indexPath.item] = message
-                        self.tableView.reloadRows(at: [indexPath], with: .fade)
-                    default:
-                        break
-                    }
-                }
-            }
         default:
             return UITableViewCell()
         }
+        
+        if message.wasRead != true && self.isRemoteMessage(message) {
+            self.service.notifyMessageRead(message) { result in
+                switch result {
+                case .success(_):
+                    var message = message
+                    message.wasRead = true
+                    self.messages[indexPath.item] = message
+                    self.tableView.reloadRows(at: [indexPath], with: .fade)
+                default:
+                    break
+                }
+            }
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier)!
         cell.textLabel?.text = message.text
         self.setAvatar(avatarUrl, for: cell.imageView!)
@@ -330,5 +344,20 @@ extension ChatViewController: PusherDelegate {
     
     func failedToSubscribeToChannel(name: String, response: URLResponse?, data: String?, error: NSError?) {
         print("[PUSHER] Could not subscribe to channel \(name).")
+    }
+}
+
+extension ChatViewController: MessageHandler {
+    func handleMessage(_ message: Message) -> Bool {
+        guard message.classId == self.reservation?.classId else { return false }
+        switch message.source {
+        case .client where self.service.user is Client || self.service.user?.id != message.professorId:
+            return false
+        case .professor where self.service.user is Professor || self.service.user?.id != message.clientId:
+            return false
+        default:
+            break
+        }
+        return true
     }
 }
