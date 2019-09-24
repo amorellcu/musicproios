@@ -305,10 +305,8 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         if message.wasRead != true && self.isRemoteMessage(message) {
             self.service.notifyMessageRead(message) { result in
                 switch result {
-                case .success(_):
-                    var message = message
-                    message.wasRead = true
-                    self.messages[indexPath.item] = message
+                case .success(let newValue):
+                    self.messages[indexPath.item] = newValue
                     self.tableView.reloadRows(at: [indexPath], with: .fade)
                 default:
                     break

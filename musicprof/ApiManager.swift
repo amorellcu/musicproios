@@ -876,13 +876,13 @@ class ApiManager {
         }
     }
     
-    func notifyMessageRead(_ message: Message, handler: @escaping (ApiResult<Void>) -> Void) {
+    func notifyMessageRead(_ message: Message, handler: @escaping (ApiResult<Message>) -> Void) {
         let url = baseUrl.appendingPathComponent("markasreaded")
         let parameters = ["messageId": message.id]
         let _ = self.session
-            .request(url, method: .post, parameters: parameters,
-                     encoding: URLEncoding.httpBody, headers: headers)
-            .responseError(completionHandler: handler)
+            .request(url, method: .get, parameters: parameters,
+                     encoding: URLEncoding.default, headers: headers)
+            .responseDecodable(completionHandler: handler)
     }
 }
 
