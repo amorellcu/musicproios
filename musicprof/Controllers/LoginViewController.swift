@@ -139,7 +139,7 @@ class LoginViewController: UIViewController, LoginController {
             return self.login(withFBToken: accessToken)
         }
         let loginManager = LoginManager()
-        loginManager.loginBehavior = LoginBehavior.web
+        loginManager.loginBehavior = .browser
         loginManager.logIn(readPermissions: [ .publicProfile, .email ], viewController: self) { [weak self] loginResult in
             DispatchQueue.main.async {
                 switch loginResult {
