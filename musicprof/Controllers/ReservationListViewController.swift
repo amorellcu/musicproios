@@ -150,3 +150,15 @@ extension ReservationListViewController: UITableViewDelegate, UITableViewDataSou
     open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {        
     }
 }
+
+extension ReservationListViewController {
+    func updateBadge() {
+        guard let sections = self.sections else { return }
+        var count = 0
+        for section in sections {
+            guard let subCount = section.classes?.countUnreadMessages() else { return }
+            count += subCount
+        }
+        UIApplication.shared.applicationIconBadgeNumber = count
+    }
+}

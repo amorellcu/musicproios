@@ -223,6 +223,7 @@ class LoginViewController: UIViewController, LoginController {
     @IBAction func unwindToLogin(_ segue: UIStoryboardSegue) {
         self.service.signOut()
         try? PushNotifications.shared.clearDeviceInterests()
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

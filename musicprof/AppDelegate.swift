@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Message handled")
                 return
             }
+            UIApplication.shared.applicationIconBadgeNumber += 1
         }
         self.pushNotifications.handleNotification(userInfo: userInfo)
     }

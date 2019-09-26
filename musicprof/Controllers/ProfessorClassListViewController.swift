@@ -15,6 +15,7 @@ class ProfessorClassListViewController: ReservationListViewController {
         didSet {
             self.sections = self.classes?.map { ReservationListViewController.Section(name: nil, classes: [$0]) }
             self.tableView.reloadData()
+            self.updateBadge()
         }
     }
     var selectedClass: Class?
@@ -48,7 +49,7 @@ class ProfessorClassListViewController: ReservationListViewController {
                 } else {
                     self?.selectedClass = nil
                 }
-                self?.classes = values.sorted(by: {$0.date < $1.date})
+                self?.classes = values.lazy.filter({$0.reservations?.count ?? 0 > 0}).sorted(by: {$0.date < $1.date})
             }
         }
     }

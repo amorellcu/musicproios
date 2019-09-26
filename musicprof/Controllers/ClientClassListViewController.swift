@@ -58,6 +58,7 @@ class ClientClassListViewController: ReservationListViewController {
                 let reservations = values.sorted(by: cmpReservations)
                 strongSelf.sections?[0] = Section(student: client, reservations: reservations)
                 strongSelf.tableView.reloadSections(IndexSet([0]), with: .fade)
+                self?.updateBadge()
             }
         }
         for (index, subaccount) in (client.subaccounts ?? []).enumerated() {
@@ -67,6 +68,7 @@ class ClientClassListViewController: ReservationListViewController {
                     let reservations = values.sorted(by: cmpReservations)
                     strongSelf.sections?[index + 1] = Section(student: subaccount, reservations: reservations)
                     strongSelf.tableView.reloadSections(IndexSet([index + 1]), with: .fade)
+                    self?.updateBadge()
                 }
             }
         }
