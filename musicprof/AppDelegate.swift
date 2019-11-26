@@ -46,9 +46,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Message handled")
                 return
             }
-            UIApplication.shared.applicationIconBadgeNumber += 1
         }
-        self.pushNotifications.handleNotification(userInfo: userInfo)
+        guard self.pushNotifications.handleNotification(userInfo: userInfo) == .ShouldProcess else {
+            return completionHandler(.noData)
+        }
+        updateBadge(application) {
+            completionHandler(.newData)
+        }
+    }
+    
+    func updateBadge(_ app: UIApplication, completionHandler: @escaping () -> Void) {
+        guard let user = ApiManager.shared.user else { return completionHandler() }
+        ApiManager.shared.getNextClasses(of: user) { (result) in
+            switch result {
+            case .success(let classes):
+                guard let count = classes.countUnreadMessages() else { return }
+                app.applicationIconBadgeNumber = count
+            default:
+                break
+            }
+            completionHandler()
+        }
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -75,6 +93,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        self.updateBadge(application) {
+            
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

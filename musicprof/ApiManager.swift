@@ -460,6 +460,17 @@ class ApiManager {
         }
     }
     
+    func getNextClasses(of user: User, handler: @escaping (ApiResult<[Class]>) -> Void) {
+        switch user {
+        case let client as Client:
+            getNextClasses(of: client, type: .account, handler: handler)
+        case let professor as Professor:
+            getNextClasses(of: professor, handler: handler)
+        default:
+            handler(.failure(error: AppError.unexpected))
+        }
+    }
+    
     func getNextClasses(of client: Student, type: StudentType, handler: @escaping (ApiResult<[Class]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getNextClasses")
         let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue]
