@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U8s-Q1-gfC">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U8s-Q1-gfC">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -97,7 +95,6 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="52" id="dBc-XA-xx6"/>
                                                                 </constraints>
-                                                                <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="15"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -118,7 +115,6 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="52" id="rVS-uF-9yY"/>
                                                                 </constraints>
-                                                                <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="15"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -1050,7 +1046,7 @@
                                                     <inset key="sectionInset" minX="75" minY="20" maxX="75" maxY="20"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="instrumentCell" id="6w6-0k-FSt" customClass="InstrumentCell" customModule="musicprof" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="instrumentCell" id="6w6-0k-FSt" customClass="InstrumentCell" customModule="musicprof" customModuleProvider="target">
                                                         <rect key="frame" x="75" y="20" width="60" height="60"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1058,7 +1054,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJb-Er-JwE">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1067,10 +1063,10 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ld2-IM-JPy">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                 </imageView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0si-zQ-uJg" userLabel="Border">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -1396,7 +1392,7 @@
         <!--Navigation Controller-->
         <scene sceneID="PVH-CE-1Tj">
             <objects>
-                <navigationController id="eme-28-BRA" sceneMemberID="viewController">
+                <navigationController modalPresentationStyle="fullScreen" id="eme-28-BRA" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="6Mh-vo-h9T"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GfQ-bB-g4W">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

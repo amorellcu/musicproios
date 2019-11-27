@@ -18,20 +18,33 @@ class SubaccountSelectionViewController: BaseReservationViewController {
 
         self.elements = self.service.currentClient?.subaccounts ?? []
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selection = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: selection, animated: false)
+        }
+    }
 }
 
 extension SubaccountSelectionViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.elements.count
+        return self.elements.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.row < self.elements.count else {
+            return tableView.dequeueReusableCell(withIdentifier: "otherCell", for: indexPath)
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "studentCell")!
         cell.textLabel?.text = self.elements[indexPath.item].name
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.row < self.elements.count else {
+            return self.performSegue(withIdentifier: "includeStudent", sender: tableView)
+        }
         self.reservation.studentId = self.elements[indexPath.item].id
         self.reservation.studentType = .subaccount
         self.performSegue(withIdentifier: "selectInstrument", sender: tableView)
