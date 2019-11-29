@@ -30,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.pushNotifications.start(instanceId: "be4fd2f6-aeb2-4b70-84a7-caa9b325cb40")
         self.pushNotifications.registerForRemoteNotifications()
+        
+        if launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] != nil {
+            print("Opened from notification")
+        }
 
         BTAppSwitch.setReturnURLScheme(PAYMENT_SCHEME)
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -48,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         guard self.pushNotifications.handleNotification(userInfo: userInfo) == .ShouldProcess else {
+            print("Internal message")
             return completionHandler(.noData)
         }
         application.updateBadge {
