@@ -41,31 +41,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("[NOTIFICATION] \(userInfo)")
-        if let data = userInfo["data"] as? [String : AnyObject], let msg = Message(fromJSON: data) {
+        if let data = userInfo["message"] as? [String : AnyObject], let msg = Message(fromJSON: data) {
             if application.applicationState == .active, let handler = self.messageHandler, handler.handleMessage(msg) {
                 print("Message handled")
-                return
+                return completionHandler(.noData)
             }
         }
         guard self.pushNotifications.handleNotification(userInfo: userInfo) == .ShouldProcess else {
             return completionHandler(.noData)
         }
-        updateBadge(application) {
+        application.updateBadge {
             completionHandler(.newData)
-        }
-    }
-    
-    func updateBadge(_ app: UIApplication, completionHandler: @escaping () -> Void) {
-        guard let user = ApiManager.shared.user else { return completionHandler() }
-        ApiManager.shared.getNextClasses(of: user) { (result) in
-            switch result {
-            case .success(let classes):
-                guard let count = classes.countUnreadMessages() else { return }
-                app.applicationIconBadgeNumber = count
-            default:
-                break
-            }
-            completionHandler()
         }
     }
     
@@ -93,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        self.updateBadge(application) {
+        application.updateBadge {
             
         }
     }
@@ -109,3 +95,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension UIApplication {
+    func updateBadge(completionHandler: @escaping () -> Void) {
+        guard let user = ApiManager.shared.user else { return completionHandler() }
+        ApiManager.shared.getNextClasses(of: user) { (result) in
+            switch result {
+            case .success(let classes):
+                guard let count = classes.countUnreadMessages() else { return }
+                self.applicationIconBadgeNumber = count
+            default:
+                break
+            }
+            completionHandler()
+        }
+    }
+}

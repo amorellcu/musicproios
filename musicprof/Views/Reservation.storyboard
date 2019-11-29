@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3Gh-UA-qbH">
-    <device id="retina6_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3Gh-UA-qbH">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="FilsonProBoldItalic-Italic.otf">
             <string>FilsonProBoldItalic-Italic</string>
-        </array>
-        <array key="FilsonProHeavy-Heavy.otf">
-            <string>FilsonProHeavy-Heavy</string>
         </array>
         <array key="FilsonProHeavyItalic-Italic.otf">
             <string>FilsonProHeavyItalic-Italic</string>
@@ -268,16 +263,16 @@
         <!--Title-->
         <scene sceneID="vdS-wK-EiV">
             <objects>
-                <viewController id="Ef7-Kh-Cse" customClass="InstrumentSelectionViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ef7-Kh-Cse" customClass="AddStudentsViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9ou-kd-5qe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24v-eu-VFn">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8mD-mY-aaz" userLabel="Sections">
-                                        <rect key="frame" x="0.0" y="10" width="414" height="372"/>
+                                        <rect key="frame" x="0.0" y="10" width="414" height="144"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2db-YK-OSZ" userLabel="Instruments" customClass="SectionHeader" customModule="musicprof" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
@@ -286,117 +281,57 @@
                                                     <constraint firstAttribute="height" constant="52" id="ptv-sE-CNE"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="SELECCIONA TU INSTRUMENTO"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="NUEVO INVITADO"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="container" destination="8mD-mY-aaz" id="Xoy-CG-kuS"/>
-                                                    <outlet property="contentConstraint" destination="qza-7K-QeB" id="LaN-fB-CCI"/>
                                                 </connections>
                                             </view>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="evF-xw-e0h">
-                                                <rect key="frame" x="0.0" y="52" width="414" height="50"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qeR-U3-lbE">
+                                                <rect key="frame" x="0.0" y="52" width="414" height="92"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="VGH-DP-ZFo">
+                                                        <rect key="frame" x="20" y="20" width="374" height="52"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Nombre completo" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rpz-pF-zIi">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="52"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="52" id="IzO-Up-n1B"/>
+                                                                </constraints>
+                                                                <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="26"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                                        <color key="value" red="0.49910801649999997" green="0.49950486420000001" blue="0.49916946890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="750" id="qza-7K-QeB"/>
+                                                    <constraint firstAttribute="trailing" secondItem="VGH-DP-ZFo" secondAttribute="trailing" constant="20" id="UaW-7c-b5d"/>
+                                                    <constraint firstItem="VGH-DP-ZFo" firstAttribute="leading" secondItem="qeR-U3-lbE" secondAttribute="leading" constant="20" id="nmA-xa-8WA"/>
+                                                    <constraint firstAttribute="bottom" secondItem="VGH-DP-ZFo" secondAttribute="bottom" constant="20" id="scH-cr-unt"/>
+                                                    <constraint firstItem="VGH-DP-ZFo" firstAttribute="top" secondItem="qeR-U3-lbE" secondAttribute="top" constant="20" id="vX1-36-Q9S"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="me0-ob-KCZ">
-                                                    <size key="itemSize" width="60" height="60"/>
-                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="75" minY="20" maxX="75" maxY="20"/>
-                                                </collectionViewFlowLayout>
-                                                <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="instrumentCell" id="2Ab-sa-oeP" customClass="InstrumentCell" customModule="musicprof" customModuleProvider="target">
-                                                        <rect key="frame" x="75" y="20" width="60" height="60"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wh8-kb-IW0">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="30"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </view>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ASB-Ei-fdG">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
-                                                                </imageView>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kaj-Yh-dQm" userLabel="Border">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="10"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                            <real key="value" value="3"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                            <color key="value" red="0.0" green="0.99607843139999996" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="30"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </view>
-                                                            </subviews>
-                                                        </view>
-                                                        <color key="tintColor" red="0.0" green="0.99607843139999996" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="Kaj-Yh-dQm" secondAttribute="bottom" id="5u9-Py-HPm"/>
-                                                            <constraint firstItem="Kaj-Yh-dQm" firstAttribute="top" secondItem="2Ab-sa-oeP" secondAttribute="top" id="Dua-bd-czb"/>
-                                                            <constraint firstItem="wh8-kb-IW0" firstAttribute="top" secondItem="2Ab-sa-oeP" secondAttribute="top" id="EGs-yb-EjL"/>
-                                                            <constraint firstItem="ASB-Ei-fdG" firstAttribute="leading" secondItem="2Ab-sa-oeP" secondAttribute="leading" id="Ofo-Am-vO5"/>
-                                                            <constraint firstAttribute="trailing" secondItem="wh8-kb-IW0" secondAttribute="trailing" id="Yrx-ph-CTu"/>
-                                                            <constraint firstItem="Kaj-Yh-dQm" firstAttribute="leading" secondItem="2Ab-sa-oeP" secondAttribute="leading" id="YsY-iL-PRd"/>
-                                                            <constraint firstAttribute="bottom" secondItem="wh8-kb-IW0" secondAttribute="bottom" id="aE7-Jf-SPd"/>
-                                                            <constraint firstAttribute="bottom" secondItem="ASB-Ei-fdG" secondAttribute="bottom" id="btS-Cl-1DJ"/>
-                                                            <constraint firstAttribute="trailing" secondItem="ASB-Ei-fdG" secondAttribute="trailing" id="ffe-yS-Ei0"/>
-                                                            <constraint firstItem="wh8-kb-IW0" firstAttribute="leading" secondItem="2Ab-sa-oeP" secondAttribute="leading" id="fvb-dr-h13"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Kaj-Yh-dQm" secondAttribute="trailing" id="j39-K5-Ssd"/>
-                                                            <constraint firstItem="ASB-Ei-fdG" firstAttribute="top" secondItem="2Ab-sa-oeP" secondAttribute="top" id="va4-JQ-HnL"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <outlet property="backView" destination="wh8-kb-IW0" id="KQC-v5-NNa"/>
-                                                            <outlet property="iconImageView" destination="ASB-Ei-fdG" id="LzU-Zl-XtK"/>
-                                                        </connections>
-                                                    </collectionViewCell>
-                                                </cells>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="Ef7-Kh-Cse" id="Coq-KM-RgH"/>
-                                                    <outlet property="delegate" destination="Ef7-Kh-Cse" id="GVZ-Xf-3Jf"/>
-                                                </connections>
-                                            </collectionView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEm-hP-dD2" userLabel="Students" customClass="SectionHeader" customModule="musicprof" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="102" width="414" height="52"/>
-                                                <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="52" id="iU9-E8-xz0"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="INCLUIR OTROS INVITADOS"/>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="container" destination="8mD-mY-aaz" id="E8L-rh-pUl"/>
-                                                    <outlet property="contentConstraint" destination="m09-06-PL1" id="PeF-u8-e3a"/>
-                                                </connections>
                                             </view>
-                                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Bb-VW-QS9">
-                                                <rect key="frame" x="0.0" y="154" width="414" height="218"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" priority="750" id="m09-06-PL1"/>
-                                                </constraints>
-                                                <connections>
-                                                    <segue destination="4pG-t3-dWD" kind="embed" id="L9i-UL-AWe"/>
-                                                </connections>
-                                            </containerView>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYr-qu-71H" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="766" width="414" height="52"/>
+                                        <rect key="frame" x="0.0" y="756" width="414" height="52"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="gPO-27-peN"/>
@@ -406,7 +341,7 @@
                                             <color key="titleColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="wUw-PP-Ozm" kind="show" identifier="selectDate" id="kKG-3u-9h8"/>
+                                            <segue destination="3MN-0P-6xn" kind="show" identifier="selectDate" id="yvR-1r-ZOf"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -416,7 +351,7 @@
                                     <constraint firstItem="ZYr-qu-71H" firstAttribute="leading" secondItem="24v-eu-VFn" secondAttribute="leading" id="KQG-Pg-yv5"/>
                                     <constraint firstItem="8mD-mY-aaz" firstAttribute="top" secondItem="24v-eu-VFn" secondAttribute="top" constant="10" id="L8m-4s-vX8"/>
                                     <constraint firstAttribute="bottom" secondItem="ZYr-qu-71H" secondAttribute="bottom" id="PVh-fw-bqu"/>
-                                    <constraint firstItem="ZYr-qu-71H" firstAttribute="top" secondItem="8mD-mY-aaz" secondAttribute="bottom" priority="500" constant="20" id="jbK-V7-geI"/>
+                                    <constraint firstItem="ZYr-qu-71H" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8mD-mY-aaz" secondAttribute="bottom" constant="20" id="jbK-V7-geI"/>
                                     <constraint firstAttribute="trailing" secondItem="ZYr-qu-71H" secondAttribute="trailing" id="omK-CA-OBO"/>
                                     <constraint firstItem="8mD-mY-aaz" firstAttribute="leading" secondItem="24v-eu-VFn" secondAttribute="leading" id="rUV-hi-zqV"/>
                                 </constraints>
@@ -433,172 +368,24 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="odp-GJ-K3B"/>
                     <connections>
-                        <outlet property="collectionView" destination="evF-xw-e0h" id="Lng-mU-91A"/>
-                        <outlet property="continueButton" destination="ZYr-qu-71H" id="R5o-rJ-d7v"/>
-                        <outlet property="studentsView" destination="5Bb-VW-QS9" id="9Wc-jy-wZP"/>
+                        <outlet property="continueButton" destination="ZYr-qu-71H" id="hFU-Uf-yCl"/>
+                        <outlet property="studentNameTextField" destination="Rpz-pF-zIi" id="S7O-v0-Bzu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVH-wv-cRO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1943" y="-450"/>
-        </scene>
-        <!--Add Students View Controller-->
-        <scene sceneID="biG-ue-Cm4">
-            <objects>
-                <viewController storyboardIdentifier="instruments" id="4pG-t3-dWD" customClass="AddStudentsViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QrG-1y-XnR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUD-xy-8Wd">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Nombre completo" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mK0-fR-PtW">
-                                        <rect key="frame" x="31" y="20" width="352" height="52"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="52" id="ARO-Nd-VS0"/>
-                                        </constraints>
-                                        <color key="textColor" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.0017778807089999999" green="0.99691969160000005" blue="0.70217955109999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="26"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                <color key="value" red="0.49910801649999997" green="0.49950486420000001" blue="0.49916946890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQx-Qv-u92">
-                                        <rect key="frame" x="31" y="82" width="352" height="52"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="52" id="ooE-2p-DJi"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="FilsonProHeavy-Heavy" family="FilsonProHeavy" pointSize="20"/>
-                                        <state key="normal" title="+">
-                                            <color key="titleColor" red="0.49803921568627452" green="0.49803921568627452" blue="0.49803921568627452" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.49910801649999997" green="0.49950486420000001" blue="0.49916946890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="26"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="onAddStudentTapped:" destination="4pG-t3-dWD" eventType="touchUpInside" id="SdZ-Pi-zw7"/>
-                                        </connections>
-                                    </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xYf-m9-4XG">
-                                        <rect key="frame" x="31" y="144" width="352" height="456"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="studentCell" id="fn9-Gq-4uf" customClass="StudentCell" customModule="musicprof" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="352" height="50"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fn9-Gq-4uf" id="qbh-OM-g88">
-                                                    <rect key="frame" x="0.0" y="0.0" width="352" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubi-gZ-GxT">
-                                                            <rect key="frame" x="20" y="11" width="292" height="28"/>
-                                                            <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
-                                                            <color key="textColor" red="1" green="0.82352941176470584" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVq-vN-GVE">
-                                                            <rect key="frame" x="312" y="0.0" width="40" height="50"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="40" id="sww-H4-yLN"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="FilsonProHeavy-Heavy" family="FilsonProHeavy" pointSize="18"/>
-                                                            <state key="normal" title="X">
-                                                                <color key="titleColor" red="0.92549019607843142" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="onRemoveTapped:" destination="fn9-Gq-4uf" eventType="touchUpInside" id="CzX-Et-TS3"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="ubi-gZ-GxT" secondAttribute="bottom" id="MyN-6W-5t3"/>
-                                                        <constraint firstItem="LVq-vN-GVE" firstAttribute="top" secondItem="qbh-OM-g88" secondAttribute="top" id="X55-ME-Ayw"/>
-                                                        <constraint firstAttribute="trailing" secondItem="LVq-vN-GVE" secondAttribute="trailing" id="coG-E7-RfI"/>
-                                                        <constraint firstAttribute="bottom" secondItem="LVq-vN-GVE" secondAttribute="bottom" id="ey0-VG-FyV"/>
-                                                        <constraint firstItem="ubi-gZ-GxT" firstAttribute="top" secondItem="qbh-OM-g88" secondAttribute="topMargin" id="i63-bE-WQl"/>
-                                                        <constraint firstItem="ubi-gZ-GxT" firstAttribute="leading" secondItem="qbh-OM-g88" secondAttribute="leadingMargin" id="wjT-IQ-MZf"/>
-                                                        <constraint firstItem="LVq-vN-GVE" firstAttribute="leading" secondItem="ubi-gZ-GxT" secondAttribute="trailing" id="yqr-6U-ped"/>
-                                                    </constraints>
-                                                </tableViewCellContentView>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <connections>
-                                                    <outlet property="nameLabel" destination="ubi-gZ-GxT" id="j8K-fB-Fox"/>
-                                                    <outlet property="removeButton" destination="LVq-vN-GVE" id="mvN-bC-eHa"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="4pG-t3-dWD" id="fjT-4G-uqK"/>
-                                            <outlet property="delegate" destination="4pG-t3-dWD" id="dAC-BJ-GJu"/>
-                                        </connections>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="mK0-fR-PtW" firstAttribute="leading" secondItem="IUD-xy-8Wd" secondAttribute="leading" constant="31" id="8P9-DX-D97"/>
-                                    <constraint firstItem="mK0-fR-PtW" firstAttribute="top" secondItem="IUD-xy-8Wd" secondAttribute="top" constant="20" id="EIl-Fi-Zbn"/>
-                                    <constraint firstAttribute="trailing" secondItem="mK0-fR-PtW" secondAttribute="trailing" constant="31" id="H8O-wD-nlh"/>
-                                    <constraint firstItem="cQx-Qv-u92" firstAttribute="top" secondItem="mK0-fR-PtW" secondAttribute="bottom" constant="10" id="KWA-id-AKB"/>
-                                    <constraint firstAttribute="trailing" secondItem="cQx-Qv-u92" secondAttribute="trailing" constant="31" id="PSO-Um-3Oq"/>
-                                    <constraint firstItem="xYf-m9-4XG" firstAttribute="top" secondItem="cQx-Qv-u92" secondAttribute="bottom" constant="10" id="gRa-RJ-vBp"/>
-                                    <constraint firstItem="xYf-m9-4XG" firstAttribute="leading" secondItem="cQx-Qv-u92" secondAttribute="leading" id="jxh-DP-nRr"/>
-                                    <constraint firstItem="cQx-Qv-u92" firstAttribute="leading" secondItem="IUD-xy-8Wd" secondAttribute="leading" constant="31" id="oOy-Hx-hco"/>
-                                    <constraint firstAttribute="bottom" secondItem="xYf-m9-4XG" secondAttribute="bottom" id="q6B-tP-WBl"/>
-                                    <constraint firstItem="xYf-m9-4XG" firstAttribute="trailing" secondItem="cQx-Qv-u92" secondAttribute="trailing" id="qb5-yP-S22"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="IUD-xy-8Wd" secondAttribute="bottom" id="MT8-75-w2z"/>
-                            <constraint firstItem="IUD-xy-8Wd" firstAttribute="top" secondItem="QrG-1y-XnR" secondAttribute="top" id="Nfc-NL-hue"/>
-                            <constraint firstItem="IUD-xy-8Wd" firstAttribute="leading" secondItem="5cJ-y7-ahF" secondAttribute="leading" id="X1I-uo-dIs"/>
-                            <constraint firstItem="IUD-xy-8Wd" firstAttribute="trailing" secondItem="5cJ-y7-ahF" secondAttribute="trailing" id="eMc-IJ-ILu"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="5cJ-y7-ahF"/>
-                    </view>
-                    <size key="freeformSize" width="414" height="600"/>
-                    <connections>
-                        <outlet property="addStudentButton" destination="cQx-Qv-u92" id="tl8-Mk-gap"/>
-                        <outlet property="studentNameTextField" destination="mK0-fR-PtW" id="JGI-Ru-0HS"/>
-                        <outlet property="tableView" destination="xYf-m9-4XG" id="lGk-QY-EOi"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JXx-3v-qiB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1943" y="216"/>
+            <point key="canvasLocation" x="990" y="372"/>
         </scene>
         <!--Ib Calendar Data Source-->
         <scene sceneID="0FZ-XJ-qRV">
             <objects>
                 <viewController storyboardIdentifier="UserCalendar" id="wUw-PP-Ozm" customClass="CalendarViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LyP-0Q-d0O">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nae-tf-Xeu">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TRP-0g-2Ad" userLabel="Header">
                                         <rect key="frame" x="0.0" y="10" width="414" height="52"/>
@@ -642,7 +429,7 @@
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PCx-gV-CYS" userLabel="Calendar">
-                                        <rect key="frame" x="25" y="72" width="364" height="648"/>
+                                        <rect key="frame" x="25" y="72" width="364" height="638"/>
                                         <subviews>
                                             <view opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G2o-xx-bLE">
                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="52"/>
@@ -651,49 +438,49 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="364" height="52"/>
                                                         <subviews>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haT-fy-LW9">
-                                                                <rect key="frame" x="0.0" y="17.333333333333343" width="52" height="17.666666666666671"/>
+                                                                <rect key="frame" x="0.0" y="17.333333333333329" width="52" height="17.666666666666671"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="17"/>
                                                                 <color key="textColor" red="0.49910801649999997" green="0.49950486420000001" blue="0.49916946890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tou-J2-leg">
-                                                                <rect key="frame" x="52" y="17.333333333333343" width="52" height="17.666666666666671"/>
+                                                                <rect key="frame" x="52" y="17.333333333333329" width="52" height="17.666666666666671"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="17"/>
                                                                 <color key="textColor" red="0.49910801649999997" green="0.49950486420000001" blue="0.49916946890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eE-RV-Xjf">
-                                                                <rect key="frame" x="104" y="17.333333333333343" width="52" height="17.666666666666671"/>
+                                                                <rect key="frame" x="104" y="17.333333333333329" width="52" height="17.666666666666671"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="17"/>
                                                                 <color key="textColor" red="0.49910801649999997" green="0.49950486420000001" blue="0.49916946890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1Y-lr-vNT">
-                                                                <rect key="frame" x="156" y="17.333333333333343" width="52" height="17.666666666666671"/>
+                                                                <rect key="frame" x="156" y="17.333333333333329" width="52" height="17.666666666666671"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="17"/>
                                                                 <color key="textColor" red="0.49910801649999997" green="0.49950486420000001" blue="0.49916946890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="J" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfX-vn-hfj">
-                                                                <rect key="frame" x="208" y="17.333333333333343" width="52" height="17.666666666666671"/>
+                                                                <rect key="frame" x="208" y="17.333333333333329" width="52" height="17.666666666666671"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="17"/>
                                                                 <color key="textColor" red="0.49910801649999997" green="0.49950486420000001" blue="0.49916946890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Rd-z3-toM">
-                                                                <rect key="frame" x="260" y="17.333333333333343" width="52" height="17.666666666666671"/>
+                                                                <rect key="frame" x="260" y="17.333333333333329" width="52" height="17.666666666666671"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="17"/>
                                                                 <color key="textColor" red="0.49910801649999997" green="0.49950486420000001" blue="0.49916946890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoO-1W-XVj">
-                                                                <rect key="frame" x="312" y="17.333333333333343" width="52" height="17.666666666666671"/>
+                                                                <rect key="frame" x="312" y="17.333333333333329" width="52" height="17.666666666666671"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="FilsonProBoldItalic-Italic" family="FilsonProBold-Italic" pointSize="17"/>
                                                                 <color key="textColor" red="0.49910801649999997" green="0.49950486420000001" blue="0.49916946890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -719,7 +506,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OWK-MS-DAR" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                                <rect key="frame" x="0.0" y="62" width="364" height="546"/>
+                                                <rect key="frame" x="0.0" y="62" width="364" height="536"/>
                                                 <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0AL-Nb-qMR">
                                                     <size key="itemSize" width="55" height="61"/>
@@ -735,7 +522,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="55" height="61"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KZO-9l-FJT">
+                                                                <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KZO-9l-FJT">
                                                                     <rect key="frame" x="12.666666666666664" y="15.666666666666664" width="30" height="30"/>
                                                                     <color key="backgroundColor" red="0.99904125929999998" green="0.88837879900000005" blue="0.12521538139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
@@ -751,7 +538,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LZ-gV-kVn">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LZ-gV-kVn">
                                                                     <rect key="frame" x="11.666666666666664" y="14.666666666666664" width="32" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="32" id="qKd-SU-Mem"/>
@@ -806,7 +593,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVs-j3-jhL" userLabel="Controls Background">
-                                        <rect key="frame" x="50" y="694" width="314" height="52"/>
+                                        <rect key="frame" x="50" y="684" width="314" height="52"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HF1-vN-ZiY" userLabel="Controls">
                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="52"/>
@@ -865,7 +652,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwm-P3-umE" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="766" width="414" height="52"/>
+                                        <rect key="frame" x="0.0" y="756" width="414" height="52"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="9E5-pN-7Ig"/>
@@ -906,6 +693,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rur-Gq-bJ1"/>
                     </view>
+                    <navigationItem key="navigationItem" id="qat-V4-lRX"/>
                     <connections>
                         <outlet property="calendarView" destination="OWK-MS-DAR" id="Ku4-Su-xYf"/>
                         <outlet property="daysView" destination="G2o-xx-bLE" id="vWf-va-8xa"/>
@@ -1071,11 +859,11 @@
             <objects>
                 <viewController id="6I3-RY-QmC" customClass="ProfessorDetailsViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RRe-Em-m5Z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AC7-du-aY7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profedetails" translatesAutoresizingMaskIntoConstraints="NO" id="Mww-iV-scQ">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="189"/>
@@ -1102,7 +890,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="45K-D8-0Vu">
-                                        <rect key="frame" x="0.0" y="234" width="414" height="460"/>
+                                        <rect key="frame" x="0.0" y="234" width="414" height="450"/>
                                         <color key="backgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="sectionIndexBackgroundColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
@@ -1156,14 +944,14 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" textLabel="wjF-il-pUi" style="IBUITableViewCellStyleDefault" id="zSv-UM-CFh">
-                                                <rect key="frame" x="0.0" y="80" width="414" height="44"/>
+                                                <rect key="frame" x="0.0" y="80" width="414" height="47"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zSv-UM-CFh" id="LRA-iL-VMM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="47"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wjF-il-pUi">
-                                                            <rect key="frame" x="20" y="0.0" width="374" height="44"/>
+                                                            <rect key="frame" x="20" y="0.0" width="374" height="47"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1182,7 +970,7 @@
                                         </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoO-Ct-X6r" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="714" width="414" height="52"/>
+                                        <rect key="frame" x="0.0" y="704" width="414" height="52"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="jlQ-6e-gLd"/>
@@ -1196,7 +984,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yzh-ss-tGI" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="766" width="414" height="52"/>
+                                        <rect key="frame" x="0.0" y="756" width="414.00000000000023" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="GaT-qr-chc"/>
                                         </constraints>
@@ -1238,6 +1026,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fUx-Dy-LD9"/>
                     </view>
+                    <navigationItem key="navigationItem" id="8Zw-ie-M1N"/>
                     <connections>
                         <outlet property="avatarImageView" destination="Mww-iV-scQ" id="bqo-R5-2DN"/>
                         <outlet property="confirmButton" destination="Yzh-ss-tGI" id="gpZ-br-otj"/>
@@ -1258,11 +1047,11 @@
             <objects>
                 <viewController storyboardIdentifier="ScheduleProfesorViewController" id="MEE-me-vqz" customClass="ScheduleProfesorViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vFl-BZ-FZ4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kix-0h-leP">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cuf-H7-HLk" userLabel="Header">
                                         <rect key="frame" x="0.0" y="10" width="414" height="52"/>
@@ -1331,7 +1120,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PUP-sZ-NyC">
-                                        <rect key="frame" x="0.0" y="134" width="414" height="698"/>
+                                        <rect key="frame" x="0.0" y="134" width="414" height="688"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewLayout key="collectionViewLayout" id="9vB-KJ-k5R" customClass="ScheduleLayout" customModule="musicprof" customModuleProvider="target"/>
                                         <cells>
@@ -1434,6 +1223,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YIE-K2-pYy"/>
                     </view>
+                    <navigationItem key="navigationItem" id="tpR-Qb-Atq"/>
                     <connections>
                         <outlet property="collectionView" destination="PUP-sZ-NyC" id="a9Q-nG-l8a"/>
                         <outlet property="dateLabel" destination="XV8-iZ-BPM" id="upL-Xr-pFw"/>
@@ -1449,11 +1239,11 @@
             <objects>
                 <viewController id="nZB-OL-DDe" customClass="SubaccountSelectionViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7iK-Wf-vtJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IfC-Ri-hRO">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3y-KJ-QaK" userLabel="Header">
                                         <rect key="frame" x="0.0" y="10" width="414" height="52"/>
@@ -1497,18 +1287,37 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gmH-dD-Clv">
-                                        <rect key="frame" x="31" y="72" width="352" height="760"/>
+                                        <rect key="frame" x="31" y="72" width="352" height="750"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="studentCell" textLabel="qze-Mk-MR7" style="IBUITableViewCellStyleDefault" id="Ua0-tb-C0v">
-                                                <rect key="frame" x="0.0" y="28" width="352" height="44"/>
+                                                <rect key="frame" x="0.0" y="28" width="352" height="48"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ua0-tb-C0v" id="GYw-go-QRU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="352" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="352" height="48"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Account Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qze-Mk-MR7">
-                                                            <rect key="frame" x="20" y="0.0" width="312" height="44"/>
+                                                            <rect key="frame" x="20" y="0.0" width="312" height="48"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
+                                                            <color key="textColor" red="1" green="0.82352941180000006" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="otherCell" textLabel="Lh1-JN-8ba" style="IBUITableViewCellStyleDefault" id="KBc-dy-dQx">
+                                                <rect key="frame" x="0.0" y="76" width="352" height="48"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KBc-dy-dQx" id="qs1-ee-pAG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="352" height="48"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Otro estudiante" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lh1-JN-8ba">
+                                                            <rect key="frame" x="20" y="0.0" width="312" height="48"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
                                                             <color key="textColor" red="1" green="0.82352941180000006" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1549,7 +1358,8 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="gmH-dD-Clv" id="0JZ-tG-28g"/>
-                        <segue destination="Ef7-Kh-Cse" kind="show" identifier="selectInstrument" id="Ewv-3i-HRL"/>
+                        <segue destination="Ef7-Kh-Cse" kind="show" identifier="includeStudent" id="Ewv-3i-HRL"/>
+                        <segue destination="3MN-0P-6xn" kind="show" identifier="selectInstrument" id="zQg-SZ-pZk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74y-kf-mkG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1561,14 +1371,14 @@
             <objects>
                 <viewController id="3MN-0P-6xn" customClass="InstrumentSelectionViewController" customModule="musicprof" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nWq-UG-Qcz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9L-S5-f12">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IHc-qd-rYx" userLabel="Fields">
-                                        <rect key="frame" x="0.0" y="10" width="414" height="736"/>
+                                        <rect key="frame" x="0.0" y="10" width="414" height="726"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q0u-Gr-Y7a" userLabel="Instruments">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
@@ -1608,7 +1418,7 @@
                                                 </constraints>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HKp-uR-uai">
-                                                <rect key="frame" x="0.0" y="52" width="414" height="684"/>
+                                                <rect key="frame" x="0.0" y="52" width="414" height="674"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Mb1-Ae-MYO">
                                                     <size key="itemSize" width="60" height="60"/>
@@ -1617,7 +1427,7 @@
                                                     <inset key="sectionInset" minX="75" minY="20" maxX="75" maxY="20"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="instrumentCell" id="NBA-G0-dl5" customClass="InstrumentCell" customModule="musicprof" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="instrumentCell" id="NBA-G0-dl5" customClass="InstrumentCell" customModule="musicprof" customModuleProvider="target">
                                                         <rect key="frame" x="75" y="20" width="60" height="60"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1625,7 +1435,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pFs-2C-zmg">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1634,10 +1444,10 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vOr-fb-6Xf">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                 </imageView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pO2-3h-jyj" userLabel="Border">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -1682,7 +1492,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aza-fn-L8E" customClass="TransparentButton" customModule="musicprof" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="766" width="414" height="52"/>
+                                        <rect key="frame" x="0.0" y="756" width="414" height="52"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="auE-ND-ynp"/>
@@ -1737,6 +1547,6 @@
         <image name="profedetails" width="848" height="446"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kKG-3u-9h8"/>
+        <segue reference="yvR-1r-ZOf"/>
     </inferredMetricsTieBreakers>
 </document>

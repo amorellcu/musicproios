@@ -47,6 +47,7 @@ class ChatViewController: UIViewController {
     var timer: Timer?
     
     var messages = [Message]()
+    var connection: ConnectionState = .disconnected
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,6 +159,8 @@ class ChatViewController: UIViewController {
         
         self.timer?.invalidate()
         self.timer = nil
+        
+        UIApplication.shared.updateBadge {}
     }
     
     private func updateMessages(notify: Bool = false) {
@@ -330,6 +333,7 @@ extension ChatViewController: UITextFieldDelegate {
 
 extension ChatViewController: PusherDelegate {
     func changedConnectionState(from old: ConnectionState, to new: ConnectionState) {
+        self.connection = new
     }
     
     func debugLog(message: String) {
@@ -355,6 +359,9 @@ extension ChatViewController: MessageHandler {
             return false
         default:
             break
+        }
+        if self.connection != .connected {
+            self.updateMessages()
         }
         return true
     }

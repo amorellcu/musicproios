@@ -11,22 +11,9 @@ import SCLAlertView
 
 class AddStudentsViewController: BaseReservationViewController {
     weak var parentController: ReservationController!
-    override var reservation: ReservationRequest! {
-        get { return parentController.reservation }
-        set { parentController.reservation = newValue }
-    }
     
-    let prototypeCellIdentifier = "studentCell"
-    var studentNames = [String]() {
-        didSet {
-            self.reservation.studentNames = self.studentNames
-            self.tableView.reloadData()
-        }
-    }
-    
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var studentNameTextField: UITextField!
-    @IBOutlet weak var addStudentButton: UIButton!
+    @IBOutlet weak var continueButton: TransparentButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()        
@@ -38,8 +25,9 @@ class AddStudentsViewController: BaseReservationViewController {
         view.addGestureRecognizer(tap)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.studentNameTextField.becomeFirstResponder()
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,50 +35,28 @@ class AddStudentsViewController: BaseReservationViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
-    @IBAction func onAddStudentTapped(_ sender: Any) {
-        guard let name = self.studentNameTextField.text, !name.isEmpty else {
-            return
-        }
-        self.studentNames.append(name)
-        self.studentNameTextField.text = ""
-        self.addStudentButton.isEnabled = false
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.reservation.studentNames = [studentNameTextField.text ?? ""]
+        self.reservation.locationId = self.service.currentClient?.locationId
+        super.prepare(for: segue, sender: sender)
     }
 }
 
 extension AddStudentsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.studentNameTextField.resignFirstResponder()
+        if !(textField.text ?? "").isEmpty {
+            self.performSegue(withIdentifier: "selectDate", sender: textField)
+        }
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.addStudentButton.isEnabled = !(textField.text ?? "").isEmpty
-    }
-}
-
-extension AddStudentsViewController: StudentCellDelegate {
-    func studentCell(_ cell: StudentCell, removeFrom path: IndexPath) {
-        self.studentNames.remove(at: path.row)
-    }
-    
-}
-
-extension AddStudentsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.studentNames.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.prototypeCellIdentifier) as! StudentCell
-        cell.nameLabel.text = self.studentNames[indexPath.row]
-        cell.indexPath = indexPath
-        cell.delegate = self
-        return cell
+        self.continueButton.isEnabled = !(textField.text ?? "").isEmpty
     }
 }
 
