@@ -54,7 +54,7 @@ PODS:
     - FBSDKCoreKit
   - JTAppleCalendar (7.1.7)
   - M13Checkbox (3.4.0)
-  - PusherSwift (7.0.0):
+  - PusherSwift (7.2.0):
     - CryptoSwift (~> 0.9)
     - ReachabilitySwift (= 4.3.0)
     - Starscream (~> 3.0.5)
@@ -81,7 +81,7 @@ DEPENDENCIES:
   - FBSDKShareKit (~> 4.38.0)
   - JTAppleCalendar (~> 7.1)
   - M13Checkbox
-  - PusherSwift (~> 7.0)
+  - PusherSwift (~> 7.2)
   - PushNotifications (~> 2.1.2)
   - SCLAlertView
   - SwiftKeychainWrapper
@@ -95,7 +95,6 @@ SPEC REPOS:
     - AlamofireImage
     - Bolts
     - Braintree
-    - CryptoSwift
     - FacebookCore
     - FacebookLogin
     - FacebookShare
@@ -104,15 +103,16 @@ SPEC REPOS:
     - FBSDKShareKit
     - JTAppleCalendar
     - M13Checkbox
-    - PusherSwift
-    - ReachabilitySwift
     - SCLAlertView
-    - Starscream
     - SwiftKeychainWrapper
     - SwiftLocation
     - SwiftyJSON
   trunk:
+    - CryptoSwift
+    - PusherSwift
     - PushNotifications
+    - ReachabilitySwift
+    - Starscream
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
@@ -130,7 +130,7 @@ SPEC CHECKSUMS:
   FBSDKShareKit: 6ffe22f0a0618eb7424d4104ab0ef3ce9643d42a
   JTAppleCalendar: 96da4d8388fa6dc82d6a60d41ef36a015e167e2f
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
-  PusherSwift: d15d6290be0b0b57fd9ac80b03661a6ba24623ec
+  PusherSwift: a5369a01e8a9106b4897e9186265af1426726062
   PushNotifications: 3d1ac73f4e1e9dc3de8fa8319e3e53bd00be47dc
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
@@ -139,6 +139,6 @@ SPEC CHECKSUMS:
   SwiftLocation: a3c3bc2023118171ef3572188a31def94aa0892c
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: a9aaac2619bf3bc00d530d142f249b9c4195e850
+PODFILE CHECKSUM: 8e84a660ae54e30dc7c220ec451918f15c71589a
 
 COCOAPODS: 1.8.4
