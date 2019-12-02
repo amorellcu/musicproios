@@ -110,6 +110,17 @@ class ChatViewController: UIViewController {
             }
         })
         
+        pusher.bind { (message) in
+            if let message = message as? [String:Any], let eventName = message["event"] as? String, eventName == "pusher:error" {
+                print("[PUSHER] Error: \(message)")
+                guard let data = message["data"] as? [String:Any], let errorMessage = data["message"] as? String else { return }
+                let code = data["code"] as? Int
+                DispatchQueue.main.async { [weak self] in
+                    self?.notify(message: errorMessage, title: "Error \(code?.description ?? "")")
+                }
+            }
+        }
+        
         self.pusher = pusher
     }
     
@@ -345,7 +356,7 @@ extension ChatViewController: PusherDelegate {
     }
     
     func failedToSubscribeToChannel(name: String, response: URLResponse?, data: String?, error: NSError?) {
-        print("[PUSHER] Could not subscribe to channel \(name).")
+        print("[PUSHER] Could not subscribe to channel \(name): \(error?.localizedDescription ?? error?.description ?? "?").")
     }
 }
 
