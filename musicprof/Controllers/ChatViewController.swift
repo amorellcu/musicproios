@@ -110,11 +110,11 @@ class ChatViewController: UIViewController {
             }
         })
         
-        pusher.bind { (message) in
-            if let message = message as? [String:Any], let eventName = message["event"] as? String, eventName == "pusher:error" {
-                print("[PUSHER] Error: \(message)")
-                guard let data = message["data"] as? [String:Any], let errorMessage = data["message"] as? String else { return }
-                let code = data["code"] as? Int
+        pusher.bind { (message: PusherEvent) in
+            if message.eventName == "pusher:error" {
+                print("[PUSHER] Error: \(message.data ?? "?")")
+                guard let errorMessage = message.property(withKey: "message") as? String else { return }
+                let code = message.property(withKey: "code") as? Int
                 DispatchQueue.main.async { [weak self] in
                     self?.notify(message: errorMessage, title: "Error \(code?.description ?? "")")
                 }
