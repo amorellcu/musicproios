@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import Braintree
-import PushNotifications
+//import PushNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     weak var messageHandler: MessageHandler?
     
-    let pushNotifications = PushNotifications.shared
+    //let pushNotifications = PushNotifications.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -28,8 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         UINavigationBar.appearance().isTranslucent = true
         
-        self.pushNotifications.start(instanceId: "be4fd2f6-aeb2-4b70-84a7-caa9b325cb40")
-        self.pushNotifications.registerForRemoteNotifications()
+        //self.pushNotifications.start(instanceId: "be4fd2f6-aeb2-4b70-84a7-caa9b325cb40")
+        //self.pushNotifications.registerForRemoteNotifications()
         
         if launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] != nil {
             print("Opened from notification")
@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        self.pushNotifications.registerDeviceToken(deviceToken)
+        //self.pushNotifications.registerDeviceToken(deviceToken)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -51,10 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return completionHandler(.noData)
             }
         }
-        guard self.pushNotifications.handleNotification(userInfo: userInfo) == .ShouldProcess else {
+        /*guard self.pushNotifications.handleNotification(userInfo: userInfo) == .ShouldProcess else {
             print("Internal message")
             return completionHandler(.noData)
-        }
+        }*/
         application.updateBadge {
             completionHandler(.newData)
         }
