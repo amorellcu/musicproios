@@ -95,6 +95,7 @@ class ChatViewController: UIViewController {
         )
         
         pusher.delegate = self
+        pusher.connect()
         
         // subscribe to channel and bind to event
         let channel = pusher.subscribe(channelName: "musicprof-chat-R\(reservation.id)")
@@ -153,7 +154,7 @@ class ChatViewController: UIViewController {
             strongSelf.updateMessages()
         })
         
-        pusher?.connect()
+        //pusher?.connect()
         
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.messageHandler = self
@@ -168,7 +169,7 @@ class ChatViewController: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
         
-        pusher?.disconnect()
+        //pusher?.disconnect()
         
         self.timer?.invalidate()
         self.timer = nil
