@@ -1,35 +1,35 @@
 PODS:
-  - ActionSheetPicker-3.0 (2.3.0)
+  - ActionSheetPicker-3.0 (2.3.1)
   - AEAccordion (2.1.1)
-  - Alamofire (4.8.2)
-  - AlamofireImage (3.5.2):
-    - Alamofire (~> 4.8)
+  - Alamofire (4.9.1)
+  - AlamofireImage (3.6.0):
+    - Alamofire (~> 4.9)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
-  - Braintree (4.23.1):
-    - Braintree/Card (= 4.23.1)
-    - Braintree/Core (= 4.23.1)
-    - Braintree/PayPal (= 4.23.1)
-    - Braintree/UI (= 4.23.1)
-  - Braintree/Card (4.23.1):
+  - Braintree (4.30.2):
+    - Braintree/Card (= 4.30.2)
+    - Braintree/Core (= 4.30.2)
+    - Braintree/PayPal (= 4.30.2)
+    - Braintree/UI (= 4.30.2)
+  - Braintree/Card (4.30.2):
     - Braintree/Core
-  - Braintree/Core (4.23.1)
-  - Braintree/PayPal (4.23.1):
+  - Braintree/Core (4.30.2)
+  - Braintree/PayPal (4.30.2):
     - Braintree/Core
     - Braintree/PayPalOneTouch
-  - Braintree/PayPalDataCollector (4.23.1):
+  - Braintree/PayPalDataCollector (4.30.2):
     - Braintree/Core
     - Braintree/PayPalUtils
-  - Braintree/PayPalOneTouch (4.23.1):
+  - Braintree/PayPalOneTouch (4.30.2):
     - Braintree/Core
     - Braintree/PayPalDataCollector
     - Braintree/PayPalUtils
-  - Braintree/PayPalUtils (4.23.1)
-  - Braintree/UI (4.23.1):
+  - Braintree/PayPalUtils (4.30.2)
+  - Braintree/UI (4.30.2):
     - Braintree/Card
     - Braintree/Core
   - CryptoSwift (0.15.0)
@@ -52,7 +52,7 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.38.1):
     - FBSDKCoreKit
-  - JTAppleCalendar (7.1.7)
+  - JTAppleCalendar (7.1.8)
   - M13Checkbox (3.4.0)
   - PusherSwift (7.2.0):
     - CryptoSwift (~> 0.9)
@@ -63,9 +63,7 @@ PODS:
   - SCLAlertView (0.8)
   - Starscream (3.0.6)
   - SwiftKeychainWrapper (3.4.0)
-  - SwiftLocation (3.2.3):
-    - SwiftyJSON (~> 4.0.0-alpha.1)
-  - SwiftyJSON (4.0.0)
+  - SwiftLocation (4.2.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.3.0)
@@ -88,13 +86,14 @@ DEPENDENCIES:
   - SwiftLocation
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - ActionSheetPicker-3.0
     - AEAccordion
     - Alamofire
     - AlamofireImage
     - Bolts
     - Braintree
+    - CryptoSwift
     - FacebookCore
     - FacebookLogin
     - FacebookShare
@@ -103,24 +102,21 @@ SPEC REPOS:
     - FBSDKShareKit
     - JTAppleCalendar
     - M13Checkbox
-    - SCLAlertView
-    - SwiftKeychainWrapper
-    - SwiftLocation
-    - SwiftyJSON
-  trunk:
-    - CryptoSwift
     - PusherSwift
     - PushNotifications
     - ReachabilitySwift
+    - SCLAlertView
     - Starscream
+    - SwiftKeychainWrapper
+    - SwiftLocation
 
 SPEC CHECKSUMS:
-  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
+  ActionSheetPicker-3.0: 2f5e3fde6b3205a7318f9338e4ec0f373ce7e75c
   AEAccordion: 8dbe0aa4af3873e684f7542376f852c3c39ba599
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Braintree: 21588ab236be1d1c68591f6a241658456d23aad0
+  Braintree: 9fc21dc2ead57d104c4a0743454308e404217ec7
   CryptoSwift: 769f58a9e89f64e8796c2e59ce5f002dc81a2438
   FacebookCore: 74288d0add931d361b1596beae787ab72c438249
   FacebookLogin: ebcf34714a1cb9f0759d9f071cfb01ed500996cf
@@ -128,7 +124,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 8d47857400e2f5bdea697a80daff882e91c84ef6
   FBSDKLoginKit: 4621c690d9dd8628031a4791497062183ea34b0d
   FBSDKShareKit: 6ffe22f0a0618eb7424d4104ab0ef3ce9643d42a
-  JTAppleCalendar: 96da4d8388fa6dc82d6a60d41ef36a015e167e2f
+  JTAppleCalendar: b7fb40852f5f319fe55c8ec3861f1de0edc99cc8
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
   PusherSwift: a5369a01e8a9106b4897e9186265af1426726062
   PushNotifications: 3d1ac73f4e1e9dc3de8fa8319e3e53bd00be47dc
@@ -136,8 +132,7 @@ SPEC CHECKSUMS:
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
-  SwiftLocation: a3c3bc2023118171ef3572188a31def94aa0892c
-  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  SwiftLocation: 609ac8859f2c5d48a6cadd2a58c63b1dae02dc25
 
 PODFILE CHECKSUM: 8e84a660ae54e30dc7c220ec451918f15c71589a
 
