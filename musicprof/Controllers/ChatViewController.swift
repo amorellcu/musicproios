@@ -99,7 +99,7 @@ class ChatViewController: UIViewController {
         // subscribe to channel and bind to event
         let channel = pusher.subscribe(channelName: "musicprof-chat-R\(reservation.id)")
         
-        let _ = channel.bind(eventName: "event-chat-R\(reservation.id)", callback: { (data: Any?) -> Void in
+        let _ = channel.bind(eventName: "message", callback: { (data: Any?) -> Void in
             if let data = data as? [String : AnyObject] {
                 if let msg = Message(fromJSON: data) {
                     DispatchQueue.main.async {
@@ -118,6 +118,8 @@ class ChatViewController: UIViewController {
                 DispatchQueue.main.async { [weak self] in
                     self?.notify(message: errorMessage, title: "Error \(code?.description ?? "")")
                 }
+            } else {
+                print("[PUSHER] ", message.channelName ?? "?")
             }
         }
         
