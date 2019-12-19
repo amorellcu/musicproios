@@ -95,12 +95,12 @@ class ChatViewController: UIViewController {
         )
         
         pusher.delegate = self
-        pusher.connect()
+        //pusher.connect()
         
         // subscribe to channel and bind to event
         let channel = pusher.subscribe(channelName: "musicprof-chat-R\(reservation.id)")
         
-        let _ = channel.bind(eventName: "message", callback: { (data: Any?) -> Void in
+        let _ = channel.bind(eventName: "event-chat-R\(reservation.id)", callback: { (data: Any?) -> Void in
             if let data = data as? [String : AnyObject] {
                 if let msg = Message(fromJSON: data) {
                     DispatchQueue.main.async {
@@ -154,7 +154,7 @@ class ChatViewController: UIViewController {
             strongSelf.updateMessages()
         })
         
-        //pusher?.connect()
+        pusher?.connect()
         
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.messageHandler = self
@@ -169,7 +169,7 @@ class ChatViewController: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
         
-        //pusher?.disconnect()
+        pusher?.disconnect()
         
         self.timer?.invalidate()
         self.timer = nil
