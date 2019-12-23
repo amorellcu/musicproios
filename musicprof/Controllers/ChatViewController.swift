@@ -156,6 +156,11 @@ class ChatViewController: UIViewController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.messageHandler = self
         }
+        
+        /*Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
+            let message = Message(fromJSON: ["id": Int.random(in: 1...1000000), "class_id": self.reservation!.classId, "profesor_id": self.professor!.id, "message": "kk"])!
+            self.updateMessages(with: self.messages + [message])
+        }*/
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -345,6 +350,10 @@ extension ChatViewController: UITextFieldDelegate {
 extension ChatViewController: PusherDelegate {
     func changedConnectionState(from old: ConnectionState, to new: ConnectionState) {
         self.connection = new
+        if new == .connected {
+            self.timer?.invalidate()
+            self.timer = nil
+        }
     }
     
     func debugLog(message: String) {

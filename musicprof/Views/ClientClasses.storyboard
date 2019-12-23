@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kMA-fo-t5e">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kMA-fo-t5e">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -171,7 +169,7 @@
                                             <outlet property="dateLabel" destination="tdS-60-xb3" id="Ahu-1l-8s9"/>
                                             <outlet property="instrumentImageView" destination="1eU-oy-Wwu" id="Wtp-0f-3MI"/>
                                             <outlet property="messageCountLabel" destination="glx-lc-Ikx" id="f8b-p4-hbb"/>
-                                            <segue destination="YiU-Cc-CyE" kind="presentation" identifier="showReservation" id="TaA-ae-nix"/>
+                                            <segue destination="YiU-Cc-CyE" kind="presentation" identifier="showReservation" modalPresentationStyle="fullScreen" id="TaA-ae-nix"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cancelledCell" id="AeG-FO-pxm" customClass="ReservationCell" customModule="musicprof" customModuleProvider="target">
@@ -590,7 +588,6 @@
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Escribe algo..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XTf-Vj-kjd" userLabel="Message Input">
                                         <rect key="frame" x="20" y="0.0" width="350" height="40"/>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
