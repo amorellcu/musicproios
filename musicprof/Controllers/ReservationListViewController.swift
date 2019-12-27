@@ -85,6 +85,12 @@ class ReservationListViewController: BaseNestedViewController {
         cell.professorLabel?.text = reservation.professor?.name
     }
     
+    open func getReservationCell(from tableView: UITableView, forRowAt indexPath: IndexPath, withIdentifier identifier: String) -> ReservationCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! ReservationCell
+        self.configureCell(cell, forRowAt: indexPath)
+        return cell
+    }
+    
     struct Section {
         let name: String?
         var classes: [Class]?
@@ -109,9 +115,7 @@ extension ReservationListViewController: UITableViewDelegate, UITableViewDataSou
         guard let sections = self.sections, indexPath.section < sections.count && sections[indexPath.section].classes != nil else {
             return tableView.dequeueReusableCell(withIdentifier: "loadingCell")!
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reservationCell") as! ReservationCell
-        self.configureCell(cell, forRowAt: indexPath)
-        return cell
+        return self.getReservationCell(from: tableView, forRowAt: indexPath, withIdentifier: "reservationCell")
     }
     
     open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

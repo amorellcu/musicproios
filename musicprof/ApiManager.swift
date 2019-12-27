@@ -460,10 +460,10 @@ class ApiManager {
         }
     }
     
-    func getNextClasses(of user: User, handler: @escaping (ApiResult<[Class]>) -> Void) {
+    func getNextClasses(ofUser user: User, handler: @escaping (ApiResult<[Class]>) -> Void) {
         switch user {
         case let client as Client:
-            getNextClasses(of: client, type: .account, handler: handler)
+            getNextClasses(of: client, handler: handler)
         case let professor as Professor:
             getNextClasses(of: professor, handler: handler)
         default:
@@ -471,9 +471,22 @@ class ApiManager {
         }
     }
     
-    func getNextClasses(of client: Student, type: StudentType, handler: @escaping (ApiResult<[Class]>) -> Void) {
+    func getNextClasses(of client: Student, handler: @escaping (ApiResult<[Class]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getNextClasses")
         let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<ClassData>) in
+                handler(result.transform(with: {$0.classes}))
+        }
+    }
+    
+    func getNextGuestClasses(of client: Student, handler: @escaping (ApiResult<[Class]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getNextClasses")
+        let parameters: Parameters = ["reservationFor": StudentType.guest.rawValue]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
@@ -508,6 +521,21 @@ class ApiManager {
             .responseDecodable { (result: ApiResult<ReservationData>) in
                 handler(result.transform(with: {
                     $0.reservations                    
+                }))
+        }
+    }
+    
+    func getNextGuestReservations(handler: @escaping (ApiResult<[Reservation]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getStudentReservations")
+        let parameters: Parameters = ["reservationFor": StudentType.guest.rawValue, "next": "true"]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<ReservationData>) in
+                handler(result.transform(with: {
+                    $0.reservations
                 }))
         }
     }

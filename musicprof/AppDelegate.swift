@@ -103,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension UIApplication {
     func updateBadge(completionHandler: @escaping () -> Void) {
         guard let user = ApiManager.shared.user else { return completionHandler() }
-        ApiManager.shared.getNextClasses(of: user) { (result) in
+        ApiManager.shared.getNextClasses(ofUser: user) { (result) in
             switch result {
             case .success(let classes):
                 guard let count = classes.countUnreadMessages() else { return }

@@ -46,7 +46,8 @@ class ClientClassListViewController: ReservationListViewController {
         
         guard let client = self.service.currentClient else { return }
         self.students = [client] + (client.subaccounts ?? [])
-        self.sections = [Section(student: client, reservations: client.nextReservations)] + (client.subaccounts?.map {
+        self.sections = [Section(student: client, reservations: client.nextReservations), Section(name: "Invitados", classes: nil)]
+            + (client.subaccounts?.map {
             Section(student: $0, reservations: nil)
             } ?? [])
         self.tableView.reloadData()
@@ -61,13 +62,22 @@ class ClientClassListViewController: ReservationListViewController {
                 self?.updateBadge()
             }
         }
+        self.service.getNextGuestReservations { [weak self] (result) in
+            self?.handleResult(result) { (values: [Reservation]) in
+                guard let strongSelf = self else { return }
+                let reservations = values.sorted(by: cmpReservations)
+                strongSelf.sections?[1] = Section(name: "Invitados", reservations: reservations)
+                strongSelf.tableView.reloadSections(IndexSet([1]), with: .fade)
+                self?.updateBadge()
+            }
+        }
         for (index, subaccount) in (client.subaccounts ?? []).enumerated() {
             self.service.getNextReservations(of: subaccount) { [weak self] (result) in
                 self?.handleResult(result) { (values: [Reservation]) in
                     guard let strongSelf = self, let students = strongSelf.students, index + 1 < students.count && students[index + 1] as? Subaccount === subaccount else { return }
                     let reservations = values.sorted(by: cmpReservations)
-                    strongSelf.sections?[index + 1] = Section(student: subaccount, reservations: reservations)
-                    strongSelf.tableView.reloadSections(IndexSet([index + 1]), with: .fade)
+                    strongSelf.sections?[index + 2] = Section(student: subaccount, reservations: reservations)
+                    strongSelf.tableView.reloadSections(IndexSet([index + 2]), with: .fade)
                     self?.updateBadge()
                 }
             }
@@ -145,9 +155,18 @@ class ClientClassListViewController: ReservationListViewController {
     override func configureCell(_ cell: ReservationCell, forRowAt indexPath: IndexPath) {
         super.configureCell(cell, forRowAt: indexPath)
         guard let messageCountLabel = cell.messageCountLabel else { return }
-        let count = self.getItem(forRowAt: indexPath)?.reservations?.first?.unreadMessages ?? 0
+        let reservation = self.getItem(forRowAt: indexPath)?.reservations?.first
+        let count = reservation?.unreadMessages ?? 0
         messageCountLabel.isHidden = count == 0
         messageCountLabel.text = String(describing: count)
+        cell.detailsLabel?.text = reservation?.guestName
+    }
+    
+    override func getReservationCell(from tableView: UITableView, forRowAt indexPath: IndexPath, withIdentifier identifier: String) -> ReservationCell {
+        if self.getItem(forRowAt: indexPath)?.reservations?.first?.studentType == .guest {
+            return super.getReservationCell(from: tableView, forRowAt: indexPath, withIdentifier: "detailedCell")
+        }
+        return super.getReservationCell(from: tableView, forRowAt: indexPath, withIdentifier: identifier)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -178,6 +197,15 @@ class ClientClassListViewController: ReservationListViewController {
 fileprivate extension ReservationListViewController.Section {
     init(student: Student, reservations: [Reservation]?) {
         let name = (student as? Subaccount)?.name
+        let classes = reservations?.compactMap { (reservation: Reservation) -> Class? in
+            guard var theClass = reservation.classes else { return nil }
+            theClass.reservations = [reservation]
+            return theClass
+        }
+        self.init(name: name, classes: classes)
+    }
+    
+    init(name: String, reservations: [Reservation]?) {
         let classes = reservations?.compactMap { (reservation: Reservation) -> Class? in
             guard var theClass = reservation.classes else { return nil }
             theClass.reservations = [reservation]

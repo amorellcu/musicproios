@@ -33,8 +33,12 @@ class ChatViewController: UIViewController {
         switch reservation.studentType {
         case .account:
             return client
-        default:
+        case .subaccount:
             return client.subaccounts?.first(where: {$0.id == reservation.subaccountId})
+        case .guest:
+            return Guest(userId: client.id,
+                         name: self.reservation?.guestName ?? "", email: self.reservation?.guestEmail ?? "",
+                         address: self.reservation?.address)
         }
     }
     var professor: Professor?

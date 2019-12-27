@@ -14,10 +14,16 @@ class BaseReservationViewController: BaseNestedViewController, ReservationContro
     
     var student: Student? {
         guard let clientId = self.reservation.studentId else { return nil }
-        if let type = self.reservation.studentType, type == .account {
+        switch self.reservation.studentType {
+        case .subaccount:
+            return self.service.currentClient?.subaccounts?.first(where: {$0.id == clientId})
+        case .guest:
+            return Guest(userId: self.service.currentClient?.id ?? 0,
+                         name: self.reservation.guestName ?? "", email: self.reservation.guestEmail ?? "",
+                         address: self.reservation.address, locationId: self.reservation.locationId)
+        default:
             return self.service.currentClient
-        }
-        return self.service.currentClient?.subaccounts?.first(where: {$0.id == clientId})
+        }        
     }
     
     var calendar: Calendar! {
