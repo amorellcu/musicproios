@@ -9,25 +9,18 @@
 import UIKit
 import SCLAlertView
 
-class AddStudentsViewController: BaseReservationViewController {
-    weak var parentController: ReservationController!
-    
-    @IBOutlet weak var studentNameTextField: UITextField!
+class AddStudentsViewController: ContactInfoViewController, ReservationController {
+    var reservation: ReservationRequest!
     @IBOutlet weak var continueButton: TransparentButton!
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
-        // Do any additional setup after loading the view.
-        self.studentNameTextField.delegate = self
+        super.viewDidLoad()
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.resignFirstResponder))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.studentNameTextField.becomeFirstResponder()
+        if let currentClient = self.service.currentClient {
+            self.client = Client(copy: currentClient)
+            self.client.name = ""
+            self.client.email = ""
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,28 +28,34 @@ class AddStudentsViewController: BaseReservationViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
+    override func validateFields() -> String? {
+        if let error = super.validateFields() {
+            return error
+        }
+        if addressTextField?.text?.isEmpty ?? true {
+            return "Por favor, introduce tu dirección."
+        }
+        if location == nil {
+            return "No se pudo encontrar la ubicación."
+        }
+        return nil
+    }
+    
+    override func updateClient() {
+        super.updateClient()
+        
+        self.continueButton.isEnabled = self.validateFields() == nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.reservation.studentNames = [studentNameTextField.text ?? ""]
-        self.reservation.locationId = self.service.currentClient?.locationId
-        super.prepare(for: segue, sender: sender)
-    }
-}
-
-extension AddStudentsViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.studentNameTextField.resignFirstResponder()
-        if !(textField.text ?? "").isEmpty {
-            self.performSegue(withIdentifier: "selectDate", sender: textField)
+        self.reservation.studentType = .guest
+        self.reservation.guestName = self.client.name
+        self.reservation.guestEmail = self.client.email
+        self.reservation.locationId = self.client.locationId
+        self.reservation.address = self.client.address
+        if let controller = segue.destination as? ReservationController {
+            controller.reservation = self.reservation
         }
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.continueButton.isEnabled = !(textField.text ?? "").isEmpty
     }
 }
 

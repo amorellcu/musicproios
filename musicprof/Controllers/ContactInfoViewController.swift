@@ -13,7 +13,7 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField?
     @IBOutlet weak var addressTextField: UITextField?
     @IBOutlet weak var locationButton: UIButton?
     @IBOutlet weak var scrollView: UIScrollView?
@@ -98,7 +98,7 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
     open func updateFields() {
         self.nameTextField.text = self.user.name
         self.emailTextField.text = self.user.email
-        self.phoneTextField.text = self.user.phone
+        self.phoneTextField?.text = self.user.phone
         self.addressTextField?.text = self.user.address
         self.location = (self.user as? Client)?.location
     }
@@ -110,7 +110,7 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
         guard let email = self.emailTextField.text, !email.isEmpty else {
             return "Por favor, introduce tu correo."
         }
-        guard let phone = self.phoneTextField.text, !phone.isEmpty else {
+        if let textField = self.phoneTextField, textField.text?.isEmpty ?? true {
             return "Por favor, introduce tu número telefónico."
         }
         return nil
@@ -131,7 +131,7 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
     
     open func updateClient() {
         self.user.name = self.nameTextField.text ?? ""
-        self.user.phone = self.phoneTextField.text
+        self.user.phone = self.phoneTextField?.text
         self.user.email = self.emailTextField.text
         self.user.address = self.addressTextField?.text ?? self.user.address
     }

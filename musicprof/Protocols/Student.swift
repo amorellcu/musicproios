@@ -21,4 +21,5 @@ protocol Student {
 enum StudentType: Int, Codable {
     case account = 1
     case subaccount = 2
+    case guest = 3
 }

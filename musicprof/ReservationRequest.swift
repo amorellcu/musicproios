@@ -17,7 +17,8 @@ struct ReservationRequest {
     var studentId: Int?
     var studentType: StudentType?
     var locationId: Int?
-    var studentNames: [String]?
+    var guestName: String?
+    var guestEmail: String?
     var address: String?
     var calendar: Calendar?
     
@@ -29,7 +30,8 @@ struct ReservationRequest {
         case instrument = "instrumentId"
         case studentType = "reservationFor"
         case address
-        case studentNames = "invitados"
+        case guestName = "guest_name"
+        case guestEmail = "guest_email"
     }
 }
 
@@ -51,7 +53,8 @@ extension ReservationRequest: Encodable {
         try container.encodeIfPresent(self.studentId, forKey: .studentId)
         try container.encodeIfPresent(self.studentType?.rawValue, forKey: .studentType)
         try container.encodeIfPresent(self.address, forKey: .address)
-        try container.encodeIfPresent(self.studentNames, forKey: .studentNames)
+        try container.encodeIfPresent(self.guestName, forKey: .guestName)
+        try container.encodeIfPresent(self.guestEmail, forKey: .guestEmail)
     }
 }
 
@@ -61,6 +64,7 @@ extension ReservationRequest: MultiformEncodable {
         form.encodeIfPresent(self.studentId, withName: CodingKeys.studentId.rawValue)
         form.encodeIfPresent(self.studentType?.rawValue, withName: CodingKeys.studentType.rawValue)
         form.encodeIfPresent(self.address, withName: CodingKeys.address.rawValue)
-        form.encodeValues(self.studentNames ?? [], withName: CodingKeys.studentNames.rawValue)
+        form.encodeIfPresent(self.guestName, withName: CodingKeys.guestName.rawValue)
+        form.encodeIfPresent(self.guestEmail, withName: CodingKeys.guestEmail.rawValue)
     }
 }

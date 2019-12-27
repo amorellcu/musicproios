@@ -18,7 +18,8 @@ struct Reservation: Decodable {
     var creditId: Int?
     var address: String?
     var classes: Class?
-    var guests: [String]?
+    var guestName: String?
+    var guestEmail: String?
     var unreadMessages: Int?
     
     enum CodingKeys: String, CodingKey {
@@ -32,7 +33,8 @@ struct Reservation: Decodable {
         case address
         case classes
         case unreadMessages = "unreadedmessage"
-        //case guests = "invitados"
+        case guestName = "guest_name"
+        case guestEmail = "guest_email"
     }
 }
 

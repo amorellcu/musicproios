@@ -74,9 +74,6 @@ class InstrumentSelectionViewController: BaseReservationViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let nestedController = segue.destination as? AddStudentsViewController {
-            nestedController.parentController = self
-        }
         super.prepare(for: segue, sender: sender)
     }
 }
