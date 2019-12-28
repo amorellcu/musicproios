@@ -471,9 +471,9 @@ class ApiManager {
         }
     }
     
-    func getNextClasses(of client: Student, handler: @escaping (ApiResult<[Class]>) -> Void) {
+    func getNextClasses(of client: Client, handler: @escaping (ApiResult<[Class]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getNextClasses")
-        let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue]
+        let parameters: Parameters = ["id": client.id]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
@@ -484,7 +484,7 @@ class ApiManager {
         }
     }
     
-    func getNextGuestClasses(of client: Student, handler: @escaping (ApiResult<[Class]>) -> Void) {
+    func getNextGuestClasses(handler: @escaping (ApiResult<[Class]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getNextClasses")
         let parameters: Parameters = ["id": currentClient?.id ?? 0, "reservationFor": StudentType.guest.rawValue]
         let _ = self.session
@@ -847,6 +847,7 @@ class ApiManager {
         var request = request
         request.locationId = request.locationId ?? self.getStudent(for: request)?.locationId
         request.address = request.address ?? self.getStudent(for: request)?.address
+        request.studentId = self.currentClient?.id
         let url = baseUrl.appendingPathComponent("classReservation1")
         self.post(request, to: url) { (result: ApiResult<ReservationData2>) in
             handler(result.transform(with: {

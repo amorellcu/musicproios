@@ -56,6 +56,7 @@ class AddStudentsViewController: ContactInfoViewController, ReservationControlle
         if let controller = segue.destination as? ReservationController {
             controller.reservation = self.reservation
         }
+        super.prepare(for: segue, sender: sender)
     }
 }
 

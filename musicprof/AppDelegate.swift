@@ -51,12 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return completionHandler(.noData)
             }
         }
+        application.updateBadge {
+            completionHandler(.newData)
+        }
         guard self.pushNotifications.handleNotification(userInfo: userInfo) == .ShouldProcess else {
             print("Internal message")
             return completionHandler(.noData)
-        }
-        application.updateBadge {
-            completionHandler(.newData)
         }
     }
     

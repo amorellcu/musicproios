@@ -20,7 +20,7 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
     let collapsedColor = UIColor(red: 124/255, green: 124/255, blue: 124/255, alpha: 1)
     
     override var preferredDisplayMode: ContainerViewController.DisplayMode {
-        return .picture
+        return .collapsed
     }
     
     var classes = [Class]()

@@ -62,6 +62,15 @@ class ContactInfoViewController: BaseNestedViewController, RegistrationControlle
         toolbar.items = [mapButton, flexSpace]
         toolbar.sizeToFit()
         
+        self.nameTextField.attributedPlaceholder = NSAttributedString(string: nameTextField.placeholder ?? "",
+                                                                      attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightText])
+        self.emailTextField.attributedPlaceholder = NSAttributedString(string: emailTextField.placeholder ?? "",
+                                                                       attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightText])
+        self.phoneTextField?.attributedPlaceholder = NSAttributedString(string: phoneTextField?.placeholder ?? "",
+                                                                       attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightText])
+        self.addressTextField?.attributedPlaceholder = NSAttributedString(string: addressTextField?.placeholder ?? "",
+                                                                         attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightText])
+        
         self.addressTextField?.inputAccessoryView = toolbar
     }
     
