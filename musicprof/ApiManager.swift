@@ -486,7 +486,7 @@ class ApiManager {
     
     func getNextGuestClasses(of client: Student, handler: @escaping (ApiResult<[Class]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getNextClasses")
-        let parameters: Parameters = ["reservationFor": StudentType.guest.rawValue]
+        let parameters: Parameters = ["id": currentClient?.id ?? 0, "reservationFor": StudentType.guest.rawValue]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
@@ -527,7 +527,7 @@ class ApiManager {
     
     func getNextGuestReservations(handler: @escaping (ApiResult<[Reservation]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getStudentReservations")
-        let parameters: Parameters = ["reservationFor": StudentType.guest.rawValue, "next": "true"]
+        let parameters: Parameters = ["id": currentClient?.id ?? 0, "reservationFor": StudentType.guest.rawValue, "next": "true"]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
