@@ -180,30 +180,30 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gHE-XS-6Xv">
-                                                    <rect key="frame" x="31" y="2.5" width="352" height="60"/>
+                                                    <rect key="frame" x="31" y="4.5" width="352" height="56"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sBU-Vm-0SK">
-                                                            <rect key="frame" x="5" y="5" width="50" height="50"/>
+                                                            <rect key="frame" x="5" y="5" width="46" height="46"/>
                                                             <color key="tintColor" red="0.23135176299999999" green="0.23138415809999999" blue="0.231340766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="sBU-Vm-0SK" secondAttribute="height" multiplier="1:1" id="I8i-Jw-o4i"/>
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XFo-hk-x6I">
-                                                            <rect key="frame" x="75" y="0.0" width="263" height="60"/>
+                                                            <rect key="frame" x="71" y="0.0" width="267" height="56"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="3Hl-gC-Dl3">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="223" height="60"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="227" height="56"/>
                                                                     <subviews>
                                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8QL-Vv-irO" userLabel="Name Label">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="223" height="33"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="227" height="30.5"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="17"/>
                                                                             <color key="textColor" red="0.25508141519999999" green="0.25082162019999998" blue="0.2595459819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Tkt-D6-8ZL" userLabel="Name Label">
-                                                                            <rect key="frame" x="0.0" y="33" width="223" height="27"/>
+                                                                            <rect key="frame" x="0.0" y="30.5" width="227" height="25.5"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <fontDescription key="fontDescription" name="FilsonProRegular-Regular" family="FilsonProRegular" pointSize="14"/>
                                                                             <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -212,10 +212,10 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDj-pM-WKM" userLabel="Messages">
-                                                                    <rect key="frame" x="233" y="0.0" width="30" height="60"/>
+                                                                    <rect key="frame" x="237" y="0.0" width="30" height="56"/>
                                                                     <subviews>
                                                                         <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RvF-hS-mgS">
-                                                                            <rect key="frame" x="0.0" y="15" width="30" height="30"/>
+                                                                            <rect key="frame" x="0.0" y="13" width="30" height="30"/>
                                                                             <color key="backgroundColor" red="0.85194617510000004" green="0.26323637370000003" blue="0.3355219364" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="30" id="1dA-4M-5Wc"/>
@@ -253,7 +253,7 @@
                                                         <constraint firstItem="XFo-hk-x6I" firstAttribute="leading" secondItem="sBU-Vm-0SK" secondAttribute="trailing" constant="20" id="Y9y-YF-B3D"/>
                                                         <constraint firstItem="sBU-Vm-0SK" firstAttribute="top" secondItem="gHE-XS-6Xv" secondAttribute="top" constant="5" id="nOj-SN-ck4"/>
                                                         <constraint firstItem="XFo-hk-x6I" firstAttribute="top" secondItem="gHE-XS-6Xv" secondAttribute="top" id="q0x-0M-pHf"/>
-                                                        <constraint firstAttribute="height" constant="60" id="soA-0m-hR2"/>
+                                                        <constraint firstAttribute="height" constant="56" id="soA-0m-hR2"/>
                                                         <constraint firstItem="sBU-Vm-0SK" firstAttribute="leading" secondItem="gHE-XS-6Xv" secondAttribute="leading" constant="5" id="wI1-Re-PjL"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>

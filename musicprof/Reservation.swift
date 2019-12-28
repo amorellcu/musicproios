@@ -40,6 +40,9 @@ struct Reservation: Decodable {
 
 extension Reservation {
     var studentType: StudentType {
+        if guestName != nil && guestEmail != nil {
+            return .guest
+        }
         if subaccountId != nil {
             return .subaccount
         }
