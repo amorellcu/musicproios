@@ -46,7 +46,8 @@ class ClientClassListViewController: ReservationListViewController {
         
         guard let client = self.service.currentClient else { return }
         self.students = [client] + (client.subaccounts ?? [])
-        self.sections = [Section(student: client, reservations: client.nextReservations), Section(name: "Invitados", classes: nil)]
+        self.sections = [Section(student: client, reservations: client.nextReservations?.filter({$0.studentType == .account})),
+                         Section(name: "Invitados", reservations: client.nextReservations?.filter({$0.studentType == .guest}))]
             + (client.subaccounts?.map {
             Section(student: $0, reservations: nil)
             } ?? [])
