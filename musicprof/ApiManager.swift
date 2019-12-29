@@ -862,25 +862,19 @@ class ApiManager {
     
     func cancelReservation(_ reservation: Reservation, handler: @escaping (ApiResult<Reservation>) -> Void) {
         let url = baseUrl.appendingPathComponent("cancelReservation")
-        let _ = self.session.upload(multipartFormData: { (form) in
-            form.encodeIfPresent(reservation.classes?.id, withName: "classId")
-            form.encodeIfPresent(reservation.subaccountId ?? reservation.clientId, withName: "id")
-            form.encode(reservation.studentType.rawValue, withName: "reservationFor")
-        }, to: url) { (result) in
-            switch result {
-            case .success(let request, _, _):
-                let _ = request.responseDecodable(completionHandler: { (result: ApiResult<ReservationData2>) in
-                    handler(result.transform(with: { data in
-                        self.currentClient?.nextReservations?.removeAll(where: {$0.id == data.reservation.id})
-                        if let credits = self.currentClient?.credits {
-                            self.currentClient?.credits = credits + 1
-                        }
-                        return data.reservation
-                    }))
-                })
-            case .failure(let error):
-                handler(.failure(error: error))
-            }
+        let parameters: Parameters = ["classId": reservation.classes?.id,
+                                     "id": reservation.subaccountId ?? reservation.clientId,
+                                     "reservationFor": reservation.studentType.rawValue]
+        let _ = self.session.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .responseDecodable() {
+            (result: ApiResult<ReservationData2>) in
+            handler(result.transform(with: { data in
+                self.currentClient?.nextReservations?.removeAll(where: {$0.id == data.reservation.id})
+                if let credits = self.currentClient?.credits {
+                    self.currentClient?.credits = credits + 1
+                }
+                return data.reservation
+            }))
         }
     }
     
