@@ -561,7 +561,7 @@ class ApiManager {
     
     func sendMessage(_ message: String, for reservation: Reservation, handler: @escaping (ApiResult<Message>) -> Void) {
         let url = baseUrl.appendingPathComponent("insertLog")
-        let parameters: Parameters = ["reservaId": reservation.id, "logFor": reservation.studentType.rawValue, "message": message]
+        let parameters: Parameters = ["reservaId": reservation.id, "logFor": StudentType.account.rawValue, "message": message]
         let _ = self.session
             .request(url, method: .post,
                      parameters: parameters,
