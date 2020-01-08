@@ -103,10 +103,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension UIApplication {
     func updateBadge(completionHandler: @escaping () -> Void) {
         guard let user = ApiManager.shared.user else { return completionHandler() }
-        ApiManager.shared.getNextClasses(ofUser: user) { (result) in
+        ApiManager.shared.getReservations(of: user) { (result) in
             switch result {
-            case .success(let classes):
-                guard let count = classes.countUnreadMessages() else { return }
+            case .success(let reservations):
+                let count = reservations.countUnreadMessages()
                 self.applicationIconBadgeNumber = count
             default:
                 break
