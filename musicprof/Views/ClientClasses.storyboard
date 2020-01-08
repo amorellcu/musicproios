@@ -282,6 +282,7 @@
                                             <outlet property="detailsLabel" destination="Tkt-D6-8ZL" id="3Pa-DY-YlC"/>
                                             <outlet property="instrumentImageView" destination="sBU-Vm-0SK" id="HgJ-JZ-8y1"/>
                                             <outlet property="messageCountLabel" destination="RvF-hS-mgS" id="3k1-uc-KDm"/>
+                                            <segue destination="YiU-Cc-CyE" kind="presentation" modalPresentationStyle="fullScreen" id="Kqp-ks-DAs"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cancelledCell" id="AeG-FO-pxm" customClass="ReservationCell" customModule="musicprof" customModuleProvider="target">
@@ -895,4 +896,7 @@
         <image name="no_instrument" width="191" height="191"/>
         <image name="userdefault" width="112.5" height="112.5"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Kqp-ks-DAs"/>
+    </inferredMetricsTieBreakers>
 </document>
