@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f3L-ZL-KBe">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f3L-ZL-KBe">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,21 +23,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="IT3-SP-Wg4" detailTextLabel="hIj-f6-XA0" style="IBUITableViewCellStyleSubtitle" id="LAm-ts-WD2">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LAm-ts-WD2" id="HgQ-hY-BlO">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IT3-SP-Wg4">
-                                            <rect key="frame" x="20" y="5" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="20" y="10" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hIj-f6-XA0">
-                                            <rect key="frame" x="20" y="25.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="20" y="31.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -111,20 +109,11 @@
                     <connections>
                         <outlet property="fixAddressButton" destination="JZh-AW-SsK" id="A7G-d3-tck"/>
                         <outlet property="mapView" destination="EGZ-QO-OC4" id="EAU-fi-tbF"/>
-                        <outlet property="searchDisplayController" destination="E8Z-Ws-ekE" id="34Q-D1-5Bv"/>
                         <segue destination="urF-oi-08E" kind="unwind" identifier="updateAddress" unwindAction="unwindBack:" id="vKc-6p-hlz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIy-JC-VB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="urF-oi-08E" userLabel="Exit" sceneMemberID="exit"/>
-                <searchDisplayController id="E8Z-Ws-ekE">
-                    <connections>
-                        <outlet property="delegate" destination="pqh-bV-bri" id="Znc-PA-00V"/>
-                        <outlet property="searchContentsController" destination="pqh-bV-bri" id="s9h-q6-lBr"/>
-                        <outlet property="searchResultsDataSource" destination="pqh-bV-bri" id="anp-67-8s2"/>
-                        <outlet property="searchResultsDelegate" destination="pqh-bV-bri" id="OFa-Oh-Zhx"/>
-                    </connections>
-                </searchDisplayController>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="v6I-Lk-eg6">
                     <connections>
                         <action selector="onMapTapped:" destination="pqh-bV-bri" id="NLH-Et-Qmv"/>
