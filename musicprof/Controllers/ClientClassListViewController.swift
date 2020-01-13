@@ -144,13 +144,19 @@ class ClientClassListViewController: ReservationListViewController {
             controller.reservation = reservation
         }
         
-        guard let selection = self.tableView.indexPathForSelectedRow else { return }
-        let theClass = self.reservation(forRowAt: selection)
+        var reservation: Reservation
+        if let value = sender as? Reservation {
+            reservation = value
+        } else if let selection = self.tableView.indexPathForSelectedRow, let value = self.reservation(forRowAt: selection) {
+            reservation = value
+        } else {
+            return
+        }
         
         guard let controller = segue.destination as? ChatViewController else { return }
-        controller.reservation = theClass
+        controller.reservation = reservation
         controller.client = self.service.currentClient
-        controller.professor = theClass?.classes?.professor
+        controller.professor = reservation.classes?.professor
     }
     
     override func configureCell(_ cell: ReservationCell, forRowAt indexPath: IndexPath) {

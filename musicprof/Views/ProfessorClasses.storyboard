@@ -421,6 +421,7 @@
                     <connections>
                         <outlet property="tableView" destination="ZBA-qv-LE6" id="9vP-lS-0of"/>
                         <segue destination="KzB-Dd-DTD" kind="show" identifier="createClass" id="9pJ-qQ-JJ6"/>
+                        <segue destination="WIY-cM-PpV" kind="presentation" identifier="chatFromNotification" modalPresentationStyle="fullScreen" id="w9c-Jl-XUL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GBU-nK-Tlz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1498,4 +1499,7 @@
         <image name="no_instrument" width="191" height="191"/>
         <image name="userdefault" width="112.5" height="112.5"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="w9c-Jl-XUL"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     weak var messageHandler: MessageHandler?
     
     let pushNotifications = PushNotifications.shared
+    var openMessage: Message?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -31,8 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.pushNotifications.start(instanceId: "be4fd2f6-aeb2-4b70-84a7-caa9b325cb40")
         self.pushNotifications.registerForRemoteNotifications()
         
-        if launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] != nil {
-            print("Opened from notification")
+        if let notification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [String:Any] {
+            print("Opened from notification with \(notification)")
+            if let message = notification["message"] as? [String:Any] {
+                openMessage = Message(fromJSON: message)
+            }
         }
 
         BTAppSwitch.setReturnURLScheme(PAYMENT_SCHEME)

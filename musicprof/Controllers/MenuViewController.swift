@@ -23,6 +23,8 @@ class MenuViewController: UITabBarController, NestedController {
                 nestedController.container = self.container
             }
         }
+        
+        UNUserNotificationCenter.current().delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,5 +82,20 @@ extension MenuViewController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         
+    }
+}
+
+extension MenuViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        print("[NOTIFICATION] \(response.actionIdentifier): \(userInfo)")
+        guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return completionHandler() }
+        guard let data = userInfo["message"] as? [String : AnyObject], let msg = Message(fromJSON: data), let classId = msg.classId else { return completionHandler() }
+        guard presentedViewController == nil else { return }
+        guard let index = viewControllers?.firstIndex(where: {$0 is ReservationListViewController}), let controller = viewControllers?[index] as? ReservationListViewController else { return completionHandler() }
+        self.selectedIndex = index
+        guard let reservation = controller.findClass(withId: classId)?.reservations?[0] else { return completionHandler() }
+        controller.performSegue(withIdentifier: "chatFromNotification", sender: reservation)
+        completionHandler()
     }
 }

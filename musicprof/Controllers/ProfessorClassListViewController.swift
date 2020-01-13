@@ -188,9 +188,14 @@ class ProfessorClassListViewController: ReservationListViewController {
             controller.reservation = reservation
         }
         
-        guard let selection = self.tableView.indexPathForSelectedRow else { return }
-        guard let theClass = self.classes?[selection.section], var reservation = theClass.reservations?[selection.row - 1] else { return }
-        reservation.classes = theClass
+        var reservation: Reservation
+        if let value = sender as? Reservation {
+            reservation = value
+        } else if let selection = self.tableView.indexPathForSelectedRow, let theClass = self.classes?[selection.section], let value = theClass.reservations?[selection.row - 1] {
+            reservation = value
+        } else {
+            return
+        }
         
         guard let controller = segue.destination as? ChatViewController else { return }
         controller.reservation = reservation

@@ -46,6 +46,10 @@ class ReservationListViewController: BaseNestedViewController {
         self.tableView.reloadData()
     }
     
+    open func findClass(withId id: Int) -> Class? {
+        return sections?.flatMap({$0.classes ?? []}).first(where: {$0.id == id})
+    }
+    
 
     // MARK: - Navigation
     
