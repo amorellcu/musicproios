@@ -15,6 +15,7 @@ class MenuViewController: UITabBarController, NestedController {
         super.viewDidLoad()
         
         self.delegate = self
+        UNUserNotificationCenter.current().delegate = self
 
         // Do any additional setup after loading the view.
         for controller in self.viewControllers ?? [] {
@@ -24,7 +25,14 @@ class MenuViewController: UITabBarController, NestedController {
             }
         }
         
-        UNUserNotificationCenter.current().delegate = self
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let message = appDelegate.openMessage, let classId = message.classId {
+            appDelegate.openMessage = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.openChat(forClassWithId: classId, withCompletionHandler: {
+                    
+                })
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,10 +99,24 @@ extension MenuViewController: UNUserNotificationCenterDelegate {
         print("[NOTIFICATION] \(response.actionIdentifier): \(userInfo)")
         guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return completionHandler() }
         guard let data = userInfo["message"] as? [String : AnyObject], let msg = Message(fromJSON: data), let classId = msg.classId else { return completionHandler() }
-        guard presentedViewController == nil else { return }
-        guard let index = viewControllers?.firstIndex(where: {$0 is ReservationListViewController}), let controller = viewControllers?[index] as? ReservationListViewController else { return completionHandler() }
+        openChat(forClassWithId: classId, withCompletionHandler: completionHandler)
+    }
+    
+    func openChat(forClassWithId classId: Int, withCompletionHandler completionHandler: @escaping () -> Void) {
+        guard presentedViewController == nil else {
+            print("Cannot open chat because the app is busy.")
+            return completionHandler()
+        }
+        guard let index = viewControllers?.firstIndex(where: {$0 is ReservationListViewController}),
+            let controller = viewControllers?[index] as? ReservationListViewController else {
+            print("Could not find the class list controller.")
+            return completionHandler()
+        }
         self.selectedIndex = index
-        guard let reservation = controller.findClass(withId: classId)?.reservations?[0] else { return completionHandler() }
+        guard let reservation = controller.findClass(withId: classId)?.reservations?[0] else {
+            print("Could not find the class with id", classId)
+            return completionHandler()
+        }
         controller.performSegue(withIdentifier: "chatFromNotification", sender: reservation)
         completionHandler()
     }

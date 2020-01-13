@@ -55,13 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return completionHandler(.noData)
             }
         }
-        application.updateBadge {
-            completionHandler(.newData)
-        }
-        guard self.pushNotifications.handleNotification(userInfo: userInfo) == .ShouldProcess else {
-            print("Internal message")
-            return completionHandler(.noData)
-        }
+        self.pushNotifications.handleNotification(userInfo: userInfo)
+        return completionHandler(.newData)
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -75,6 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
         FBSDKAppEvents.activateApp()
+        application.updateBadge {
+        }
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
@@ -106,11 +103,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension UIApplication {
     func updateBadge(completionHandler: @escaping () -> Void) {
+        print("[BADGE] Updating badge")
         guard let user = ApiManager.shared.user else { return completionHandler() }
         ApiManager.shared.getReservations(of: user) { (result) in
             switch result {
             case .success(let reservations):
                 let count = reservations.countUnreadMessages()
+                print("[BADGE]", count, "unread messages")
                 self.applicationIconBadgeNumber = count
             default:
                 break

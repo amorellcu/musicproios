@@ -180,7 +180,7 @@ class ChatViewController: UIViewController {
         self.timer?.invalidate()
         self.timer = nil
         
-        UIApplication.shared.updateBadge {}
+//        UIApplication.shared.updateBadge {}
     }
     
     private func updateMessages(notify: Bool = false) {
