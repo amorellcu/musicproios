@@ -113,11 +113,15 @@ extension MenuViewController: UNUserNotificationCenterDelegate {
             return completionHandler()
         }
         self.selectedIndex = index
-        guard let reservation = controller.findClass(withId: classId)?.reservations?[0] else {
-            print("Could not find the class with id", classId)
-            return completionHandler()
+        ApiManager.shared.getClass(withId: classId) { [weak self, weak controller] (result) in
+            self?.handleResult(result) { data in
+                guard let reservation = data.reservations?.first ?? controller?.findClass(withId: classId)?.reservations?[0] else {
+                    print("Could not find the class with id", classId)
+                    return completionHandler()
+                }
+                controller?.performSegue(withIdentifier: "chatFromNotification", sender: reservation)
+                completionHandler()
+            }
         }
-        controller.performSegue(withIdentifier: "chatFromNotification", sender: reservation)
-        completionHandler()
     }
 }

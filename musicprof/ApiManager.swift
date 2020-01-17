@@ -510,6 +510,14 @@ class ApiManager {
         }
     }
     
+    func getClass(withId classId: Int, handler: @escaping (ApiResult<Class>) -> Void) {
+        let url = baseUrl.appendingPathComponent("class").appendingPathComponent(classId.description)
+        let _ = self.session
+            .request(url, method: .get,
+                     headers: self.headers)
+            .responseDecodable(completionHandler: handler)
+    }
+    
     func getNextReservations(of client: Student, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getStudentReservations")
         let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue, "next": "true"]
