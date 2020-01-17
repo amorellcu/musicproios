@@ -168,5 +168,6 @@ extension ReservationListViewController {
             count += subCount
         }
         UIApplication.shared.applicationIconBadgeNumber = count
+        print("[BADGE] Update badge from reservation list to", count)
     }
 }
