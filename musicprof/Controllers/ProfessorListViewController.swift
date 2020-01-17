@@ -52,7 +52,7 @@ extension ProfessorListViewController: UICollectionViewDelegate, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: prototypeCellIdentifier, for: indexPath) as! ProfessorCell
         let professor = self.professors[indexPath.row]
         if let iconURL = professor.avatarUrl {
-            let filter: ImageFilter = ScaledToSizeCircleFilter(size: cell.avatarImageView.frame.size)
+            let filter: ImageFilter = AspectScaledToFillSizeCircleFilter(size: cell.avatarImageView.frame.size)
             cell.avatarImageView.af_setImage(withURL: iconURL, filter: filter)
         }
         if let price = professor.price {

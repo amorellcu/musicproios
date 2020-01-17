@@ -73,7 +73,7 @@ class ContactInfoRegistrationViewController: ContactInfoViewController {
         if let avatarUrl = self.user.avatarUrl, avatarUrl.isFileURL {
             self.avatarImageView.image = UIImage(contentsOfFile: avatarUrl.path)
         } else if let avatarUrl = self.user.avatarUrl {
-            let filter = ScaledToSizeCircleFilter(size: self.avatarImageView.frame.size)
+            let filter = AspectScaledToFillSizeCircleFilter(size: self.avatarImageView.frame.size)
             self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"), filter: filter) { response in
                 if let avatar = response.result.value, let data = UIImagePNGRepresentation(avatar) {
                     let documentsPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]

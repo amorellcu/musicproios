@@ -33,7 +33,7 @@ class InstrumentsRegistrationViewController: InstrumentListViewController, Clien
         if let avatarImageView = self.avatarImageView {
             let placeholderAvatar = UIImage(named:"userdefault")
             if let avatarUrl = self.client.avatarUrl {
-                let filter = ScaledToSizeCircleFilter(size: avatarImageView.frame.size)
+                let filter = AspectScaledToFillSizeCircleFilter(size: avatarImageView.frame.size)
                 avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: UIImage(named:"userdefault"), filter: filter)
             } else {
                 avatarImageView.image = placeholderAvatar?.af_imageAspectScaled(toFit: avatarImageView.frame.size).af_imageRoundedIntoCircle()

@@ -154,7 +154,7 @@ extension ScheduleProfesorViewController: UICollectionViewDelegate, UICollection
             let classes = sections[index].items[indexPath.row - 1]
             let placeholder = UIImage(named: "profesor")?.af_imageRoundedIntoCircle()
             if let iconURL = classes.professor?.avatarUrl {
-                let filter: ImageFilter = ScaledToSizeCircleFilter(size: cell.avatarImageView.frame.size)
+                let filter: ImageFilter = AspectScaledToFillSizeCircleFilter(size: cell.avatarImageView.frame.size)
                 cell.avatarImageView.af_setImage(withURL: iconURL, placeholderImage: placeholder, filter: filter)
             } else {
                 cell.avatarImageView.image = placeholder

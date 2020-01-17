@@ -87,7 +87,7 @@ class ProfessorClassListViewController: ReservationListViewController {
         guard let imageView = cell.imageView else { return }
         let placeholderAvatar = UIImage(named: "userdefault")?.af_imageAspectScaled(toFit: imageView.frame.size).af_imageRoundedIntoCircle()
         if let avatarUrl = client.avatarUrl {
-            let filter = ScaledToSizeCircleFilter(size: imageView.frame.size)
+            let filter = AspectScaledToFillSizeCircleFilter(size: imageView.frame.size)
             imageView.af_setImage(withURL: avatarUrl, placeholderImage: placeholderAvatar, filter: filter)
         } else {
             imageView.image = placeholderAvatar

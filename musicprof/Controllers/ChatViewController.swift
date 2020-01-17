@@ -234,7 +234,7 @@ class ChatViewController: UIViewController {
     private func setAvatar(_ url: URL?, for imageView: UIImageView, defaultName: String? = nil) {
         let placeholderAvatar = UIImage(named: defaultName ?? "userdefault")?.af_imageAspectScaled(toFit: imageView.frame.size).af_imageRoundedIntoCircle()
         if let avatarUrl = url {
-            let filter = ScaledToSizeCircleFilter(size: imageView.frame.size)
+            let filter = AspectScaledToFillSizeCircleFilter(size: imageView.frame.size)
             imageView.af_setImage(withURL: avatarUrl, placeholderImage: placeholderAvatar, filter: filter)
         } else {
             imageView.image = placeholderAvatar
