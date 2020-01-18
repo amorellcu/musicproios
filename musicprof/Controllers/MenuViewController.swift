@@ -98,7 +98,10 @@ extension MenuViewController: UNUserNotificationCenterDelegate {
         let userInfo = response.notification.request.content.userInfo
         print("[NOTIFICATION] \(response.actionIdentifier): \(userInfo)")
         guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return completionHandler() }
-        guard let data = userInfo["message"] as? [String : AnyObject], let msg = Message(fromJSON: data), let classId = msg.classId else { return completionHandler() }
+        guard let data = userInfo["data"] as? [String: AnyObject], let msgData = data["message"] as? [String : AnyObject], let msg = Message(fromJSON: msgData), let classId = msg.classId else {
+            print("Could not find class ID.")
+            return completionHandler()
+        }
         openChat(forClassWithId: classId, withCompletionHandler: completionHandler)
     }
     

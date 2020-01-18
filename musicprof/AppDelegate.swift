@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let notification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [String:Any] {
             print("Opened from notification with \(notification)")
-            if let message = notification["message"] as? [String:Any] {
+            if let data = notification["data"] as? [String: AnyObject], let message = data["message"] as? [String:Any] {
                 openMessage = Message(fromJSON: message)
             }
         }
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("[NOTIFICATION] \(userInfo)")
-        if let data = userInfo["message"] as? [String : AnyObject], let msg = Message(fromJSON: data) {
+        if let data = userInfo["data"] as? [String: AnyObject], let msgData = data["message"] as? [String : AnyObject], let msg = Message(fromJSON: msgData) {
             if application.applicationState == .active, let handler = self.messageHandler, handler.handleMessage(msg) {
                 print("Message handled")
                 return completionHandler(.noData)
