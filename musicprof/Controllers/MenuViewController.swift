@@ -125,11 +125,12 @@ extension MenuViewController: UNUserNotificationCenterDelegate {
             print("Cannot open chat because the app is busy.")
             return completionHandler()
         }
-        guard let index = viewControllers?.firstIndex(where: {
+        guard let children = viewControllers,
+            let index = children.firstIndex(where: {
             $0 is ReservationListViewController ||
             ($0 as? UINavigationController)?.viewControllers.first is ReservationListViewController
-        }),
-            let controller = viewControllers?[index] as? ReservationListViewController else {
+        }), let controller = children[index] as? ReservationListViewController ??
+            (children[index] as? UINavigationController)?.viewControllers.first as? ReservationListViewController else {
             print("Could not find the class list controller.")
             return completionHandler()
         }
