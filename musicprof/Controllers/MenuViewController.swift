@@ -25,10 +25,10 @@ class MenuViewController: UITabBarController, NestedController {
             }
         }
         
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let message = appDelegate.openMessage, let classId = message.classId {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let message = appDelegate.openMessage, let reservation = message.reservation {
             appDelegate.openMessage = nil
             DispatchQueue.main.async { [weak self] in
-                self?.openChat(forClassWithId: classId, withCompletionHandler: {
+                self?.openChat(forReservation: reservation, withCompletionHandler: {
                     
                 })
             }
@@ -98,14 +98,15 @@ extension MenuViewController: UNUserNotificationCenterDelegate {
         let userInfo = response.notification.request.content.userInfo
         print("[NOTIFICATION] \(response.actionIdentifier): \(userInfo)")
         guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return completionHandler() }
-        guard let data = userInfo["data"] as? [String: AnyObject], let msgData = data["message"] as? [String : AnyObject], let msg = Message(fromJSON: msgData), let classId = msg.classId else {
-            print("Could not find class ID.")
+        guard let data = userInfo["data"] as? [String: AnyObject], let msgData = data["message"] as? [String : AnyObject], let msg = Message(fromJSON: msgData), let reservation = msg.reservation else {
+            print("Could not find reservation.")
             return completionHandler()
         }
-        openChat(forClassWithId: classId, withCompletionHandler: completionHandler)
+        openChat(forReservation: reservation, withCompletionHandler: completionHandler)
     }
     
-    func openChat(forClassWithId classId: Int, withCompletionHandler completionHandler: @escaping () -> Void) {
+    func openChat(forReservation reservation: Reservation, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let classId = reservation.classId
         guard presentedViewController == nil else {
             print("Cannot open chat because the app is busy.")
             return completionHandler()
@@ -118,10 +119,8 @@ extension MenuViewController: UNUserNotificationCenterDelegate {
         self.selectedIndex = index
         ApiManager.shared.getClass(withId: classId) { [weak self, weak controller] (result) in
             self?.handleResult(result) { data in
-                guard let reservation = data.reservations?.first ?? controller?.findClass(withId: classId)?.reservations?[0] else {
-                    print("Could not find the class with id", classId)
-                    return completionHandler()
-                }
+                var reservation = reservation
+                reservation.classes = data
                 controller?.performSegue(withIdentifier: "chatFromNotification", sender: reservation)
                 completionHandler()
             }

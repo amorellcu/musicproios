@@ -375,7 +375,7 @@ extension ChatViewController: PusherDelegate {
 
 extension ChatViewController: MessageHandler {
     func handleMessage(_ message: Message) -> Bool {
-        guard message.classId == self.reservation?.classId else { return false }
+        guard message.reservationId == self.reservation?.id else { return false }
         switch message.source {
         case .client where self.service.user is Client || self.service.user?.id != message.professorId:
             return false
