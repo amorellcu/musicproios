@@ -94,6 +94,20 @@ extension MenuViewController: UITabBarControllerDelegate {
 }
 
 extension MenuViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        print("[NOTIFICATION] \(userInfo)")
+        if let data = userInfo["data"] as? [String: AnyObject], let msgData = data["message"] as? [String : AnyObject], let msg = Message(fromJSON: msgData) {
+            if let chatController = self.presentedViewController as? ChatViewController, chatController.handleMessage(msg) {
+                print("Ignoring message notification for the current chat session.")
+                return completionHandler(.badge)
+            } else {
+                print("Showing message arrival notification.")
+            }
+        }
+        return completionHandler([.badge, .alert])
+    }
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         print("[NOTIFICATION] \(response.actionIdentifier): \(userInfo)")

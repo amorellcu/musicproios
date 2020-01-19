@@ -157,10 +157,6 @@ class ChatViewController: UIViewController {
         
         pusher?.connect()
         
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.messageHandler = self
-        }
-        
         /*Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
             let message = Message(fromJSON: ["id": Int.random(in: 1...1000000), "class_id": self.reservation!.classId, "profesor_id": self.professor!.id, "message": "kk"])!
             self.updateMessages(with: self.messages + [message])
@@ -168,10 +164,6 @@ class ChatViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.messageHandler = nil
-        }
-        
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
         

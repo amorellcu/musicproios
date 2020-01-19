@@ -17,8 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    weak var messageHandler: MessageHandler?
-    
     let pushNotifications = PushNotifications.shared
     var openMessage: Message?
     var badgeTimer: Timer?
@@ -52,12 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("[NOTIFICATION] \(userInfo)")
-        if let data = userInfo["data"] as? [String: AnyObject], let msgData = data["message"] as? [String : AnyObject], let msg = Message(fromJSON: msgData) {
-            if application.applicationState == .active, let handler = self.messageHandler, handler.handleMessage(msg) {
-                print("Message handled")
-                return completionHandler(.noData)
-            }
-        }
         self.pushNotifications.handleNotification(userInfo: userInfo)
         return completionHandler(.newData)
     }
