@@ -331,6 +331,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
                 case .success(let newValue):
                     self.messages[indexPath.item] = newValue
                     self.tableView.reloadRows(at: [indexPath], with: .fade)
+                    UIApplication.shared.decreaseBadge()
                 default:
                     break
                 }

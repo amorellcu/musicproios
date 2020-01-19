@@ -510,6 +510,19 @@ class ApiManager {
         }
     }
     
+    func getNextReservations(of professor: Professor, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getProfesorReservations")
+        let parameters: Parameters = ["id": professor.id, "next": "true"]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<ReservationData>) in
+                handler(result.transform(with: {$0.reservations}))
+        }
+    }
+    
     func getClass(withId classId: Int, handler: @escaping (ApiResult<Class>) -> Void) {
         let url = baseUrl.appendingPathComponent("class").appendingPathComponent(classId.description)
         let _ = self.session
@@ -518,9 +531,9 @@ class ApiManager {
             .responseDecodable(completionHandler: handler)
     }
     
-    func getNextReservations(of client: Student, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
+    func getNextReservations(of student: Student, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getStudentReservations")
-        let parameters: Parameters = ["id": client.id, "reservationFor": client.type.rawValue, "next": "true"]
+        let parameters: Parameters = ["id": student.id, "reservationFor": student.type.rawValue, "next": "true"]
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
@@ -545,6 +558,32 @@ class ApiManager {
                 handler(result.transform(with: {
                     $0.reservations
                 }))
+        }
+    }
+    
+    func getNextReservations(relatedTo client: Client, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
+        let url = baseUrl.appendingPathComponent("getStudentReservations")
+        let parameters: Parameters = ["id": client.id, "next": "true"]
+        let _ = self.session
+            .request(url, method: .get,
+                     parameters: parameters,
+                     encoding: URLEncoding.default,
+                     headers: self.headers)
+            .responseDecodable { (result: ApiResult<ReservationData>) in
+                handler(result.transform(with: {
+                    $0.reservations
+                }))
+        }
+    }
+    
+    func getNextReservations(ofUser user: User, handler: @escaping (ApiResult<[Reservation]>) -> Void) {
+        switch user {
+        case let client as Client:
+            getNextReservations(relatedTo: client, handler: handler)
+        case let professor as Professor:
+            getNextReservations(of: professor, handler: handler)
+        default:
+            handler(.failure(error: AppError.invalidOperation))
         }
     }
     

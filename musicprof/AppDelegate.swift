@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let pushNotifications = PushNotifications.shared
     var openMessage: Message?
+    var badgeTimer: Timer?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -38,6 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 openMessage = Message(fromJSON: message)
             }
         }
+        
+        application.setMinimumBackgroundFetchInterval(600)
 
         BTAppSwitch.setReturnURLScheme(PAYMENT_SCHEME)
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -65,13 +68,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return false
     }
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        application.updateBadge(completionHandler: completionHandler)
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
         FBSDKAppEvents.activateApp()
-        application.updateBadge {
-        }
+        badgeTimer?.invalidate()
+        badgeTimer = nil
+        application.updateBadge {_ in }
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
@@ -85,13 +93,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        application.updateBadge {
-            
-        }
+//        application.updateBadge {
+//
+//        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        self.badgeTimer = Timer.scheduledTimer(withTimeInterval: 600, repeats: true, block: { (timer) in
+            UIApplication.shared.updateBadge { _ in }
+        })
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -102,19 +113,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension UIApplication {
-    func updateBadge(completionHandler: @escaping () -> Void) {
+    func updateBadge(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("[BADGE] Updating badge")
-        guard let user = ApiManager.shared.user else { return completionHandler() }
-        ApiManager.shared.getReservations(of: user) { (result) in
+        guard let user = ApiManager.shared.user else { return completionHandler(.noData) }
+        ApiManager.shared.getNextReservations(ofUser: user) { (result) in
             switch result {
             case .success(let reservations):
                 let count = reservations.countUnreadMessages()
                 print("[BADGE]", count, "unread messages")
+                let changed = self.applicationIconBadgeNumber != count
                 self.applicationIconBadgeNumber = count
+                completionHandler(changed ? .newData : .noData)
             default:
-                break
+                completionHandler(.failed)
             }
-            completionHandler()
         }
+    }
+    
+    func decreaseBadge() {
+        self.applicationIconBadgeNumber = max(self.applicationIconBadgeNumber - 1, 0)
     }
 }
