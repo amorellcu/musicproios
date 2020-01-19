@@ -85,6 +85,11 @@ class ChatViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.messageTextField, action: #selector(UIView.resignFirstResponder))
         tap.cancelsTouchesInView = false
         self.tableView.addGestureRecognizer(tap)
+        
+        if self.messages.count > 0 {
+            let lastRow = IndexPath(row: self.messages.count - 1, section: 0)
+            self.tableView.scrollToRow(at: lastRow, at: .bottom, animated: false)
+        }
     }
     
     func initSocket() {
