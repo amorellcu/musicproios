@@ -8,8 +8,11 @@
 
 import UIKit
 import AlamofireImage
+import M13Checkbox
 
 class ProfessorClassListViewController: ReservationListViewController {
+    var filterCheckBox: M13Checkbox!
+    var filterButton: UIBarButtonItem!
     
     var classes: [Class]? {
         didSet {
@@ -20,6 +23,10 @@ class ProfessorClassListViewController: ReservationListViewController {
     }
     var selectedClass: Class?
     var clientCache: [Int:Client] = [:]
+    
+    var showReservedOnly: Bool {
+        return self.filterCheckBox?.checkState == .checked
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,17 +38,32 @@ class ProfessorClassListViewController: ReservationListViewController {
         
         self.dateFormatter.timeStyle = .short
         self.dateFormatter.dateStyle = .medium
+        
+        
+        filterCheckBox = M13Checkbox(frame: CGRect(x: 0, y: 0, width: 130, height: 24))
+        filterCheckBox.boxType = .square
+        filterCheckBox.markType = .checkmark
+        filterCheckBox.setCheckState(.checked, animated: true)
+        let filterLabel = UILabel(frame: CGRect(x: 30, y: 0, width: 100, height: 24))
+        filterLabel.text = "Reservados"
+        filterLabel.textColor = .white
+        filterCheckBox.addSubview(filterLabel)
+        
+        filterCheckBox.addTarget(self, action: #selector(ReservationListViewController.updateReservations), for: .valueChanged)
+        filterButton = UIBarButtonItem(customView: filterCheckBox)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.selectRow(at: nil, animated: animated, scrollPosition: .none)
         self.updateReservations()
+        let navItem = self.container?.navigationItem ?? self.navigationItem
+        navItem.setLeftBarButton(filterButton, animated: false)
     }
     
     override func updateReservations() {
         guard let professor = self.service.currentProfessor else { return }
-        self.service.getNextClasses(of: professor) { [weak self] (result) in
+        self.service.getNextClasses(of: professor, reservedOnly: self.showReservedOnly) { [weak self] (result) in
             self?.tableView.refreshControl?.endRefreshing()
             self?.handleResult(result) { values in
                 if let oldClass = self?.selectedClass, let newClass = values.first(where: {$0.id == oldClass.id}) {
@@ -49,7 +71,11 @@ class ProfessorClassListViewController: ReservationListViewController {
                 } else {
                     self?.selectedClass = nil
                 }
-                self?.classes = values.lazy.filter({$0.reservations?.count ?? 0 > 0}).sorted(by: {$0.date < $1.date})
+                var classes = values.sorted(by: {$0.date < $1.date})
+                if self?.showReservedOnly ?? false {
+                    classes = classes.filter({$0.reservations?.count ?? 0 > 0})
+                }
+                self?.classes = classes
             }
         }
     }
