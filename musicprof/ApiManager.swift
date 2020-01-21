@@ -497,9 +497,12 @@ class ApiManager {
         }
     }
     
-    func getNextClasses(of professor: Professor, handler: @escaping (ApiResult<[Class]>) -> Void) {
+    func getNextClasses(of professor: Professor, reservedOnly: Bool = false, handler: @escaping (ApiResult<[Class]>) -> Void) {
         let url = baseUrl.appendingPathComponent("getProfesorNextClasses")
-        let parameters: Parameters = ["id": professor.id]
+        var parameters: Parameters = ["id": professor.id]
+        if reservedOnly {
+            parameters["onlyClassScheduled"] = "true"
+        }
         let _ = self.session
             .request(url, method: .get,
                      parameters: parameters,
