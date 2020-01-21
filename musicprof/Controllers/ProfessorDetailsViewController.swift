@@ -8,6 +8,7 @@
 
 import UIKit
 import SCLAlertView
+import AlamofireImage
 
 class ProfessorDetailsViewController: BaseReservationViewController  {
     @IBOutlet weak var nameLabel: UILabel!
@@ -33,6 +34,9 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.avatarImageView.contentMode = .scaleAspectFill
+        self.avatarImageView.clipsToBounds = true
+        
         // Do any additional setup after loading the view.
         //self.perfil.image = photoPerfil
         self.nextProfessorButton.isEnabled = self.classes.count > 1
@@ -73,7 +77,8 @@ class ProfessorDetailsViewController: BaseReservationViewController  {
         let placeholderAvatar = UIImage(named:"profedetails")
         self.nameLabel.text = professor.name
         if let avatarUrl = professor.avatarUrl {
-            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: placeholderAvatar)
+            self.avatarImageView.af_setImage(withURL: avatarUrl, placeholderImage: placeholderAvatar,
+                                             filter: AspectScaledToFillSizeFilter(size: self.avatarImageView.frame.size))
         } else {
             self.avatarImageView.image = placeholderAvatar
         }
