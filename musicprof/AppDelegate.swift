@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         UINavigationBar.appearance().isTranslucent = true
         
-        self.pushNotifications.start(instanceId: "be4fd2f6-aeb2-4b70-84a7-caa9b325cb40")
+        self.pushNotifications.start(instanceId: "7a4a987c-dda5-4dfe-933e-2a1a08ee9f7f")
         self.pushNotifications.registerForRemoteNotifications()
         
         if let notification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [String:Any] {

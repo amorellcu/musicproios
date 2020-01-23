@@ -99,7 +99,7 @@ class ChatViewController: UIViewController {
         )
         
         let pusher = Pusher(
-            key: "e27e7bc4b2d829641166",
+            key: "91a7729d0e9951d29a1e",
             options: options
         )
         
