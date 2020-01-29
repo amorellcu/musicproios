@@ -105,20 +105,21 @@ extension LocationListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return locations == nil ? nil : indexPath
+//        return locations == nil ? nil : indexPath
+        return nil
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let sectionTitle = self.sectionTitles?[indexPath.section], let location = self.locations?[sectionTitle]?[indexPath.row] else { return }
-        self.professor.locations?.append(location)
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        guard let sectionTitle = self.sectionTitles?[indexPath.section], let location = self.locations?[sectionTitle]?[indexPath.row] else { return }
-        self.professor.locations?.removeAll(where: {$0.id == location.id})
-    }
-    
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return self.sectionTitles
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard let sectionTitle = self.sectionTitles?[indexPath.section], let location = self.locations?[sectionTitle]?[indexPath.row] else { return }
+//        self.professor.locations?.append(location)
+//    }
+//
+//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        guard let sectionTitle = self.sectionTitles?[indexPath.section], let location = self.locations?[sectionTitle]?[indexPath.row] else { return }
+//        self.professor.locations?.removeAll(where: {$0.id == location.id})
+//    }
+//
+//    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+//        return self.sectionTitles
+//    }
 }
