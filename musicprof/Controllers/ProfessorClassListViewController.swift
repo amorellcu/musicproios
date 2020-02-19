@@ -219,6 +219,7 @@ class ProfessorClassListViewController: ReservationListViewController {
             reservation = value
         } else if let selection = self.tableView.indexPathForSelectedRow, let theClass = self.classes?[selection.section], let value = theClass.reservations?[selection.row - 1] {
             reservation = value
+            reservation.classes = theClass
         } else {
             return
         }
