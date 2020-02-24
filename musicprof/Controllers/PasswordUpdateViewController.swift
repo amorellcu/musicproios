@@ -27,6 +27,11 @@ class PasswordUpdateViewController: BaseNestedViewController, RegistrationContro
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.resignFirstResponder))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: passwordTextField.placeholder ?? "",
+                                                                     attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightText])
+        passwordConfirmationTextField.attributedPlaceholder = NSAttributedString(string: passwordConfirmationTextField.placeholder ?? "",
+                                                                                 attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightText])
     }
     
     override func didReceiveMemoryWarning() {
