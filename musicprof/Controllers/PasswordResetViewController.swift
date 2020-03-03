@@ -22,6 +22,13 @@ class PasswordResetViewController: UIViewController, LoginController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        codeTextField.attributedPlaceholder = NSAttributedString(string: codeTextField.placeholder ?? "",
+                                                                 attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightText])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: passwordTextField.placeholder ?? "",
+                                                                     attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightText])
+        passwordConfirmationTextField.attributedPlaceholder = NSAttributedString(string: passwordConfirmationTextField.placeholder ?? "",
+                                                                                 attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightText])
+        
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
