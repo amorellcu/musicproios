@@ -11,7 +11,7 @@ import SCLAlertView
 
 class ProfessorTextViewController: BaseNestedViewController, ProfessorRegistrationController, ProfileSection {
     weak var updater: ProfileUpdateViewController?
-    var professor: Professor!
+    var professor: Professor! 
     
     open var text: String?
     
@@ -44,6 +44,9 @@ class ProfessorTextViewController: BaseNestedViewController, ProfessorRegistrati
     }
     
     @IBAction func onSaveChanges(_ sender: Any) {
+        self.textView.resignFirstResponder()
+        self.updateProfessor()
+        
         guard self.professor != self.service.currentProfessor else {
             return notify(message: "No hay cambios que guardar.", title: "Error")
         }
@@ -69,9 +72,8 @@ extension ProfessorTextViewController: UITextViewDelegate {
         self.updateProfessor()
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    func textViewDidChange(_ textView: UITextView) {
         self.updateProfessor()
-        return true
     }
 }
 
