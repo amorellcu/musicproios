@@ -710,7 +710,7 @@ class ApiManager {
                     switch result {
                     case .success(let data):
                         self.user = data.client
-                        handler(.success(data: data.client))
+                        handler(.success(data: Client(copy: data.client)))
                     case .failure(let error):
                         handler(.failure(error: error))
                     }
@@ -769,7 +769,7 @@ class ApiManager {
                     switch result {
                     case .success(let data):
                         self.user = data
-                        handler(.success(data: data))
+                        handler(.success(data: Professor(copy: data)))
                     case .failure(let error):
                         handler(.failure(error: error))
                     }
